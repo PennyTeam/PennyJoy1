@@ -6,12 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import Models.User;
+import Models.UserProvider;
 
 public class SignUpActivityNoAcc3 extends AppCompatActivity {
     EditText salary;
-    int signUpNoAccRequestCode=3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +38,11 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
             float salary=Float.parseFloat(this.salary.getText().toString());
 
             User user=new User(name,surname,login,passwd,salary,"NE ZNAU KAK SDELAT, PROSTI SPAT HOCHU");
-
-
-            startActivityForResult(intent, signUpNoAccRequestCode);
+            UserProvider provider=new UserProvider();
+            provider.addUser(user);
+            startActivity(intent);
+        }else{
+            Toast.makeText(getApplicationContext(),"Заполните все поля верно",Toast.LENGTH_LONG).show();
         }
     }
 }

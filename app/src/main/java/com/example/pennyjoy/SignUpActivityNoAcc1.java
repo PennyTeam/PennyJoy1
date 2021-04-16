@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class SignUpActivityNoAcc1 extends AppCompatActivity {
     int signUpNoAccRequestCode=1;
@@ -28,6 +29,8 @@ public class SignUpActivityNoAcc1 extends AppCompatActivity {
             intent.putExtra("name",txtName.getText().toString());
             intent.putExtra("surname",txtSurname.getText().toString());
             startActivityForResult(intent, signUpNoAccRequestCode);
+        }else{
+            Toast.makeText(getApplicationContext(),"Заполните все поля верно",Toast.LENGTH_LONG).show();
         }
     }
 }

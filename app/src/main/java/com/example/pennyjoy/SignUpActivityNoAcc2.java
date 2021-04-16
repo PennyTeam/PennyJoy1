@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class SignUpActivityNoAcc2 extends AppCompatActivity {
     int signUpNoAccRequestCode=2;
@@ -24,8 +25,11 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
     //здесь он клик для вызова след активити регистрации
     public void nextLog2(View v){
         //проверка на пустоту данных ввода и пароль
+
+
         if( !txtLogin.getText().toString().isEmpty() && !txtPasswd.getText().toString().isEmpty()
-        && !txtRepeatedPasswd.getText().toString().isEmpty() && checkingPasswd(txtPasswd.getText().toString(),txtRepeatedPasswd.getText().toString()) ==true) {
+        && !txtRepeatedPasswd.getText().toString().isEmpty()
+        && checkingPasswd(txtPasswd.getText().toString(), txtRepeatedPasswd.getText().toString())==true) {
             Intent intent = new Intent(this, SignUpActivityNoAcc3.class);
             Intent intent2=getIntent();
             //получаю данные с первого активити
@@ -38,6 +42,8 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
             intent.putExtra("nameFromSecondAct",name);
             intent.putExtra("surnameFromSecondAct",surname);
             startActivityForResult(intent, signUpNoAccRequestCode);
+        }else{
+            Toast.makeText(getApplicationContext(),"Заполните все поля верно",Toast.LENGTH_LONG).show();
         }
     }
 
