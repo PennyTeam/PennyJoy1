@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "56473247732",
+    "firebase_url": "https://pennyjoy1-c530d-default-rtdb.firebaseio.com",
+    "project_id": "pennyjoy1-c530d",
+    "storage_bucket": "pennyjoy1-c530d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56473247732:android:d8cb7c16c42bd031c0a3a1",
+        "android_client_info": {
+          "package_name": "com.example.pennyjoy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56473247732-d6o6o9qg2s8hdjo80cgc499q6gkdr6qm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDE6OnoWRtsRV9Mtoh1tiWfk9QTevnEtBI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56473247732-d6o6o9qg2s8hdjo80cgc499q6gkdr6qm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
