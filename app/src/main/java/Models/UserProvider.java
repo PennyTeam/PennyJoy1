@@ -73,7 +73,7 @@ User user = new User();
                 for(DataSnapshot single : snapshot.getChildren()){
                   User user1 = (User)single.getValue(User.class);
                   user.setKey(user1.getKey());
-                  user.setLogin(login);
+                  user.setLogin(user1.getLogin());
                   user.setPasswd(user1.getPasswd());
                   user.setName(user1.getName());
                   user.setSurname(user1.getSurname());

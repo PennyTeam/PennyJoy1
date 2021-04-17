@@ -8,6 +8,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
+import Interfaces.OnUserRetrievedListener;
+import Models.User;
+import Models.UserProvider;
+
 public class SignUpActivityNoAcc2 extends AppCompatActivity {
     int signUpNoAccRequestCode=2;
     EditText txtLogin, txtPasswd, txtRepeatedPasswd;
@@ -29,7 +35,8 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
 
         if( !txtLogin.getText().toString().isEmpty() && !txtPasswd.getText().toString().isEmpty()
         && !txtRepeatedPasswd.getText().toString().isEmpty()
-        && checkingPasswd(txtPasswd.getText().toString(), txtRepeatedPasswd.getText().toString())==true) {
+        && checkingPasswd(txtPasswd.getText().toString(), txtRepeatedPasswd.getText().toString())==true
+        && txtLogin.getText().toString().length()>5) {
             Intent intent = new Intent(this, SignUpActivityNoAcc3.class);
             Intent intent2=getIntent();
             //получаю данные с первого активити
@@ -61,5 +68,29 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
         Intent intent = new Intent();
         setResult(RESULT_OK, intent);
         finish();
+    }
+    public boolean checkUniqueLogin(String login){
+        User user1 = new User();
+        boolean res=false;
+        OnUserRetrievedListener listener = new OnUserRetrievedListener() {
+            @Override
+            public void OnRetrieved(User user) {
+                user1.setSalary(user.getSalary());
+                user1.setSurname(user.getSurname());
+                user1.setName(user.getName());
+                user1.setPasswd(user.getPasswd());
+                user1.setLogin(user.getLogin());
+                user1.setKey(user.getKey());
+                if( user1.getLogin()==null){
+                    res=true;
+                }
+                else{
+                   return false;
+                }
+            }
+        };
+        UserProvider userProvider = new UserProvider();
+        userProvider.getUserFromFirebaseByLogin(login,listener);
+        return false;
     }
 }

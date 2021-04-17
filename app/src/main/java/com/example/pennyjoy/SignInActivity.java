@@ -51,7 +51,7 @@ SharedPreferences.Editor editor;
                         user1.setSurname(user.getSurname());
                         user1.setName(user.getName());
                         user1.setPasswd(user.getPasswd());
-                        user1.setLogin(logIn);
+                        user1.setLogin(user.getLogin());
                         user1.setKey(user.getKey());
                         if(!passWd.equals( user1.getPasswd()) && user1.getLogin()==null){
                             Snackbar.make(v, "Логин или пароль не верны", Snackbar.LENGTH_LONG).show();
@@ -78,9 +78,10 @@ SharedPreferences.Editor editor;
     public boolean checkPasswd(String passWord){
         if(passWord.length()>6 && passWord.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,10}$")){
             return true;
-        }
+        }else {
             passwd.setError("Fill this form correctly!");
             return false;
+        }
 
     }
 
@@ -117,7 +118,7 @@ SharedPreferences.Editor editor;
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivityForResult(intent, MAIN_REQUEST_CODE);
-                        sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
+                        //sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
                     }
                     else{
                         sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
@@ -127,7 +128,6 @@ SharedPreferences.Editor editor;
             };
             provider.getUserFromFirebaseByLogin(login,listener);
         }else{
-            sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
             return;
         }
     }
