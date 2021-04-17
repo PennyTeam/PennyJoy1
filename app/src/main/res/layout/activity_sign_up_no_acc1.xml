@@ -15,6 +15,14 @@
         android:layout_marginTop="500dp"
         android:text="Дальше" />
 
+    <Button
+        android:id="@+id/btnBackToSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btnGoBackTOSignIn"
+        android:layout_alignParentBottom="true"
+        android:text="Назад" />
+
     <EditText
         android:id="@+id/txtName"
         android:layout_width="wrap_content"

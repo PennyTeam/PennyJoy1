@@ -41,6 +41,7 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
             intent.putExtra("passwd",txtPasswd.getText().toString());
             intent.putExtra("nameFromSecondAct",name);
             intent.putExtra("surnameFromSecondAct",surname);
+
             startActivityForResult(intent, signUpNoAccRequestCode);
         }else{
             Toast.makeText(getApplicationContext(),"Заполните все поля верно",Toast.LENGTH_LONG).show();

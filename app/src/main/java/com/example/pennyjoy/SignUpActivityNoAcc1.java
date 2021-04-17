@@ -28,9 +28,17 @@ public class SignUpActivityNoAcc1 extends AppCompatActivity {
             Intent intent = new Intent(this, SignUpActivityNoAcc2.class);
             intent.putExtra("name",txtName.getText().toString());
             intent.putExtra("surname",txtSurname.getText().toString());
+
             startActivityForResult(intent, signUpNoAccRequestCode);
         }else{
             Toast.makeText(getApplicationContext(),"Заполните все поля верно",Toast.LENGTH_LONG).show();
         }
+    }
+
+    //он клик для возвтрата на первый активити
+    public void btnGoBackTOSignIn(View v){
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }
