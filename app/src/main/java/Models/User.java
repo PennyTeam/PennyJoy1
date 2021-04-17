@@ -18,6 +18,8 @@ public class User {
         this.key = key;
     }
 
+    public User(){};
+
     //здесь геттеры и сеттеры
     public String getKey() {
         return key;

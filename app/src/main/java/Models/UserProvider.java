@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import Interfaces.OnUserRetrievedListener;
 import Interfaces.OnUsersRetrievedListener;
 
 public class UserProvider {
@@ -61,6 +62,33 @@ public class UserProvider {
     public void updateUser(User user){ }
 
     public void deleteUser(User user){ }
+
+
+    public void getUserFromFirebaseByLogin(String login, OnUserRetrievedListener listener){
+User user = new User();
+        Query query = users.orderByChild("login").equalTo(login);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot single : snapshot.getChildren()){
+                  User user1 = (User)single.getValue(User.class);
+                  user.setKey(user1.getKey());
+                  user.setLogin(login);
+                  user.setPasswd(user1.getPasswd());
+                  user.setName(user1.getName());
+                  user.setSurname(user1.getSurname());
+                  user.setSalary(user1.getSalary());
+                }
+                listener.OnRetrieved(user);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
 }
 
 
