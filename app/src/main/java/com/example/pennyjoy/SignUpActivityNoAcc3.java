@@ -30,7 +30,7 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
     //здесь он клик для вызова маина с активити регистрации
     public void saveUserClicked(View v){
         if( !salary.getText().toString().isEmpty()) {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, SignInActivity.class);
 
             //получаю данные со второго активити
             Intent intent2= getIntent();
@@ -44,13 +44,12 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
             UserProvider provider=new UserProvider();
             provider.addUser(user);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            saveLogin(user);
+            Toast.makeText(this, "Теперь войдите в аккаунт", Toast.LENGTH_LONG).show();
             startActivity(intent);
         }else{
             Toast.makeText(getApplicationContext(),"Заполните все поля верно",Toast.LENGTH_LONG).show();
         }
     }
-
 
     //он клик для возвтрата на второй активити
     public void btnBackSecondClicked(View v){
@@ -58,14 +57,4 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
-    //функция для сохранения логина юзера
-    public void saveLogin(User user){
-        sharedPreferences=getPreferences(MODE_PRIVATE);
-        editor=sharedPreferences.edit();
-        String login=user.getLogin();
-        editor.putString("loginOfTheAuthorizedUser",login);
-        editor.commit();
-    }
-
-
 }
