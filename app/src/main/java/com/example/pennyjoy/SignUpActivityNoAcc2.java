@@ -37,6 +37,7 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
         && !txtRepeatedPasswd.getText().toString().isEmpty()
         && checkingPasswd(txtPasswd.getText().toString(), txtRepeatedPasswd.getText().toString())==true
         && txtLogin.getText().toString().length()>5) {
+            checkUniqueLogin(txtLogin.getText().toString());
             Intent intent = new Intent(this, SignUpActivityNoAcc3.class);
             Intent intent2=getIntent();
             //получаю данные с первого активити
@@ -69,7 +70,7 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
-    public boolean checkUniqueLogin(String login){
+    public void checkUniqueLogin(String login){
         User user1 = new User();
         boolean res=false;
         OnUserRetrievedListener listener = new OnUserRetrievedListener() {
@@ -82,15 +83,12 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
                 user1.setLogin(user.getLogin());
                 user1.setKey(user.getKey());
                 if( user1.getLogin()==null){
-                    res=true;
+                    return;
                 }
-                else{
-                   return false;
-                }
+                txtLogin.setError("Данный логин уже используется");
             }
         };
         UserProvider userProvider = new UserProvider();
         userProvider.getUserFromFirebaseByLogin(login,listener);
-        return false;
     }
 }
