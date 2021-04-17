@@ -54,4 +54,11 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
         }
         return false;
     }
+
+    //он клик для возвтрата на первый активити
+    public void btnBackFirstClicked(View v){
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        finish();
+    }
 }

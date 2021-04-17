@@ -54,6 +54,7 @@ public class UserProvider {
 
     public void addUser(User user){
         DatabaseReference push=users.push();
+        user.setKey(push.getKey());
         push.setValue(user);
     }
 

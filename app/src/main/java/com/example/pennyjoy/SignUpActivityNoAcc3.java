@@ -25,7 +25,7 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
 
 
     //здесь он клик для вызова маина с активити регистрации
-    public void nextLog3(View v){
+    public void saveUserClicked(View v){
         if( !salary.getText().toString().isEmpty()) {
             Intent intent = new Intent(this, MainActivity.class);
 
@@ -37,12 +37,20 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
             String passwd=intent2.getExtras().getString("passwd");
             float salary=Float.parseFloat(this.salary.getText().toString());
 
-            User user=new User(name,surname,login,passwd,salary,"NE ZNAU KAK SDELAT, PROSTI SPAT HOCHU");
+            User user=new User(name,surname,login,passwd,salary, null);
             UserProvider provider=new UserProvider();
             provider.addUser(user);
             startActivity(intent);
         }else{
             Toast.makeText(getApplicationContext(),"Заполните все поля верно",Toast.LENGTH_LONG).show();
         }
+    }
+
+
+    //он клик для возвтрата на второй активити
+    public void btnBackSecondClicked(View v){
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }

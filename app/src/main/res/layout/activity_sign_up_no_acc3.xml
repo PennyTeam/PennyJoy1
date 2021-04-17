@@ -7,14 +7,21 @@
     tools:context=".SignUpActivityNoAcc3">
 
     <Button
-        android:id="@+id/btnNextThird"
+        android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:onClick="nextLog3"
+        android:onClick="saveUserClicked"
         android:layout_marginTop="500dp"
-        android:text="Дальше" />
+        android:text="Сохранить" />
 
+    <Button
+        android:id="@+id/btnBackToSeconod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btnBackSecondClicked"
+        android:layout_alignParentBottom="true"
+        android:text="Назад" />
 
     <EditText
         android:id="@+id/txtSalary"
