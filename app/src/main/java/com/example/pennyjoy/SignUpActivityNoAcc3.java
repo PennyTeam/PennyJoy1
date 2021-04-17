@@ -3,6 +3,7 @@ package com.example.pennyjoy;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +14,8 @@ import Models.UserProvider;
 
 public class SignUpActivityNoAcc3 extends AppCompatActivity {
     EditText salary;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
             UserProvider provider=new UserProvider();
             provider.addUser(user);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            saveLogin(user);
             startActivity(intent);
         }else{
             Toast.makeText(getApplicationContext(),"Заполните все поля верно",Toast.LENGTH_LONG).show();
@@ -53,6 +57,14 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
         Intent intent = new Intent();
         setResult(RESULT_OK, intent);
         finish();
+    }
+    //функция для сохранения логина юзера
+    public void saveLogin(User user){
+        sharedPreferences=getPreferences(MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+        String login=user.getLogin();
+        editor.putString("loginOfTheAuthorizedUser",login);
+        editor.commit();
     }
 
 
