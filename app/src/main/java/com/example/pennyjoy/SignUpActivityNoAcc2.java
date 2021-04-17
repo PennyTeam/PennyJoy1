@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import Models.UserProvider;
 public class SignUpActivityNoAcc2 extends AppCompatActivity {
     int signUpNoAccRequestCode=2;
     EditText txtLogin, txtPasswd, txtRepeatedPasswd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +39,6 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
         && !txtRepeatedPasswd.getText().toString().isEmpty()
         && checkingPasswd(txtPasswd.getText().toString(), txtRepeatedPasswd.getText().toString())==true
         && txtLogin.getText().toString().length()>5) {
-            checkUniqueLogin(txtLogin.getText().toString());
             Intent intent = new Intent(this, SignUpActivityNoAcc3.class);
             Intent intent2=getIntent();
             //получаю данные с первого активити
@@ -72,7 +73,6 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
     }
     public void checkUniqueLogin(String login){
         User user1 = new User();
-        boolean res=false;
         OnUserRetrievedListener listener = new OnUserRetrievedListener() {
             @Override
             public void OnRetrieved(User user) {
