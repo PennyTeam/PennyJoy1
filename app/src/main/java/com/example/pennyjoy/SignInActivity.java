@@ -38,14 +38,18 @@ SharedPreferences.Editor editor;
 
     public void onClick(View v){
 
+
+        //нажал на кнопку Войти
         if(v.getId() == btnEnter.getId()){
             String passWd = passwd.getText().toString();
             String logIn = login.getText().toString();
 
+            //проверка
             if(checkPasswd(passWd) || checkLogin(logIn)){
                 User user1 = new User();
                 OnUserRetrievedListener listener = new OnUserRetrievedListener() {
                     @Override
+                    //получаем юзера из UserProvider при помощи интерфейса
                     public void OnRetrieved(User user) {
                         user1.setSalary(user.getSalary());
                         user1.setSurname(user.getSurname());
@@ -59,7 +63,7 @@ SharedPreferences.Editor editor;
                         else{
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            //здесь сохроняю логин юзера
+                            //здесь сохраняю логин юзера
                             saveLogin(user1);
                             startActivityForResult(intent, MAIN_REQUEST_CODE);
                         }
@@ -69,24 +73,28 @@ SharedPreferences.Editor editor;
                 userProvider.getUserFromFirebaseByLogin(logIn,listener);
             }
         }
+        //нажали на кнопку "Регистрация"
         else if(v.getId() == btnSignUp.getId()){
             Intent intent = new Intent(this, SignUpActivityNoAcc1.class);
             startActivityForResult(intent, SIGN_UP_REQUEST_CODE);
         }
     }
 
+
+    //Проверка грамотности ввода пароля
     public boolean checkPasswd(String passWord){
         if(passWord.length()>6 && passWord.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,10}$")){
             return true;
         }else {
-            passwd.setError("Fill this form correctly!");
+            passwd.setError("Fill this form correctly");
             return false;
         }
 
     }
 
+    //Проверка на корректность ввода логина
     public boolean checkLogin(String loginForCheck){
-        if(!loginForCheck.trim().isEmpty()){
+        if(!loginForCheck.trim().isEmpty() && loginForCheck.length()>5){
             return true;
         }
         login.setError("Fill this form correctly!");
