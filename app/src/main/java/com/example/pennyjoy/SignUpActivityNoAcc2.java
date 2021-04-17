@@ -90,8 +90,8 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
     }
 
     public boolean checkUniqueLogin(String login){
-        User user=getUserByLogin(login);
-        if( user.getLogin()!=null){
+        User user1=getUserByLogin(login);
+        if( user1.getLogin()!=null){
             txtLogin.setError("Данный логин уже используется");
             return false;
         }else{
