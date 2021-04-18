@@ -32,26 +32,47 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
 
     //здесь он клик для вызова след активити регистрации
     public void nextLog2(View v){
-        //проверка на пустоту данных ввода и пароль
-
+        //проверка на корректность ввода
 
         if( !txtLogin.getText().toString().isEmpty() && !txtPasswd.getText().toString().isEmpty()
         && !txtRepeatedPasswd.getText().toString().isEmpty()
         && checkingPasswd(txtPasswd.getText().toString(), txtRepeatedPasswd.getText().toString())==true
-        && txtLogin.getText().toString().length()>5 && checkUniqueLogin(txtLogin.getText().toString())==true) {
+        && txtLogin.getText().toString().length()>5 ) {
             Intent intent = new Intent(this, SignUpActivityNoAcc3.class);
             Intent intent2=getIntent();
             //получаю данные с первого активити
             String name= intent2.getExtras().getString("name");
             String surname= intent2.getExtras().getString("surname");
 
+            User user1 = new User();
+            User user2=new User();
+            OnUserRetrievedListener listener = new OnUserRetrievedListener() {
+                @Override
+                public void OnRetrieved(User user) {
+                    user1.setSalary(user.getSalary());
+                    user1.setSurname(user.getSurname());
+                    user1.setName(user.getName());
+                    user1.setPasswd(user.getPasswd());
+                    user1.setLogin(user.getLogin());
+                    user1.setKey(user.getKey());
 
-            intent.putExtra("login",txtLogin.getText().toString());
-            intent.putExtra("passwd",txtPasswd.getText().toString());
-            intent.putExtra("nameFromSecondAct",name);
-            intent.putExtra("surnameFromSecondAct",surname);
+                    if( user1.getLogin()!=null){
+                        txtLogin.setError("Данный логин уже используется");
+                    }else{
+                        intent.putExtra("login",txtLogin.getText().toString());
+                        intent.putExtra("passwd",txtPasswd.getText().toString());
+                        intent.putExtra("nameFromSecondAct",name);
+                        intent.putExtra("surnameFromSecondAct",surname);
 
-            startActivityForResult(intent, signUpNoAccRequestCode);
+                        startActivityForResult(intent, signUpNoAccRequestCode);
+                    }
+                }
+            };
+            UserProvider userProvider = new UserProvider();
+            userProvider.getUserFromFirebaseByLogin(txtLogin.getText().toString(),listener);
+
+
+
         }else{
             Toast.makeText(getApplicationContext(),"Заполните все поля верно",Toast.LENGTH_LONG).show();
         }
@@ -71,31 +92,6 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
-    public User getUserByLogin(String login){
-        User user1 = new User();
-        OnUserRetrievedListener listener = new OnUserRetrievedListener() {
-            @Override
-            public void OnRetrieved(User user) {
-                user1.setSalary(user.getSalary());
-                user1.setSurname(user.getSurname());
-                user1.setName(user.getName());
-                user1.setPasswd(user.getPasswd());
-                user1.setLogin(user.getLogin());
-                user1.setKey(user.getKey());
-            }
-        };
-        UserProvider userProvider = new UserProvider();
-        userProvider.getUserFromFirebaseByLogin(login,listener);
-        return user1;
-    }
 
-    public boolean checkUniqueLogin(String login){
-        User user1=getUserByLogin(login);
-        if( user1.getLogin()!=null){
-            txtLogin.setError("Данный логин уже используется");
-            return false;
-        }else{
-            return true;
-        }
-    }
+
 }
