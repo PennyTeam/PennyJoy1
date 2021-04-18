@@ -8,23 +8,24 @@
     tools:context=".SignInActivity">
 
 
-
-
     <EditText
         android:id="@+id/editTextLogin"
-        android:layout_width="245dp"
-        android:layout_height="wrap_content"
+        android:layout_width="321dp"
+        android:layout_height="53dp"
+
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="83dp"
-        android:layout_marginLeft="83dp"
-        android:layout_marginTop="113dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="122dp"
+
+        android:background="@drawable/body_for_edit_text"
         android:ems="10"
-        android:hint="Login"
+        android:hint="    Login"
         android:inputType="textPersonName"
-        android:background="@drawable/body_for_edit_text"/>
+        android:textSize="30dp" />
 
     <EditText
         android:id="@+id/editTextPassword"
