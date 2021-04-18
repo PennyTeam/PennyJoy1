@@ -23,7 +23,8 @@
 
         android:background="@drawable/body_for_edit_text"
         android:ems="10"
-        android:hint="    Login"
+        android:hint="Логин"
+        android:paddingLeft="20dp"
         android:inputType="textPersonName"
         android:textSize="30dp" />
 
