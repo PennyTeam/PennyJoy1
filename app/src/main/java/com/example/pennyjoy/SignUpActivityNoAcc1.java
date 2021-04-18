@@ -25,16 +25,13 @@ public class SignUpActivityNoAcc1 extends AppCompatActivity {
     public void nextLog1(View v){
         //проверка на пустоту данных ввода
         if( !txtName.getText().toString().isEmpty() && !txtSurname.getText().toString().isEmpty()) {
-            String name= txtName.getText().toString().charAt(0)+"";
-            String surname= txtSurname.getText().toString().charAt(0)+"";
-            if(name.matches("А-Я")  ) {
-                if(name.matches("А-Я") || surname.matches("A-Z")) {
+            if( Character.isUpperCase(txtName.getText().toString().charAt(0)) ) {
+                if(Character.isUpperCase(txtSurname.getText().toString().charAt(0))) {
                     Intent intent = new Intent(this, SignUpActivityNoAcc2.class);
                     intent.putExtra("name", txtName.getText().toString());
                     intent.putExtra("surname", txtSurname.getText().toString());
                     startActivityForResult(intent, signUpNoAccRequestCode);
-                }else{
-                    txtSurname.setError("Введите фамилию корректно");
+                }else{ txtSurname.setError("Введите фамилию корректно");
                 }
             }else{
                 txtName.setError("Введите имя корректно");
