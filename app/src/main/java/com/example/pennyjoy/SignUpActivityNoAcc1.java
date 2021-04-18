@@ -28,7 +28,7 @@ public class SignUpActivityNoAcc1 extends AppCompatActivity {
             String name= txtName.getText().toString().charAt(0)+"";
             String surname= txtSurname.getText().toString().charAt(0)+"";
             if(name.matches("А-Я")  ) {
-                if(name.matches("А-Я") ) {
+                if(name.matches("А-Я") || surname.matches("A-Z")) {
                     Intent intent = new Intent(this, SignUpActivityNoAcc2.class);
                     intent.putExtra("name", txtName.getText().toString());
                     intent.putExtra("surname", txtSurname.getText().toString());
