@@ -24,7 +24,8 @@ public class SignUpActivityNoAcc1 extends AppCompatActivity {
     //здесь он клик для вызова след активити регистрации
     public void nextLog1(View v){
         //проверка на пустоту данных ввода
-        if( !txtName.getText().toString().isEmpty() && !txtSurname.getText().toString().isEmpty()) {
+        if( !txtName.getText().toString().isEmpty() && !txtSurname.getText().toString().isEmpty()
+        ) {
             Intent intent = new Intent(this, SignUpActivityNoAcc2.class);
             intent.putExtra("name",txtName.getText().toString());
             intent.putExtra("surname",txtSurname.getText().toString());

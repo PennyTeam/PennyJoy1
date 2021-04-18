@@ -45,7 +45,6 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
             String surname= intent2.getExtras().getString("surname");
 
             User user1 = new User();
-            User user2=new User();
             OnUserRetrievedListener listener = new OnUserRetrievedListener() {
                 @Override
                 public void OnRetrieved(User user) {
