@@ -27,14 +27,20 @@ public class SignUpActivityNoAcc1 extends AppCompatActivity {
         if( !txtName.getText().toString().isEmpty() && !txtSurname.getText().toString().isEmpty()) {
             String name= txtName.getText().toString().charAt(0)+"";
             String surname= txtSurname.getText().toString().charAt(0)+"";
-            if(name.matches("А-Я") && name.matches("А-Я") ) {
-                Intent intent = new Intent(this, SignUpActivityNoAcc2.class);
-                intent.putExtra("name", txtName.getText().toString());
-                intent.putExtra("surname", txtSurname.getText().toString());
-                startActivityForResult(intent, signUpNoAccRequestCode);
+            if(name.matches("А-Я")  ) {
+                if(name.matches("А-Я") ) {
+                    Intent intent = new Intent(this, SignUpActivityNoAcc2.class);
+                    intent.putExtra("name", txtName.getText().toString());
+                    intent.putExtra("surname", txtSurname.getText().toString());
+                    startActivityForResult(intent, signUpNoAccRequestCode);
+                }else{
+                    txtSurname.setError("Введите фамилию корректно");
+                }
+            }else{
+                txtName.setError("Введите имя корректно");
             }
         }else{
-            Toast.makeText(getApplicationContext(),"Заполните все поля верно",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Заполните все поля",Toast.LENGTH_LONG).show();
         }
     }
 
