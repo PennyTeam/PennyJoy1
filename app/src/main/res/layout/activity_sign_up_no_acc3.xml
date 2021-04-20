@@ -4,33 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".SignUpActivityNoAcc3">
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="294dp"
+        android:layout_height="55dp"
         android:layout_centerHorizontal="true"
         android:onClick="saveUserClicked"
-        android:layout_marginTop="500dp"
-        android:text="Сохранить" />
+        android:layout_marginTop="428dp"
+        android:textSize="20dp"
+        android:textAllCaps="false"
+        android:background="@drawable/body_for_btn_radius_13_dp_sign_in"
+        android:text="Зарегистрироваться"
+        android:gravity="center"
+        />
 
-    <Button
-        android:id="@+id/btnBackToSeconod"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="btnBackSecondClicked"
-        android:layout_alignParentBottom="true"
-        android:text="Назад" />
+
 
     <EditText
         android:id="@+id/txtSalary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="350.77dp"
+        android:layout_height="58dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="300dp"
-        android:ems="10"
+        android:background="@drawable/body_for_edit_text"
+        android:layout_marginTop="276dp"
+        android:textSize="30dp"
+        android:gravity="center"
         android:inputType="numberDecimal"
-        android:hint="Зарплата" />
+        android:hint="Заработная плата" />
 
 </RelativeLayout>

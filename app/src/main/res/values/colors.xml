@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="forTheFirstTimeInPennyJoy">#9D9D9D</color>
+    <color name="forTheBtnRegistrationSignIn">#71CC62</color>
+    <color name="forTheBtnEnterSignIn">#CBCBCB</color>
 </resources>

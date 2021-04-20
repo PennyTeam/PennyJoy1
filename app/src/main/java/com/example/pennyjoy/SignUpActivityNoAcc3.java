@@ -51,10 +51,5 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
         }
     }
 
-    //он клик для возвтрата на второй активити
-    public void btnBackSecondClicked(View v){
-        Intent intent = new Intent();
-        setResult(RESULT_OK, intent);
-        finish();
-    }
+
 }

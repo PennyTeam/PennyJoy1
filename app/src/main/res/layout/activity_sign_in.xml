@@ -12,31 +12,23 @@
         android:id="@+id/editTextLogin"
         android:layout_width="321dp"
         android:layout_height="53dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="44dp"
 
-
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="181dp"
+        android:layout_marginTop="142dp"
         android:background="@drawable/body_for_edit_text"
         android:hint="Логин"
         android:inputType="textPersonName"
         android:paddingLeft="20dp"
         android:textSize="30dp" />
 
-
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="321dp"
         android:layout_height="53dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="323dp"
+        android:layout_marginTop="270dp"
 
 
         android:layout_marginEnd="47dp"
@@ -51,42 +43,49 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="94dp"
-        android:hint="Первый раз в PennyJoy?"
+        android:layout_marginTop="540dp"
+
+        android:hint="Впервые в PennyJoy?"
         android:linksClickable="true"
         android:textColorHint="@color/forTheFirstTimeInPennyJoy" />
 
 
-    <Button
+
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonEnter"
         android:layout_width="274dp"
         android:layout_height="29dp"
-        android:layout_alignParentBottom="true"
+
+
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="236dp"
+        android:layout_marginTop="440dp"
+        android:textAllCaps="false"
+        android:gravity="center"
         android:fontFamily="sans-serif-condensed"
+        android:background="@drawable/body_for_btn_enter_sign_in"
+
         android:onClick="onClick"
-        android:textSize="10dp"
+
+        android:textSize="20dp"
         android:text="Войти" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonToSignUp"
         android:layout_width="274dp"
         android:layout_height="29dp"
         android:onClick="onClick"
-        android:text="Регистрация"
-        android:textSize="8dp"
-
-
+        android:text="Зарегистрироваться"
+        android:textSize="17dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:gravity="center"
         android:background="@drawable/body_for_btn_registration_sign_in"
 
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="39dp"
 
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="600dp"
         />
 </RelativeLayout>
