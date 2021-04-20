@@ -1,26 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textViewFromMain"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
-        android:textSize="40dp"
-        android:text="Это Маин" />
+        android:layout_marginTop="590dp"
+        android:layout_marginRight="18dp"
+        android:src="@drawable/settings"
+        android:backgroundTint="@color/white"
+        app:fabSize="normal"
+        app:maxImageSize="40dp"
+        />
 
-    <Button
-        android:id="@+id/button"
+    <ImageButton
+        android:id="@+id/addGoodBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:layout_alignParentLeft="true"
         android:layout_centerHorizontal="true"
-        android:onClick="signOutClicked"
-        android:layout_marginTop="500dp"
-        android:text="Выйти" />
+        android:layout_marginTop="590dp"
+        android:layout_marginLeft="18dp"
+
+        app:srcCompat="@drawable/btn_add_good_image"
+
+        tools:ignore="VectorDrawableCompat" />
+
+
+    <ImageButton
+        android:id="@+id/moneyPigBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+
+        app:srcCompat="@drawable/buttonmoneypig"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageButton
+        android:id="@+id/chartBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="330dp"
+
+        app:srcCompat="@drawable/chart_btn_image"
+        tools:ignore="VectorDrawableCompat" />
+
+
 
 </RelativeLayout>
