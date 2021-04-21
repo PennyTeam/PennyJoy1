@@ -4,42 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivityNoAcc1">
+    tools:context=".SignUpActivityNoAcc1"
+    android:background="@color/black">
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnNextFirst"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="287dp"
+        android:layout_height="46dp"
         android:layout_centerHorizontal="true"
         android:onClick="nextLog1"
         android:layout_marginTop="500dp"
-        android:text="Дальше" />
-
-    <Button
-        android:id="@+id/btnBackToSignIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="btnGoBackTOSignIn"
-        android:layout_alignParentBottom="true"
-        android:text="Назад" />
+        android:textAllCaps="false"
+        android:text="@string/string_next_for_btn"
+        android:textSize="20dp"
+        android:background="@drawable/body_for_btn_radius_13_dp_sign_in"/>
 
     <EditText
         android:id="@+id/txtName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="321dp"
+        android:layout_height="53dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
-        android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Имя" />
+        android:hint="@string/string_name_for_signupnoacc1"
+        android:background="@drawable/body_for_edit_text"
+        android:textSize="30dp"
+        android:paddingLeft="20dp"/>
 
     <EditText
         android:id="@+id/txtSurname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="321dp"
+        android:layout_height="53dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="300dp"
-        android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Фамилия" />
+        android:hint="@string/string_surname_for_sign_up_noacc1"
+        android:textSize="30dp"
+        android:background="@drawable/body_for_edit_text"
+        android:paddingLeft="20dp"/>
 </RelativeLayout>

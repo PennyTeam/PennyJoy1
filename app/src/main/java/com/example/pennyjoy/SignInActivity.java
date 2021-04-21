@@ -87,7 +87,7 @@ SharedPreferences.Editor editor;
         if(passWord.length()>6 && passWord.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,10}$")){
             return true;
         }else {
-            passwd.setError("Fill this form correctly");
+            passwd.setError("Введите пароль корректно!");
             return false;
         }
 
@@ -98,7 +98,7 @@ SharedPreferences.Editor editor;
         if(!loginForCheck.trim().isEmpty() && loginForCheck.length()>5){
             return true;
         }
-        login.setError("Fill this form correctly!");
+        login.setError("Заполните логин корректно!");
         return false;
     }
 

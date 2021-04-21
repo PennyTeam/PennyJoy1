@@ -4,52 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivityNoAcc2">
+    tools:context=".SignUpActivityNoAcc2"
+    android:background="@color/black">
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnNextSecond"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="287dp"
+        android:layout_height="46dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="530dp"
+        android:background="@drawable/body_for_btn_radius_13_dp_sign_in"
         android:onClick="nextLog2"
-        android:layout_marginTop="500dp"
-        android:text="Дальше" />
-
-    <Button
-        android:id="@+id/btnBackToFirst"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="btnBackFirstClicked"
-        android:layout_alignParentBottom="true"
-        android:text="Назад" />
+        android:text="@string/string_next_for_btn"
+        android:textAllCaps="false"
+        android:textSize="20dp" />
 
     <EditText
         android:id="@+id/txtLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="321dp"
+        android:layout_height="53dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
-        android:ems="10"
+        android:layout_marginTop="180dp"
+        android:background="@drawable/body_for_edit_text"
+        android:hint="@string/string_login"
         android:inputType="textPersonName"
-        android:hint="Логин" />
+        android:paddingLeft="20dp"
+        android:textSize="30dp" />
 
     <EditText
         android:id="@+id/txtPasswd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="321dp"
+        android:layout_height="53dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="300dp"
-        android:ems="10"
+        android:layout_marginTop="280dp"
+        android:textSize="30dp"
+        android:paddingLeft="20dp"
         android:inputType="textPersonName"
-        android:hint="Пароль" />
+        android:hint="@string/srting_passwd"
+        android:background="@drawable/body_for_edit_text"/>
+
     <EditText
         android:id="@+id/txtRepeatPasswd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="321dp"
+        android:layout_height="53dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="400dp"
-        android:ems="10"
+        android:layout_marginTop="380dp"
         android:inputType="textPersonName"
-        android:hint="Повторите пароль" />
+        android:hint="@string/string_repeat_passwd"
+        android:textSize="30dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/body_for_edit_text"/>
 
 </RelativeLayout>

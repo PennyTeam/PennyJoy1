@@ -54,7 +54,6 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
                     user1.setPasswd(user.getPasswd());
                     user1.setLogin(user.getLogin());
                     user1.setKey(user.getKey());
-
                     if( user1.getLogin()!=null){
                         txtLogin.setError("Данный логин уже используется");
                     }else{

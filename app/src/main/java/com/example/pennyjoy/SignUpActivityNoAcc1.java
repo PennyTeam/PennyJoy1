@@ -54,10 +54,10 @@ public class SignUpActivityNoAcc1 extends AppCompatActivity {
         }
     }
 
-    //он клик для возвтрата на первый активити
-    public void btnGoBackTOSignIn(View v){
+    //он клик для возвтрата на первый активити  ОСТАВЛЯЕМ ЛИ? Я УДРАЛ КНОПКУ "НАЗАД"
+  /* public void btnGoBackTOSignIn(View v){
         Intent intent = new Intent();
         setResult(RESULT_OK, intent);
         finish();
-    }
+    }*/
 }

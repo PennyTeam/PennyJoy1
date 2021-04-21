@@ -9,4 +9,13 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="string_name_for_signupnoacc1">Имя</string>
+    <string name="string_next_for_btn">Далее</string>
+    <string name="string_surname_for_sign_up_noacc1">Фамилия</string>
+    <string name="string_login">Логин</string>
+    <string name="string_paswd">Пароль</string>
+    <string name="string_repeat_passwd">Повторите пароль</string>
+    <string name="first_time_in_pj">Впервые в PennyJoy?</string>
+    <string name="enter_btn">Войти</string>
+    <string name="sign_up_btn">Зарегистрироваться</string>
 </resources>
