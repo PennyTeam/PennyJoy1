@@ -30,6 +30,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="590dp"
         android:layout_marginLeft="18dp"
+        android:onClick="addGoodClicked"
 
         app:srcCompat="@drawable/btn_add_good_image"
 
@@ -45,6 +46,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
+        android:onClick="moneyPigBtnClicked"
 
         app:srcCompat="@drawable/buttonmoneypig"
         tools:ignore="VectorDrawableCompat" />
@@ -58,6 +60,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:layout_marginTop="330dp"
+        android:onClick="chartBtnClicked"
 
         app:srcCompat="@drawable/chart_btn_image"
         tools:ignore="VectorDrawableCompat" />

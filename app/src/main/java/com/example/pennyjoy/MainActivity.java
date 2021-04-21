@@ -8,8 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
+    private int mainRequest=1;
 
 
     @Override
@@ -18,7 +17,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void signOutClicked(View v){
 
+    public void moneyPigBtnClicked(View v){
+        Intent intent=new Intent(this,MoneyPigActivity.class);
+        startActivityForResult(intent,mainRequest);
+    }
+
+    public void addGoodClicked(View v){
+        Intent intent=new Intent(this,AddGoodAndOtherActivity.class);
+        startActivityForResult(intent,mainRequest);
+    }
+
+    public void chartBtnClicked(View v){
+        Intent intent=new Intent(this,ChartsActivity.class);
+        startActivityForResult(intent,mainRequest);
     }
 }

@@ -17,16 +17,26 @@ import Models.User;
 import Models.UserProvider;
 
 public class SignInActivity extends AppCompatActivity {
-private EditText login, passwd;
-private Button btnEnter, btnSignUp;
-final int SIGN_UP_REQUEST_CODE = 23;
-final int MAIN_REQUEST_CODE = 115;
-SharedPreferences sharedPreferences;
-SharedPreferences.Editor editor;
+    private EditText login, passwd;
+    private Button btnEnter, btnSignUp;
+    final int SIGN_UP_REQUEST_CODE = 23;
+    final int MAIN_REQUEST_CODE = 115;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+
+
+
+
+
+    @Override
+    protected void onStart() {
+        isUserExist();
+
+        super.onStart();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        isUserExist();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
@@ -52,12 +62,14 @@ SharedPreferences.Editor editor;
                     @Override
                     //получаем юзера из UserProvider при помощи интерфейса
                     public void OnRetrieved(User user) {
+
                         user1.setSalary(user.getSalary());
                         user1.setSurname(user.getSurname());
                         user1.setName(user.getName());
                         user1.setPasswd(user.getPasswd());
                         user1.setLogin(user.getLogin());
                         user1.setKey(user.getKey());
+
                         if(!passWd.equals( user1.getPasswd()) && user1.getLogin()==null){
                             Snackbar.make(v, "Логин или пароль не верны", Snackbar.LENGTH_LONG).show();
                         }
@@ -66,12 +78,14 @@ SharedPreferences.Editor editor;
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             //здесь сохраняю логин юзера
                             saveLogin(user1);
+                            //pr bar
                             startActivityForResult(intent, MAIN_REQUEST_CODE);
                         }
                     }
                 };
                 UserProvider userProvider = new UserProvider();
                 userProvider.getUserFromFirebaseByLogin(logIn,listener);
+                //pr bar
             }
         }
         //нажали на кнопку "Регистрация"
@@ -113,6 +127,7 @@ SharedPreferences.Editor editor;
 
     //функция для проверки наличия юзера
     public void isUserExist(){
+
         sharedPreferences=getPreferences(MODE_PRIVATE);
 
 
@@ -125,9 +140,12 @@ SharedPreferences.Editor editor;
                 public void OnRetrieved(User user) {
                     if(login.equals(user.getLogin())){
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        //здесь вызываю маин при совпадении логина в сп с логином из бд
+                        //и настраиваю флаги
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivityForResult(intent, MAIN_REQUEST_CODE);
-                        sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
+                        startActivity(intent);
+                        
+
                     }
                     else{
                         sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
@@ -137,6 +155,7 @@ SharedPreferences.Editor editor;
             };
             provider.getUserFromFirebaseByLogin(login,listener);
         }else{
+            sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
             return;
         }
     }

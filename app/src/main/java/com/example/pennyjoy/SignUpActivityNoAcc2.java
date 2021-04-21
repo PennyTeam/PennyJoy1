@@ -61,6 +61,7 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
                         intent.putExtra("passwd",txtPasswd.getText().toString());
                         intent.putExtra("nameFromSecondAct",name);
                         intent.putExtra("surnameFromSecondAct",surname);
+                        //pr bar
 
                         startActivityForResult(intent, signUpNoAccRequestCode);
                     }
@@ -68,7 +69,7 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
             };
             UserProvider userProvider = new UserProvider();
             userProvider.getUserFromFirebaseByLogin(txtLogin.getText().toString(),listener);
-
+            //pr bar
 
 
         }else{
@@ -84,12 +85,7 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
         return false;
     }
 
-    //он клик для возвтрата на первый активити
-    public void btnBackFirstClicked(View v){
-        Intent intent = new Intent();
-        setResult(RESULT_OK, intent);
-        finish();
-    }
+
 
 
 }

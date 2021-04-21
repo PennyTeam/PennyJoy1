@@ -16,8 +16,6 @@ import Models.UserProvider;
 
 public class SignUpActivityNoAcc3 extends AppCompatActivity {
     EditText salary;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
