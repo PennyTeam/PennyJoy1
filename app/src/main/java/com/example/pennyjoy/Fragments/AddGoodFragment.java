@@ -45,7 +45,7 @@ public class AddGoodFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Snackbar.make(view, "User saved", BaseTransientBottomBar.LENGTH_LONG).show();
+                Snackbar.make(view, "Work!!", BaseTransientBottomBar.LENGTH_LONG).show();
             }
         });
     }

@@ -17,8 +17,8 @@ import java.util.List;
 
 import Models.Category;
 
-public class CategoryAdapter extends ArrayAdapter<Category> {
-    private Context context;
+public class CategoryAdapter{// extends ArrayAdapter<Category> {
+   /* private Context context;
     private int resource;
     private ArrayList<Category> categories;
 
@@ -43,5 +43,5 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
 
         v.setTag(category.getId());
         return v;
-    }
+    }*/
 }
