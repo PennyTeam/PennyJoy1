@@ -40,7 +40,6 @@ public class AddGoodAndOtherActivity extends AppCompatActivity {
         txtNameOfGood=myViewAddGood.findViewById(R.id.txtNameOfGood);*/
 
 
-
         final ViewPager viewPager= (ViewPager) findViewById(R.id.pager);
         final PagerAdapter pagerAdapter= new Adapters.PagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
 
