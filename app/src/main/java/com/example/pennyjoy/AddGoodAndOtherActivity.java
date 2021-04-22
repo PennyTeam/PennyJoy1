@@ -31,6 +31,8 @@ private FragmentTimer fragmentTimer;
         addGoodFragment = new AddGoodFragment();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, addGoodFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentHelper).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentTimer).commit();
 
        /* BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
