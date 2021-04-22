@@ -11,8 +11,12 @@ import android.view.MenuItem;
 import com.example.pennyjoy.Fragments.AddGoodFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class AddGoodAndOtherActivity extends AppCompatActivity {
+import com.example.pennyjoy.Fragments.FragmentHelper;
+import com.example.pennyjoy.Fragments.FragmentTimer;
 
+public class AddGoodAndOtherActivity extends AppCompatActivity {
+private FragmentHelper fragmentHelper;
+private FragmentTimer fragmentTimer;
 
     private AddGoodFragment addGoodFragment;
 
@@ -20,6 +24,8 @@ public class AddGoodAndOtherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_good_and_other);
+        fragmentHelper = new FragmentHelper();
+        fragmentTimer = new FragmentTimer();
 
 
         addGoodFragment = new AddGoodFragment();

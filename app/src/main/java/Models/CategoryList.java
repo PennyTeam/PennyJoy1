@@ -7,7 +7,7 @@ public class CategoryList {
 
     public void initCategoryList(){
         categoryList.add(new Category(0,"Продукты"));
-        categoryList.add(new Category(1,"Путешиствия"));
+        categoryList.add(new Category(1,"Путешествия"));
         categoryList.add(new Category(2,"Одежда"));
         categoryList.add(new Category(3,"Долги"));
         categoryList.add(new Category(4,"Цели"));
