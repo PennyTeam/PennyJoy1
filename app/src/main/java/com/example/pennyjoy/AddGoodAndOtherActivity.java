@@ -34,17 +34,28 @@ private FragmentTimer fragmentTimer;
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentHelper).commit();
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentTimer).commit();
 
-       /* BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+       BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment fragment = addGoodFragment;
+                switch (item.getItemId()){
+                    case R.id.nav_add_good:
+                        fragment = addGoodFragment;
+                        break;
+                    case R.id.nav_adviser:
+                        fragment = fragmentHelper;
+                        break;
+                    case R.id.nav_timer:
+                        fragment = fragmentTimer;
+                        break;
+                }
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
 
                 return true;
             }
-        });*/
+        });
     }
 }
