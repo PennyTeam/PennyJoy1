@@ -16,6 +16,13 @@ import com.example.pennyjoy.R;
  * create an instance of this fragment.
  */
 public class AddGoodTab extends Fragment {
+    //____________________
+    //Добавляем классы
+
+
+
+
+    //____________________
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,14 +55,22 @@ public class AddGoodTab extends Fragment {
         return fragment;
     }
 
+    //__________________
+    //метод знакомый где рабоатем
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+
+
+
+
         }
     }
+    //__________________
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

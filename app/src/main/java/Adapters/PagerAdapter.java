@@ -26,14 +26,16 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch(position){
             case 0:
-                TimerTab timerTab=new TimerTab();
-                return timerTab;
+                AdviserTab adviserTab=new AdviserTab();
+                return adviserTab;
+
             case 1:
                 AddGoodTab addGoodTab=new AddGoodTab();
                 return addGoodTab;
             case 2:
-                AdviserTab adviserTab=new AdviserTab();
-                return adviserTab;
+                TimerTab timerTab=new TimerTab();
+                return timerTab;
+
             default:
                 return null;
 

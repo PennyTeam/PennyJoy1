@@ -1,4 +1,4 @@
-package Models;
+package Providers;
 
 import androidx.annotation.NonNull;
 
@@ -10,6 +10,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import Interfaces.OnUserRetrievedListener;
+import Models.User;
 
 public class UserProvider {
     private FirebaseDatabase db;

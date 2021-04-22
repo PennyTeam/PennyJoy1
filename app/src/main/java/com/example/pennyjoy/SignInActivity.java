@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -14,7 +13,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import Interfaces.OnUserRetrievedListener;
 import Models.User;
-import Models.UserProvider;
+import Providers.UserProvider;
 
 public class SignInActivity extends AppCompatActivity {
     private EditText login, passwd;

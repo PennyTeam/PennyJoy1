@@ -18,6 +18,8 @@
     <string name="first_time_in_pj">Впервые в PennyJoy?</string>
     <string name="enter_btn">Войти</string>
     <string name="sign_up_btn">Зарегистрироваться</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="CategoryAddGood">Категория</string>
+    <string name="nameAddGood">Наименование</string>
+    <string name="costAddGood">Стоимость</string>
+    
 </resources>

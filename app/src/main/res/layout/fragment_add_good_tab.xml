@@ -6,14 +6,89 @@
     android:background="@color/black"
 
     tools:context="Fragments.AddGoodTab">
+    <TextView
+        android:id="@+id/lblTitleCategory"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="79dp"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:text="@string/CategoryAddGood"/>
 
-    <!-- TODO: Update blank fragment layout -->
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="HI! Add good here"
-      android:textSize="40dp"
-      android:layout_centerInParent="true"
-      android:textColor="@color/white"/>
+    <Spinner
+        android:id="@+id/categoryDropDown"
+        android:layout_width="323dp"
+        android:layout_height="37dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="114dp"
+
+        />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="34dp"
+        android:layout_height="28dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="124dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="60dp"
+        android:src="@drawable/selectorforspinner"
+        />
+
+    <TextView
+        android:id="@+id/lblTitleNameOfGood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="205dp"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:text="@string/nameAddGood"/>
+
+    <EditText
+        android:id="@+id/txtNameOfGood"
+        android:layout_width="323dp"
+        android:layout_height="37dp"
+        android:paddingLeft="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="241dp"
+        android:background="@drawable/body_for_edit_text"/>
+
+
+
+    <TextView
+        android:id="@+id/lblTitleCostOfGood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="334dp"
+        android:textColor="@color/white"
+
+        android:textSize="20dp"
+        android:text="@string/costAddGood"/>
+
+    <EditText
+        android:id="@+id/txtCostOfGood"
+        android:layout_width="323dp"
+        android:layout_height="37dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="368dp"
+        android:paddingLeft="20dp"
+        android:inputType="numberDecimal"
+        android:background="@drawable/body_for_edit_text"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addGoodBtnInFragment"
+        android:layout_width="152.5dp"
+        android:layout_height="48dp"
+
+        android:background="@drawable/addgoodbtn"
+        android:onClick="addGoodInFragClicked"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="600dp"
+         />
+
+
 
 </RelativeLayout>

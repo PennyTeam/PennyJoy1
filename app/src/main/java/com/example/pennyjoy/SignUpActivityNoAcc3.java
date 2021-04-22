@@ -3,16 +3,13 @@ package com.example.pennyjoy;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import Models.User;
-import Models.UserProvider;
+import Providers.UserProvider;
 
 public class SignUpActivityNoAcc3 extends AppCompatActivity {
     EditText salary;
