@@ -21,5 +21,6 @@
     <string name="CategoryAddGood">Категория</string>
     <string name="nameAddGood">Наименование</string>
     <string name="costAddGood">Стоимость</string>
+    <string name="purchaseOfPurpose">Цель покупки...</string>
     
 </resources>
