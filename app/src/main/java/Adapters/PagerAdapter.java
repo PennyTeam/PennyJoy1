@@ -7,9 +7,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import Fragments.AddGoodTab;
-import Fragments.AdviserTab;
-import Fragments.TimerTab;
+import com.example.pennyjoy.Fragments.AddGoodTab;
+import com.example.pennyjoy.Fragments.AdviserTab;
+import com.example.pennyjoy.Fragments.TimerTab;
 
 
 public class PagerAdapter extends FragmentStatePagerAdapter {

@@ -1,14 +1,21 @@
-package Fragments;
+package com.example.pennyjoy.Fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.pennyjoy.R;
+
+import Models.CategoryList;
+import Models.Good;
+import Providers.GoodProvider;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,6 +25,10 @@ import com.example.pennyjoy.R;
 public class AddGoodTab extends Fragment {
     //____________________
     //Добавляем классы
+    private CategoryList categoryList;
+    private EditText txtNameOfGood, txtCostOfGood,txtPurchaseOfPurpose;
+    private View myViewAddGood;
+    private AppCompatButton btnAddGood;
 
 
 
@@ -64,11 +75,28 @@ public class AddGoodTab extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
 
-
-
-
-
         }
+
+        //txtNameOfGood, txtCostOfGood,txtPurchaseOfPurpose;
+
+        myViewAddGood=getLayoutInflater().inflate(R.layout.fragment_add_good_tab, null);
+        txtNameOfGood=myViewAddGood.findViewById(R.id.txtNameOfGood);
+        btnAddGood=myViewAddGood.findViewById(R.id.addGoodBtnInFragment);
+        btnAddGood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nameOfGood=txtNameOfGood.getText().toString();
+                //float costOfGood=Integer.parseInt(txtCostOfGood.getText().toString());
+                String userKey=null;
+                Good good=new Good(1,nameOfGood,12,null,userKey);
+                GoodProvider provider=new GoodProvider();
+                provider.addGood(good);
+                Toast.makeText(myViewAddGood.getContext(),"Покупка добавлена",Toast.LENGTH_SHORT);
+            }
+        });
+
+
+
     }
     //__________________
 
@@ -78,4 +106,6 @@ public class AddGoodTab extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_good_tab, container, false);
     }
+
+
 }

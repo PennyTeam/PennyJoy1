@@ -20,8 +20,6 @@ import Providers.UserProvider;
 public class AddGoodAndOtherActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private CategoryList categoryList;
-    private View myViewAddGood;
-    private EditText txtNameOfGood, txtCostOfGood,txtPurchaseOfPurpose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +34,10 @@ public class AddGoodAndOtherActivity extends AppCompatActivity {
 
         categoryList=new CategoryList();
         categoryList.initCategoryList();
-        myViewAddGood=getLayoutInflater().inflate(R.layout.fragment_add_good_tab, null);
+        /*myViewAddGood=getLayoutInflater().inflate(R.layout.fragment_add_good_tab, null);
 
         txtCostOfGood = myViewAddGood.findViewById(R.id.txtCostOfGood);
-        txtNameOfGood=myViewAddGood.findViewById(R.id.txtNameOfGood);
+        txtNameOfGood=myViewAddGood.findViewById(R.id.txtNameOfGood);*/
 
 
 
@@ -69,17 +67,17 @@ public class AddGoodAndOtherActivity extends AppCompatActivity {
 
     }
 
-    public void addGoodInFragClicked(View v){
+    /*public void addGoodInFragClicked(View v){
 
 
-            String nameOfGood=txtNameOfGood.getText().toString();
+        String nameOfGood=txtNameOfGood.getText().toString();
             //float costOfGood=Integer.parseInt(txtCostOfGood.getText().toString());
             String userKey=null;
             Good good=new Good(1,nameOfGood,12,null,userKey);
             GoodProvider provider=new GoodProvider();
             provider.addGood(good);
             Toast.makeText(getApplicationContext(),"Покупка добавлена",Toast.LENGTH_SHORT);
-        }
+        }*/
 
 
 }

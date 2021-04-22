@@ -3,7 +3,7 @@ package Models;
 public class Good {
     private int category;
     private String name;
-    private float cost;
+    private double cost;
     private String purchaseOfPurpose;
     private String userKey;
 
@@ -37,11 +37,11 @@ public class Good {
         this.name = name;
     }
 
-    public float getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(float cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 
