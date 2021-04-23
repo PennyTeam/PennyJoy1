@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/black">
     <TextView
         android:id="@+id/lblCategoryFrag"
@@ -18,9 +20,18 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_centerHorizontal="true"
-       android:layout_marginTop="70dp"
+       android:background="@drawable/bodyforcategoryspinner"
+       android:layout_marginTop="47dp"
        />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="57dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:src="@drawable/selectorforspinner"/>
     <TextView
         android:id="@+id/lblNameFrag"
         android:layout_width="wrap_content"
@@ -28,7 +39,7 @@
         android:text="@string/nameAddGood"
         android:textColor="@color/white"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="100dp"
         android:textSize="30dp"
         />
 
@@ -37,7 +48,8 @@
         android:layout_width="323dp"
         android:layout_height="37dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="175dp"
+        android:paddingLeft="20dp"
         android:background="@drawable/body_for_edit_text"/>
 
     <TextView
@@ -47,42 +59,72 @@
         android:text="@string/costAddGood"
         android:textColor="@color/white"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="230dp"
         android:textSize="30dp"
         />
+    <!-- в макс длине не уверен- -->
+
     <EditText
         android:id="@+id/txtCostOfGood"
         android:layout_width="323dp"
         android:layout_height="37dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="330dp"
+        android:layout_marginTop="300dp"
         android:inputType="numberDecimal"
+        android:paddingLeft="20dp"
+        android:maxLength="12"
         android:background="@drawable/body_for_edit_text"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true"
+        android:text="₸"
+        android:textColor="@color/black"
+        android:textSize="29dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginRight="70dp"/>
 
 
     <EditText
         android:hint="@string/purchaseOfPurpose"
         android:id="@+id/txtPurchaseOfPurpose"
         android:layout_width="310dp"
-        android:layout_height="207dp"
+        android:layout_height="130dp"
         android:layout_centerHorizontal="true"
         android:gravity="top"
         android:paddingTop="10dp"
         android:paddingLeft="10dp"
-        android:layout_marginTop="410dp"
+        android:maxLength="120"
+        android:layout_marginTop="380dp"
         android:background="@drawable/body_for_edit_text"/>
 
-    <Button
-        android:id="@+id/btnAddGoodInFrag"
-        android:layout_width="153dp"
-        android:layout_height="49dp"
-        android:text="+"
-        android:textSize="40dp"
+    <TextView
+        android:id="@+id/counterOfTextInputAddGood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true"
+        android:text="0/120"
+        android:textSize="17dp"
+        android:layout_marginTop="477dp"
+        android:layout_marginRight="70dp"/>
 
-        android:layout_marginTop="430dp"
+
+
+    <ImageButton
+        android:id="@+id/btnAddGoodInFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:layout_centerHorizontal="true"
+        android:foreground="?android:attr/selectableItemBackground"
+
+        app:srcCompat="@drawable/addgoodbtn"
+
+        tools:ignore="VectorDrawableCompat"
+        android:layout_marginTop="560dp"
         />
-
 
 
 </RelativeLayout>

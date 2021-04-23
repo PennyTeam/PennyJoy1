@@ -22,8 +22,12 @@ public class SignInActivity extends AppCompatActivity {
     final int MAIN_REQUEST_CODE = 115;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    private User currentUser;
 
+
+    private User currentUser=new User();
+    public User getCurrentUser() {
+        return currentUser;
+    }
 
 
 

@@ -10,7 +10,7 @@ public class Good {
     public Good() {
     }
 
-    public Good(int category, String name, float cost, String purchaseOfPurpose, String userKey) {
+    public Good(int category, String name, double cost, String purchaseOfPurpose, String userKey) {
         this.category = category;
         this.name = name;
         this.cost = cost;
