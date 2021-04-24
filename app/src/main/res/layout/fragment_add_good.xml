@@ -125,6 +125,15 @@
         tools:ignore="VectorDrawableCompat"
         android:layout_marginTop="560dp"
         />
+ <com.google.android.material.floatingactionbutton.FloatingActionButton
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:src="@drawable/clock"
+     app:maxImageSize="40dp"
+     android:backgroundTint="@color/white"
+     android:layout_centerHorizontal="true"
+     android:layout_alignParentLeft="true"
+     android:layout_marginTop="560dp"/>
 
 
 </RelativeLayout>
