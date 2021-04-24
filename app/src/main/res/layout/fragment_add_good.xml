@@ -131,7 +131,7 @@
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
      android:src="@drawable/clock"
-     app:maxImageSize="40dp"
+     app:maxImageSize="50dp"
      android:backgroundTint="@color/white"
      android:layout_centerHorizontal="true"
      android:layout_alignParentRight="true"
