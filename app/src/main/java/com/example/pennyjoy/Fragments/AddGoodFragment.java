@@ -83,7 +83,7 @@ public class AddGoodFragment extends Fragment {
                 && !txtPurchaseOfPurpose.getText().toString().isEmpty()
                 && !dropDownCategory.getSelectedItem().toString().equals("Не выбрано")
                 && Double.parseDouble(txtCost.getText().toString())>0
-                && counterOfSymbols == 120){
+                && counterOfSymbols >= 90){
                     //получая текущего юзера и устонавливаю кей
                     SignInActivity currentUser=new SignInActivity();
                     User user= currentUser.getCurrentUser();
