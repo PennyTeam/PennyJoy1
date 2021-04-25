@@ -20,20 +20,13 @@ public class CategoryList {
             categoryList.add(new Category(3, "Одежда"));
             categoryList.add(new Category(4, "Долги"));
             categoryList.add(new Category(5, "Цели"));
-            categoryList.add(new Category(6, "Свое"));
+
         }
         return CategoryListHolder.instance;
 
     }
 
-    /*public void initCategoryList(){
-        categoryList.add(new Category(0,"Продукты"));
-        categoryList.add(new Category(1,"Путешествия"));
-        categoryList.add(new Category(2,"Одежда"));
-        categoryList.add(new Category(3,"Долги"));
-        categoryList.add(new Category(4,"Цели"));
-        categoryList.add(new Category(5,"Свое"));
-    }*/
+
 
     public void addUsersCategory(){
 

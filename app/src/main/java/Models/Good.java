@@ -7,6 +7,7 @@ public class Good {
     private String purchaseOfPurpose;
     private String userKey;
 
+
     public Good() {
     }
 

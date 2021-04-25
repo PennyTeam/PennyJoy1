@@ -126,17 +126,18 @@
         tools:ignore="VectorDrawableCompat"
         android:layout_marginTop="560dp"
         />
+
  <com.google.android.material.floatingactionbutton.FloatingActionButton
      android:id="@+id/historyBtn"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
+     android:layout_alignParentRight="true"
+     android:layout_centerHorizontal="true"
+     android:layout_marginTop="555dp"
+     android:layout_marginRight="16dp"
+     android:backgroundTint="@color/white"
      android:src="@drawable/clock"
      app:maxImageSize="50dp"
-     android:backgroundTint="@color/white"
-     android:layout_centerHorizontal="true"
-     android:layout_alignParentRight="true"
-     android:layout_marginTop="554dp"
-     android:layout_marginRight="16dp"
 
      />
 

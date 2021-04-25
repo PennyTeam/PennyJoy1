@@ -24,10 +24,7 @@ public class SignInActivity extends AppCompatActivity {
     private SharedPreferences.Editor editor;
 
 
-    private User currentUser=new User();
-    public User getCurrentUser() {
-        return currentUser;
-    }
+
 
 
 
@@ -48,6 +45,7 @@ public class SignInActivity extends AppCompatActivity {
         passwd = findViewById(R.id.editTextPassword);
         btnEnter = findViewById(R.id.buttonEnter);
         btnSignUp = findViewById(R.id.buttonToSignUp);
+
 
     }
 
@@ -82,7 +80,8 @@ public class SignInActivity extends AppCompatActivity {
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             //здесь сохраняю логин юзера
                             saveLogin(user1);
-                            currentUser=user1;
+                            User currentUser=new User();
+                            currentUser.setCurrentUser(user);
                             //pr bar
                             startActivityForResult(intent, MAIN_REQUEST_CODE);
                         }
@@ -147,7 +146,8 @@ public class SignInActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         //здесь вызываю маин при совпадении логина в сп с логином из бд
                         //и настраиваю флаги
-                        currentUser=user;
+                        User currentUser=new User();
+                        currentUser.setCurrentUser(user);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         

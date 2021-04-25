@@ -15,9 +15,8 @@ import com.example.pennyjoy.Fragments.FragmentHelper;
 import com.example.pennyjoy.Fragments.FragmentTimer;
 
 public class AddGoodAndOtherActivity extends AppCompatActivity {
-private FragmentHelper fragmentHelper;
-private FragmentTimer fragmentTimer;
-
+    private FragmentHelper fragmentHelper;
+    private FragmentTimer fragmentTimer;
     private AddGoodFragment addGoodFragment;
 
     @Override

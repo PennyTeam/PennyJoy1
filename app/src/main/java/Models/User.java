@@ -7,7 +7,15 @@ public class User {
     private String passwd;
     private float salary;
     private String key;
+    private static User currentUser;
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
 
     public User(String name, String surname, String login, String passwd, float salary, String key) {
         this.name = name;

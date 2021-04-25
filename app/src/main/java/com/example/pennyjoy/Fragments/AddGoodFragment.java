@@ -1,5 +1,6 @@
 package com.example.pennyjoy.Fragments;
 
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
@@ -31,6 +32,8 @@ import Models.CategoryList;
 import Models.Good;
 import Models.User;
 import Providers.GoodProvider;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class AddGoodFragment extends Fragment {
 
@@ -85,10 +88,10 @@ public class AddGoodFragment extends Fragment {
                 && Double.parseDouble(txtCost.getText().toString())>0
                 && counterOfSymbols >= 90){
                     //получая текущего юзера и устонавливаю кей
-                    SignInActivity currentUser=new SignInActivity();
-                    User user= currentUser.getCurrentUser();
 
-                    String keyOfUser=user.getKey();
+                    User user=new User();
+
+                    String keyOfUser= user.getCurrentUser().getKey();
                     String nameOfGood= txtNameOfGood.getText().toString();
                     String purchaseOfPurpose= txtPurchaseOfPurpose.getText().toString();
                     double costOfGood= Double.parseDouble(txtCost.getText().toString());
@@ -98,8 +101,7 @@ public class AddGoodFragment extends Fragment {
                     GoodProvider provider=new GoodProvider();
                     provider.addGood(good);
 
-                    // private EditText txtNameOfGood, txtCost,txtPurchaseOfPurpose;
-                    //    private Spinner dropDownCategory;
+
                     txtNameOfGood.getText().clear();
                     txtCost.getText().clear();
                     txtPurchaseOfPurpose.getText().clear();
