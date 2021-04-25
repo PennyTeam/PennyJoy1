@@ -22,5 +22,6 @@
     <string name="nameAddGood">Наименование</string>
     <string name="costAddGood">Стоимость</string>
     <string name="purchaseOfPurpose">Цель покупки...</string>
-    
+    <string name="good_int_for_tag">2201</string>
+
 </resources>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/stroke_of_listview">
+    <TextView
+        android:id="@+id/goodTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center_vertical"
+        android:text="Продукт"
+        android:textSize="25dp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="15dp"/>
+
+    <TextView
+        android:id="@+id/essayOfGood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp"
+        android:text="Цель"
+        android:textSize="15dp"
+        android:layout_marginTop="90dp"
+
+        android:background="@drawable/background_for_essay"/>
+
+    <TextView
+        android:id="@+id/numberPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Цена"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginRight="60dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="₸"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginRight="10dp"/>
+
+</FrameLayout>

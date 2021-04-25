@@ -39,7 +39,7 @@ public class GoodProvider {
 
     public void getGoodsFromFirebase(String keyOfUser, OnGoodsRetrievedListener listener){
         ArrayList<Good> goodList=new ArrayList<>();
-        Query query = goods.orderByChild("userKey");
+        Query query = goods.orderByChild("userKey").equalTo(keyOfUser);
         //__________________________________________________
         //**************************************************
         query.addValueEventListener(new ValueEventListener() {

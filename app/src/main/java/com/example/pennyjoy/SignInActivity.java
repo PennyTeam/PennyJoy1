@@ -15,7 +15,7 @@ import Interfaces.OnUserRetrievedListener;
 import Models.User;
 import Providers.UserProvider;
 
-public class SignInActivity extends AppCompatActivity {
+public class  SignInActivity extends AppCompatActivity {
     private EditText login, passwd;
     private Button btnEnter, btnSignUp;
     final int SIGN_UP_REQUEST_CODE = 23;

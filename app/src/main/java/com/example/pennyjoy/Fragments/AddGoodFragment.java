@@ -1,5 +1,6 @@
 package com.example.pennyjoy.Fragments;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -22,10 +23,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.pennyjoy.HistoryActivity;
+import com.example.pennyjoy.MainActivity;
 import com.example.pennyjoy.R;
 import com.example.pennyjoy.SignInActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.math.BigDecimal;
 
 import Models.Category;
 import Models.CategoryList;
@@ -39,6 +45,7 @@ public class AddGoodFragment extends Fragment {
 
     private EditText txtNameOfGood, txtCost,txtPurchaseOfPurpose;
     private ImageButton btnAddGood;
+    private FloatingActionButton floatingActionButton;
     private Spinner dropDownCategory;
     TextView lblCounterOfTextInput;
     private int counterOfSymbols=0;
@@ -57,7 +64,7 @@ public class AddGoodFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
+        floatingActionButton = view.findViewById(R.id.historyBtn);
         txtNameOfGood=view.findViewById(R.id.txtNameOfGood);
         txtCost=view.findViewById(R.id.txtCostOfGood);
         txtPurchaseOfPurpose=view.findViewById(R.id.txtPurchaseOfPurpose);
@@ -79,6 +86,16 @@ public class AddGoodFragment extends Fragment {
 
 
 
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
         btnAddGood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +104,7 @@ public class AddGoodFragment extends Fragment {
                 && !dropDownCategory.getSelectedItem().toString().equals("Не выбрано")
                 && Double.parseDouble(txtCost.getText().toString())>0
                 && counterOfSymbols >= 90){
-                    //получая текущего юзера и устонавливаю кей
+                    //получая текущего юзера и устанавливаю кей
 
                     User user=new User();
 
