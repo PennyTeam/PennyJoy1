@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
     public void settingsClicked(View v){
         setVisibility(clicked);
         setAnimation(clicked);
+        setClickable(clicked);
         if(clicked==false){
             clicked=true;
         }else{
@@ -118,6 +119,19 @@ public class MainActivity extends AppCompatActivity {
             settings.setAnimation(close_anim);
         }
 
+    }
+
+    public void setClickable(boolean clicked){
+        if(clicked==false){
+            settingsOfUser.setClickable(true);
+            settingsOfCategory.setClickable(true);
+            settingsOfCurrencies.setClickable(true);
+
+        }else{
+            settingsOfUser.setClickable(false);
+            settingsOfCategory.setClickable(false);
+            settingsOfCurrencies.setClickable(false);
+        }
     }
 
 
