@@ -36,6 +36,8 @@ public class AddGoodAndOtherActivity extends AppCompatActivity {
 
        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
+        bottomNavigationView.setSelectedItemId(R.id.nav_add_good);
+
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -54,7 +56,6 @@ public class AddGoodAndOtherActivity extends AppCompatActivity {
                 }
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
-
                 return true;
             }
         });
