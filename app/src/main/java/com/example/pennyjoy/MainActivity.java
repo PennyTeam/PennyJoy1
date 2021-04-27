@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         close_anim= AnimationUtils.loadAnimation(this,R.anim.close_anim_for_fab1);
         from_bottom_anim= AnimationUtils.loadAnimation(this,R.anim.from_bottom_anim_for_fab);
         to_bottom_anim= AnimationUtils.loadAnimation(this,R.anim.to_bottom_anim_for_fab);
+
+
     }
 
 
@@ -108,15 +110,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void setAnimation(boolean clicked){
         if(clicked==false){
-            settingsOfUser.setAnimation(from_bottom_anim);
-            settingsOfCategory.setAnimation(from_bottom_anim);
-            settingsOfCurrencies.setAnimation(from_bottom_anim);
-            settings.setAnimation(open_anim);
+            settingsOfUser.startAnimation(from_bottom_anim);
+            settingsOfCategory.startAnimation(from_bottom_anim);
+            settingsOfCurrencies.startAnimation(from_bottom_anim);
+            settings.startAnimation(open_anim);
         }else{
-            settingsOfUser.setAnimation(to_bottom_anim);
-            settingsOfCategory.setAnimation(to_bottom_anim);
-            settingsOfCurrencies.setAnimation(to_bottom_anim);
-            settings.setAnimation(close_anim);
+            settingsOfUser.startAnimation(to_bottom_anim);
+            settingsOfCategory.startAnimation(to_bottom_anim);
+            settingsOfCurrencies.startAnimation(to_bottom_anim);
+            settings.startAnimation(close_anim);
         }
 
     }
