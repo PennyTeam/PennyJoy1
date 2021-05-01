@@ -11,8 +11,8 @@ public class User {
 
 
 
-    public User(String name, String surname, String login, String passwd, double salary, String key) {
-        this.name = name;
+    public User(String Name, String surname, String login, String passwd, double salary, String key) {
+        this.name = Name;
         this.surname = surname;
         this.login = login;
         this.passwd = passwd;
