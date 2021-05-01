@@ -89,7 +89,8 @@ public class MainActivity extends AppCompatActivity {
 
     //метод для настроек валют
     public void settingsOfCurrenciesClicked(View v){
-
+        Intent intent=new Intent(this,SettingsOfCurrencyActivity.class);
+        startActivity(intent);
     }
 
 

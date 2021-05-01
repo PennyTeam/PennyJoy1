@@ -5,14 +5,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import Models.Auth;
+import Models.CurrenciesList;
+import Models.Currency;
 import Models.User;
 import Providers.UserProvider;
 
 public class SignUpActivityNoAcc3 extends AppCompatActivity {
     EditText salary;
+
+
+    private Spinner dropDownCurrency;
+    private CurrenciesList currenciesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +29,22 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up_no_acc3);
 
         salary=findViewById(R.id.txtSalary);
+
+        dropDownCurrency=findViewById(R.id.currencyDropDown);
+        currenciesList=new CurrenciesList();
+        currenciesList.init();
+
+        //делаю адаптер для вложенного списка
+        ArrayAdapter<Currency> currencyAdapter=new ArrayAdapter<Currency>(getApplicationContext(),
+                R.layout.currency_spinner_item,currenciesList.getCurrencies());
+
+        //currencyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        currencyAdapter.setDropDownViewResource(R.layout.drop_down_item_currency);
+
+
+        dropDownCurrency.setAdapter(currencyAdapter);
+
+        //----------------------
     }
 
 
@@ -36,6 +61,11 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
             String login=intent2.getExtras().getString("login");
             String passwd=intent2.getExtras().getString("passwd");
             float salary=Float.parseFloat(this.salary.getText().toString());
+
+            Currency currency=(Currency) dropDownCurrency.getSelectedItem();
+            Auth auth=new Auth();
+            auth.setCurrentCurrency(currency);
+
 
             User user=new User(name,surname,login,passwd,salary, null);
             UserProvider provider=new UserProvider();

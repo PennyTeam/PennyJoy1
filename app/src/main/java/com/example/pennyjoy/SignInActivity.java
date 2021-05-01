@@ -2,6 +2,7 @@ package com.example.pennyjoy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +13,9 @@ import android.widget.EditText;
 import com.google.android.material.snackbar.Snackbar;
 
 import Interfaces.OnUserRetrievedListener;
+import Models.Auth;
+import Models.CurrenciesList;
+import Models.Currency;
 import Models.User;
 import Providers.UserProvider;
 
@@ -29,12 +33,7 @@ public class  SignInActivity extends AppCompatActivity {
 
 
 
-    @Override
-    protected void onStart() {
-        isUserExist();
 
-        super.onStart();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +79,22 @@ public class  SignInActivity extends AppCompatActivity {
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             //здесь сохраняю логин юзера
                             saveLogin(user1);
-                            User currentUser=new User();
-                            currentUser.setCurrentUser(user);
+
+                            Auth auth=new Auth();
+                            auth.setCurrentUser(user1);
+
+                            Currency currency=new Currency();
+
+                            CurrenciesList currenciesList=new CurrenciesList();
+                            currenciesList.init();
+
+                            auth.setCurrentCurrency(currenciesList.getCurrencies().get(0));
+
+
+
+
+
+
                             //pr bar
                             startActivityForResult(intent, MAIN_REQUEST_CODE);
                         }
@@ -122,7 +135,7 @@ public class  SignInActivity extends AppCompatActivity {
 
     //функция для сохранения логина юзера
     public void saveLogin(User user){
-        sharedPreferences=getPreferences(MODE_PRIVATE);
+        sharedPreferences=getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES),Context.MODE_PRIVATE);
         editor=sharedPreferences.edit();
         String login=user.getLogin();
         editor.putString("loginOfTheAuthorizedUser",login);
@@ -130,7 +143,7 @@ public class  SignInActivity extends AppCompatActivity {
     }
 
     //функция для проверки наличия юзера
-    public void isUserExist(){
+   /*public void isUserExist(){
 
         sharedPreferences=getPreferences(MODE_PRIVATE);
 
@@ -146,8 +159,25 @@ public class  SignInActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         //здесь вызываю маин при совпадении логина в сп с логином из бд
                         //и настраиваю флаги
-                        User currentUser=new User();
-                        currentUser.setCurrentUser(user);
+
+                        Auth auth=new Auth();
+                        auth.setCurrentUser(user);
+
+                        CurrenciesList currenciesList=new CurrenciesList();
+                        currenciesList.init();
+                        SharedPreferences mySharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
+                        int idOfCurrency=mySharedPreferences.getInt("idOfCurrency",-1);
+                        if(idOfCurrency==-1) {
+                            auth.setCurrentCurrency(currenciesList.getCurrencies().get(0));
+                        }else{
+                            auth.setCurrentCurrency(currenciesList.getCurrencies().get(idOfCurrency));
+                        }
+
+
+
+
+
+
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         
@@ -164,6 +194,6 @@ public class  SignInActivity extends AppCompatActivity {
             sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
             return;
         }
-    }
+    }*/
 
 }

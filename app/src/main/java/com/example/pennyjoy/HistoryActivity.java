@@ -3,13 +3,17 @@ package com.example.pennyjoy;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import Interfaces.OnGoodsRetrievedListener;
+import Models.Auth;
 import Models.Good;
-import Models.GoodsAdapter;
+import Adapters.GoodsAdapter;
 import Models.User;
 import Providers.GoodProvider;
 
@@ -18,17 +22,30 @@ public class HistoryActivity extends AppCompatActivity {
     private ListView listViewHistoryOfGoods;
     private ArrayList<Good> goodArrayList;
     private GoodsAdapter goodsAdapter;
+    private Auth auth;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+
+        auth=new Auth();
+
+
         listViewHistoryOfGoods = findViewById(R.id.listViewOfGoods);
+
+
+
         goodArrayList = new ArrayList<>();
         goodsAdapter = new GoodsAdapter(getApplicationContext(),R.layout.good_template, goodArrayList);
 
         listViewHistoryOfGoods.setAdapter(goodsAdapter);
+
+
+
+
 
         OnGoodsRetrievedListener listener = new OnGoodsRetrievedListener() {
             @Override
@@ -40,8 +57,9 @@ public class HistoryActivity extends AppCompatActivity {
             }
         };
         GoodProvider goodProvider = new GoodProvider();
-        User user = new User();
-        String userKey = user.getCurrentUser().getKey();
+
+
+        String userKey = auth.getCurrentUser().getKey();
         goodProvider.getGoodsFromFirebase(userKey,listener);
 
     }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsOfCurrencyActivity"
+    android:background="@color/black">
+
+
+    <Spinner
+        android:id="@+id/currencyDropDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="322dp"
+        android:background="@drawable/body_for_spinner_currency"
+        android:textSize="400dp"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="340dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="130dp"
+        android:src="@drawable/selector_for_currency"/>
+
+
+
+    <Button
+
+        android:id="@+id/btnSaveCurrency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="500dp"
+        android:onClick="saveCurrencyClicked"
+        android:text="Сохранить"/>
+
+
+
+
+
+</RelativeLayout>

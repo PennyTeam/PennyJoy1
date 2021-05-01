@@ -5,19 +5,13 @@ public class User {
     private String surname;
     private String login;
     private String passwd;
-    private float salary;
+    private double salary;
     private String key;
-    private static User currentUser;
 
-    public User getCurrentUser() {
-        return currentUser;
-    }
 
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
-    }
 
-    public User(String name, String surname, String login, String passwd, float salary, String key) {
+
+    public User(String name, String surname, String login, String passwd, double salary, String key) {
         this.name = name;
         this.surname = surname;
         this.login = login;
@@ -37,11 +31,11 @@ public class User {
         this.key = key;
     }
 
-    public float getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(float salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 

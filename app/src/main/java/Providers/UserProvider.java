@@ -1,6 +1,9 @@
 package Providers;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,7 +32,10 @@ public class UserProvider {
         push.setValue(user);
     }
 
-    public void updateUser(User user){ }
+    public void updateUser(User user){
+        users.child(user.getKey()).setValue(user);
+
+    }
 
     public void deleteUser(User user){ }
 
@@ -37,7 +43,7 @@ public class UserProvider {
     public void getUserFromFirebaseByLogin(String login, OnUserRetrievedListener listener){
         User user = new User();
         Query query = users.orderByChild("login").equalTo(login);
-        query.addValueEventListener(new ValueEventListener() {
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot single : snapshot.getChildren()){

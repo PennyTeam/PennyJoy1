@@ -1,5 +1,7 @@
 package Providers;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -29,10 +31,14 @@ public class GoodProvider {
 
     public void addGood(Good good){
         DatabaseReference push= goods.push();
+        good.setKey(push.getKey());
         push.setValue(good);
     }
 
-    public void updateUser(User user){ }
+    public void updateGood(Good good) {
+        Log.e("SHIT UP","SHIT UP");
+        goods.child(good.getKey()).setValue(good);
+    }
 
     public void deleteUser(User user){ }
 
@@ -42,7 +48,7 @@ public class GoodProvider {
         Query query = goods.orderByChild("userKey").equalTo(keyOfUser);
         //__________________________________________________
         //**************************************************
-        query.addValueEventListener(new ValueEventListener() {
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot single : snapshot.getChildren()){
@@ -60,4 +66,5 @@ public class GoodProvider {
         });
 
     }
+
 }

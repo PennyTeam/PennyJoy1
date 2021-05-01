@@ -1,6 +1,6 @@
 package Models;
 
-import java.math.BigDecimal;
+
 
 public class Good {
     private int category;
@@ -8,6 +8,7 @@ public class Good {
     private double cost;
     private String purchaseOfPurpose;
     private String userKey;
+    private String key;
 
 
     public Good() {
@@ -62,5 +63,13 @@ public class Good {
 
     public void setUserKey(String userKey) {
         this.userKey = userKey;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

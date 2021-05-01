@@ -13,7 +13,7 @@ public class CategoryList {
         private final static CategoryList instance= new CategoryList();
     }
     public static CategoryList getInstance(){
-        if(CategoryListHolder.instance != null) {
+        if(categoryList.isEmpty()) {
             categoryList.add(new Category(0, "Не выбрано"));
             categoryList.add(new Category(1, "Продукты"));
             categoryList.add(new Category(2, "Путешествия"));

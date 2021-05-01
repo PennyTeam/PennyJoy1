@@ -76,11 +76,12 @@
         android:maxLength="12"
         android:background="@drawable/body_for_edit_text"/>
     <TextView
+        android:id="@+id/currencyOfCostInAddGood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentRight="true"
-        android:text="₸"
+
         android:textColor="@color/black"
         android:textSize="29dp"
         android:layout_marginTop="288dp"
