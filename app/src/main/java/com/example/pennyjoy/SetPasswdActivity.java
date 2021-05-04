@@ -97,6 +97,7 @@ public class SetPasswdActivity extends AppCompatActivity {
         editTextOldPasswd.setError("Старый пароль введен неверно!");
         return false;
     }
+    //
 //проверяю новый пароль на криптостойкость
     public boolean checkNewPasswords(String passwd1, String repeatedPasswd){
         if(passwd1.equals(repeatedPasswd) && passwd1.length()>6 && passwd1.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,10}$")){
