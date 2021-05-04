@@ -101,7 +101,8 @@ private SharedPreferences.Editor editor;
                 GoodProvider provider=new GoodProvider();
                 provider.updateGood(g);
             }
-
+            currencySymbol.setText(auth.getCurrentCurrency().getLabel());
+            Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -168,7 +169,7 @@ private SharedPreferences.Editor editor;
 
                         currencyProvider.setNewCurrency(listener,currentCurrency.getCode(),currencyToConvert.getCode());
 
-                        Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
+
                         User updatedUser = auth.getCurrentUser();
                         updatedUser.setAccIsActive(auth.getCurrentUser().getAccIsActive());
                         updatedUser.setLogin(newLogin);
@@ -178,6 +179,7 @@ private SharedPreferences.Editor editor;
                         UserProvider userProvider = new UserProvider();
                         userProvider.updateUser(updatedUser);
                         auth.setCurrentUser(updatedUser);
+
 
                         sharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
                         editor = sharedPreferences.edit();
