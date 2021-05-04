@@ -42,7 +42,7 @@ private int resource;
 
         Good good = this.getItem(position);
         productTitle.setText(good.getName());
-        Auth auth=new Auth();
+        Auth auth=Auth.getInstance();
         currencyOfCostInHistoryOfGood.setText(auth.getCurrentCurrency().getLabel());
 
         //перевел double to BigDecimal, чтобы число отображалось корректно (у даблов не хватает на многие прайсы)

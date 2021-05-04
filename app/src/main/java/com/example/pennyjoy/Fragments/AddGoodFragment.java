@@ -103,7 +103,7 @@ public class AddGoodFragment extends Fragment {
                     //получая текущего юзера и устанавливаю кей
 
                     User user=new User();
-                    Auth auth=new Auth();
+                    Auth auth=Auth.getInstance();
 
 
                     String keyOfUser= auth.getCurrentUser().getKey();
@@ -144,7 +144,7 @@ public class AddGoodFragment extends Fragment {
         });
 
         currencyOfCostInAddGood=view.findViewById(R.id.currencyOfCostInAddGood);
-        Auth auth=new Auth();
+        Auth auth=Auth.getInstance();
         currencyOfCostInAddGood.setText(auth.getCurrentCurrency().getLabel());
     }
 

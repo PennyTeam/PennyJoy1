@@ -19,7 +19,7 @@ public class CategoryList {
     }
     public void init(){
         if(categoryList.isEmpty()) {
-            Auth auth =new Auth();
+            Auth auth =Auth.getInstance();
             categoryList.add(new Category(0, "Не выбрано",auth.getCurrentUser().getKey()));
             categoryList.add(new Category(1, "Продукты",auth.getCurrentUser().getKey()));
             categoryList.add(new Category(2, "Путешествия",auth.getCurrentUser().getKey()));

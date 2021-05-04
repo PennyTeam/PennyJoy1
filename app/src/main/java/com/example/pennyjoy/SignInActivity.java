@@ -83,7 +83,7 @@ public class  SignInActivity extends AppCompatActivity {
                                 //здесь сохраняю логин юзера
                                 saveLogin(user1);
 
-                                Auth auth = new Auth();
+                                Auth auth = Auth.getInstance();
                                 auth.setCurrentUser(user1);
 
                                 Currency currency = new Currency();

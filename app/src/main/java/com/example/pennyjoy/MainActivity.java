@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     //метод для настроек категорий
     public void settingsOfCategoryClicked(View v){
         //здесб сделал добавление
-        Auth auth=new Auth();
+        Auth auth=Auth.getInstance();
         CategoryList categoryList=CategoryList.getInstance();
         Category category=new Category(categoryList.getCategories().size(), "defGoodThatIMade",auth.getCurrentUser().getKey());
 

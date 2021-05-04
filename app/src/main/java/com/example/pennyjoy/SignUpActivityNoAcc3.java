@@ -63,7 +63,7 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
             float salary=Float.parseFloat(this.salary.getText().toString());
 
             Currency currency=(Currency) dropDownCurrency.getSelectedItem();
-            Auth auth=new Auth();
+            Auth auth=Auth.getInstance();
             auth.setCurrentCurrency(currency);
 
 

@@ -31,7 +31,7 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        auth=new Auth();
+        auth=Auth.getInstance();
 
 
         listViewHistoryOfGoods = findViewById(R.id.listViewOfGoods);

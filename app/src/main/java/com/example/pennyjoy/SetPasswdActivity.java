@@ -29,7 +29,7 @@ public class SetPasswdActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_passwd);
-        auth = new Auth();
+        auth = Auth.getInstance();
         editTextOldPasswd = findViewById(R.id.old_passwd);
         newPasswd1 = findViewById(R.id.new_password1);
         newPasswd2 = findViewById(R.id.newPasswd2);
@@ -74,6 +74,7 @@ public class SetPasswdActivity extends AppCompatActivity {
                             newPasswd2.getText().clear();
                         }
                     });
+
                     ad.show();
                 }
             }

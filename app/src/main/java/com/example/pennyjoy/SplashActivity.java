@@ -72,7 +72,7 @@ public class SplashActivity extends AppCompatActivity {
                         //здесь вызываю маин при совпадении логина в сп с логином из бд
                         //и настраиваю флаги
 
-                        Auth auth=new Auth();
+                        Auth auth=Auth.getInstance();
                         auth.setCurrentUser(user);
 
                         CurrenciesList currenciesList=new CurrenciesList();

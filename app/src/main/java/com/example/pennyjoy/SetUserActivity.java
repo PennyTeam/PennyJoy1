@@ -40,7 +40,7 @@ private ImageButton btnReturnToMain;
 private LinearLayout btnSetPasswd;
 private EditText editTextName, editTextSurname, editTextSalary, editTextLogin;
 private TextView passwdStars, currencySymbol;
-private   Auth auth = new Auth();
+private   Auth auth =Auth.getInstance();
 private SharedPreferences sharedPreferences;
 private SharedPreferences.Editor editor;
     private Spinner dropDownCurrency;
@@ -60,7 +60,7 @@ private SharedPreferences.Editor editor;
         editTextLogin = findViewById(R.id.etext_login);
         passwdStars = findViewById(R.id.text_password_for_edit);
         currencySymbol = findViewById(R.id.symbolOfCurrency);
-        Auth auth=new Auth();
+
         currencySymbol.setText(auth.getCurrentCurrency().getLabel());
         dropDownCurrency=findViewById(R.id.currencyDropDown);
         currenciesList=new CurrenciesList();
@@ -112,7 +112,7 @@ private SharedPreferences.Editor editor;
         public void onRetrieved(double currency) {
             valueOfCurrency=currency;
 
-            Auth auth=new Auth();
+
             User currentUser=auth.getCurrentUser();
             auth.setCurrentCurrency((Currency) dropDownCurrency.getSelectedItem());
             SharedPreferences mySharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES),Context.MODE_PRIVATE);
@@ -161,7 +161,7 @@ private SharedPreferences.Editor editor;
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         CurrencyProvider currencyProvider = new CurrencyProvider();
-                        Auth auth=new Auth();
+
                         Currency currencyToConvert=(Currency) dropDownCurrency.getSelectedItem();
                         Currency currentCurrency=auth.getCurrentCurrency();
 
@@ -186,7 +186,7 @@ private SharedPreferences.Editor editor;
                         editor.commit();
                     }
                 });
-ad.show();
+                ad.show();
             }
         }
         if(id == btnReturnToMain.getId()){
