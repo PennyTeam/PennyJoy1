@@ -36,7 +36,7 @@ public class GoodProvider {
     }
 
     public void updateGood(Good good) {
-        Log.e("SHIT UP","SHIT UP");
+
         goods.child(good.getKey()).setValue(good);
     }
 

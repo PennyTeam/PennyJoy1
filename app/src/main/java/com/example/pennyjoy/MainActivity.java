@@ -11,6 +11,11 @@ import android.view.animation.AnimationUtils;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import Models.Auth;
+import Models.Category;
+import Models.CategoryList;
+import Providers.CategoryProvider;
+
 public class MainActivity extends AppCompatActivity {
     private int mainRequest=1;
 
@@ -85,7 +90,15 @@ public class MainActivity extends AppCompatActivity {
     }
     //метод для настроек категорий
     public void settingsOfCategoryClicked(View v){
+        //здесб сделал добавление
+        Auth auth=new Auth();
+        CategoryList categoryList=CategoryList.getInstance();
+        Category category=new Category(categoryList.getCategories().size(), "defGoodThatIMade",auth.getCurrentUser().getKey());
 
+        categoryList.addCategory(category);
+        CategoryProvider categoryProvider=new CategoryProvider();
+        //надо апдейт юзать вместо обычного адд
+        categoryProvider.addCategory(category);
     }
 
     //метод для настроек валют
