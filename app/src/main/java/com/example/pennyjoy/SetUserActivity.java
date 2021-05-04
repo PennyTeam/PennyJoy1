@@ -9,17 +9,29 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+
+import Interfaces.OnCurrencyConvertRetrievedListener;
+import Interfaces.OnGoodsRetrievedListener;
 import Models.Auth;
+import Models.CurrenciesList;
+import Models.Currency;
+import Models.Good;
 import Models.User;
+import Providers.CurrencyProvider;
+import Providers.GoodProvider;
 import Providers.UserProvider;
 
 public class SetUserActivity extends AppCompatActivity {
@@ -31,6 +43,9 @@ private TextView passwdStars, currencySymbol;
 private   Auth auth = new Auth();
 private SharedPreferences sharedPreferences;
 private SharedPreferences.Editor editor;
+    private Spinner dropDownCurrency;
+    private CurrenciesList currenciesList;
+    private double valueOfCurrency=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +60,24 @@ private SharedPreferences.Editor editor;
         editTextLogin = findViewById(R.id.etext_login);
         passwdStars = findViewById(R.id.text_password_for_edit);
         currencySymbol = findViewById(R.id.symbolOfCurrency);
+        Auth auth=new Auth();
+        currencySymbol.setText(auth.getCurrentCurrency().getLabel());
+        dropDownCurrency=findViewById(R.id.currencyDropDown);
+        currenciesList=new CurrenciesList();
+        currenciesList.init();
+
+        //делаю адаптер для вложенного списка
+        ArrayAdapter<Currency> currencyAdapter=new ArrayAdapter<Currency>(getApplicationContext(),
+                R.layout.currency_spinner_item,currenciesList.getCurrencies());
+
+        //currencyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        currencyAdapter.setDropDownViewResource(R.layout.drop_down_item_currency);
+
+
+        dropDownCurrency.setAdapter(currencyAdapter);
+
+        //----------------------
+
 
         editTextName.setText(auth.getCurrentUser().getName());
         editTextSurname.setText(auth.getCurrentUser().getSurname());
@@ -58,6 +91,48 @@ private SharedPreferences.Editor editor;
         }
         passwdStars.setText(passwordStars);
     }
+    OnGoodsRetrievedListener goodsListener=new OnGoodsRetrievedListener() {
+        @Override
+        public void OnRetrieved(ArrayList<Good> goods) {
+            DecimalFormat decimalFormat=new DecimalFormat("#.###");
+            for (Good g:goods) {
+                String cost =decimalFormat.format(g.getCost()*valueOfCurrency);
+                g.setCost(Double.parseDouble(cost));
+                GoodProvider provider=new GoodProvider();
+                provider.updateGood(g);
+            }
+
+        }
+    };
+
+
+
+    OnCurrencyConvertRetrievedListener listener=new OnCurrencyConvertRetrievedListener() {
+        @Override
+        public void onRetrieved(double currency) {
+            valueOfCurrency=currency;
+
+            Auth auth=new Auth();
+            User currentUser=auth.getCurrentUser();
+            auth.setCurrentCurrency((Currency) dropDownCurrency.getSelectedItem());
+            SharedPreferences mySharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES),Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = mySharedPreferences.edit();
+            editor.putInt("idOfCurrency", auth.getCurrentCurrency().getId());
+            editor.apply();
+            //_____
+
+            //-----
+
+            DecimalFormat decimalFormat=new DecimalFormat("#.###");
+            String salary=decimalFormat.format(currentUser.getSalary()*valueOfCurrency);
+            currentUser.setSalary(Double.parseDouble(salary));
+            UserProvider provider=new UserProvider();
+            provider.updateUser(currentUser);
+
+            GoodProvider goodProvider=new GoodProvider();
+            goodProvider.getGoodsFromFirebase(currentUser.getKey(),goodsListener);
+        }
+    };
 
     public void onClick(View v){
         int id = v.getId();
@@ -85,6 +160,14 @@ private SharedPreferences.Editor editor;
                 ad.setPositiveButton("Да", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        CurrencyProvider currencyProvider = new CurrencyProvider();
+                        Auth auth=new Auth();
+                        Currency currencyToConvert=(Currency) dropDownCurrency.getSelectedItem();
+                        Currency currentCurrency=auth.getCurrentCurrency();
+
+
+                        currencyProvider.setNewCurrency(listener,currentCurrency.getCode(),currencyToConvert.getCode());
+
                         Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
                         User updatedUser = auth.getCurrentUser();
                         updatedUser.setAccIsActive(auth.getCurrentUser().getAccIsActive());

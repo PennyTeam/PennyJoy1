@@ -178,18 +178,35 @@
                 android:layout_height="wrap_content"
                 android:textSize="30dp"
                 android:singleLine="true"
-                android:text="₸"
                 android:layout_marginLeft="100dp"
                 android:textColor="@color/black"/>
 
-        </LinearLayout>
 
+        </LinearLayout>
+        <Spinner
+            android:id="@+id/currencyDropDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="685dp"
+            android:background="@drawable/body_for_spinner_currency"
+            android:textSize="400dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="700dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="130dp"
+            android:src="@drawable/selector_for_currency"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/delete_user_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="685dp"
+            android:layout_marginTop="780dp"
             android:background="@drawable/template_for_btn_delete"
             android:text="Удалить аккаунт"
             android:textAllCaps="false"
@@ -204,13 +221,13 @@
             android:layout_height="55dp"
             android:gravity="center"
             android:layout_marginLeft="60dp"
-            android:layout_marginTop="810dp"
+            android:layout_alignParentBottom="true"
             android:textAllCaps="false"
             android:textSize="30dp"
             android:textColor="@color/black"
             android:text="Сохранить"
             android:background="@drawable/template_for_btn_save_settings" />
-        
+
         <ImageButton
             android:id="@+id/btn_return_home"
             android:layout_width="wrap_content"
