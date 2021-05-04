@@ -48,7 +48,7 @@ public class SetPasswdActivity extends AppCompatActivity {
                 }
 
                 else{
-                    AlertDialog.Builder ad = new AlertDialog.Builder(getApplicationContext());
+                    AlertDialog.Builder ad = new AlertDialog.Builder(v.getContext());
                     ad.setTitle("Изменение пароля");
                     ad.setMessage("Вы уверены, что хотите изменить пароль?");
                     ad.setIcon(R.drawable.ic_baseline_warning_24);
@@ -84,7 +84,7 @@ public class SetPasswdActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SetUserActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
