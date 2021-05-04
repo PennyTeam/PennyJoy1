@@ -19,23 +19,17 @@ public class CategoryList {
     }
     public void init(){
         if(categoryList.isEmpty()) {
-            Auth auth =Auth.getInstance();
-            categoryList.add(new Category(0, "Не выбрано",auth.getCurrentUser().getKey()));
-            categoryList.add(new Category(1, "Продукты",auth.getCurrentUser().getKey()));
-            categoryList.add(new Category(2, "Путешествия",auth.getCurrentUser().getKey()));
-            categoryList.add(new Category(3, "Одежда",auth.getCurrentUser().getKey()));
-            categoryList.add(new Category(4, "Долги",auth.getCurrentUser().getKey()));
-            categoryList.add(new Category(5, "Цели",auth.getCurrentUser().getKey()));
+            categoryList.add(new Category(1, "Продукты"));
+            categoryList.add(new Category(2, "Путешествия"));
+            categoryList.add(new Category(3, "Одежда"));
+            categoryList.add(new Category(4, "Долги"));
+            categoryList.add(new Category(5, "Цели"));
         }
     }
 
 
 
-    public void addCategory(Category category){
-        if(categoryList.size()<=15) {
-            categoryList.add(category);
-        }
-    }
+
 
     public ArrayList<Category> getCategories(){
         return categoryList;

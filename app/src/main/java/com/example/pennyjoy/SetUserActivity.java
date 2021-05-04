@@ -35,17 +35,22 @@ import Providers.GoodProvider;
 import Providers.UserProvider;
 
 public class SetUserActivity extends AppCompatActivity {
-private Button btnSaveSettings, btnDeleteAccount;
-private ImageButton btnReturnToMain;
-private LinearLayout btnSetPasswd;
-private EditText editTextName, editTextSurname, editTextSalary, editTextLogin;
-private TextView passwdStars, currencySymbol;
-private   Auth auth =Auth.getInstance();
-private SharedPreferences sharedPreferences;
-private SharedPreferences.Editor editor;
+    private Button btnSaveSettings, btnDeleteAccount;
+    private ImageButton btnReturnToMain;
+    private LinearLayout btnSetPasswd;
+    private EditText editTextName, editTextSurname, editTextSalary, editTextLogin;
+    private TextView passwdStars, currencySymbol;
+    private   Auth auth =Auth.getInstance();
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
     private Spinner dropDownCurrency;
     private CurrenciesList currenciesList;
     private double valueOfCurrency=0;
+
+    private String newName ;
+    private String newSurname;
+    private String newLogin;
+    private String newSalary;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +68,7 @@ private SharedPreferences.Editor editor;
 
         currencySymbol.setText(auth.getCurrentCurrency().getLabel());
         dropDownCurrency=findViewById(R.id.currencyDropDown);
-        currenciesList=new CurrenciesList();
+        currenciesList=CurrenciesList.getInstance();
         currenciesList.init();
 
         //делаю адаптер для вложенного списка
@@ -75,6 +80,9 @@ private SharedPreferences.Editor editor;
 
 
         dropDownCurrency.setAdapter(currencyAdapter);
+
+        int positionOfCurrency = currencyAdapter.getPosition(auth.getCurrentCurrency());
+        dropDownCurrency.setSelection(positionOfCurrency);
 
         //----------------------
 
@@ -101,7 +109,22 @@ private SharedPreferences.Editor editor;
                 GoodProvider provider=new GoodProvider();
                 provider.updateGood(g);
             }
+            User updatedUser = auth.getCurrentUser();
+            updatedUser.setAccIsActive(auth.getCurrentUser().getAccIsActive());
+            updatedUser.setLogin(newLogin);
+            updatedUser.setName(newName);
+            updatedUser.setSalary(Double.parseDouble(newSalary));
+            updatedUser.setSurname(newSurname);
+
+
+
+            sharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
+            editor = sharedPreferences.edit();
+            editor.putString("loginOfTheAuthorizedUser", updatedUser.getLogin());
+
+            editor.commit();
             currencySymbol.setText(auth.getCurrentCurrency().getLabel());
+            editTextSalary.setText(auth.getCurrentUser().getSalary()+"");
             Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
         }
     };
@@ -114,7 +137,7 @@ private SharedPreferences.Editor editor;
             valueOfCurrency=currency;
 
 
-            User currentUser=auth.getCurrentUser();
+            User updatedUser=auth.getCurrentUser();
             auth.setCurrentCurrency((Currency) dropDownCurrency.getSelectedItem());
             SharedPreferences mySharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES),Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = mySharedPreferences.edit();
@@ -122,26 +145,28 @@ private SharedPreferences.Editor editor;
             editor.apply();
             //_____
 
-            //-----
+            //------
 
             DecimalFormat decimalFormat=new DecimalFormat("#.###");
-            String salary=decimalFormat.format(currentUser.getSalary()*valueOfCurrency);
-            currentUser.setSalary(Double.parseDouble(salary));
+            newSalary = decimalFormat.format(Double.parseDouble(editTextSalary.getText().toString())*valueOfCurrency);
+            String salary=decimalFormat.format(Double.parseDouble(editTextSalary.getText().toString())*valueOfCurrency);
+            updatedUser.setSalary(Double.parseDouble(salary));
             UserProvider provider=new UserProvider();
-            provider.updateUser(currentUser);
+            provider.updateUser(updatedUser);
 
+            auth.setCurrentUser(updatedUser);
             GoodProvider goodProvider=new GoodProvider();
-            goodProvider.getGoodsFromFirebase(currentUser.getKey(),goodsListener);
+            goodProvider.getGoodsFromFirebase(updatedUser.getKey(),goodsListener);
         }
     };
 
     public void onClick(View v){
         int id = v.getId();
         if(id == btnSaveSettings.getId()){
-            String newName = editTextName.getText().toString();
-            String newSurname = editTextSurname.getText().toString();
-            String newLogin = editTextLogin.getText().toString();
-            String newSalary = editTextSalary.getText().toString();
+            newName = editTextName.getText().toString();
+            newSurname = editTextSurname.getText().toString();
+            newLogin = editTextLogin.getText().toString();
+            newSalary = editTextSalary.getText().toString();
 
             if((!checkNewName(newName) || !checkNewLogin(newLogin) || !checkNewSalary(newSalary) || !checkNewSurname(newSurname))){
                 Snackbar.make(v, "Заполните все поля корректно!", Snackbar.LENGTH_LONG).show();
@@ -161,31 +186,34 @@ private SharedPreferences.Editor editor;
                 ad.setPositiveButton("Да", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
                         CurrencyProvider currencyProvider = new CurrencyProvider();
 
                         Currency currencyToConvert=(Currency) dropDownCurrency.getSelectedItem();
                         Currency currentCurrency=auth.getCurrentCurrency();
 
+                        if(currencyToConvert.getId() != currentCurrency.getId() ) {
+                            currencyProvider.setNewCurrency(listener, currentCurrency.getCode(), currencyToConvert.getCode());
+                        }else {
+                            User updatedUser = auth.getCurrentUser();
+                            updatedUser.setAccIsActive(auth.getCurrentUser().getAccIsActive());
+                            updatedUser.setLogin(newLogin);
+                            updatedUser.setName(newName);
+                            updatedUser.setSalary(Double.parseDouble(newSalary));
+                            updatedUser.setSurname(newSurname);
 
-                        currencyProvider.setNewCurrency(listener,currentCurrency.getCode(),currencyToConvert.getCode());
+                            UserProvider userProvider = new UserProvider();
+                            userProvider.updateUser(updatedUser);
+                            auth.setCurrentUser(updatedUser);
 
 
-                        User updatedUser = auth.getCurrentUser();
-                        updatedUser.setAccIsActive(auth.getCurrentUser().getAccIsActive());
-                        updatedUser.setLogin(newLogin);
-                        updatedUser.setName(newName);
-                        updatedUser.setSalary(Double.parseDouble(newSalary));
-                        updatedUser.setSurname(newSurname);
-                        UserProvider userProvider = new UserProvider();
-                        userProvider.updateUser(updatedUser);
-                        auth.setCurrentUser(updatedUser);
+                            sharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
+                            editor = sharedPreferences.edit();
+                            editor.putString("loginOfTheAuthorizedUser", updatedUser.getLogin());
+                            editor.commit();
+                            Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
 
-
-                        sharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
-                        editor = sharedPreferences.edit();
-                        editor.putString("loginOfTheAuthorizedUser", updatedUser.getLogin());
-
-                        editor.commit();
+                        }
                     }
                 });
                 ad.show();
@@ -222,7 +250,7 @@ private SharedPreferences.Editor editor;
                     startActivity(intent);
                 }
             });
-ad.show();
+            ad.show();
         }
 
         if(id == btnSetPasswd.getId()){

@@ -9,6 +9,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 import Interfaces.OnCategoriesRetrievedListener;
 import Models.Category;
 import Models.CategoryList;
@@ -24,7 +26,8 @@ public class CategoryProvider {
 
 
     public void getCategoriesFromFirebase(String keyOfUser, OnCategoriesRetrievedListener listener){
-        CategoryList categoryList=CategoryList.getInstance();
+
+        ArrayList<Category> categoryList=new ArrayList<>();
         Query query = categories.orderByChild("userKey").equalTo(keyOfUser);
         //__________________________________________________
         //**************************************************
@@ -33,11 +36,10 @@ public class CategoryProvider {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot single : snapshot.getChildren()){
                     Category category = (Category) single.getValue(Category.class);
-                    categoryList.getCategories().add(category);
+                    categoryList.add(category);
                 }
                 listener.OnCategoriesRetrieved(categoryList);
-                //не уверен
-                categoryList.getCategories().clear();
+                categoryList.clear();
             }
 
             @Override

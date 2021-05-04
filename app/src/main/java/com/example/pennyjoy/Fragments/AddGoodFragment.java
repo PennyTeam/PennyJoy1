@@ -62,7 +62,7 @@ public class AddGoodFragment extends Fragment {
 
 
         lblCounterOfTextInput= view.findViewById(R.id.counterOfTextInputAddGood);
-        categoryList.init();
+
 
 
 

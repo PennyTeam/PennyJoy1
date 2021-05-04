@@ -7,10 +7,9 @@ Category {
     private String userKey;
     private String key;
 
-    public Category(int id, String name,String userKey) {
+    public Category(int id, String name) {
         this.id = id;
         this.name = name;
-        this.userKey=userKey;
     }
 
     public Category() {

@@ -31,7 +31,7 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
         salary=findViewById(R.id.txtSalary);
 
         dropDownCurrency=findViewById(R.id.currencyDropDown);
-        currenciesList=new CurrenciesList();
+        currenciesList=CurrenciesList.getInstance();
         currenciesList.init();
 
         //делаю адаптер для вложенного списка

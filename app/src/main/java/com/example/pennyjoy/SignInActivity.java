@@ -12,11 +12,17 @@ import android.widget.EditText;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
+
+import Interfaces.OnCategoriesRetrievedListener;
 import Interfaces.OnUserRetrievedListener;
 import Models.Auth;
+import Models.Category;
+import Models.CategoryList;
 import Models.CurrenciesList;
 import Models.Currency;
 import Models.User;
+import Providers.CategoryProvider;
 import Providers.UserProvider;
 
 public class  SignInActivity extends AppCompatActivity {
@@ -26,6 +32,7 @@ public class  SignInActivity extends AppCompatActivity {
     final int MAIN_REQUEST_CODE = 115;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+    Auth auth = Auth.getInstance();
 
 
 
@@ -47,6 +54,27 @@ public class  SignInActivity extends AppCompatActivity {
 
 
     }
+    OnCategoriesRetrievedListener categoriesRetrievedListener=new OnCategoriesRetrievedListener() {
+        @Override
+        public void OnCategoriesRetrieved(ArrayList<Category> categoryList) {
+
+            CategoryList categories= CategoryList.getInstance();
+            if(categoryList.size() != 0){
+                for (Category category: categoryList){
+                    categories.getCategories().add(category);
+                }
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }else{
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+
+
+        }
+    };
 
     public void onClick(View v){
 
@@ -63,7 +91,7 @@ public class  SignInActivity extends AppCompatActivity {
                     @Override
                     //получаем юзера из UserProvider при помощи интерфейса
                     public void OnRetrieved(User user) {
-//new
+
                         user1.setAccIsActive(user.getAccIsActive());
                         user1.setSalary(user.getSalary());
                         user1.setSurname(user.getSurname());
@@ -80,18 +108,26 @@ public class  SignInActivity extends AppCompatActivity {
                             } else {
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                //работа с категориями
+                                CategoryList categoryList=CategoryList.getInstance();
+                                categoryList.init();
+                                CategoryProvider categoryProvider=new CategoryProvider();
+                                categoryProvider.getCategoriesFromFirebase(auth.getCurrentUser().getKey(),categoriesRetrievedListener);
+
+                                //работа с категориями
                                 //здесь сохраняю логин юзера
                                 saveLogin(user1);
 
-                                Auth auth = Auth.getInstance();
+
                                 auth.setCurrentUser(user1);
 
                                 Currency currency = new Currency();
 
-                                CurrenciesList currenciesList = new CurrenciesList();
+                                CurrenciesList currenciesList = CurrenciesList.getInstance();
                                 currenciesList.init();
-
-                                auth.setCurrentCurrency(currenciesList.getCurrencies().get(0));
+                                if(auth.getCurrentCurrency()== null) {
+                                    auth.setCurrentCurrency(currenciesList.getCurrencies().get(0));
+                                }
 
 
                                 //pr bar
@@ -142,58 +178,5 @@ public class  SignInActivity extends AppCompatActivity {
         editor.commit();
     }
 
-    //функция для проверки наличия юзера
-   /*public void isUserExist(){
-
-        sharedPreferences=getPreferences(MODE_PRIVATE);
-
-
-        String login=sharedPreferences.getString("loginOfTheAuthorizedUser",null);
-
-        if(login!=null){
-            UserProvider provider=new UserProvider();
-            OnUserRetrievedListener listener = new OnUserRetrievedListener() {
-                @Override
-                public void OnRetrieved(User user) {
-                    if(login.equals(user.getLogin())){
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        //здесь вызываю маин при совпадении логина в сп с логином из бд
-                        //и настраиваю флаги
-
-                        Auth auth=new Auth();
-                        auth.setCurrentUser(user);
-
-                        CurrenciesList currenciesList=new CurrenciesList();
-                        currenciesList.init();
-                        SharedPreferences mySharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
-                        int idOfCurrency=mySharedPreferences.getInt("idOfCurrency",-1);
-                        if(idOfCurrency==-1) {
-                            auth.setCurrentCurrency(currenciesList.getCurrencies().get(0));
-                        }else{
-                            auth.setCurrentCurrency(currenciesList.getCurrencies().get(idOfCurrency));
-                        }
-
-
-
-
-
-
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                        
-
-                    }
-                    else{
-                        sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
-                        return;
-                    }
-                }
-            };
-            provider.getUserFromFirebaseByLogin(login,listener);
-        }else{
-            sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
-            return;
-        }
-    }*/
 
 }

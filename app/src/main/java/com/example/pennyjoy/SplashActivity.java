@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import java.util.ArrayList;
+
 import Interfaces.OnCategoriesRetrievedListener;
 import Interfaces.OnUserRetrievedListener;
 import Models.Auth;
@@ -19,6 +21,7 @@ import Providers.UserProvider;
 
 public class SplashActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
+    Auth auth=Auth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +36,12 @@ public class SplashActivity extends AppCompatActivity {
 
     OnCategoriesRetrievedListener categoriesRetrievedListener=new OnCategoriesRetrievedListener() {
         @Override
-        public void OnCategoriesRetrieved(CategoryList categoryList) {
-            CategoryProvider categoryProvider=new CategoryProvider();
-            if(categoryList.getCategories().size() == 0){
-                categoryList.init();
-                for (Category category: categoryList.getCategories()){
-                    categoryProvider.addCategory(category);
+        public void OnCategoriesRetrieved(ArrayList<Category> categoryList) {
+            //CategoryProvider categoryProvider=new CategoryProvider();
+            CategoryList categories= CategoryList.getInstance();
+            if(categoryList.size() != 0){
+                for (Category category: categoryList){
+                    categories.getCategories().add(category);
                 }
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -67,15 +70,14 @@ public class SplashActivity extends AppCompatActivity {
                 @Override
                 public void OnRetrieved(User user) {
                     if(login.equals(user.getLogin())){
-                        //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
                         //здесь вызываю маин при совпадении логина в сп с логином из бд
                         //и настраиваю флаги
 
-                        Auth auth=Auth.getInstance();
+
                         auth.setCurrentUser(user);
 
-                        CurrenciesList currenciesList=new CurrenciesList();
+                        CurrenciesList currenciesList=CurrenciesList.getInstance();
                         currenciesList.init();
                         SharedPreferences mySharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
                         int idOfCurrency=mySharedPreferences.getInt("idOfCurrency",-1);
@@ -85,12 +87,12 @@ public class SplashActivity extends AppCompatActivity {
                             auth.setCurrentCurrency(currenciesList.getCurrencies().get(idOfCurrency));
                         }
 
+                        CategoryList categoryList=CategoryList.getInstance();
+                        categoryList.init();
                         CategoryProvider categoryProvider=new CategoryProvider();
                         categoryProvider.getCategoriesFromFirebase(auth.getCurrentUser().getKey(),categoriesRetrievedListener);
 
 
-                        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        //startActivity(intent);
 
 
                     }
