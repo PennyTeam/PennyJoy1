@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SetUserActivity"
+    android:background="@color/black">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/name_for_edit_user"
+            android:textColor="#848484"
+            android:textSize="30dp" />
+
+        <EditText
+            android:id="@+id/etext_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="81dp"
+            android:background="@drawable/template_for_tv_in_set_user_name"
+            android:ellipsize="start"
+            android:ems="10"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/tv_surname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="160dp"
+            android:text="@string/surname_of_user"
+            android:textColor="#848484"
+            android:textSize="30dp" />
+
+        <EditText
+            android:id="@+id/etext_surname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="207dp"
+            android:background="@drawable/template_for_tv_in_set_user_name"
+            android:ellipsize="start"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="303dp"
+            android:text="@string/login_for_edit_user"
+            android:textColor="#848484"
+            android:textSize="30dp" />
+
+        <EditText
+            android:id="@+id/etext_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="349dp"
+            android:background="@drawable/template_for_tv_in_set_user_name"
+            android:ellipsize="start"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text=""
+            android:maxLength="20"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
+
+        <LinearLayout
+            android:id="@+id/buttonPasswd"
+            android:layout_width="394dp"
+            android:layout_height="53dp"
+            android:onClick="onClick"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="451dp"
+            android:background="@drawable/template_for_btn_with_passwd"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="start"
+                android:gravity="center"
+                android:paddingLeft="15dp"
+                android:text="@string/password_for_edit_user"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/text_password_for_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="180dp"
+                android:ellipsize="start"
+                android:gravity="center"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/salary_for_edit_user"
+            android:textColor="#848484"
+            android:layout_marginTop="526dp"
+            android:textSize="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+
+            android:layout_marginEnd="78dp"
+            android:layout_marginRight="78dp"/>
+
+        <LinearLayout
+            android:layout_width="350.62dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="568dp"
+            android:background="@drawable/template_for_tv_in_set_user_name"
+            android:id="@+id/listViewWithSalary"
+            android:layout_marginLeft="30dp">
+
+            <EditText
+                android:id="@+id/etext_salary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:maxLength="8"
+                android:text="23,4,432222"
+                android:layout_marginLeft="50dp"
+                android:ellipsize="start"
+                android:inputType="numberDecimal|number"/>
+
+            <TextView
+                android:id="@+id/symbolOfCurrency"
+                android:layout_width="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:singleLine="true"
+                android:text="₸"
+                android:layout_marginLeft="100dp"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/delete_user_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="685dp"
+            android:background="@drawable/template_for_btn_delete"
+            android:text="Удалить аккаунт"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:onClick="onClick"
+            android:textSize="30dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/save_settings"
+            android:onClick="onClick"
+            android:layout_width="294dp"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="810dp"
+            android:textAllCaps="false"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:text="Сохранить"
+            android:background="@drawable/template_for_btn_save_settings" />
+        
+        <ImageButton
+            android:id="@+id/btn_return_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home_fill"
+            android:onClick="onClick"
+            android:layout_marginTop="890dp"
+            android:background="@null"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+</ScrollView>
+
+
+
+
+</RelativeLayout>

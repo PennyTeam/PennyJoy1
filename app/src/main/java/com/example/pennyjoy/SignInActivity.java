@@ -63,40 +63,40 @@ public class  SignInActivity extends AppCompatActivity {
                     @Override
                     //получаем юзера из UserProvider при помощи интерфейса
                     public void OnRetrieved(User user) {
-
+//new
+                        user1.setAccIsActive(user.getAccIsActive());
                         user1.setSalary(user.getSalary());
                         user1.setSurname(user.getSurname());
                         user1.setName(user.getName());
                         user1.setPasswd(user.getPasswd());
                         user1.setLogin(user.getLogin());
                         user1.setKey(user.getKey());
-
                         if(!passWd.equals( user1.getPasswd()) && user1.getLogin()==null){
                             Snackbar.make(v, "Логин или пароль не верны", Snackbar.LENGTH_LONG).show();
                         }
-                        else{
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            //здесь сохраняю логин юзера
-                            saveLogin(user1);
+                        else {
+                            if (!user1.getAccIsActive()) {
+                                Snackbar.make(v, "Аккаунт был удален!", Snackbar.LENGTH_LONG).show();
+                            } else {
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                //здесь сохраняю логин юзера
+                                saveLogin(user1);
 
-                            Auth auth=new Auth();
-                            auth.setCurrentUser(user1);
+                                Auth auth = new Auth();
+                                auth.setCurrentUser(user1);
 
-                            Currency currency=new Currency();
+                                Currency currency = new Currency();
 
-                            CurrenciesList currenciesList=new CurrenciesList();
-                            currenciesList.init();
+                                CurrenciesList currenciesList = new CurrenciesList();
+                                currenciesList.init();
 
-                            auth.setCurrentCurrency(currenciesList.getCurrencies().get(0));
-
-
+                                auth.setCurrentCurrency(currenciesList.getCurrencies().get(0));
 
 
-
-
-                            //pr bar
-                            startActivityForResult(intent, MAIN_REQUEST_CODE);
+                                //pr bar
+                                startActivityForResult(intent, MAIN_REQUEST_CODE);
+                            }
                         }
                     }
                 };

@@ -80,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
     //метод для настроек юзера
     public void settingsOfUserClicked(View v){
-
+        Intent intent = new Intent(this, SetUserActivity.class);
+        startActivityForResult(intent,12099);
     }
     //метод для настроек категорий
     public void settingsOfCategoryClicked(View v){

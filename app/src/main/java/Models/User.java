@@ -1,12 +1,14 @@
 package Models;
 
 public class User {
+
     private String name;
     private String surname;
     private String login;
     private String passwd;
     private double salary;
     private String key;
+    private static boolean accIsActive = true;
 
 
 
@@ -18,6 +20,7 @@ public class User {
         this.passwd = passwd;
         this.salary = salary;
         this.key = key;
+        this.accIsActive = true;
     }
 
     public User(){};
@@ -69,6 +72,13 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setAccIsActive(boolean isExist){
+        this.accIsActive = isExist;
+    }
+    public boolean getAccIsActive(){
+        return accIsActive;
     }
 
     //конец геттеров и сеттеров

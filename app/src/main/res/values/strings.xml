@@ -23,6 +23,14 @@
     <string name="costAddGood">Стоимость</string>
     <string name="purchaseOfPurpose">Цель покупки...</string>
     <string name="good_int_for_tag">2201</string>
+    <string name="name_for_edit_user">Имя</string>
+    <string name="surname_of_user">Фамилия</string>
+    <string name="login_for_edit_user">Логин</string>
+    <string name="password_for_edit_user">Пароль</string>
+    <string name="salary_for_edit_user">Заработная плата</string>
+    <string name="currency">Валюта</string>
+    <string name="delete_account">Удалить аккаунт</string>
+    <string name="enter_old_passwd">Введите старый пароль</string>
 
     <string name="APP_PREFERENCES">MySP</string>
 

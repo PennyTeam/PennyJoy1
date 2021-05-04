@@ -2,7 +2,8 @@ package Models;
 
 
 
-public class Good {
+public class
+Good {
     private int category;
     private String name;
     private double cost;
