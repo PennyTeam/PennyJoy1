@@ -59,7 +59,7 @@ public class SetPasswdActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Операция отменена", Toast.LENGTH_SHORT).show();
                         }
                     });
-                    ad.setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                    /*ad.setPositiveButton("Да", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             User user = auth.getCurrentUser();
@@ -73,8 +73,7 @@ public class SetPasswdActivity extends AppCompatActivity {
                             newPasswd1.getText().clear();
                             newPasswd2.getText().clear();
                         }
-                    });
-
+                    });*/
                     ad.show();
                 }
             }
