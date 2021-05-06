@@ -69,7 +69,7 @@ public class SplashActivity extends AppCompatActivity {
             OnUserRetrievedListener listener = new OnUserRetrievedListener() {
                 @Override
                 public void OnRetrieved(User user) {
-                    if(login.equals(user.getLogin())){
+                    if(login.equals(user.getLogin())&& user.getAccIsActive()==true){
 
                         //здесь вызываю маин при совпадении логина в сп с логином из бд
                         //и настраиваю флаги

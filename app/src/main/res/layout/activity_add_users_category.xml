@@ -5,23 +5,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddUsersCategoryActivity">
+    tools:context=".AddUsersCategoryActivity"
+    android:background="@color/black">
 
-    <EditText
-        android:id="@+id/txtCategoryName"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Название категории"
+        android:textSize="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="240dp"
+        android:textColor="@color/white"/>
+    <EditText
+        android:id="@+id/txtCategoryName"
+        android:layout_width="245dp"
+        android:layout_height="40dp"
         android:layout_centerInParent="true"
-        android:hint="название категории"
-        android:ems="10"/>
-    <Button
+
+        android:textSize="20dp"
+        android:background="@drawable/body_for_edit_text"
+        android:gravity="center"/>
+
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="+"
-        android:textSize="40dp"
-        android:onClick="addNewCategoryClicked"/>
-
+        android:onClick="addNewCategoryClicked"
+        android:background="@drawable/addgoodbtn"
+        android:layout_marginBottom="30dp"/>
 
 </RelativeLayout>

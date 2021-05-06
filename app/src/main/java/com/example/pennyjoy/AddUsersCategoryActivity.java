@@ -26,16 +26,20 @@ public class AddUsersCategoryActivity extends AppCompatActivity {
             CategoryList categoryList= CategoryList.getInstance();
             CategoryProvider categoryProvider=new CategoryProvider();
             Auth auth=Auth.getInstance();
-            String categoryName=txtCategoryName.getText().toString();
-            Category category=new Category(categoryList.getCategories().size(),categoryName);
-            category.setUserKey(auth.getCurrentUser().getKey());
+            if(categoryList.getCategories().size()<=15) {
+                String categoryName = txtCategoryName.getText().toString();
+                Category category = new Category(categoryList.getCategories().size(), categoryName);
+                category.setUserKey(auth.getCurrentUser().getKey());
 
 
-            //добавление категории
-            categoryList.getCategories().add(category);
-            categoryProvider.addCategory(category);
-            Toast.makeText(getApplicationContext(),"Категория добавлена!",Toast.LENGTH_SHORT);
-            finish();
+                //добавление категории
+                categoryList.getCategories().add(category);
+                categoryProvider.addCategory(category);
+                Toast.makeText(getApplicationContext(), "Категория добавлена!", Toast.LENGTH_SHORT);
+                finish();
+            }else{
+                Toast.makeText(getApplicationContext(),"Количество категорий слишком большое",Toast.LENGTH_LONG);
+            }
 
         }else{
             Toast.makeText(getApplicationContext(),"Заполните поле!",Toast.LENGTH_LONG);

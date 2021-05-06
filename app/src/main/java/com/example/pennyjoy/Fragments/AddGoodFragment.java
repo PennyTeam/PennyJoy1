@@ -97,7 +97,6 @@ public class AddGoodFragment extends Fragment {
             public void onClick(View v) {
                 if(!txtNameOfGood.getText().toString().isEmpty() && !txtCost.getText().toString().isEmpty()
                 && !txtPurchaseOfPurpose.getText().toString().isEmpty()
-                && !dropDownCategory.getSelectedItem().toString().equals("Не выбрано")
                 && Double.parseDouble(txtCost.getText().toString())>0
                 && counterOfSymbols >= 90){
                     //получая текущего юзера и устанавливаю кей
