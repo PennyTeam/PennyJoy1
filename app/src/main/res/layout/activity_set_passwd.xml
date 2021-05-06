@@ -102,6 +102,7 @@
         android:textSize="23dp"
         android:text="Сохранить"
         android:textColor="@color/black"
+        android:foreground="?android:attr/selectableItemBackground"
         android:background="@drawable/body_for_btn_radius_13_dp_sign_in" />
 
     <ImageButton
@@ -110,5 +111,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:src="@drawable/long_left"
+        android:foreground="?android:attr/selectableItemBackground"
         android:background="@null"/>
 </RelativeLayout>

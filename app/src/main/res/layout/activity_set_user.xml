@@ -212,6 +212,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:onClick="onClick"
+            android:foreground="?android:attr/selectableItemBackground"
             android:textSize="30dp" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -226,6 +227,7 @@
             android:textSize="30dp"
             android:textColor="@color/black"
             android:text="Сохранить"
+            android:foreground="?android:attr/selectableItemBackground"
             android:background="@drawable/template_for_btn_save_settings" />
 
         <ImageButton
@@ -236,6 +238,7 @@
             android:onClick="onClick"
             android:layout_marginTop="890dp"
             android:background="@null"
+            android:foreground="?android:attr/selectableItemBackground"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 </ScrollView>

@@ -6,142 +6,182 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/black">
-    <TextView
-        android:id="@+id/lblCategoryFrag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/CategoryAddGood"
-        android:textColor="@color/white"
-        android:layout_centerHorizontal="true"
-        android:textSize="30dp"
-        android:layout_marginTop="15dp"
-        />
 
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:orientation="vertical">
+
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="5dp">
+   <TextView
+       android:id="@+id/lblCategoryFrag"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/CategoryAddGood"
+       android:textColor="@color/white"
+       android:layout_centerHorizontal="true"
+       android:textSize="30dp"
+       />
    <Spinner
        android:id="@+id/categoryDropDown"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_centerHorizontal="true"
        android:background="@drawable/bodyforcategoryspinner"
-       android:layout_marginTop="62dp"
+       android:layout_marginTop="50dp"
        />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="72dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="50dp"
-        android:src="@drawable/selectorforspinner"/>
-    <TextView
-        android:id="@+id/lblNameFrag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nameAddGood"
-        android:textColor="@color/white"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="115dp"
-        android:textSize="30dp"
-        />
+   <ImageView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_centerHorizontal="true"
+       android:layout_alignParentRight="true"
+       android:layout_marginRight="50dp"
+       android:src="@drawable/selectorforspinner"
+       android:layout_marginTop="60dp"/>
+  </RelativeLayout>
 
-    <EditText
-        android:id="@+id/txtNameOfGood"
-        android:layout_width="323dp"
-        android:layout_height="37dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="175dp"
-        android:paddingLeft="20dp"
-        android:background="@drawable/body_for_edit_text"/>
-
-    <TextView
-        android:id="@+id/lblCostOfgood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/costAddGood"
-        android:textColor="@color/white"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="228dp"
-        android:textSize="30dp"
-        />
-    <!-- в макс длине не уверен- -->
-
-    <EditText
-        android:id="@+id/txtCostOfGood"
-        android:layout_width="323dp"
-        android:layout_height="37dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="288dp"
-        android:inputType="numberDecimal"
-        android:paddingLeft="20dp"
-        android:maxLength="12"
-        android:background="@drawable/body_for_edit_text"/>
-    <TextView
-        android:id="@+id/currencyOfCostInAddGood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentRight="true"
-
-        android:textColor="@color/black"
-        android:textSize="29dp"
-        android:layout_marginTop="288dp"
-        android:layout_marginRight="70dp"/>
-
-
-    <EditText
-        android:hint="@string/purchaseOfPurpose"
-        android:id="@+id/txtPurchaseOfPurpose"
-        android:layout_width="310dp"
-        android:layout_height="130dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="top"
-        android:paddingTop="10dp"
-        android:paddingLeft="10dp"
-        android:maxLength="120"
-        android:layout_marginTop="380dp"
-        android:background="@drawable/body_for_edit_text"/>
-
-    <TextView
-        android:id="@+id/counterOfTextInputAddGood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentRight="true"
-        android:text="0/120"
-        android:textSize="17dp"
-        android:layout_marginTop="477dp"
-        android:layout_marginRight="70dp"/>
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="5dp">
+   <TextView
+       android:id="@+id/lblNameFrag"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/nameAddGood"
+       android:textColor="@color/white"
+       android:layout_centerHorizontal="true"
+       android:textSize="30dp"
+       />
+   <EditText
+       android:id="@+id/txtNameOfGood"
+       android:layout_width="323dp"
+       android:layout_height="37dp"
+       android:layout_centerHorizontal="true"
+       android:paddingLeft="20dp"
+       android:background="@drawable/body_for_edit_text"
+       android:layout_marginTop="50dp"/>
+  </RelativeLayout>
 
 
 
-    <ImageButton
-        android:id="@+id/btnAddGoodInFrag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:layout_centerHorizontal="true"
-        android:foreground="?android:attr/selectableItemBackground"
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="5dp">
+   <TextView
+       android:id="@+id/lblCostOfgood"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/costAddGood"
+       android:textColor="@color/white"
+       android:layout_centerHorizontal="true"
+       android:textSize="30dp"
+       />
+   <!-- в макс длине не уверен- -->
 
-        app:srcCompat="@drawable/addgoodbtn"
+   <EditText
+       android:id="@+id/txtCostOfGood"
+       android:layout_width="323dp"
+       android:layout_height="37dp"
+       android:layout_centerHorizontal="true"
+       android:layout_marginTop="50dp"
+       android:inputType="numberDecimal"
+       android:paddingLeft="20dp"
+       android:maxLength="12"
+       android:background="@drawable/body_for_edit_text" />
 
-        tools:ignore="VectorDrawableCompat"
-        android:layout_marginTop="560dp"
-        />
+   <TextView
+       android:id="@+id/currencyOfCostInAddGood"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_centerHorizontal="true"
+       android:layout_alignParentRight="true"
+       android:layout_marginTop="50dp"
+       android:textColor="@color/black"
+       android:textSize="29dp"
+       android:layout_marginRight="70dp"/>
 
- <com.google.android.material.floatingactionbutton.FloatingActionButton
-     android:id="@+id/historyBtn"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_alignParentRight="true"
-     android:layout_centerHorizontal="true"
-     android:layout_marginTop="555dp"
-     android:layout_marginRight="16dp"
-     android:backgroundTint="@color/white"
-     android:src="@drawable/clock"
-     app:maxImageSize="50dp"
 
-     />
+  </RelativeLayout>
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="5dp">
+
+
+   <EditText
+       android:hint="@string/purchaseOfPurpose"
+       android:id="@+id/txtPurchaseOfPurpose"
+       android:layout_width="310dp"
+       android:layout_height="130dp"
+       android:layout_centerHorizontal="true"
+       android:gravity="top"
+       android:paddingTop="10dp"
+       android:paddingLeft="10dp"
+       android:maxLength="120"
+       android:layout_marginTop="40dp"
+       android:background="@drawable/body_for_edit_text"/>
+   <TextView
+       android:id="@+id/counterOfTextInputAddGood"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_centerHorizontal="true"
+       android:layout_alignParentRight="true"
+       android:text="0/120"
+       android:textSize="17dp"
+       android:layout_marginTop="135dp"
+       android:layout_marginRight="70dp"/>
+  </RelativeLayout>
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="5dp">
+   <ImageButton
+       android:id="@+id/btnAddGoodInFrag"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:background="@color/black"
+       android:layout_centerHorizontal="true"
+       android:foreground="?android:attr/selectableItemBackground"
+       android:layout_marginTop="20dp"
+       app:srcCompat="@drawable/addgoodbtn"
+
+       tools:ignore="VectorDrawableCompat"
+
+       />
+  </RelativeLayout>
+
+
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="5dp">
+   <com.google.android.material.floatingactionbutton.FloatingActionButton
+       android:id="@+id/historyBtn"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentRight="true"
+       android:layout_centerHorizontal="true"
+
+       android:layout_marginRight="16dp"
+       android:backgroundTint="@color/white"
+       android:src="@drawable/clock"
+       app:maxImageSize="50dp"
+       />
+  </RelativeLayout>
+
+
+ </LinearLayout>
+
 
 
 </RelativeLayout>

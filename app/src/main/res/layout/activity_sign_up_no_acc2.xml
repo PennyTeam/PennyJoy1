@@ -17,6 +17,7 @@
         android:onClick="nextLog2"
         android:text="@string/string_next_for_btn"
         android:textAllCaps="false"
+        android:foreground="?android:attr/selectableItemBackground"
         android:textSize="20dp" />
 
     <EditText

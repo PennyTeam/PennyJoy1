@@ -8,31 +8,63 @@
     tools:context=".AddUsersCategoryActivity"
     android:background="@color/black">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Название категории"
-        android:textSize="30dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="240dp"
-        android:textColor="@color/white"/>
-    <EditText
-        android:id="@+id/txtCategoryName"
-        android:layout_width="245dp"
-        android:layout_height="40dp"
-        android:layout_centerInParent="true"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:layout_marginTop="200dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Название категории"
+                android:textSize="30dp"
+                android:layout_centerInParent="true"
 
-        android:textSize="20dp"
-        android:background="@drawable/body_for_edit_text"
-        android:gravity="center"/>
+                android:textColor="@color/white"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="addNewCategoryClicked"
-        android:background="@drawable/addgoodbtn"
-        android:layout_marginBottom="30dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="30dp">
+
+            <EditText
+                android:id="@+id/txtCategoryName"
+                android:layout_width="245dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+
+                android:textSize="20dp"
+                android:background="@drawable/body_for_edit_text"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            >
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:onClick="addNewCategoryClicked"
+                android:background="@drawable/addgoodbtn"
+                android:layout_alignParentBottom="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
 
 </RelativeLayout>

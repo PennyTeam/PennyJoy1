@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import Interfaces.OnCurrencyConvertRetrievedListener;
 import Interfaces.OnGoodsRetrievedListener;
 import Models.Auth;
+import Models.CategoryList;
 import Models.CurrenciesList;
 import Models.Currency;
 import Models.Good;
@@ -244,6 +245,8 @@ public class SetUserActivity extends AppCompatActivity {
                     user.setAccIsActive(false);
                     UserProvider up = new UserProvider();
                     up.updateUser(user);
+                    CategoryList categoryList=CategoryList.getInstance();
+                    categoryList.getCategories().clear();
                     Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
