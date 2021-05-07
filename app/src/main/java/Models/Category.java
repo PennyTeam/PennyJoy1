@@ -8,10 +8,10 @@ Category {
     private String key;
     private static boolean isActive = true;
 
-    public Category(int id, String name) {
+    public Category(int id, String name,boolean isActive) {
         this.id = id;
         this.name = name;
-        isActive = true;
+        this.isActive = isActive;
     }
 
     public Category() {

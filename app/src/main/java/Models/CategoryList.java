@@ -19,11 +19,11 @@ public class CategoryList {
     }
     public void init(){
         if(categoryList.isEmpty()) {
-            categoryList.add(new Category(1, "Продукты"));
-            categoryList.add(new Category(2, "Путешествия"));
-            categoryList.add(new Category(3, "Одежда"));
-            categoryList.add(new Category(4, "Долги"));
-            categoryList.add(new Category(5, "Цели"));
+            categoryList.add(new Category(1, "Продукты",true));
+            categoryList.add(new Category(2, "Путешествия",true));
+            categoryList.add(new Category(3, "Одежда",true));
+            categoryList.add(new Category(4, "Долги",true));
+            categoryList.add(new Category(5, "Цели",true));
         }
     }
 
@@ -31,24 +31,28 @@ public class CategoryList {
 
 
 
-    public ArrayList<Category> getCategories(){
-ArrayList<Category> categoryArrayList = new ArrayList<>();
-for(Category c : categoryList){
-    if(c.getIsActive() == true){
-        categoryArrayList.add(c);
-    }
-}
+    public ArrayList<Category> getCategoriesWichExist(){
+        ArrayList<Category> categoryArrayList = new ArrayList<>();
+        for(Category c : categoryList){
+            if(c.getIsActive() == true){
+                categoryArrayList.add(c);
+            }
+        }
         return categoryArrayList;
     }
 
     public ArrayList<Category> getUsersCategories(){
         ArrayList<Category> categoryArrayList = new ArrayList<>();
         for(int i = 5; ;i++){
-            if(i== categoryList.size()){
-                break;}
-            categoryArrayList.add(categoryList.get(i));
-
+            if(i == categoryList.size()){
+                break;
+            }
+            categoryArrayList.add(getCategoriesWichExist().get(i));
         }
         return categoryArrayList;
+    }
+
+    public ArrayList<Category> getCategoryList(){
+        return categoryList;
     }
 }

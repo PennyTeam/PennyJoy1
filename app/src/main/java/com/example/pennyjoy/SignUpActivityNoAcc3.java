@@ -2,7 +2,9 @@ package com.example.pennyjoy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -65,6 +67,8 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
             Currency currency=(Currency) dropDownCurrency.getSelectedItem();
             Auth auth=Auth.getInstance();
             auth.setCurrentCurrency(currency);
+            SharedPreferences mySharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
+            mySharedPreferences.edit().putInt("idOfCurrency",currency.getId()).commit();
 
 
             User user=new User(name,surname,login,passwd,salary, null);

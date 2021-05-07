@@ -1,10 +1,8 @@
 package com.example.pennyjoy;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,15 +18,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 import Adapters.CategoryAdapter;
-import Interfaces.OnCategoriesRetrievedListener;
 import Models.Auth;
 import Models.Category;
 import Models.CategoryList;
-import Models.Currency;
-import Models.User;
 import Providers.CategoryProvider;
-import Providers.CurrencyProvider;
-import Providers.UserProvider;
 
 public class CategoriesActivity extends AppCompatActivity {
 private FloatingActionButton btn_addCategory;
@@ -76,7 +69,8 @@ private CategoryList categoryList;
                     public void onClick(DialogInterface dialog, int which) {
                         category.setIsActive(false);
                         categoryProvider.updateCategoriesWithNewCategory(category);
-                        categoryList.getCategories().set(category.getId(), category);
+                        //categoryList.getCategoriesWichExist().set(category.getId(), category);
+                        categoryList.getCategoryList().get(category.getId()).setIsActive(false);
                         categoryAdapter.notifyDataSetChanged();
                     }
                 });

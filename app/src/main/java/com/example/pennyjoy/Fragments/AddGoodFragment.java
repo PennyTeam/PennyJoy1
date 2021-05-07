@@ -73,7 +73,7 @@ public class AddGoodFragment extends Fragment {
 
         //делаю адаптер для вложенного списка
         ArrayAdapter<Category> categoryAdapter=new ArrayAdapter<Category>(view.getContext(),
-                android.R.layout.simple_spinner_item,categoryList.getCategories());
+                android.R.layout.simple_spinner_item,categoryList.getCategoriesWichExist());
 
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 

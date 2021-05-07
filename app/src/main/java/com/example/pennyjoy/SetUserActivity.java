@@ -246,7 +246,7 @@ public class SetUserActivity extends AppCompatActivity {
                     UserProvider up = new UserProvider();
                     up.updateUser(user);
                     CategoryList categoryList=CategoryList.getInstance();
-                    categoryList.getCategories().clear();
+                    categoryList.getCategoriesWichExist().clear();
                     Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);

@@ -27,17 +27,16 @@ AddUsersCategoryActivity extends AppCompatActivity {
             CategoryList categoryList= CategoryList.getInstance();
             CategoryProvider categoryProvider=new CategoryProvider();
             Auth auth=Auth.getInstance();
-            if(categoryList.getCategories().size()<=15) {
+            if(categoryList.getCategoriesWichExist().size()<=15) {
                 String categoryName = txtCategoryName.getText().toString();
-                Category category = new Category(categoryList.getCategories().size(), categoryName);
+                Category category = new Category(categoryList.getCategoriesWichExist().size(), categoryName,true);
                 category.setUserKey(auth.getCurrentUser().getKey());
 
 
                 //добавление категории
-                categoryList.getCategories().add(category);
+                categoryList.getCategoryList().add(category);
                 categoryProvider.addCategory(category);
                 Toast.makeText(getApplicationContext(), "Категория добавлена!", Toast.LENGTH_SHORT);
-                finish();
             }else{
                 Toast.makeText(getApplicationContext(),"Количество категорий слишком большое",Toast.LENGTH_LONG);
             }

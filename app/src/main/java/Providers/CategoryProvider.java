@@ -31,7 +31,7 @@ public class CategoryProvider {
         Query query = categories.orderByChild("userKey").equalTo(keyOfUser);
         //__________________________________________________
         //**************************************************
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot single : snapshot.getChildren()){
