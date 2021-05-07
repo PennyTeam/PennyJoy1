@@ -2,11 +2,14 @@ package com.example.pennyjoy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -23,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton settings;
     private FloatingActionButton settingsOfUser;
-    private FloatingActionButton settingsOfCurrencies;
+    private FloatingActionButton fabLogOut;
 
 
 
@@ -35,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         settings=findViewById(R.id.fabSettings);
         settingsOfUser=findViewById(R.id.fabSettingsOfUser);
-        settingsOfCurrencies=findViewById(R.id.fabSettingsOfCurrency);
+        fabLogOut=findViewById(R.id.fabLogOut);
 
 
         open_anim= AnimationUtils.loadAnimation(this,R.anim.open_anim_for_fab1);
@@ -83,8 +86,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     //метод для настроек валют
-    public void settingsOfCurrenciesClicked(View v){
+    public void LogOutBtnClicked(View v){
 
+        Intent intent = new Intent(this, SignInActivity.class);
+        SharedPreferences sharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
+        sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        startActivity(intent);
+        Toast.makeText(this, "Вы вышли", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -93,10 +103,10 @@ public class MainActivity extends AppCompatActivity {
     public void setVisibility(boolean clicked){
         if(clicked==false){
             settingsOfUser.setVisibility(View.VISIBLE);
-            settingsOfCurrencies.setVisibility(View.VISIBLE);
+            fabLogOut.setVisibility(View.VISIBLE);
         }else{
             settingsOfUser.setVisibility(View.INVISIBLE);
-            settingsOfCurrencies.setVisibility(View.INVISIBLE);
+            fabLogOut.setVisibility(View.INVISIBLE);
         }
 
     }
@@ -104,11 +114,11 @@ public class MainActivity extends AppCompatActivity {
     public void setAnimation(boolean clicked){
         if(clicked==false){
             settingsOfUser.startAnimation(from_bottom_anim);
-            settingsOfCurrencies.startAnimation(from_bottom_anim);
+            fabLogOut.startAnimation(from_bottom_anim);
             settings.startAnimation(open_anim);
         }else{
             settingsOfUser.startAnimation(to_bottom_anim);
-            settingsOfCurrencies.startAnimation(to_bottom_anim);
+            fabLogOut.startAnimation(to_bottom_anim);
             settings.startAnimation(close_anim);
         }
 
@@ -117,11 +127,11 @@ public class MainActivity extends AppCompatActivity {
     public void setClickable(boolean clicked){
         if(clicked==false){
             settingsOfUser.setClickable(true);
-            settingsOfCurrencies.setClickable(true);
+            fabLogOut.setClickable(true);
 
         }else{
             settingsOfUser.setClickable(false);
-            settingsOfCurrencies.setClickable(false);
+            fabLogOut.setClickable(false);
         }
     }
 
