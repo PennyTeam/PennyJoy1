@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton settings;
     private FloatingActionButton settingsOfUser;
-    private FloatingActionButton settingsOfCategory;
     private FloatingActionButton settingsOfCurrencies;
 
 
@@ -36,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         settings=findViewById(R.id.fabSettings);
         settingsOfUser=findViewById(R.id.fabSettingsOfUser);
-        settingsOfCategory=findViewById(R.id.fabSettingsOfCategory);
         settingsOfCurrencies=findViewById(R.id.fabSettingsOfCurrency);
 
 
@@ -95,11 +93,9 @@ public class MainActivity extends AppCompatActivity {
     public void setVisibility(boolean clicked){
         if(clicked==false){
             settingsOfUser.setVisibility(View.VISIBLE);
-            settingsOfCategory.setVisibility(View.VISIBLE);
             settingsOfCurrencies.setVisibility(View.VISIBLE);
         }else{
             settingsOfUser.setVisibility(View.INVISIBLE);
-            settingsOfCategory.setVisibility(View.INVISIBLE);
             settingsOfCurrencies.setVisibility(View.INVISIBLE);
         }
 
@@ -108,12 +104,10 @@ public class MainActivity extends AppCompatActivity {
     public void setAnimation(boolean clicked){
         if(clicked==false){
             settingsOfUser.startAnimation(from_bottom_anim);
-            settingsOfCategory.startAnimation(from_bottom_anim);
             settingsOfCurrencies.startAnimation(from_bottom_anim);
             settings.startAnimation(open_anim);
         }else{
             settingsOfUser.startAnimation(to_bottom_anim);
-            settingsOfCategory.startAnimation(to_bottom_anim);
             settingsOfCurrencies.startAnimation(to_bottom_anim);
             settings.startAnimation(close_anim);
         }
@@ -123,12 +117,10 @@ public class MainActivity extends AppCompatActivity {
     public void setClickable(boolean clicked){
         if(clicked==false){
             settingsOfUser.setClickable(true);
-            settingsOfCategory.setClickable(true);
             settingsOfCurrencies.setClickable(true);
 
         }else{
             settingsOfUser.setClickable(false);
-            settingsOfCategory.setClickable(false);
             settingsOfCurrencies.setClickable(false);
         }
     }
