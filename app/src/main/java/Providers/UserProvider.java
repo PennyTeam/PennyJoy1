@@ -43,7 +43,7 @@ public class UserProvider {
     public void getUserFromFirebaseByLogin(String login, OnUserRetrievedListener listener){
         User user = new User();
         Query query = users.orderByChild("login").equalTo(login);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot single : snapshot.getChildren()){

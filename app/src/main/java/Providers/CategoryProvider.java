@@ -36,7 +36,9 @@ public class CategoryProvider {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot single : snapshot.getChildren()){
                     Category category = (Category) single.getValue(Category.class);
-                    categoryList.add(category);
+                    if(category.getIsActive()) {
+                        categoryList.add(category);
+                    }
                 }
                 listener.OnCategoriesRetrieved(categoryList);
                 categoryList.clear();
@@ -58,7 +60,7 @@ public class CategoryProvider {
 
     //надо это юзать вместо обычного адд в маине, в той недо-кнопке
     public void updateCategoriesWithNewCategory(Category category){
-        //categories.child("Categories").setValue(categoryList);
+        categories.child(category.getKey()).setValue(category);
 
     }
 }

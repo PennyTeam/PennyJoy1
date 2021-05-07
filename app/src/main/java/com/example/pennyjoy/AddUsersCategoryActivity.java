@@ -12,7 +12,8 @@ import Models.Category;
 import Models.CategoryList;
 import Providers.CategoryProvider;
 
-public class AddUsersCategoryActivity extends AppCompatActivity {
+public class
+AddUsersCategoryActivity extends AppCompatActivity {
     EditText txtCategoryName;
 
     @Override

@@ -5,14 +5,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CategoriesActivity">
-    <Button
+    android:orientation="vertical"
+    android:id="@+id/relative_from_categories"
+    tools:context=".CategoriesActivity"
+    android:background="@color/black">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_add_category"
+        android:layout_width="65dp"
+        android:layout_height="156dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|right"
+        android:layout_marginEnd="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="36dp"
+        android:onClick="goToAddCategoryClicked"
+        android:src="@drawable/btn_add_good_image"
+         />
+
+    <TextView
+        android:textColor="#848484"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:id="@+id/tv_your_categories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="+"
-        android:textSize="40dp"
-        android:onClick="goToAddCategoryClicked"/>
+        android:text="Ваши категории"
+        android:textSize="40dp" />
+
+    <ListView
+        android:id="@+id/lv_categories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_your_categories"
+        android:layout_marginTop="5dp" />
+
 
 </RelativeLayout>

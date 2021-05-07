@@ -33,5 +33,6 @@
     <string name="enter_old_passwd">Введите старый пароль</string>
 
     <string name="APP_PREFERENCES">MySP</string>
+    <string name="id_for_categoty_adapter">122324525</string>
 
 </resources>

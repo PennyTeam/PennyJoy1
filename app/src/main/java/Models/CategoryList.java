@@ -32,6 +32,23 @@ public class CategoryList {
 
 
     public ArrayList<Category> getCategories(){
-        return categoryList;
+ArrayList<Category> categoryArrayList = new ArrayList<>();
+for(Category c : categoryList){
+    if(c.getIsActive() == true){
+        categoryArrayList.add(c);
+    }
+}
+        return categoryArrayList;
+    }
+
+    public ArrayList<Category> getUsersCategories(){
+        ArrayList<Category> categoryArrayList = new ArrayList<>();
+        for(int i = 5; ;i++){
+            if(i== categoryList.size()){
+                break;}
+            categoryArrayList.add(categoryList.get(i));
+
+        }
+        return categoryArrayList;
     }
 }

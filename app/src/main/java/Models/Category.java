@@ -6,10 +6,12 @@ Category {
     private String name;
     private String userKey;
     private String key;
+    private static boolean isActive = true;
 
     public Category(int id, String name) {
         this.id = id;
         this.name = name;
+        isActive = true;
     }
 
     public Category() {
@@ -50,5 +52,12 @@ Category {
     @Override
     public String toString() {
         return getName();
+    }
+
+    public boolean getIsActive(){
+        return isActive;
+    }
+    public void setIsActive(boolean newIsActive){
+        isActive = newIsActive;
     }
 }

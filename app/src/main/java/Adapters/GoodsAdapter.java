@@ -45,8 +45,6 @@ private int resource;
         Auth auth=Auth.getInstance();
         currencyOfCostInHistoryOfGood.setText(auth.getCurrentCurrency().getLabel());
 
-        //перевел double to BigDecimal, чтобы число отображалось корректно (у даблов не хватает на многие прайсы)
-
         priceInNumbers.setText(good.getCost()+ "");
         anEssay.setText(good.getPurchaseOfPurpose());
         v.setTag(good.getUserKey());
