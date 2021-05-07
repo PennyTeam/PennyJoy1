@@ -39,28 +39,13 @@
         android:focusable="true"
         android:clickable="true"
         app:fabSize="normal"
-        android:visibility="invisible"
+
+        android:visibility="visible"
+
         android:onClick="settingsOfUserClicked"
         app:maxImageSize="40dp"
         />
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabSettingsOfCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="450dp"
-        android:layout_marginRight="18dp"
-        android:src="@drawable/category_image"
-        android:backgroundTint="@color/white"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:focusable="true"
-        android:clickable="true"
-        app:fabSize="normal"
-        android:visibility="invisible"
-        android:onClick="settingsOfCategoryClicked"
-        app:maxImageSize="40dp"
-        />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabSettingsOfCurrency"
@@ -76,7 +61,9 @@
         android:focusable="true"
         android:clickable="true"
         app:fabSize="normal"
-        android:visibility="invisible"
+
+        android:visibility="visible"
+
         app:maxImageSize="40dp"
         android:onClick="settingsOfCurrenciesClicked"
         />
