@@ -7,16 +7,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import java.util.ArrayList;
-
-import Interfaces.OnCategoriesRetrievedListener;
 import Interfaces.OnUserRetrievedListener;
 import Models.Auth;
-import Models.Category;
 import Models.CategoryList;
 import Models.CurrenciesList;
 import Models.User;
-import Providers.CategoryProvider;
 import Providers.UserProvider;
 
 public class SplashActivity extends AppCompatActivity {
@@ -34,27 +29,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
 
-    OnCategoriesRetrievedListener categoriesRetrievedListener=new OnCategoriesRetrievedListener() {
-        @Override
-        public void OnCategoriesRetrieved(ArrayList<Category> categoryList) {
-            //CategoryProvider categoryProvider=new CategoryProvider();
-            CategoryList categories= CategoryList.getInstance();
-            if(categoryList.size() != 0){
-                for (Category category: categoryList){
-                    categories.getCategoryList().add(category);
-                }
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-            }else{
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-            }
 
-
-        }
-    };
 
     //функция для проверки наличия юзера
     public void isUserExist(){
@@ -89,8 +64,6 @@ public class SplashActivity extends AppCompatActivity {
 
                         CategoryList categoryList=CategoryList.getInstance();
                         categoryList.init();
-                        CategoryProvider categoryProvider=new CategoryProvider();
-                        categoryProvider.getCategoriesFromFirebase(auth.getCurrentUser().getKey(),categoriesRetrievedListener);
 
 
 

@@ -21,7 +21,6 @@ import Adapters.CategoryAdapter;
 import Models.Auth;
 import Models.Category;
 import Models.CategoryList;
-import Providers.CategoryProvider;
 
 public class CategoriesActivity extends AppCompatActivity {
 private FloatingActionButton btn_addCategory;
