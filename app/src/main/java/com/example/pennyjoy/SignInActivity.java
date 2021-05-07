@@ -12,17 +12,12 @@ import android.widget.EditText;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
-
-import Interfaces.OnCategoriesRetrievedListener;
 import Interfaces.OnUserRetrievedListener;
 import Models.Auth;
-import Models.Category;
 import Models.CategoryList;
 import Models.CurrenciesList;
 import Models.Currency;
 import Models.User;
-import Providers.CategoryProvider;
 import Providers.UserProvider;
 
 public class  SignInActivity extends AppCompatActivity {
@@ -54,27 +49,6 @@ public class  SignInActivity extends AppCompatActivity {
 
 
     }
-    OnCategoriesRetrievedListener categoriesRetrievedListener=new OnCategoriesRetrievedListener() {
-        @Override
-        public void OnCategoriesRetrieved(ArrayList<Category> categoryList) {
-
-            CategoryList categories= CategoryList.getInstance();
-            if(categoryList.size() != 0){
-                for (Category category: categoryList){
-                    categories.getCategoryList().add(category);
-                }
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-            }else{
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-            }
-
-
-        }
-    };
 
     public void onClick(View v){
 
@@ -111,8 +85,6 @@ public class  SignInActivity extends AppCompatActivity {
                                 //работа с категориями
                                 CategoryList categoryList=CategoryList.getInstance();
                                 categoryList.init();
-                                CategoryProvider categoryProvider=new CategoryProvider();
-                                categoryProvider.getCategoriesFromFirebase(auth.getCurrentUser().getKey(),categoriesRetrievedListener);
 
                                 //работа с категориями
                                 //здесь сохраняю логин юзера

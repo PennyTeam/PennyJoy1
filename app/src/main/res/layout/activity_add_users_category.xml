@@ -56,12 +56,13 @@
             >
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAddCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:onClick="addNewCategoryClicked"
                 android:background="@drawable/addgoodbtn"
                 android:layout_alignParentBottom="true"
+                android:onClick="onClickForTry"
                 android:foreground="?android:attr/selectableItemBackground"
                 />
 

@@ -3,18 +3,12 @@ package com.example.pennyjoy;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import Models.Auth;
-import Models.Category;
-import Models.CategoryList;
-import Providers.CategoryProvider;
 
 public class MainActivity extends AppCompatActivity {
     private int mainRequest=1;
