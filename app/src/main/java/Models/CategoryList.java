@@ -24,6 +24,7 @@ public class CategoryList {
             categoryList.add(new Category(3, "Одежда"));
             categoryList.add(new Category(4, "Долги"));
             categoryList.add(new Category(5, "Цели"));
+            categoryList.add(new Category(6, "Прочее"));
         }
     }
 

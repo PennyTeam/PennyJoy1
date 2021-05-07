@@ -82,20 +82,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SetUserActivity.class);
         startActivityForResult(intent,12099);
     }
-    //метод для настроек категорий
-    public void settingsOfCategoryClicked(View v){
-        Intent intent=new Intent(getApplicationContext(),CategoriesActivity.class);
-        startActivity(intent);
-        //здесб сделал добавление
-       /* Auth auth=Auth.getInstance();
-        CategoryList categoryList=CategoryList.getInstance();
-        Category category=new Category(categoryList.getCategories().size(), "defGoodThatIMade",auth.getCurrentUser().getKey());
 
-        categoryList.addCategory(category);
-        CategoryProvider categoryProvider=new CategoryProvider();
-        //надо апдейт юзать вместо обычного адд
-        categoryProvider.addCategory(category);*/
-    }
 
     //метод для настроек валют
     public void settingsOfCurrenciesClicked(View v){
