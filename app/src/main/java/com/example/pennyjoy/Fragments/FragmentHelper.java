@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Path;
 import android.os.Bundle;
 import android.text.Layout;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,12 +22,13 @@ import androidx.fragment.app.Fragment;
 import com.example.pennyjoy.QuestionsActivity;
 import com.example.pennyjoy.R;
 
-public class FragmentHelper extends Fragment {
-   // private float x1,y1,x2,y2;
+public class FragmentHelper extends Fragment implements GestureDetector.OnGestureListener {
 
-    private float x1,x2;
-    static final int MIN_DISTANCE = 150;
     private Button testSlide;
+
+    private float x1,y1,x2,y2;
+    private static int MIN_DISTANCE=150;
+    private GestureDetector gestureDetector;
 
     @Nullable
     @Override
@@ -36,47 +38,85 @@ public class FragmentHelper extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        //view.setOnTouchListener(onTouchListener);
+
+        //инициализируем детектор жестов
+        gestureDetector=new GestureDetector(getContext(),this);
+
         testSlide=view.findViewById(R.id.testSlide);
         testSlide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), QuestionsActivity.class);
+
                 startActivity(intent);
-                ((Activity) getContext()).overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                ((Activity) getContext()).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
 
+                gestureDetector.onTouchEvent(event);
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        x1=event.getX();
+                        y1=event.getY();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        x2=event.getX();
+                        y2 =event.getY();
+                        float valueOfX=x2-x1;
+
+                        if(Math.abs(valueOfX)>MIN_DISTANCE) {
+                            if (x1 > x2) {
+                                Intent intent = new Intent(v.getContext(), QuestionsActivity.class);
+
+                                startActivity(intent);
+                                ((Activity) getContext()).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                            }
+                        }
+
+
+                }
+                return true;
+            }
+        });
     }
 
 
 
-    View.OnTouchListener onTouchListener= new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            switch(event.getAction())
-            {
-                case MotionEvent.ACTION_DOWN:
-                    x1 = event.getX();
-                    break;
-                case MotionEvent.ACTION_UP:
-                    x2 = event.getX();
-                    float deltaX = x2 - x1;
-                    if (Math.abs(deltaX) > MIN_DISTANCE)
-                    {
-                        Intent intent = new Intent(v.getContext(), QuestionsActivity.class);
-                        startActivity(intent);
-                        ((Activity) getContext()).overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                    }
-                    else
-                    {
-                        // consider as something else - a screen tap for example
-                    }
-                    break;
-            }
-            return false;
-        }
-    };
 
 
+
+
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        return false;
+    }
 }
