@@ -46,13 +46,13 @@ public class QuestionsActivity extends AppCompatActivity {
     private Animation fourth_button_animation_to_left2;
 
     AppCompatButton fourthAnswerBtn;
-
-
-
+    //каунтеры для кол-ва кликов
     private int counterOfClicksForQuestions =0;
     private int counterOfClicksForAnswers=0;
 
-
+    //массивы для получения ответа
+    private int[] categorical;
+    private int[]transitional;
 
 
 
@@ -65,6 +65,9 @@ public class QuestionsActivity extends AppCompatActivity {
         //инициализация массивов
         questions=getResources().getStringArray(R.array.questions);
         answers=getResources().getStringArray(R.array.answers);
+
+        categorical=new int[5];
+        transitional=new int[3];
 
         //вопрос
         lblQuestion=findViewById(R.id.lblQuestion);
@@ -106,15 +109,175 @@ public class QuestionsActivity extends AppCompatActivity {
 
 
 
-
+        //положительный категоричный
         firstAnswerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(counterOfClicksForAnswers == 16 && counterOfClicksForQuestions == 5){
-                    Toast.makeText(getApplicationContext(),"END!",Toast.LENGTH_SHORT);
+                if(counterOfClicksForAnswers >= 16 || counterOfClicksForQuestions >= 5){
+                    categorical[counterOfClicksForQuestions]=1;
+                    boolean result=getTheBiggestList(categorical,transitional);
+                    int counterOfMinus=0;
+                    int counterOfPlus=0;
+                    if (result) {
+                        for (int element:categorical) {
+                            if(element<0){
+                                counterOfMinus++;
+                            }else{
+                                counterOfPlus++;
+                            }
+                        }
+                        if(counterOfMinus>counterOfPlus){
+                            Toast.makeText(getApplicationContext(),"НЕТ!!",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(),"ДА!!",Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        for (int element:transitional) {
+                            if(element<0){
+                                counterOfMinus++;
+                            }else{
+                                counterOfPlus++;
+                            }
+                        }
+                        if(counterOfMinus>counterOfPlus){
+                            Toast.makeText(getApplicationContext(),"мб нет",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(),"мб да",Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }else {
+                    categorical[counterOfClicksForQuestions]=1;
                     counterOfClicksForQuestions++;
-                    counterOfClicksForAnswers++;
+                    startAnimationForEverything();
+                }
+
+            }
+        });
+        //отрицательный категоричный
+        secondAnswerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(counterOfClicksForAnswers >= 16 || counterOfClicksForQuestions >= 5){
+                    categorical[counterOfClicksForQuestions]= -1;
+                    boolean result=getTheBiggestList(categorical,transitional);
+                    int counterOfMinus=0;
+                    int counterOfPlus=0;
+                    if (result) {
+                        for (int element:categorical) {
+                            if(element<0){
+                                counterOfMinus++;
+                            }else{
+                                counterOfPlus++;
+                            }
+                        }
+                        if(counterOfMinus>counterOfPlus){
+                            Toast.makeText(getApplicationContext(),"НЕТ!!",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(),"ДА!!",Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        for (int element:transitional) {
+                            if(element<0){
+                                counterOfMinus++;
+                            }else{
+                                counterOfPlus++;
+                            }
+                        }
+                        if(counterOfMinus>counterOfPlus){
+                            Toast.makeText(getApplicationContext(),"мб нет",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(),"мб да",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }else {
+                    categorical[counterOfClicksForQuestions]= -1;
+                    counterOfClicksForQuestions++;
+                    startAnimationForEverything();
+                }
+
+            }
+        });
+        //положительный переходный
+        thirdAnswerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(counterOfClicksForAnswers >= 16 || counterOfClicksForQuestions >= 5){
+                    boolean result=getTheBiggestList(categorical,transitional);
+                    int counterOfMinus=0;
+                    int counterOfPlus=0;
+                    if (result) {
+                        for (int element:categorical) {
+                            if(element<0){
+                                counterOfMinus++;
+                            }else{
+                                counterOfPlus++;
+                            }
+                        }
+                        if(counterOfMinus>counterOfPlus){
+                            Toast.makeText(getApplicationContext(),"НЕТ!!",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(),"ДА!!",Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        for (int element:transitional) {
+                            if(element<0){
+                                counterOfMinus++;
+                            }else{
+                                counterOfPlus++;
+                            }
+                        }
+                        if(counterOfMinus>counterOfPlus){
+                            Toast.makeText(getApplicationContext(),"мб нет",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(),"мб да",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }else {
+                    transitional[counterOfClicksForQuestions]=1;
+                    counterOfClicksForQuestions++;
+                    startAnimationForEverything();
+                }
+
+            }
+        });
+        //отрицательный переходный
+        fourthAnswerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(counterOfClicksForAnswers >= 16 || counterOfClicksForQuestions >= 5){
+                    boolean result=getTheBiggestList(categorical,transitional);
+                    int counterOfMinus=0;
+                    int counterOfPlus=0;
+                    if (result) {
+                        for (int element:categorical) {
+                            if(element<0){
+                                counterOfMinus++;
+                            }else{
+                                counterOfPlus++;
+                            }
+                        }
+                        if(counterOfMinus>counterOfPlus){
+                            Toast.makeText(getApplicationContext(),"НЕТ!!",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(),"ДА!!",Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        for (int element:transitional) {
+                            if(element<0){
+                                counterOfMinus++;
+                            }else{
+                                counterOfPlus++;
+                            }
+                        }
+                        if(counterOfMinus>counterOfPlus){
+                            Toast.makeText(getApplicationContext(),"мб нет",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(),"мб да",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }else {
+                    transitional[counterOfClicksForQuestions]= -1;
+                    counterOfClicksForQuestions++;
                     startAnimationForEverything();
                 }
 
@@ -123,6 +286,22 @@ public class QuestionsActivity extends AppCompatActivity {
 
 
     }
+
+    public boolean getTheBiggestList(int[]ar1,int[]ar2 ){
+        int res=0;
+        for (int element1:ar1) {
+            res+=Math.abs(element1);
+        }
+        int res2=0;
+        for (int element2:ar2) {
+            res2+=Math.abs(element2);
+        }
+        if(res>res2){
+            return true;
+        }
+        return false;
+    }
+
 
     public void startAnimationForEverything(){
         lblQuestion.startAnimation(question_button_animation_to_left);
@@ -173,9 +352,15 @@ public class QuestionsActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                secondAnswerBtn.setText(answers[counterOfClicksForAnswers++]);
-                thirdAnswerBtn.startAnimation(third_button_animation_to_left);
-                secondAnswerBtn.startAnimation(second_button_animation_to_left2);
+                if(counterOfClicksForAnswers<14) {
+                    secondAnswerBtn.setText(answers[counterOfClicksForAnswers++]);
+                    thirdAnswerBtn.startAnimation(third_button_animation_to_left);
+                    secondAnswerBtn.startAnimation(second_button_animation_to_left2);
+                }else{
+                    secondAnswerBtn.setText(answers[counterOfClicksForAnswers++]);
+                    secondAnswerBtn.startAnimation(second_button_animation_to_left2);
+                }
+
             }
 
             @Override
@@ -192,9 +377,13 @@ public class QuestionsActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                thirdAnswerBtn.setText(answers[counterOfClicksForAnswers++]);
-                fourthAnswerBtn.startAnimation(fourth_button_animation_to_left);
-                thirdAnswerBtn.startAnimation(third_button_animation_to_left2);
+                if(counterOfClicksForAnswers<14) {
+                    thirdAnswerBtn.setText(answers[counterOfClicksForAnswers++]);
+                    fourthAnswerBtn.startAnimation(fourth_button_animation_to_left);
+                    thirdAnswerBtn.startAnimation(third_button_animation_to_left2);
+                }else{
+                    fourthAnswerBtn.startAnimation(fourth_button_animation_to_left);
+                }
             }
 
             @Override
@@ -212,8 +401,10 @@ public class QuestionsActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                fourthAnswerBtn.setText(answers[counterOfClicksForAnswers++]);
-                fourthAnswerBtn.startAnimation(fourth_button_animation_to_left2);
+                if(counterOfClicksForAnswers<14) {
+                    fourthAnswerBtn.setText(answers[counterOfClicksForAnswers++]);
+                    fourthAnswerBtn.startAnimation(fourth_button_animation_to_left2);
+                }
             }
 
             @Override
