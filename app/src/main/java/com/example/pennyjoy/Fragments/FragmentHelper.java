@@ -22,12 +22,14 @@ import androidx.fragment.app.Fragment;
 import com.example.pennyjoy.QuestionsActivity;
 import com.example.pennyjoy.R;
 
-public class FragmentHelper extends Fragment implements GestureDetector.OnGestureListener {
+public class FragmentHelper extends Fragment {
 
 
     private float x1,x2;
     private static int MIN_DISTANCE=150;
-    private GestureDetector gestureDetector;
+
+
+
 
     @Nullable
     @Override
@@ -39,14 +41,12 @@ public class FragmentHelper extends Fragment implements GestureDetector.OnGestur
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         //инициализируем детектор жестов
-        gestureDetector=new GestureDetector(getContext(),this);
 
 
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-                gestureDetector.onTouchEvent(event);
                 switch (event.getAction()){
                     case MotionEvent.ACTION_DOWN:
                         x1=event.getX();
@@ -58,7 +58,7 @@ public class FragmentHelper extends Fragment implements GestureDetector.OnGestur
                         if(Math.abs(valueOfX)>MIN_DISTANCE) {
                             if (x1 > x2) {
                                 Intent intent = new Intent(v.getContext(), QuestionsActivity.class);
-
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 ((Activity) getContext()).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                             }
@@ -72,39 +72,4 @@ public class FragmentHelper extends Fragment implements GestureDetector.OnGestur
     }
 
 
-
-
-
-
-
-
-    @Override
-    public boolean onDown(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        return false;
-    }
 }

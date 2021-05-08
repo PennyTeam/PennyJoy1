@@ -11,19 +11,83 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
-            android:layout_marginTop="200dp">
+            android:layout_marginTop="100dp">
+           <TextView
+               android:id="@+id/lblQuestion"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textSize="30dp"
+               android:gravity="left"
+               android:text="IS IT WORK NICE??"
+               android:textColor="@color/white"
+               />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            >
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/test"
+                android:id="@+id/answerFirst"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tap to test"
-                android:background="@drawable/body_for_btn_radius_13_dp_sign_in"
+                android:text="smth"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/body_for_btn_answers"
                 android:padding="15dp"/>
         </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/answerSecond"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="smth"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/body_for_btn_answers"
+                android:padding="15dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            >
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/answerThird"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="smth"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/body_for_btn_answers"
+                android:padding="15dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/answerFourth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="smth"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/body_for_btn_answers"
+                android:padding="15dp"/>
+        </RelativeLayout>
+
+
 
     </LinearLayout>
 
