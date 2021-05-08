@@ -24,9 +24,8 @@ import com.example.pennyjoy.R;
 
 public class FragmentHelper extends Fragment implements GestureDetector.OnGestureListener {
 
-    private Button testSlide;
 
-    private float x1,y1,x2,y2;
+    private float x1,x2;
     private static int MIN_DISTANCE=150;
     private GestureDetector gestureDetector;
 
@@ -42,16 +41,7 @@ public class FragmentHelper extends Fragment implements GestureDetector.OnGestur
         //инициализируем детектор жестов
         gestureDetector=new GestureDetector(getContext(),this);
 
-        testSlide=view.findViewById(R.id.testSlide);
-        testSlide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), QuestionsActivity.class);
 
-                startActivity(intent);
-                ((Activity) getContext()).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
-        });
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -60,11 +50,9 @@ public class FragmentHelper extends Fragment implements GestureDetector.OnGestur
                 switch (event.getAction()){
                     case MotionEvent.ACTION_DOWN:
                         x1=event.getX();
-                        y1=event.getY();
                         break;
                     case MotionEvent.ACTION_UP:
                         x2=event.getX();
-                        y2 =event.getY();
                         float valueOfX=x2-x1;
 
                         if(Math.abs(valueOfX)>MIN_DISTANCE) {
