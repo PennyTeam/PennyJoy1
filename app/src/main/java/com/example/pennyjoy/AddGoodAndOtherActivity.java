@@ -1,10 +1,12 @@
 package com.example.pennyjoy;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +26,8 @@ public class AddGoodAndOtherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_good_and_other);
+        Intent intent = getIntent();
+        int res = intent.getIntExtra("flagOfResultInFragments", 10000);
         fragmentHelper = new FragmentHelper();
         fragmentTimer = new FragmentTimer();
 
@@ -60,5 +64,12 @@ public class AddGoodAndOtherActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+if(res == 3){
+    AlertDialog.Builder ad = new AlertDialog.Builder(this);
+    ad.setTitle("Советник по покупкам").setMessage("Вам стоит отказаться от покупки в пользу целей!");
+    ad.show();
+}
+
     }
 }

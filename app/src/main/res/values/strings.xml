@@ -70,5 +70,8 @@
         <item>Несет ли эта покупка вред моему бюджету?</item>
 
     </string-array>
-
+<string name="mb_yes">МБ ДА</string>
+<string name="mb_no">МБ НЕТ</string>
+<string name="yes">ДА</string>
+<string name="no">НЕТ</string>
 </resources>

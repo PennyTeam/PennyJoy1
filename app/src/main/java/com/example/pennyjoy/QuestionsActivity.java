@@ -1,14 +1,20 @@
 package com.example.pennyjoy;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.pennyjoy.Fragments.AddGoodFragment;
 
 public class QuestionsActivity extends AppCompatActivity {
     //массивы из вопросов и ответов
@@ -54,6 +60,8 @@ public class QuestionsActivity extends AppCompatActivity {
     private int[] categorical;
     private int[]transitional;
 
+    //декларация AlertDialog
+    private AlertDialog.Builder alertDialog;
 
 
     @Override
@@ -68,7 +76,7 @@ public class QuestionsActivity extends AppCompatActivity {
 
         categorical=new int[5];
         transitional=new int[3];
-
+        alertDialog = new AlertDialog.Builder(this);
         //вопрос
         lblQuestion=findViewById(R.id.lblQuestion);
         lblQuestion.setText(questions[counterOfClicksForQuestions]);
@@ -126,11 +134,7 @@ public class QuestionsActivity extends AppCompatActivity {
                                 counterOfPlus++;
                             }
                         }
-                        if(counterOfMinus>counterOfPlus){
-                            Toast.makeText(getApplicationContext(),"НЕТ!!",Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(getApplicationContext(),"ДА!!",Toast.LENGTH_SHORT).show();
-                        }
+                        intentWithCategorical(counterOfMinus,counterOfPlus);
                     }else{
                         for (int element:transitional) {
                             if(element<0){
@@ -139,11 +143,7 @@ public class QuestionsActivity extends AppCompatActivity {
                                 counterOfPlus++;
                             }
                         }
-                        if(counterOfMinus>counterOfPlus){
-                            Toast.makeText(getApplicationContext(),"мб нет",Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(getApplicationContext(),"мб да",Toast.LENGTH_SHORT).show();
-                        }
+                        alertDialog(counterOfMinus,counterOfPlus);
                     }
                 }else {
                     categorical[counterOfClicksForQuestions]=1;
@@ -170,11 +170,7 @@ public class QuestionsActivity extends AppCompatActivity {
                                 counterOfPlus++;
                             }
                         }
-                        if(counterOfMinus>counterOfPlus){
-                            Toast.makeText(getApplicationContext(),"НЕТ!!",Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(getApplicationContext(),"ДА!!",Toast.LENGTH_SHORT).show();
-                        }
+                       intentWithCategorical(counterOfMinus,counterOfPlus);
                     }else{
                         for (int element:transitional) {
                             if(element<0){
@@ -183,13 +179,10 @@ public class QuestionsActivity extends AppCompatActivity {
                                 counterOfPlus++;
                             }
                         }
-                        if(counterOfMinus>counterOfPlus){
-                            Toast.makeText(getApplicationContext(),"мб нет",Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(getApplicationContext(),"мб да",Toast.LENGTH_SHORT).show();
-                        }
+                        alertDialog(counterOfMinus,counterOfPlus);
                     }
-                }else {
+                }
+                else {
                     categorical[counterOfClicksForQuestions]= -1;
                     counterOfClicksForQuestions++;
                     startAnimationForEverything();
@@ -201,38 +194,38 @@ public class QuestionsActivity extends AppCompatActivity {
         thirdAnswerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(counterOfClicksForAnswers >= 16 || counterOfClicksForQuestions >= 5){
-                    boolean result=getTheBiggestList(categorical,transitional);
-                    int counterOfMinus=0;
-                    int counterOfPlus=0;
+                if(counterOfClicksForAnswers >= 16 || counterOfClicksForQuestions >= 5) {
+                    boolean result = getTheBiggestList(categorical, transitional);
+                    int counterOfMinus = 0;
+                    int counterOfPlus = 0;
                     if (result) {
-                        for (int element:categorical) {
-                            if(element<0){
+                        for (int element : categorical) {
+                            if (element < 0) {
                                 counterOfMinus++;
-                            }else{
+                            }
+                            else {
                                 counterOfPlus++;
                             }
                         }
-                        if(counterOfMinus>counterOfPlus){
-                            Toast.makeText(getApplicationContext(),"НЕТ!!",Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(getApplicationContext(),"ДА!!",Toast.LENGTH_SHORT).show();
-                        }
-                    }else{
-                        for (int element:transitional) {
-                            if(element<0){
-                                counterOfMinus++;
-                            }else{
-                                counterOfPlus++;
-                            }
-                        }
-                        if(counterOfMinus>counterOfPlus){
-                            Toast.makeText(getApplicationContext(),"мб нет",Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(getApplicationContext(),"мб да",Toast.LENGTH_SHORT).show();
-                        }
+                       intentWithCategorical(counterOfMinus, counterOfPlus);
                     }
-                }else {
+
+
+                    //переходные
+                    else {
+                        for (int element : transitional) {
+                            if (element < 0) {
+                                counterOfMinus++;
+                            } else {
+                                counterOfPlus++;
+                            }
+                        }
+
+                        //тут метод с ад вызываем
+                        alertDialog(counterOfMinus, counterOfPlus);
+                    }
+                }
+                else {
                     transitional[counterOfClicksForQuestions]=1;
                     counterOfClicksForQuestions++;
                     startAnimationForEverything();
@@ -256,12 +249,10 @@ public class QuestionsActivity extends AppCompatActivity {
                                 counterOfPlus++;
                             }
                         }
-                        if(counterOfMinus>counterOfPlus){
-                            Toast.makeText(getApplicationContext(),"НЕТ!!",Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(getApplicationContext(),"ДА!!",Toast.LENGTH_SHORT).show();
-                        }
-                    }else{
+
+                        intentWithCategorical(counterOfMinus,counterOfPlus);
+                    }
+                    else{
                         for (int element:transitional) {
                             if(element<0){
                                 counterOfMinus++;
@@ -269,11 +260,7 @@ public class QuestionsActivity extends AppCompatActivity {
                                 counterOfPlus++;
                             }
                         }
-                        if(counterOfMinus>counterOfPlus){
-                            Toast.makeText(getApplicationContext(),"мб нет",Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(getApplicationContext(),"мб да",Toast.LENGTH_SHORT).show();
-                        }
+                        alertDialog(counterOfMinus,counterOfPlus);
                     }
                 }else {
                     transitional[counterOfClicksForQuestions]= -1;
@@ -320,7 +307,6 @@ public class QuestionsActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationRepeat(Animation animation) {
-
             }
         });
 
@@ -336,6 +322,7 @@ public class QuestionsActivity extends AppCompatActivity {
                 firstAnswerBtn.setText(answers[counterOfClicksForAnswers++]);
                 secondAnswerBtn.startAnimation(second_button_animation_to_left);
                 firstAnswerBtn.startAnimation(first_button_animation_to_left2);
+
             }
 
             @Override
@@ -415,7 +402,59 @@ public class QuestionsActivity extends AppCompatActivity {
 
     }
 
+    public void alertDialog(int cMinus, int cPlus){
+
+                alertDialog.setCancelable(false);
+                alertDialog.setTitle("Внимание!").setMessage("У вас есть цели (количество)! Готовы ли вы пренебречь целями в пользу покупки?");
+                alertDialog.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getApplicationContext(), AddGoodAndOtherActivity.class);
+                        intent.putExtra("flagOfResultInFragments", 3);
+
+                        startActivity(intent);
+
+                        finish();
+
+                    }
+                });
+                alertDialog.setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(cMinus>cPlus){
+                            Intent intent = new Intent(getApplicationContext(), ResultOfQuizActivity.class);
+                            Toast.makeText(getApplicationContext(), "неа", Toast.LENGTH_SHORT).show();
+                            intent.putExtra("flagOfResult", -2);//ОТРИЦАТЕЛЬНЫЙ ОТВЕТ (мб нет)
+                            startActivity(intent);
+                            finish();
+                        }
+
+                        else {
+                            Intent intent = new Intent(getApplicationContext(), ResultOfQuizActivity.class);
+                            intent.putExtra("flagOfResult", 2);//положительный ответ (мб да)
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                });
+                alertDialog.show();
+            }
 
 
+            public void intentWithCategorical(int cMinus, int cPlus){
+                if (cMinus > cPlus) {
+                    Toast.makeText(getApplicationContext(), "НЕТ!!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), ResultOfQuizActivity.class);
+                    intent.putExtra("flagOfResult", -1);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(getApplicationContext(), "ДА!!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), ResultOfQuizActivity.class);
+                    intent.putExtra("flagOfResult", 1);
+                    startActivity(intent);
+                    finish();
+                }
 
-}
+            }
+    }
