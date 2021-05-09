@@ -72,6 +72,7 @@
     </string-array>
 <string name="mb_yes">МБ ДА</string>
 <string name="mb_no">МБ НЕТ</string>
-<string name="yes">ДА</string>
-<string name="no">НЕТ</string>
+<string name="yes">Данный товар вам дейтсвительно нужен. Смело берите!</string>
+<string name="no">Вам не понадобится данный товар!
+ Лучше отложите эти деньги</string>
 </resources>
