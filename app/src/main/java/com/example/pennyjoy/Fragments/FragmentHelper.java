@@ -33,7 +33,7 @@ public class FragmentHelper extends Fragment {
     private static int MIN_DISTANCE = 150;
 
 
-    private static long timeForRepeat = 1000 * 3;
+    private static long timeForRepeat = 1000 * 4;
 
     private ImageView arrow;
 
@@ -65,7 +65,7 @@ public class FragmentHelper extends Fragment {
                 startAnimation();
                 handler.postDelayed(this, timeForRepeat);
             }
-        }, timeForRepeat-1000);
+        }, timeForRepeat-500);
 
 
         view.setOnTouchListener(new View.OnTouchListener() {
