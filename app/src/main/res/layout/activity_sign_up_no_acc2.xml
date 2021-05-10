@@ -7,53 +7,94 @@
     tools:context=".SignUpActivityNoAcc2"
     android:background="@color/black">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnNextSecond"
-        android:layout_width="287dp"
-        android:layout_height="46dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="530dp"
-        android:background="@drawable/body_for_btn_radius_13_dp_sign_in"
-        android:onClick="nextLog2"
-        android:text="@string/string_next_for_btn"
-        android:textAllCaps="false"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:textSize="20dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/txtLogin"
-        android:layout_width="321dp"
-        android:layout_height="53dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="180dp"
-        android:background="@drawable/body_for_edit_text"
-        android:hint="@string/string_login"
-        android:inputType="textPersonName"
-        android:paddingLeft="20dp"
-        android:textSize="30dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:layout_marginTop="190dp">
 
-    <EditText
-        android:id="@+id/txtPasswd"
-        android:layout_width="321dp"
-        android:layout_height="53dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="280dp"
-        android:textSize="30dp"
-        android:paddingLeft="20dp"
-        android:inputType="textPassword"
-        android:hint="@string/string_passwd"
-        android:background="@drawable/body_for_edit_text"/>
 
-    <EditText
-        android:id="@+id/txtRepeatPasswd"
-        android:layout_width="321dp"
-        android:layout_height="53dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="380dp"
-        android:inputType="textPassword"
-        android:hint="@string/string_repeat_passwd"
-        android:textSize="30dp"
-        android:paddingLeft="20dp"
-        android:background="@drawable/body_for_edit_text"/>
+            <EditText
+                android:id="@+id/txtLogin"
+                android:layout_width="321dp"
+                android:layout_height="53dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/body_for_edit_text"
+                android:hint="@string/string_login"
+                android:inputType="textPersonName"
+                android:paddingLeft="20dp"
+                android:textSize="30dp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <EditText
+                android:id="@+id/txtPasswd"
+                android:layout_width="321dp"
+                android:layout_height="53dp"
+                android:layout_centerInParent="true"
+                android:textSize="30dp"
+                android:paddingLeft="20dp"
+                android:inputType="textPassword"
+                android:hint="@string/string_passwd"
+                android:background="@drawable/body_for_edit_text"/>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+            <EditText
+                android:id="@+id/txtRepeatPasswd"
+                android:layout_width="321dp"
+                android:layout_height="53dp"
+                android:layout_centerInParent="true"
+                android:inputType="textPassword"
+                android:hint="@string/string_repeat_passwd"
+                android:textSize="30dp"
+                android:paddingLeft="20dp"
+                android:background="@drawable/body_for_edit_text"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNextSecond"
+                android:layout_width="287dp"
+                android:layout_height="46dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/body_for_btn_radius_13_dp_sign_in"
+                android:onClick="nextLog2"
+                android:text="@string/string_next_for_btn"
+                android:textAllCaps="false"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:textSize="20dp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBarInSignUpNoAcc2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/purple_500"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        />
+
 
 </RelativeLayout>

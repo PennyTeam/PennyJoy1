@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,8 +41,9 @@ public class AddGoodFragment extends Fragment {
     private ImageButton btnAddGood;
     private FloatingActionButton floatingActionButton;
     private Spinner dropDownCategory;
-    TextView lblCounterOfTextInput,currencyOfCostInAddGood;
+    private TextView lblCounterOfTextInput,currencyOfCostInAddGood;
     private int counterOfSymbols=0;
+    private ProgressBar progressBar;
 
     private CategoryList categoryList=CategoryList.getInstance();
 
@@ -77,6 +79,8 @@ public class AddGoodFragment extends Fragment {
         txtPurchaseOfPurpose=view.findViewById(R.id.txtPurchaseOfPurpose);
         btnAddGood=view.findViewById(R.id.btnAddGoodInFrag);
         dropDownCategory=view.findViewById(R.id.categoryDropDown);
+
+        progressBar=view.findViewById(R.id.progressBarInAddGood);
 
 
         lblCounterOfTextInput= view.findViewById(R.id.counterOfTextInputAddGood);
@@ -118,12 +122,12 @@ public class AddGoodFragment extends Fragment {
                 && !txtPurchaseOfPurpose.getText().toString().isEmpty()
                 && Double.parseDouble(txtCost.getText().toString())>0
                 && counterOfSymbols >= 90){
-                    //получая текущего юзера и устанавливаю кей
+                    //получаю текущего юзера и устанавливаю кей
 
                     User user=new User();
                     Auth auth=Auth.getInstance();
 
-
+                    progressBar.setVisibility(View.VISIBLE);
                     String keyOfUser= auth.getCurrentUser().getKey();
                     String nameOfGood= txtNameOfGood.getText().toString();
                     String purchaseOfPurpose= txtPurchaseOfPurpose.getText().toString();
@@ -139,7 +143,7 @@ public class AddGoodFragment extends Fragment {
                     txtCost.getText().clear();
                     txtPurchaseOfPurpose.getText().clear();
                     dropDownCategory.setSelection(0);
-
+                    progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(view.getContext(),"Товар добавлен!",Toast.LENGTH_LONG).show();
 
 

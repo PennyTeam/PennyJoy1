@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -27,7 +28,8 @@ public class  SignInActivity extends AppCompatActivity {
     final int MAIN_REQUEST_CODE = 115;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    Auth auth = Auth.getInstance();
+    private Auth auth = Auth.getInstance();
+    private ProgressBar progressBar;
 
 
 
@@ -46,6 +48,7 @@ public class  SignInActivity extends AppCompatActivity {
         passwd = findViewById(R.id.editTextPassword);
         btnEnter = findViewById(R.id.buttonEnter);
         btnSignUp = findViewById(R.id.buttonToSignUp);
+        progressBar=findViewById(R.id.progressBarInSignIn);
 
 
     }
@@ -65,7 +68,7 @@ public class  SignInActivity extends AppCompatActivity {
                     @Override
                     //получаем юзера из UserProvider при помощи интерфейса
                     public void OnRetrieved(User user) {
-
+                        progressBar.setVisibility(View.INVISIBLE);
                         user1.setAccIsActive(user.getAccIsActive());
                         user1.setSalary(user.getSalary());
                         user1.setSurname(user.getSurname());
@@ -80,6 +83,7 @@ public class  SignInActivity extends AppCompatActivity {
                             if (!user1.getAccIsActive()) {
                                 Snackbar.make(v, "Аккаунт был удален!", Snackbar.LENGTH_LONG).show();
                             } else {
+
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 //работа с категориями
@@ -102,7 +106,6 @@ public class  SignInActivity extends AppCompatActivity {
                                 }
 
 
-                                //pr bar
                                 startActivityForResult(intent, MAIN_REQUEST_CODE);
                             }
                         }
@@ -110,7 +113,7 @@ public class  SignInActivity extends AppCompatActivity {
                 };
                 UserProvider userProvider = new UserProvider();
                 userProvider.getUserFromFirebaseByLogin(logIn,listener);
-                //pr bar
+                progressBar.setVisibility(View.VISIBLE);
             }
         }
         //нажали на кнопку "Регистрация"

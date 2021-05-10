@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +53,7 @@ public class SetUserActivity extends AppCompatActivity {
     private String newSurname;
     private String newLogin;
     private String newSalary;
+    private ProgressBar progressBar;
     private DecimalFormat decimalFormat=new DecimalFormat("#.###");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,7 @@ public class SetUserActivity extends AppCompatActivity {
         editTextLogin = findViewById(R.id.etext_login);
         passwdStars = findViewById(R.id.text_password_for_edit);
         currencySymbol = findViewById(R.id.symbolOfCurrency);
+        progressBar=findViewById(R.id.progressBarInSetUser);
 
         currencySymbol.setText(auth.getCurrentCurrency().getLabel());
         dropDownCurrency=findViewById(R.id.currencyDropDown);
@@ -132,6 +135,7 @@ public class SetUserActivity extends AppCompatActivity {
             editor.commit();
             currencySymbol.setText(auth.getCurrentCurrency().getLabel());
             editTextSalary.setText(decimalFormat.format(auth.getCurrentUser().getSalary()));
+            progressBar.setVisibility(View.INVISIBLE);
             Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
         }
     };
@@ -188,15 +192,16 @@ public class SetUserActivity extends AppCompatActivity {
                 ad.setPositiveButton("Да", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                         CurrencyProvider currencyProvider = new CurrencyProvider();
 
                         Currency currencyToConvert=(Currency) dropDownCurrency.getSelectedItem();
                         Currency currentCurrency=auth.getCurrentCurrency();
 
                         if(currencyToConvert.getId() != currentCurrency.getId() ) {
+                            progressBar.setVisibility(View.VISIBLE);
                             currencyProvider.setNewCurrency(listener, currentCurrency.getCode(), currencyToConvert.getCode());
                         }else {
+                            progressBar.setVisibility(View.VISIBLE);
                             User updatedUser = auth.getCurrentUser();
                             updatedUser.setAccIsActive(auth.getCurrentUser().getAccIsActive());
                             updatedUser.setLogin(newLogin);
@@ -213,6 +218,7 @@ public class SetUserActivity extends AppCompatActivity {
                             editor = sharedPreferences.edit();
                             editor.putString("loginOfTheAuthorizedUser", updatedUser.getLogin());
                             editor.commit();
+                            progressBar.setVisibility(View.INVISIBLE);
                             Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -241,12 +247,14 @@ public class SetUserActivity extends AppCompatActivity {
             ad.setPositiveButton("Да", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    progressBar.setVisibility(View.VISIBLE);
                     User user = auth.getCurrentUser();
                     user.setAccIsActive(false);
                     UserProvider up = new UserProvider();
                     up.updateUser(user);
                     CategoryList categoryList=CategoryList.getInstance();
                     categoryList.getCategoryList().clear();
+                    progressBar.setVisibility(View.INVISIBLE);
                     Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import Interfaces.OnUserRetrievedListener;
@@ -13,9 +14,9 @@ import Models.User;
 import Providers.UserProvider;
 
 public class SignUpActivityNoAcc2 extends AppCompatActivity {
-    int signUpNoAccRequestCode=2;
-    EditText txtLogin, txtPasswd, txtRepeatedPasswd;
-
+    private int signUpNoAccRequestCode=2;
+    private EditText txtLogin, txtPasswd, txtRepeatedPasswd;
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +25,7 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
         txtLogin=findViewById(R.id.txtLogin);
         txtPasswd=findViewById(R.id.txtPasswd);
         txtRepeatedPasswd=findViewById(R.id.txtRepeatPasswd);
+        progressBar=findViewById(R.id.progressBarInSignUpNoAcc2);
 
     }
 
@@ -45,6 +47,7 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
             OnUserRetrievedListener listener = new OnUserRetrievedListener() {
                 @Override
                 public void OnRetrieved(User user) {
+                    progressBar.setVisibility(View.INVISIBLE);
                     user1.setSalary(user.getSalary());
                     user1.setSurname(user.getSurname());
                     user1.setName(user.getName());
@@ -65,8 +68,8 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
                 }
             };
             UserProvider userProvider = new UserProvider();
+            progressBar.setVisibility(View.VISIBLE);
             userProvider.getUserFromFirebaseByLogin(txtLogin.getText().toString(),listener);
-            //pr bar
 
 
         }else{

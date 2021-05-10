@@ -181,6 +181,14 @@
 
 
  </LinearLayout>
+ <ProgressBar
+     android:id="@+id/progressBarInAddGood"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:indeterminateTint="@color/purple_500"
+     android:layout_centerInParent="true"
+     android:visibility="invisible"
+     />
 
 
 

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -24,6 +25,7 @@ public class SetPasswdActivity extends AppCompatActivity {
    private Button btnSaveNewPasswd;
    private ImageButton btnReturnBack;
    private Auth auth;
+   private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class SetPasswdActivity extends AppCompatActivity {
         btnSaveNewPasswd = findViewById(R.id.save_new_passwd);
         btnReturnBack = findViewById(R.id.button_return_from_edit_password);
 
+        progressBar=findViewById(R.id.progressBarInSetPasswd);
         btnSaveNewPasswd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,16 +65,19 @@ public class SetPasswdActivity extends AppCompatActivity {
                     ad.setPositiveButton("Да", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            progressBar.setVisibility(View.VISIBLE);
                             User user = auth.getCurrentUser();
                             user.setPasswd(newPasswd);
                             user.setName(auth.getCurrentUser().getName());
                             auth.setCurrentUser(user);
                             UserProvider userProvider = new UserProvider();
                             userProvider.updateUser(user);
-                            Toast.makeText(getApplicationContext(), "Пароль изменен", Toast.LENGTH_SHORT).show();
+
                             editTextOldPasswd.getText().clear();
                             newPasswd1.getText().clear();
                             newPasswd2.getText().clear();
+                            progressBar.setVisibility(View.INVISIBLE);
+                            Toast.makeText(getApplicationContext(), "Пароль изменен", Toast.LENGTH_SHORT).show();
                         }
                     });
                     ad.show();

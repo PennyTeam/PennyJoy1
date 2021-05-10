@@ -9,7 +9,7 @@
     tools:context=".SetUserActivity"
     android:background="@color/black">
 
-<ScrollView
+    <ScrollView
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <RelativeLayout
@@ -243,6 +243,14 @@
     </RelativeLayout>
 </ScrollView>
 
+    <ProgressBar
+        android:id="@+id/progressBarInSetUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/purple_500"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        />
 
 
 
