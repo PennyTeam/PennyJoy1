@@ -70,7 +70,6 @@ public class FragmentTimer extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
         createNotificationChannel();
 
         txtNameOfGoodForTimer=view.findViewById(R.id.txtNameOfGoodForTimer);
@@ -152,38 +151,6 @@ public class FragmentTimer extends Fragment {
                         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         //надо юзать finalDate
                         alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonClicked + timeForCheck, pendingIntent);
-
-
-                       /* //my try, let's gooo
-                        intent=new Intent(getContext(), AddGoodAndOtherActivity.class);
-
-                        AlarmManager.OnAlarmListener alarmListener = null;
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            alarmListener=new AlarmManager.OnAlarmListener() {
-                                @Override
-                                public void onAlarm() {
-                                    NotificationCompat.Builder builder=new NotificationCompat.Builder(getContext(),"notifyTimer")
-                                            //здесь должен быть наш лого!!!!!!!!!!!!!!!!!!!!!
-                                            .setSmallIcon(R.drawable.lamp)
-                                            .setContentTitle("Время раздумий закончилось!")
-                                            .setContentText("Таймер на обдумывание " +nameOfGood+" подошел к концу.")
-                                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                                            .setContentIntent(pendingIntent);
-                                    NotificationManagerCompat notificationManager= NotificationManagerCompat.from(getContext());
-
-
-                                    int num2= (int) System.currentTimeMillis();
-                                    notificationManager.notify(num2,builder.build());
-                                }
-                            };
-                        }
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonClicked + timeForCheck
-                            ,"",alarmListener,new Handler());
-                        }
-
-                        //*/
-
 
                         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     }else{

@@ -61,7 +61,6 @@ public class FragmentHelper extends Fragment {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                //Do something after 100ms
                 startAnimation();
                 handler.postDelayed(this, timeForRepeat);
             }

@@ -37,7 +37,7 @@ public class UserProvider {
 
     }
 
-    public void deleteUser(User user){ }
+
 
 
     public void getUserFromFirebaseByLogin(String login, OnUserRetrievedListener listener){

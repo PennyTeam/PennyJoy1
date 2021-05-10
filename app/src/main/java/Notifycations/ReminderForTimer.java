@@ -42,8 +42,6 @@ public class ReminderForTimer extends BroadcastReceiver {
 
 
         notificationManager.notify(num,builder.build());
-
-
     }
 
 

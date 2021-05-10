@@ -14,12 +14,14 @@ import android.widget.ProgressBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import Interfaces.OnUserRetrievedListener;
+import Interfaces.OnUsersCurrencyRetrievedListener;
 import Models.Auth;
 import Models.CategoryList;
 import Models.CurrenciesList;
 import Models.Currency;
 import Models.User;
 import Providers.UserProvider;
+import Providers.UsersCurrencyProvider;
 
 public class  SignInActivity extends AppCompatActivity {
     private EditText login, passwd;
@@ -97,12 +99,20 @@ public class  SignInActivity extends AppCompatActivity {
 
                                 auth.setCurrentUser(user1);
 
-                                Currency currency = new Currency();
+
 
                                 CurrenciesList currenciesList = CurrenciesList.getInstance();
                                 currenciesList.init();
-                                if(auth.getCurrentCurrency()== null) {
-                                    auth.setCurrentCurrency(currenciesList.getCurrencies().get(0));
+                                if(auth.getCurrentCurrency() == null) {
+                                    UsersCurrencyProvider usersCurrencyProvider=new UsersCurrencyProvider();
+                                    usersCurrencyProvider.getUsersCurrencyFromFirebase(auth.getCurrentUser().getKey()
+                                            , new OnUsersCurrencyRetrievedListener() {
+                                        @Override
+                                        public void OnRetrieved(Currency currency) {
+                                            auth.setCurrentCurrency(currency);
+                                            editor.putInt("idOfCurrency",currency.getId()).commit();
+                                        }
+                                    });
                                 }
 
 

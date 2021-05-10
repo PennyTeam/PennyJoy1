@@ -8,11 +8,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import Interfaces.OnUserRetrievedListener;
+import Interfaces.OnUsersCurrencyRetrievedListener;
 import Models.Auth;
 import Models.CategoryList;
 import Models.CurrenciesList;
+import Models.Currency;
 import Models.User;
 import Providers.UserProvider;
+import Providers.UsersCurrencyProvider;
 
 public class SplashActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
@@ -59,15 +62,22 @@ public class SplashActivity extends AppCompatActivity {
                         if(idOfCurrency==-1) {
                             auth.setCurrentCurrency(currenciesList.getCurrencies().get(0));
                         }else{
-                            auth.setCurrentCurrency(currenciesList.getCurrencies().get(idOfCurrency));
+                            UsersCurrencyProvider usersCurrencyProvider=new UsersCurrencyProvider();
+                            usersCurrencyProvider.getUsersCurrencyFromFirebase(auth.getCurrentUser().getKey(), new OnUsersCurrencyRetrievedListener() {
+                                @Override
+                                public void OnRetrieved(Currency currency) {
+                                    auth.setCurrentCurrency(currency);
+                                    CategoryList categoryList=CategoryList.getInstance();
+                                    categoryList.init();
+
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                }
+                            });
                         }
 
-                        CategoryList categoryList=CategoryList.getInstance();
-                        categoryList.init();
 
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
                     }
                     else{
                         sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();

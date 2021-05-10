@@ -13,13 +13,12 @@ public class User {
 
 
 
-    public User(String Name, String surname, String login, String passwd, double salary, String key) {
+    public User(String Name, String surname, String login, String passwd, double salary) {
         this.name = Name;
         this.surname = surname;
         this.login = login;
         this.passwd = passwd;
         this.salary = salary;
-        this.key = key;
         this.accIsActive = true;
     }
 

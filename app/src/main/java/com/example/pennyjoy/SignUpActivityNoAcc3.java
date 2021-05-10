@@ -16,7 +16,9 @@ import Models.Auth;
 import Models.CurrenciesList;
 import Models.Currency;
 import Models.User;
+import Providers.CurrencyProvider;
 import Providers.UserProvider;
+import Providers.UsersCurrencyProvider;
 
 public class SignUpActivityNoAcc3 extends AppCompatActivity {
     EditText salary;
@@ -64,17 +66,25 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
             String passwd=intent2.getExtras().getString("passwd");
             float salary=Float.parseFloat(this.salary.getText().toString());
 
-            Currency currency=(Currency) dropDownCurrency.getSelectedItem();
             Auth auth=Auth.getInstance();
+
+            User user=new User(name,surname,login,passwd,salary);
+            UserProvider provider=new UserProvider();
+            provider.addUser(user);
+            auth.setCurrentUser(user);
+
+            Currency currency=(Currency) dropDownCurrency.getSelectedItem();
+            currency.setUserKey(auth.getCurrentUser().getKey());
+
             auth.setCurrentCurrency(currency);
+            UsersCurrencyProvider usersCurrencyProvider=new UsersCurrencyProvider();
+            usersCurrencyProvider.addCurrency(currency);
+
             SharedPreferences mySharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
             mySharedPreferences.edit().putInt("idOfCurrency",currency.getId()).commit();
 
 
-            User user=new User(name,surname,login,passwd,salary, null);
-            UserProvider provider=new UserProvider();
-            provider.addUser(user);
-            auth.setCurrentUser(user);
+
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             Toast.makeText(this, "Теперь войдите в аккаунт", Toast.LENGTH_LONG).show();
             startActivity(intent);

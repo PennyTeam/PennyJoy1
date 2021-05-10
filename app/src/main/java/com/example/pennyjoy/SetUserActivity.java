@@ -35,10 +35,10 @@ import Models.User;
 import Providers.CurrencyProvider;
 import Providers.GoodProvider;
 import Providers.UserProvider;
+import Providers.UsersCurrencyProvider;
 
 public class SetUserActivity extends AppCompatActivity {
     private Button btnSaveSettings, btnDeleteAccount;
-    private ImageButton btnReturnToMain;
     private LinearLayout btnSetPasswd;
     private EditText editTextName, editTextSurname, editTextSalary, editTextLogin;
     private TextView passwdStars, currencySymbol;
@@ -60,7 +60,7 @@ public class SetUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_user);
         btnSaveSettings = findViewById(R.id.save_settings);
-        btnReturnToMain = findViewById(R.id.btn_return_home);
+
         btnDeleteAccount = findViewById(R.id.delete_user_btn);
         btnSetPasswd = findViewById(R.id.buttonPasswd);
         editTextName = findViewById(R.id.etext_name);
@@ -83,11 +83,16 @@ public class SetUserActivity extends AppCompatActivity {
         //currencyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         currencyAdapter.setDropDownViewResource(R.layout.drop_down_item_currency);
 
+        //делаем так, так как не корректно работает с userKey и key
+        /*Currency currencyForPosition=auth.getCurrentCurrency();
+        currencyForPosition.setKey(null);
+        currencyForPosition.setUserKey(null);
 
+
+        int positionOfCurrency = currencyAdapter.getPosition(currencyForPosition);*/
         dropDownCurrency.setAdapter(currencyAdapter);
+        dropDownCurrency.setSelection(auth.getCurrentCurrency().getId());
 
-        int positionOfCurrency = currencyAdapter.getPosition(auth.getCurrentCurrency());
-        dropDownCurrency.setSelection(positionOfCurrency);
 
         //----------------------
 
@@ -147,12 +152,17 @@ public class SetUserActivity extends AppCompatActivity {
         public void onRetrieved(double currency) {
             valueOfCurrency=currency;
 
+            Currency currencyFromDropDown=(Currency) dropDownCurrency.getSelectedItem();
+            currencyFromDropDown.setUserKey(auth.getCurrentUser().getKey());
+            currencyFromDropDown.setKey(auth.getCurrentCurrency().getKey());
 
-            auth.setCurrentCurrency((Currency) dropDownCurrency.getSelectedItem());
+            auth.setCurrentCurrency(currencyFromDropDown);
             SharedPreferences mySharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES),Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = mySharedPreferences.edit();
             editor.putInt("idOfCurrency", auth.getCurrentCurrency().getId());
             editor.apply();
+            UsersCurrencyProvider usersCurrencyProvider=new UsersCurrencyProvider();
+            usersCurrencyProvider.updateCurrency(auth.getCurrentCurrency());
             //_____
 
             //------
@@ -226,11 +236,7 @@ public class SetUserActivity extends AppCompatActivity {
                 ad.show();
             }
         }
-        if(id == btnReturnToMain.getId()){
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
+
 
         if(v.getId() == btnDeleteAccount.getId()){
             AlertDialog.Builder ad = new AlertDialog.Builder(v.getContext());

@@ -4,6 +4,8 @@ public class Currency {
     private int id;
     private String code;
     private String label;
+    private String userKey;
+    private String key;
 
 
     public Currency(int id, String code, String label) {
@@ -15,6 +17,22 @@ public class Currency {
     public Currency() {
     }
 
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getUserKey() {
+        return userKey;
+    }
+
+    public void setUserKey(String userKey) {
+        this.userKey = userKey;
+    }
 
 
 
