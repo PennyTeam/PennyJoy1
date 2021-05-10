@@ -12,20 +12,29 @@
         android:textSize="25dp"
         android:textColor="@color/white"
         android:layout_marginLeft="15dp"/>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:paddingTop="100dp">
 
     <TextView
         android:id="@+id/essayOfGood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_gravity="center"
-        android:paddingTop="5dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/background_for_essay"
         android:paddingLeft="10dp"
+        android:paddingTop="5dp"
         android:text="Цель"
-        android:textSize="15dp"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+</RelativeLayout>
 
-        android:layout_marginTop="90dp"
-
-        android:background="@drawable/background_for_essay"/>
 
     <TextView
         android:id="@+id/numberPrice"
