@@ -1,6 +1,8 @@
 package com.example.pennyjoy.Fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,11 +16,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.pennyjoy.HistoryActivity;
+import com.example.pennyjoy.MainActivity;
 import com.example.pennyjoy.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -27,6 +31,7 @@ import Models.Category;
 import Models.CategoryList;
 import Models.Good;
 import Models.User;
+import Notifycations.ReminderForTimer;
 import Providers.GoodProvider;
 
 public class AddGoodFragment extends Fragment {
@@ -47,12 +52,25 @@ public class AddGoodFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_add_good, container, false);
 
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        // This callback will only be called when MyFragment is at least Started.
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent=new Intent(getContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+
         floatingActionButton = view.findViewById(R.id.historyBtn);
         txtNameOfGood=view.findViewById(R.id.txtNameOfGood);
         txtCost=view.findViewById(R.id.txtCostOfGood);
@@ -62,6 +80,7 @@ public class AddGoodFragment extends Fragment {
 
 
         lblCounterOfTextInput= view.findViewById(R.id.counterOfTextInputAddGood);
+
 
 
 
@@ -146,6 +165,7 @@ public class AddGoodFragment extends Fragment {
         Auth auth=Auth.getInstance();
         currencyOfCostInAddGood.setText(auth.getCurrentCurrency().getLabel());
     }
+
 
 
 

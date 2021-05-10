@@ -423,7 +423,7 @@ public class QuestionsActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         if(cMinus>cPlus){
                             Intent intent = new Intent(getApplicationContext(), ResultOfQuizActivity.class);
-                            Toast.makeText(getApplicationContext(), "неа", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Ваш результат", Toast.LENGTH_SHORT).show();
                             intent.putExtra("flagOfResult", -2);//ОТРИЦАТЕЛЬНЫЙ ОТВЕТ (мб нет)
                             startActivity(intent);
                             finish();
@@ -431,6 +431,7 @@ public class QuestionsActivity extends AppCompatActivity {
 
                         else {
                             Intent intent = new Intent(getApplicationContext(), ResultOfQuizActivity.class);
+                            Toast.makeText(getApplicationContext(), "Ваш результат", Toast.LENGTH_SHORT).show();
                             intent.putExtra("flagOfResult", 2);//положительный ответ (мб да)
                             startActivity(intent);
                             finish();
@@ -443,13 +444,13 @@ public class QuestionsActivity extends AppCompatActivity {
 
             public void intentWithCategorical(int cMinus, int cPlus){
                 if (cMinus > cPlus) {
-                    Toast.makeText(getApplicationContext(), "НЕТ!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Ваш результат", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), ResultOfQuizActivity.class);
                     intent.putExtra("flagOfResult", -1);
                     startActivity(intent);
                     finish();
                 } else {
-                    Toast.makeText(getApplicationContext(), "ДА!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Ваш результат", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), ResultOfQuizActivity.class);
                     intent.putExtra("flagOfResult", 1);
                     startActivity(intent);

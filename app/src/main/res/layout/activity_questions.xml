@@ -23,7 +23,6 @@
                android:layout_height="wrap_content"
                android:textSize="30dp"
                android:gravity="left"
-               android:text="IS IT WORK NICE??"
                android:textColor="@color/white"
                />
         </RelativeLayout>
@@ -37,10 +36,10 @@
                 android:id="@+id/answerFirst"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="smth"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:background="@drawable/body_for_btn_answers"
-                android:padding="15dp"/>
+                android:padding="15dp"
+                android:textAllCaps="false"/>
         </RelativeLayout>
 
 
@@ -52,7 +51,7 @@
                 android:id="@+id/answerSecond"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="smth"
+                android:textAllCaps="false"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:background="@drawable/body_for_btn_answers"
                 android:padding="15dp"/>
@@ -67,7 +66,7 @@
                 android:id="@+id/answerThird"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="smth"
+                android:textAllCaps="false"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:background="@drawable/body_for_btn_answers"
                 android:padding="15dp"/>
@@ -81,7 +80,7 @@
                 android:id="@+id/answerFourth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="smth"
+                android:textAllCaps="false"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:background="@drawable/body_for_btn_answers"
                 android:padding="15dp"/>

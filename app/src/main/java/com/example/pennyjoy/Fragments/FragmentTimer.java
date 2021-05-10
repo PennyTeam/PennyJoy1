@@ -6,8 +6,10 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +21,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.pennyjoy.AddGoodAndOtherActivity;
 import com.example.pennyjoy.R;
 
 import java.util.ArrayList;
@@ -32,6 +37,8 @@ public class FragmentTimer extends Fragment {
     private Spinner dropDownMonth,dropDownDay,dropDownHour;
     private AppCompatButton setTimerBtn;
     private EditText txtNameOfGoodForTimer;
+
+
 
 
     private String[] months=new String[]{"0 месяцев","1 месяц","2 месяца","3 месяца","4 месяца"
@@ -53,6 +60,8 @@ public class FragmentTimer extends Fragment {
 
     private long finalBettaMonth, finalMonth,finalDay,finalHour,finalDate;
 
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,6 +70,7 @@ public class FragmentTimer extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         createNotificationChannel();
 
         txtNameOfGoodForTimer=view.findViewById(R.id.txtNameOfGoodForTimer);
@@ -113,28 +123,72 @@ public class FragmentTimer extends Fragment {
         setTimerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!txtNameOfGoodForTimer.getText().toString().isEmpty() && !dropDownMonth.getSelectedItem().toString().equals("0 месяцев")
-                || !dropDownDay.getSelectedItem().toString().equals("0 дней") || !dropDownHour.getSelectedItem().toString().equals("0 часов") ) {
-                    makingIntDate();
-                    makingLongData();
+                if(!txtNameOfGoodForTimer.getText().toString().isEmpty() ) {
+                    if( !dropDownMonth.getSelectedItem().toString().equals("0 месяцев") || !dropDownDay.getSelectedItem().toString().equals("0 дней")
+                            || !dropDownHour.getSelectedItem().toString().equals("0 часов")) {
+                       Intent  intent = new Intent(getContext(), ReminderForTimer.class);
 
-                    Toast.makeText(getContext(), "Таймер установлен!", Toast.LENGTH_SHORT).show();
+                        makingIntDate();
+                        makingLongData();
 
-                    txtNameOfGoodForTimer.getText().clear();
-                    dropDownMonth.setSelection(0);
-                    dropDownDay.setSelection(0);
-                    dropDownHour.setSelection(0);
 
-                    Intent intent = new Intent(getContext(),ReminderForTimer.class);
-                    PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), 0, intent, 0);
-                    AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+                        String nameOfGood=txtNameOfGoodForTimer.getText().toString();
+                        txtNameOfGoodForTimer.getText().clear();
+                        dropDownMonth.setSelection(0);
+                        dropDownDay.setSelection(0);
+                        dropDownHour.setSelection(0);
+                        intent.putExtra("nameOfGood",nameOfGood);
 
-                    long timeAtButtonClicked = System.currentTimeMillis();
-                    long timeForCheck=1000* 10;
+                        Toast.makeText(getContext(), "Таймер установлен!", Toast.LENGTH_SHORT).show();
 
-                    //надо юзать finalDate
-                    alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonClicked + timeForCheck, pendingIntent);
 
+                        int num=(int) System.currentTimeMillis();
+                        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), num, intent, 0);
+                        AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+
+                        long timeAtButtonClicked = System.currentTimeMillis();
+                        long timeForCheck = 1000 * 10;
+
+                        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        //надо юзать finalDate
+                        alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonClicked + timeForCheck, pendingIntent);
+
+
+                       /* //my try, let's gooo
+                        intent=new Intent(getContext(), AddGoodAndOtherActivity.class);
+
+                        AlarmManager.OnAlarmListener alarmListener = null;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            alarmListener=new AlarmManager.OnAlarmListener() {
+                                @Override
+                                public void onAlarm() {
+                                    NotificationCompat.Builder builder=new NotificationCompat.Builder(getContext(),"notifyTimer")
+                                            //здесь должен быть наш лого!!!!!!!!!!!!!!!!!!!!!
+                                            .setSmallIcon(R.drawable.lamp)
+                                            .setContentTitle("Время раздумий закончилось!")
+                                            .setContentText("Таймер на обдумывание " +nameOfGood+" подошел к концу.")
+                                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                            .setContentIntent(pendingIntent);
+                                    NotificationManagerCompat notificationManager= NotificationManagerCompat.from(getContext());
+
+
+                                    int num2= (int) System.currentTimeMillis();
+                                    notificationManager.notify(num2,builder.build());
+                                }
+                            };
+                        }
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonClicked + timeForCheck
+                            ,"",alarmListener,new Handler());
+                        }
+
+                        //*/
+
+
+                        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    }else{
+                        Toast.makeText(getContext(), "Выберите дату", Toast.LENGTH_SHORT).show();
+                    }
                 }else{
                     Toast.makeText(getContext(), "Заполните все поля!", Toast.LENGTH_SHORT).show();
                 }
@@ -143,7 +197,7 @@ public class FragmentTimer extends Fragment {
     }
 
     public void makingIntDate(){
-        //делаю число из селекта
+        //делаю интовое число из селекта
         String selectedMonthString=dropDownMonth.getSelectedItem().toString();
         String countOfMoth="";
         for(int i=0;i<selectedMonthString.length();i++){
@@ -200,6 +254,7 @@ public class FragmentTimer extends Fragment {
 
             NotificationChannel channel=new NotificationChannel("notifyTimer",name,importance);
             channel.setDescription(description);
+
 
 
             NotificationManager notificationManager=getContext().getSystemService(NotificationManager.class);

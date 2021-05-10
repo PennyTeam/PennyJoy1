@@ -13,11 +13,11 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:paddingTop="95dp"
-
+            android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:layout_marginTop="40dp"
                 android:id="@+id/image_with_resultIcon"
                 android:layout_width="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -28,7 +28,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="90dp">
+            android:padding="20dp">
 
             <TextView
                 android:id="@+id/tv_result"
@@ -36,9 +36,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:textSize="30dp"
-                android:paddingLeft="90dp"
-                android:paddingRight="90dp"
-                android:gravity="center_vertical|center_horizontal"
+               android:textColor="@color/black"
+                android:gravity="center"
                 android:textAlignment="gravity"
                 android:singleLine="false"
                 android:text=""
@@ -48,7 +47,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="80dp">
+            android:padding="20dp">
 
             <ImageButton
                 android:id="@+id/btn_return_to_fragments"

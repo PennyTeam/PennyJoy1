@@ -52,6 +52,7 @@ public class SetUserActivity extends AppCompatActivity {
     private String newSurname;
     private String newLogin;
     private String newSalary;
+    private DecimalFormat decimalFormat=new DecimalFormat("#.###");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +92,7 @@ public class SetUserActivity extends AppCompatActivity {
         editTextName.setText(auth.getCurrentUser().getName());
         editTextSurname.setText(auth.getCurrentUser().getSurname());
         editTextLogin.setText(auth.getCurrentUser().getLogin());
-        editTextSalary.setText(auth.getCurrentUser().getSalary() + "");
+        editTextSalary.setText(decimalFormat.format(auth.getCurrentUser().getSalary()));
 
         String passwd = auth.getCurrentUser().getPasswd();
         String passwordStars = "";
@@ -103,10 +104,9 @@ public class SetUserActivity extends AppCompatActivity {
     OnGoodsRetrievedListener goodsListener=new OnGoodsRetrievedListener() {
         @Override
         public void OnRetrieved(ArrayList<Good> goods) {
-            DecimalFormat decimalFormat=new DecimalFormat("#.###");
             for (Good g:goods) {
-                String cost =decimalFormat.format(g.getCost()*valueOfCurrency);
-                g.setCost(Double.parseDouble(cost));
+                double cost=g.getCost()*valueOfCurrency;
+                g.setCost(cost);
                 GoodProvider provider=new GoodProvider();
                 provider.updateGood(g);
             }
@@ -115,7 +115,13 @@ public class SetUserActivity extends AppCompatActivity {
             updatedUser.setLogin(newLogin);
             updatedUser.setName(newName);
             updatedUser.setSalary(Double.parseDouble(newSalary));
+
             updatedUser.setSurname(newSurname);
+
+            UserProvider provider=new UserProvider();
+            provider.updateUser(updatedUser);
+
+            auth.setCurrentUser(updatedUser);
 
 
 
@@ -125,7 +131,7 @@ public class SetUserActivity extends AppCompatActivity {
 
             editor.commit();
             currencySymbol.setText(auth.getCurrentCurrency().getLabel());
-            editTextSalary.setText(auth.getCurrentUser().getSalary()+"");
+            editTextSalary.setText(decimalFormat.format(auth.getCurrentUser().getSalary()));
             Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
         }
     };
@@ -138,7 +144,6 @@ public class SetUserActivity extends AppCompatActivity {
             valueOfCurrency=currency;
 
 
-            User updatedUser=auth.getCurrentUser();
             auth.setCurrentCurrency((Currency) dropDownCurrency.getSelectedItem());
             SharedPreferences mySharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES),Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = mySharedPreferences.edit();
@@ -148,16 +153,12 @@ public class SetUserActivity extends AppCompatActivity {
 
             //------
 
-            DecimalFormat decimalFormat=new DecimalFormat("#.###");
-            newSalary = decimalFormat.format(Double.parseDouble(editTextSalary.getText().toString())*valueOfCurrency);
-            String salary=decimalFormat.format(Double.parseDouble(editTextSalary.getText().toString())*valueOfCurrency);
-            updatedUser.setSalary(Double.parseDouble(salary));
-            UserProvider provider=new UserProvider();
-            provider.updateUser(updatedUser);
+            newSalary =auth.getCurrentUser().getSalary()*valueOfCurrency+"";
 
-            auth.setCurrentUser(updatedUser);
+
+
             GoodProvider goodProvider=new GoodProvider();
-            goodProvider.getGoodsFromFirebase(updatedUser.getKey(),goodsListener);
+            goodProvider.getGoodsFromFirebase(auth.getCurrentUser().getKey(),goodsListener);
         }
     };
 
@@ -213,7 +214,6 @@ public class SetUserActivity extends AppCompatActivity {
                             editor.putString("loginOfTheAuthorizedUser", updatedUser.getLogin());
                             editor.commit();
                             Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
-
                         }
                     }
                 });

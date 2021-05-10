@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import com.example.pennyjoy.R;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,8 +45,8 @@ private int resource;
         productTitle.setText(good.getName());
         Auth auth=Auth.getInstance();
         currencyOfCostInHistoryOfGood.setText(auth.getCurrentCurrency().getLabel());
-
-        priceInNumbers.setText(good.getCost()+ "");
+        DecimalFormat decimalFormat=new DecimalFormat("#.###");
+        priceInNumbers.setText(decimalFormat.format(good.getCost()));
         anEssay.setText(good.getPurchaseOfPurpose());
         v.setTag(good.getUserKey());
         v.setTag(R.string.good_int_for_tag, good);
