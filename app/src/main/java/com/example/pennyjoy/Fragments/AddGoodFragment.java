@@ -118,7 +118,7 @@ public class AddGoodFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(!txtNameOfGood.getText().toString().isEmpty() && !txtCost.getText().toString().isEmpty()
-                && !txtPurchaseOfPurpose.getText().toString().isEmpty()
+                && !txtPurchaseOfPurpose.getText().toString().trim().isEmpty()
                 && Double.parseDouble(txtCost.getText().toString())>0
                 && counterOfSymbols >= 90){
                     //получаю текущего юзера и устанавливаю кей

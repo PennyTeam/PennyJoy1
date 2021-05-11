@@ -22,7 +22,7 @@
         android:textColor="#848484"
         android:text="Пока пусто!"
         android:textSize="40dp"
-        android:visibility="invisible"
+        android:textStyle="bold"
         />
 
 </RelativeLayout>
