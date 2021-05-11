@@ -41,7 +41,7 @@ public class UsersCurrencyProvider {
     public void getUsersCurrencyFromFirebase(String keyOfUser, OnUsersCurrencyRetrievedListener listener){
         Currency currency=new Currency();
         Query query = currencies.orderByChild("userKey").equalTo(keyOfUser);
-        query.addValueEventListener(new ValueEventListener() {
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot single : snapshot.getChildren()){

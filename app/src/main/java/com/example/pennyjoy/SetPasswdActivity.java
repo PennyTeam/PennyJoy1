@@ -99,7 +99,6 @@ public class SetPasswdActivity extends AppCompatActivity {
         if(auth.getCurrentUser().getPasswd().equals(oldPasswd)){
             return true;
         }
-        editTextOldPasswd.setError("Старый пароль введен неверно!");
         return false;
     }
     //

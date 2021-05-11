@@ -23,6 +23,7 @@ public class HistoryActivity extends AppCompatActivity {
     private ArrayList<Good> goodArrayList;
     private GoodsAdapter goodsAdapter;
     private Auth auth;
+    private TextView lblEmpty;
 
 
 
@@ -33,6 +34,8 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
 
         auth=Auth.getInstance();
+        lblEmpty=findViewById(R.id.lblEmptyInHistory);
+        lblEmpty.setVisibility(View.VISIBLE);
 
 
         listViewHistoryOfGoods = findViewById(R.id.listViewOfGoods);
@@ -53,6 +56,9 @@ public class HistoryActivity extends AppCompatActivity {
             public void OnRetrieved(ArrayList<Good> goods) {
                 goodArrayList.clear();
                 goodArrayList.addAll(goods);
+                if(!goodArrayList.isEmpty()) {
+                    lblEmpty.setVisibility(View.INVISIBLE);
+                }
                 goodsAdapter.notifyDataSetChanged();
 
             }
