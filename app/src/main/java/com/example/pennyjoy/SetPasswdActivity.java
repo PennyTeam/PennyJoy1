@@ -23,7 +23,6 @@ import Providers.UserProvider;
 public class SetPasswdActivity extends AppCompatActivity {
    private EditText editTextOldPasswd, newPasswd1, newPasswd2;
    private Button btnSaveNewPasswd;
-   private ImageButton btnReturnBack;
    private Auth auth;
    private ProgressBar progressBar;
 
@@ -36,7 +35,6 @@ public class SetPasswdActivity extends AppCompatActivity {
         newPasswd1 = findViewById(R.id.new_password1);
         newPasswd2 = findViewById(R.id.newPasswd2);
         btnSaveNewPasswd = findViewById(R.id.save_new_passwd);
-        btnReturnBack = findViewById(R.id.button_return_from_edit_password);
 
         progressBar=findViewById(R.id.progressBarInSetPasswd);
         btnSaveNewPasswd.setOnClickListener(new View.OnClickListener() {
@@ -85,14 +83,7 @@ public class SetPasswdActivity extends AppCompatActivity {
             }
         });
 
-        btnReturnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SetUserActivity.class);
-                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        });
+
     }
 
     public boolean checkOldPasswd(String oldPasswd){
