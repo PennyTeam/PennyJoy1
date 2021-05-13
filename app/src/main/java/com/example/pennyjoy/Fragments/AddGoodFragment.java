@@ -120,7 +120,8 @@ public class AddGoodFragment extends Fragment {
                 if(!txtNameOfGood.getText().toString().isEmpty() && !txtCost.getText().toString().isEmpty()
                 && !txtPurchaseOfPurpose.getText().toString().trim().isEmpty()
                 && Double.parseDouble(txtCost.getText().toString())>0
-                && counterOfSymbols >= 90){
+                && counterOfSymbols >= 90
+                        && !txtPurchaseOfPurpose.getText().toString().trim().isEmpty()){
                     //получаю текущего юзера и устанавливаю кей
 
                     User user=new User();
