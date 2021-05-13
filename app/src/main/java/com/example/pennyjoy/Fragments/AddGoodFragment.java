@@ -62,17 +62,7 @@ public class AddGoodFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        //сделали это чтобы при переходе сюда после нотифа кидало на маин а не в таймер
-        OnBackPressedCallback callback = new OnBackPressedCallback(true ) {
-            @Override
-            public void handleOnBackPressed() {
-                Intent intent=new Intent(getContext(), MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+
 
         floatingActionButton = view.findViewById(R.id.historyBtn);
         txtNameOfGood=view.findViewById(R.id.txtNameOfGood);

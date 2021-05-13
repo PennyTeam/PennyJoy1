@@ -61,6 +61,7 @@
                 android:padding="20dp"
                 android:layout_centerInParent="true">
                 <ImageButton
+                    android:id="@+id/imageOfCurrentGoal"
                     android:layout_width="208dp"
                     android:layout_height="198dp"
                     android:layout_centerInParent="true"

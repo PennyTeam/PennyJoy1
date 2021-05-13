@@ -90,7 +90,6 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="35dp"
                         android:textColor="@color/black"
-                        android:text="f"
                         android:textSize="29dp"
                         android:layout_marginRight="70dp"/>
 
@@ -163,6 +162,7 @@
                     android:backgroundTint="@color/white"
                     android:text="Выбрать фото цели"
                 android:foreground="?android:attr/selectableItemBackground"
+                android:onClick="chooseImageClicked"
                     android:textAllCaps="false"
                     android:textSize="20dp"
                     />
