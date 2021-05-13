@@ -32,6 +32,8 @@
     <string name="delete_account">Удалить аккаунт</string>
     <string name="enter_old_passwd">Введите старый пароль</string>
 
+    <string name="what_for">Зачем вам эта цель?</string>
+
     <string name="APP_PREFERENCES">MySP</string>
     <string name="id_for_categoty_adapter">122324525</string>
 
@@ -70,9 +72,9 @@
         <item>Несет ли эта покупка вред моему бюджету?</item>
 
     </string-array>
-<string name="mb_yes">Вероятно данный товар вам пригодится. Не помешало бы взять</string>
-<string name="mb_no">Вероятно вам не нужен данный товар и он может стать пустой тратой денег</string>
-<string name="yes">Данный товар вам дейтсвительно нужен. Смело берите!</string>
-<string name="no">Вам не понадобится данный товар!
+    <string name="mb_yes">Вероятно данный товар вам пригодится. Не помешало бы взять</string>
+    <string name="mb_no">Вероятно вам не нужен данный товар и он может стать пустой тратой денег</string>
+    <string name="yes">Данный товар вам дейтсвительно нужен. Смело берите!</string>
+    <string name="no">Вам не понадобится данный товар!
  Лучше отложите эти деньги</string>
 </resources>

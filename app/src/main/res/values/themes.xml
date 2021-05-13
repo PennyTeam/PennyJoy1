@@ -16,9 +16,11 @@
 
     <style name="SplashTheme" parent="Theme.MaterialComponents.NoActionBar">
         <item name="backgroundTint">@color/black</item>
+    </style>
 
 
-
-
+    <style name="HorizontalDeterminateProgressBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/horizontal_progress_bar</item>
     </style>
 </resources>
