@@ -148,9 +148,7 @@
                     android:onClick="addGoodClicked"
                     android:foreground="?android:attr/selectableItemBackground"
 
-                    app:srcCompat="@drawable/btn_add_good_image"
-
-                    tools:ignore="VectorDrawableCompat" />
+                    android:src="@drawable/btn_add_good_image" />
             </RelativeLayout>
         </RelativeLayout>
 
