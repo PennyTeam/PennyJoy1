@@ -1,5 +1,10 @@
 package Models;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class User {
 
     private String name;
@@ -9,6 +14,7 @@ public class User {
     private double salary;
     private String key;
     private static boolean accIsActive = true;
+    private int usersCurrentMonth;
 
 
 
@@ -25,6 +31,17 @@ public class User {
     public User(){};
 
     //здесь геттеры и сеттеры
+
+
+    public int getUsersCurrentMonth() {
+        return usersCurrentMonth;
+    }
+
+    public void setUsersCurrentMonth(int usersCurrentMonth) {
+        this.usersCurrentMonth = usersCurrentMonth;
+    }
+
+
     public String getKey() {
         return key;
     }

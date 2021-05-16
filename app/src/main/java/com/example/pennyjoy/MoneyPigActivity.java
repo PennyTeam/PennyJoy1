@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Base64;
@@ -17,13 +18,15 @@ import Interfaces.OnGoalRetrievedListener;
 import Models.Auth;
 import Models.Goal;
 import Providers.GoalProvider;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MoneyPigActivity extends AppCompatActivity {
     private GoalProvider goalProvider;
-    private ImageButton imageOfGoal;
+    private CircleImageView imageOfGoal;
     private Bitmap image;
     private ArrayList<Goal> goals;
     private Auth auth=Auth.getInstance();
+    private TextView lblNameOfGoal;
 
 
     @Override
@@ -31,19 +34,27 @@ public class MoneyPigActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_money_pig);
 
+        goals=new ArrayList<>();
+
         goalProvider =new GoalProvider();
         imageOfGoal=findViewById(R.id.imageOfCurrentGoal);
+        lblNameOfGoal=findViewById(R.id.lblNameOfGoal);
         goalProvider.getGoalsFromFirebase(auth.getCurrentUser().getKey(), new OnGoalRetrievedListener() {
             @Override
             public void onGoalRetrieved(ArrayList<Goal> goalList) {
                 goals.addAll(goalList);
 
-                byte[] imageBytes = new byte[0];
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                if(goals != null && !goals.isEmpty()) {
 
-                    imageBytes = Base64.getDecoder().decode(goalList.get(0).getImage());
-                    image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-                    imageOfGoal.setImageBitmap(image);
+                    Goal currentGoal = goalList.get(0);
+                    byte[] imageBytes = new byte[0];
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        imageBytes = Base64.getDecoder().decode(currentGoal.getImage());
+                        image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                        imageOfGoal.setImageBitmap(image);
+                    }
+                    lblNameOfGoal.setText(currentGoal.getName());
+
                 }
 
             }

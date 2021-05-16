@@ -12,7 +12,6 @@ Category {
         this.name = name;
     }
 
-//
 
 
 

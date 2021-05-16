@@ -6,11 +6,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import Models.Auth;
 import Models.CurrenciesList;
@@ -69,6 +74,12 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
             Auth auth=Auth.getInstance();
 
             User user=new User(name,surname,login,passwd,salary);
+
+            DateFormat dateFormat = new SimpleDateFormat("MM");
+            Date date = new Date();
+            user.setUsersCurrentMonth(Integer.parseInt(dateFormat.format(date)));
+            Log.e("MOTH!!!!!!!!!!!!!!!!:",user.getUsersCurrentMonth()+"");
+
             UserProvider provider=new UserProvider();
             provider.addUser(user);
             auth.setCurrentUser(user);

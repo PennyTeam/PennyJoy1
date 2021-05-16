@@ -99,7 +99,7 @@ public class AddGoalActivity extends AppCompatActivity {
                        && !txtWhatFor.getText().toString().trim().isEmpty()
                        && Double.parseDouble(txtCostOfGoal.getText().toString())>0
                        && counterOfSymbols >= 90
-                       && !txtWhatFor.getText().toString().trim().isEmpty() && !imageOfGoal.isEmpty() && imageOfGoal != null){
+                       && !txtWhatFor.getText().toString().trim().isEmpty() && imageOfGoal != null){
 
                    //получаю текущего юзера и устанавливаю кей
 
