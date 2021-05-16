@@ -66,14 +66,15 @@ public class SplashActivity extends AppCompatActivity {
                         OnGoalRetrievedListener listener1 = new OnGoalRetrievedListener() {
                             @Override
                             public void onGoalRetrieved(ArrayList<Goal> goalList) {
-                                GoalsList goalsList = GoalsList.getInstance();
-                                auth.setCurrentGoal(goalList.get(0));
-                                for(int i = 0; i<goalList.size(); i++){
-                                    if(goalList.get(i)!=auth.getCurrentGoal()){
-                                        goalsList.add(goalList.get(i));
+                                if(goalList !=null && !goalList.isEmpty()) {
+                                    GoalsList goalsList = GoalsList.getInstance();
+                                    auth.setCurrentGoal(goalList.get(0));
+                                    for (int i = 0; i < goalList.size(); i++) {
+                                        if (goalList.get(i) != auth.getCurrentGoal()) {
+                                            goalsList.add(goalList.get(i));
+                                        }
                                     }
                                 }
-
 
                             }
                         };

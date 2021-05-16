@@ -29,7 +29,6 @@ public class MoneyPigActivity extends AppCompatActivity {
     private GoalProvider goalProvider;
     private CircleImageView imageOfGoal;
     private Bitmap image;
-    private ArrayList<Goal> goals;
     private Auth auth=Auth.getInstance();
     private TextView lblNameOfGoal,lblProgressOfGoal,lblCurrencyOfGoalProgress;
     private ProgressBar progressBar;
@@ -44,7 +43,6 @@ public class MoneyPigActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_money_pig);
 
-        goals=new ArrayList<>();
 
         goalProvider =new GoalProvider();
         imageOfGoal=findViewById(R.id.imageOfCurrentGoal);
@@ -62,18 +60,16 @@ public class MoneyPigActivity extends AppCompatActivity {
         alertDialog = new AlertDialog.Builder(this);
         Goal currentGoal = auth.getCurrentGoal();
 
-
-                    byte[] imageBytes = new byte[0];
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                        imageBytes = Base64.getDecoder().decode(currentGoal.getImage());
-                        image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-                        imageOfGoal.setImageBitmap(image);
-                    }
-                    lblNameOfGoal.setText(currentGoal.getName());
-                    lblProgressOfGoal.setText(decimalFormat.format(currentGoal.getFullness())+" / "
-                            +decimalFormat.format(currentGoal.getCost()));
-                    progressBar.setProgress((int) ((currentGoal.getFullness() / currentGoal.getCost()) * 100));
-                }
+        byte[] imageBytes = new byte[0];
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            imageBytes = Base64.getDecoder().decode(currentGoal.getImage());
+            image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);imageOfGoal.setImageBitmap(image);
+        }
+        lblNameOfGoal.setText(currentGoal.getName());
+        lblProgressOfGoal.setText(decimalFormat.format(currentGoal.getFullness())+" / "
+                +decimalFormat.format(currentGoal.getCost()));
+        progressBar.setProgress((int) ((currentGoal.getFullness() / currentGoal.getCost()) * 100));
+    }
 
 
 
