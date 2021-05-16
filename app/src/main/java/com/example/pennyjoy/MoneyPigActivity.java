@@ -32,7 +32,7 @@ public class MoneyPigActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private DecimalFormat decimalFormat;
 
-
+//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
