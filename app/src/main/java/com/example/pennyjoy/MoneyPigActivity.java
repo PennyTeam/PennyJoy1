@@ -38,7 +38,7 @@ public class MoneyPigActivity extends AppCompatActivity {
     GoalsList goalsList = GoalsList.getInstance();
 
 
-
+//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
