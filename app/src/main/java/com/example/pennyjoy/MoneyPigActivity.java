@@ -1,7 +1,9 @@
 package com.example.pennyjoy;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,6 +21,7 @@ import java.util.Base64;
 import Interfaces.OnGoalRetrievedListener;
 import Models.Auth;
 import Models.Goal;
+import Models.GoalsList;
 import Providers.GoalProvider;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -31,6 +34,9 @@ public class MoneyPigActivity extends AppCompatActivity {
     private TextView lblNameOfGoal,lblProgressOfGoal,lblCurrencyOfGoalProgress;
     private ProgressBar progressBar;
     private DecimalFormat decimalFormat;
+    private AlertDialog.Builder alertDialog;
+    GoalsList goalsList = GoalsList.getInstance();
+
 
 
     @Override
@@ -52,14 +58,11 @@ public class MoneyPigActivity extends AppCompatActivity {
         progressBar=findViewById(R.id.progressOfGoal);
 
         lblCurrencyOfGoalProgress.setText(auth.getCurrentCurrency().getLabel());
-        goalProvider.getGoalsFromFirebase(auth.getCurrentUser().getKey(), new OnGoalRetrievedListener() {
-            @Override
-            public void onGoalRetrieved(ArrayList<Goal> goalList) {
-                goals.addAll(goalList);
 
-                if(goals != null && !goals.isEmpty()) {
+        alertDialog = new AlertDialog.Builder(this);
+        Goal currentGoal = auth.getCurrentGoal();
 
-                    Goal currentGoal = goalList.get(0);
+
                     byte[] imageBytes = new byte[0];
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                         imageBytes = Base64.getDecoder().decode(currentGoal.getImage());
@@ -72,13 +75,32 @@ public class MoneyPigActivity extends AppCompatActivity {
                     progressBar.setProgress((int) ((currentGoal.getFullness() / currentGoal.getCost()) * 100));
                 }
 
-            }
-        });
 
-    }
 
     public void addGoalClicked(View v){
         Intent intent=new Intent(this,AddGoalActivity.class);
         startActivity(intent);
+    }
+
+    public void listOfGoalsBtnClicked(View v){
+        alertDialog.setTitle("Остальные цели");
+if(!goalsList.isEmpty()&& goalsList!=null) {
+    String[] goalsTitles = new String[goalsList.size()];
+    for (int i = 0; i < goalsTitles.length; i++) {
+        goalsTitles[i] = goalsList.get(i).getName();
+    }
+    alertDialog.setItems(goalsTitles, new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+
+        }
+    });
+
+    alertDialog.show();
+}
+else{
+    alertDialog.setMessage("У вас пока нет целей!");
+    alertDialog.show();
+}
     }
 }

@@ -155,6 +155,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/black"
+                    android:onClick="listOfGoalsBtnClicked"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
                     android:foreground="?android:attr/selectableItemBackground"

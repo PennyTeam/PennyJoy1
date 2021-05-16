@@ -7,19 +7,26 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import java.util.ArrayList;
+
+import Interfaces.OnGoalRetrievedListener;
 import Interfaces.OnUserRetrievedListener;
 import Interfaces.OnUsersCurrencyRetrievedListener;
 import Models.Auth;
 import Models.CategoryList;
 import Models.CurrenciesList;
 import Models.Currency;
+import Models.Goal;
+import Models.GoalsList;
 import Models.User;
+import Providers.GoalProvider;
 import Providers.UserProvider;
 import Providers.UsersCurrencyProvider;
 
 public class SplashActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     Auth auth=Auth.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,7 @@ public class SplashActivity extends AppCompatActivity {
 
         if(login!=null){
             UserProvider provider=new UserProvider();
+            GoalProvider goalProvider = new GoalProvider();
             OnUserRetrievedListener listener = new OnUserRetrievedListener() {
                 @Override
                 public void OnRetrieved(User user) {
@@ -55,13 +63,32 @@ public class SplashActivity extends AppCompatActivity {
 
                         auth.setCurrentUser(user);
 
+                        OnGoalRetrievedListener listener1 = new OnGoalRetrievedListener() {
+                            @Override
+                            public void onGoalRetrieved(ArrayList<Goal> goalList) {
+                                GoalsList goalsList = GoalsList.getInstance();
+                                auth.setCurrentGoal(goalList.get(0));
+                                for(int i = 0; i<goalList.size(); i++){
+                                    if(goalList.get(i)!=auth.getCurrentGoal()){
+                                        goalsList.add(goalList.get(i));
+                                    }
+                                }
+
+
+                            }
+                        };
+                        goalProvider.getGoalsFromFirebase(user.getKey(),listener1);
+
+
                         CurrenciesList currenciesList=CurrenciesList.getInstance();
                         currenciesList.init();
                         SharedPreferences mySharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
                         int idOfCurrency=mySharedPreferences.getInt("idOfCurrency",-1);
                         if(idOfCurrency==-1) {
                             auth.setCurrentCurrency(currenciesList.getCurrencies().get(0));
-                        }else{
+                        }
+
+                        else{
                             UsersCurrencyProvider usersCurrencyProvider=new UsersCurrencyProvider();
                             usersCurrencyProvider.getUsersCurrencyFromFirebase(auth.getCurrentUser().getKey(), new OnUsersCurrencyRetrievedListener() {
                                 @Override
@@ -89,7 +116,9 @@ public class SplashActivity extends AppCompatActivity {
                 }
             };
             provider.getUserFromFirebaseByLogin(login,listener);
-        }else{
+        }
+
+        else{
             sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
             Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -13,13 +13,19 @@ import android.widget.ProgressBar;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
+
+import Interfaces.OnGoalRetrievedListener;
 import Interfaces.OnUserRetrievedListener;
 import Interfaces.OnUsersCurrencyRetrievedListener;
 import Models.Auth;
 import Models.CategoryList;
 import Models.CurrenciesList;
 import Models.Currency;
+import Models.Goal;
+import Models.GoalsList;
 import Models.User;
+import Providers.GoalProvider;
 import Providers.UserProvider;
 import Providers.UsersCurrencyProvider;
 
@@ -99,6 +105,23 @@ public class  SignInActivity extends AppCompatActivity {
 
                                 auth.setCurrentUser(user1);
 
+
+                                OnGoalRetrievedListener listener1 = new OnGoalRetrievedListener() {
+                                    @Override
+                                    public void onGoalRetrieved(ArrayList<Goal> goalList) {
+                                        GoalsList goalsList = GoalsList.getInstance();
+                                        //сохраняю текующую цель сразу, чтобы она быстрее отображалась
+                                        auth.setCurrentGoal(goalList.get(0));
+                                        //добавляю в лист все цели кроме текущей
+                                        for(int i = 0; i<goalList.size(); i++){
+                                            if(goalList.get(i)!=auth.getCurrentGoal()){
+                                                goalsList.add(goalList.get(i));
+                                            }
+                                        }
+                                    }
+                                };
+                                GoalProvider goalProvider = new GoalProvider();
+                                goalProvider.getGoalsFromFirebase(auth.getCurrentUser().getKey(), listener1);
 
 
                                 CurrenciesList currenciesList = CurrenciesList.getInstance();

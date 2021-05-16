@@ -31,6 +31,7 @@ import java.util.Base64;
 import Models.Auth;
 import Models.Category;
 import Models.Goal;
+import Models.GoalsList;
 import Models.Good;
 import Models.User;
 import Providers.GoalProvider;
@@ -116,12 +117,15 @@ public class AddGoalActivity extends AppCompatActivity {
                    GoalProvider goalProvider=new GoalProvider();
                    goalProvider.addGoal(goal);
 
+                   GoalsList goalsList = GoalsList.getInstance();
+                   goalsList.add(goal);
 
                    txtNameOfGoal.getText().clear();
                    txtCostOfGoal.getText().clear();
                    txtWhatFor.getText().clear();
                    addImageOfGoalBtn.setText("Выбрать фото цели");
                    Toast.makeText(getApplicationContext(),"Цель добавлена, Удачи!",Toast.LENGTH_LONG).show();
+
                }else{
                    Snackbar.make(v, "Заполните все поля корректно", Snackbar.LENGTH_LONG).show();
                }

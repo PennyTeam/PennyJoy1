@@ -3,6 +3,7 @@ package Models;
 public class Auth {
     private static User currentUser;
     private static Currency currentCurrency;
+    private static Goal currentGoal;
     private Auth(){
 
     }
@@ -16,6 +17,17 @@ public class Auth {
         return Auth.AuthHolder.instance;
 
     }
+
+    //
+    public  Goal getCurrentGoal() {
+        return currentGoal;
+    }
+
+    public void setCurrentGoal(Goal currentGoal) {
+        Auth.currentGoal = currentGoal;
+    }
+    //
+
 
     public User getCurrentUser() {
         return currentUser;
