@@ -94,17 +94,26 @@ public class MoneyPigActivity extends AppCompatActivity {
         if( goalsList!=null && !goalsList.isEmpty()) {
 
 
-            String[] goalsTitles = new String[goalsList.size()];
+            String[] goalsTitles = new String[goalsList.size()-1];
             for (int i = 0; i < goalsTitles.length; i++) {
-                goalsTitles[i] = goalsList.get(i).getName();
+                if(i+1 ==goalsList.size()){
+                    break;
+                }
+                goalsTitles[i] = goalsList.get(i+1).getName();
             }
-            alertDialog.setItems(goalsTitles, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
+            if(goalsTitles.length == 0){
+                alertDialog.setMessage("У вас пока нет прочих целей!");
+                alertDialog.show();
+            }else {
+                alertDialog.setItems(goalsTitles, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                }});
+                    }
+                });
 
-            alertDialog.show();
+                alertDialog.show();
+            }
         }
         else{
             alertDialog.setMessage("У вас пока нет целей!");
