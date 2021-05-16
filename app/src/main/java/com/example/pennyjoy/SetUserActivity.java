@@ -25,14 +25,17 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import Interfaces.OnCurrencyConvertRetrievedListener;
+import Interfaces.OnGoalRetrievedListener;
 import Interfaces.OnGoodsRetrievedListener;
 import Models.Auth;
 import Models.CategoryList;
 import Models.CurrenciesList;
 import Models.Currency;
+import Models.Goal;
 import Models.Good;
 import Models.User;
 import Providers.CurrencyProvider;
+import Providers.GoalProvider;
 import Providers.GoodProvider;
 import Providers.UserProvider;
 import Providers.UsersCurrencyProvider;
@@ -140,8 +143,32 @@ public class SetUserActivity extends AppCompatActivity {
             editor.commit();
             currencySymbol.setText(auth.getCurrentCurrency().getLabel());
             editTextSalary.setText(decimalFormat.format(auth.getCurrentUser().getSalary()));
-            progressBar.setVisibility(View.INVISIBLE);
-            Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
+
+            //уюрать
+            GoalProvider goalProvider=new GoalProvider();
+
+            goalProvider.getGoalsFromFirebase(auth.getCurrentUser().getKey(), new OnGoalRetrievedListener() {
+                @Override
+                public void onGoalRetrieved(ArrayList<Goal> goalList) {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
+                    if(goalList != null && !goalList.isEmpty()) {
+
+                        Goal currentGoal = goalList.get(0);
+                        currentGoal.setFullness(currentGoal.getFullness() * valueOfCurrency);
+                        currentGoal.setCost(currentGoal.getCost() * valueOfCurrency);
+                        goalProvider.updateGoal(currentGoal);
+
+
+                    }
+
+                }
+            });
+            //уюрать
+           // progressBar.setVisibility(View.INVISIBLE);
+
+
+            //Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
         }
     };
 

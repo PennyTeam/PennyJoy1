@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,12 +32,18 @@ import com.example.pennyjoy.MainActivity;
 import com.example.pennyjoy.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.Base64;
+
+import Interfaces.OnGoalRetrievedListener;
 import Models.Auth;
 import Models.Category;
 import Models.CategoryList;
+import Models.Goal;
 import Models.Good;
 import Models.User;
 import Notifycations.ReminderForTimer;
+import Providers.GoalProvider;
 import Providers.GoodProvider;
 
 public class AddGoodFragment extends Fragment {
@@ -162,8 +169,21 @@ public class AddGoodFragment extends Fragment {
                     progressBar.setVisibility(View.VISIBLE);
 
                     double costOfGood= Double.parseDouble(txtCost.getText().toString());
+                    GoalProvider goalProvider=new GoalProvider();
 
+                    goalProvider.getGoalsFromFirebase(auth.getCurrentUser().getKey(), new OnGoalRetrievedListener() {
+                        @Override
+                        public void onGoalRetrieved(ArrayList<Goal> goalList) {
 
+                            if(goalList != null && !goalList.isEmpty()) {
+
+                                Goal currentGoal = goalList.get(0);
+                                currentGoal.setFullness(currentGoal.getFullness() + costOfGood);
+                                goalProvider.updateGoal(currentGoal);
+                            }
+
+                        }
+                    });
 
                     txtCost.getText().clear();
                     dropDownCategory.setSelection(0);
@@ -192,6 +212,10 @@ public class AddGoodFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 4 ){
                     btnAddGood.setOnClickListener(listenerForGoal);
+
+                    txtNameOfGood.getText().clear();
+                    txtPurchaseOfPurpose.getText().clear();
+
                    txtNameOfGood.setEnabled(false);
                    txtNameOfGood.setBackgroundResource(R.drawable.body_for_edit_text_enebled);
 
