@@ -14,6 +14,8 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -85,8 +87,13 @@ public class MoneyPigActivity extends AppCompatActivity {
     }
 
     public void addGoalClicked(View v){
-        Intent intent=new Intent(this,AddGoalActivity.class);
-        startActivity(intent);
+        if(goalsList.size() == 6){
+            Snackbar.make(v, "Количество целей не может быть больше 6!", Snackbar.LENGTH_SHORT).show();
+        }
+        else {
+            Intent intent = new Intent(this, AddGoalActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void listOfGoalsBtnClicked(View v){

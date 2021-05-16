@@ -45,7 +45,7 @@ public class AddGoalActivity extends AppCompatActivity {
     private AppCompatButton addImageOfGoalBtn;
     private ImageButton addGoalBtn;
     private EditText txtNameOfGoal, txtCostOfGoal, txtWhatFor;
-
+    private GoalsList goalsList = GoalsList.getInstance();
     private int counterOfSymbols=0;
 
 
@@ -120,7 +120,7 @@ public class AddGoalActivity extends AppCompatActivity {
                    GoalProvider goalProvider=new GoalProvider();
                    goalProvider.addGoal(goal);
 
-                   GoalsList goalsList = GoalsList.getInstance();
+
                    goalsList.add(goal);
 
 
