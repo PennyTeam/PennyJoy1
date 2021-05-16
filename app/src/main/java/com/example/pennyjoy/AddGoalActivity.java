@@ -96,42 +96,48 @@ public class AddGoalActivity extends AppCompatActivity {
        addGoalBtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               if(!txtNameOfGoal.getText().toString().isEmpty() && !txtCostOfGoal.getText().toString().isEmpty()
-                       && !txtWhatFor.getText().toString().trim().isEmpty()
-                       && Double.parseDouble(txtCostOfGoal.getText().toString())>0
-                       && counterOfSymbols >= 90
-                       && !txtWhatFor.getText().toString().trim().isEmpty() && imageOfGoal != null){
+               if(goalsList.size() == 6){
+                   Snackbar.make(v, "Количество целей не может быть больше 6!", Snackbar.LENGTH_SHORT).show();
+               }
+               else {
 
-                   //получаю текущего юзера и устанавливаю кей
+                   if (!txtNameOfGoal.getText().toString().isEmpty() && !txtCostOfGoal.getText().toString().isEmpty()
+                           && !txtWhatFor.getText().toString().trim().isEmpty()
+                           && Double.parseDouble(txtCostOfGoal.getText().toString()) > 0
+                           && counterOfSymbols >= 90
+                           && !txtWhatFor.getText().toString().trim().isEmpty() && imageOfGoal != null) {
 
-                   User user=new User();
-                   Auth auth=Auth.getInstance();
+                       //получаю текущего юзера и устанавливаю кей
+
+                       User user = new User();
+                       Auth auth = Auth.getInstance();
 
 
-                   String keyOfUser= auth.getCurrentUser().getKey();
-                   String nameOfGoal= txtNameOfGoal.getText().toString();
-                   String whatFor= txtWhatFor.getText().toString();
-                   double costOfGoal= Double.parseDouble(txtCostOfGoal.getText().toString());
+                       String keyOfUser = auth.getCurrentUser().getKey();
+                       String nameOfGoal = txtNameOfGoal.getText().toString();
+                       String whatFor = txtWhatFor.getText().toString();
+                       double costOfGoal = Double.parseDouble(txtCostOfGoal.getText().toString());
 
-                   Goal goal=new Goal(imageOfGoal,nameOfGoal,costOfGoal,whatFor,keyOfUser);
-                   if(auth.getCurrentGoal() == null) {
-                       auth.setCurrentGoal(goal);
+                       Goal goal = new Goal(imageOfGoal, nameOfGoal, costOfGoal, whatFor, keyOfUser);
+                       if (auth.getCurrentGoal() == null) {
+                           auth.setCurrentGoal(goal);
+                       }
+                       GoalProvider goalProvider = new GoalProvider();
+                       goalProvider.addGoal(goal);
+
+
+                       goalsList.add(goal);
+
+
+                       txtNameOfGoal.getText().clear();
+                       txtCostOfGoal.getText().clear();
+                       txtWhatFor.getText().clear();
+                       addImageOfGoalBtn.setText("Выбрать фото цели");
+                       Toast.makeText(getApplicationContext(), "Цель добавлена, Удачи!", Toast.LENGTH_SHORT).show();
+
+                   } else {
+                       Snackbar.make(v, "Заполните все поля корректно", Snackbar.LENGTH_SHORT).show();
                    }
-                   GoalProvider goalProvider=new GoalProvider();
-                   goalProvider.addGoal(goal);
-
-
-                   goalsList.add(goal);
-
-
-                   txtNameOfGoal.getText().clear();
-                   txtCostOfGoal.getText().clear();
-                   txtWhatFor.getText().clear();
-                   addImageOfGoalBtn.setText("Выбрать фото цели");
-                   Toast.makeText(getApplicationContext(),"Цель добавлена, Удачи!",Toast.LENGTH_SHORT).show();
-
-               }else{
-                   Snackbar.make(v, "Заполните все поля корректно", Snackbar.LENGTH_SHORT).show();
                }
            }
        });

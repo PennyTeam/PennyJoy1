@@ -103,13 +103,13 @@ public class MoneyPigActivity extends AppCompatActivity {
 
             String[] goalsTitles = new String[goalsList.size()-1];
             for (int i = 0; i < goalsTitles.length; i++) {
-                if(i+1 ==goalsList.size()){
+                if(i+1 == goalsList.size()){
                     break;
                 }
                 goalsTitles[i] = goalsList.get(i+1).getName();
             }
             if(goalsTitles.length == 0){
-                alertDialog.setMessage("У вас пока нет прочих целей!");
+                alertDialog.setMessage("У вас есть только текущаяя цель!");
                 alertDialog.show();
             }else {
                 alertDialog.setItems(goalsTitles, new DialogInterface.OnClickListener() {
