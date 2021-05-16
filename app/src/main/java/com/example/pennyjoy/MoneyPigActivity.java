@@ -26,7 +26,6 @@ import Providers.GoalProvider;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MoneyPigActivity extends AppCompatActivity {
-    private GoalProvider goalProvider;
     private CircleImageView imageOfGoal;
     private Bitmap image;
     private Auth auth=Auth.getInstance();
@@ -34,17 +33,27 @@ public class MoneyPigActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private DecimalFormat decimalFormat;
     private AlertDialog.Builder alertDialog;
-    GoalsList goalsList = GoalsList.getInstance();
+    private GoalsList goalsList = GoalsList.getInstance();
+    private Goal currentGoal;
 
 
-//
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_money_pig);
 
 
-        goalProvider =new GoalProvider();
+    }
+
+    //делаем так, чтобы после добавления первой цели юзера сразу все отображалось (хотели флагами исправить, но не красиов выглядило)
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        currentGoal = auth.getCurrentGoal();
         imageOfGoal=findViewById(R.id.imageOfCurrentGoal);
         lblNameOfGoal=findViewById(R.id.lblNameOfGoal);
 
@@ -58,9 +67,9 @@ public class MoneyPigActivity extends AppCompatActivity {
         lblCurrencyOfGoalProgress.setText(auth.getCurrentCurrency().getLabel());
 
         alertDialog = new AlertDialog.Builder(this);
-        Goal currentGoal = auth.getCurrentGoal();
 
-        if(!goalsList.isEmpty()) {
+
+        if(currentGoal != null) {
             byte[] imageBytes = new byte[0];
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                 imageBytes = Base64.getDecoder().decode(currentGoal.getImage());
@@ -70,21 +79,19 @@ public class MoneyPigActivity extends AppCompatActivity {
             lblNameOfGoal.setText(currentGoal.getName());
             lblProgressOfGoal.setText(decimalFormat.format(currentGoal.getFullness()) + " / "
                     + decimalFormat.format(currentGoal.getCost()));
+
             progressBar.setProgress((int) ((currentGoal.getFullness() / currentGoal.getCost()) * 100));
         }
     }
 
-
-
     public void addGoalClicked(View v){
         Intent intent=new Intent(this,AddGoalActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
     public void listOfGoalsBtnClicked(View v){
         alertDialog.setTitle("Остальные цели");
-if(!goalsList.isEmpty()&& goalsList!=null) {
+        if(!goalsList.isEmpty()&& goalsList!=null) {
 
     String[] goalsTitles = new String[goalsList.size()];
     for (int i = 0; i < goalsTitles.length; i++) {

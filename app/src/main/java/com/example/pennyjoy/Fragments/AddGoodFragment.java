@@ -31,6 +31,8 @@ import com.example.pennyjoy.HistoryActivity;
 import com.example.pennyjoy.MainActivity;
 import com.example.pennyjoy.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Base64;
@@ -55,7 +57,7 @@ public class AddGoodFragment extends Fragment {
     private TextView lblCounterOfTextInput,currencyOfCostInAddGood;
     private int counterOfSymbols=0;
     private ProgressBar progressBar;
-
+    private Auth auth=Auth.getInstance();
     private CategoryList categoryList=CategoryList.getInstance();
 
 
@@ -128,7 +130,7 @@ public class AddGoodFragment extends Fragment {
                     //получаю текущего юзера и устанавливаю кей
 
                     User user=new User();
-                    Auth auth=Auth.getInstance();
+
 
                     progressBar.setVisibility(View.VISIBLE);
                     String keyOfUser= auth.getCurrentUser().getKey();
@@ -156,54 +158,47 @@ public class AddGoodFragment extends Fragment {
             }
         };
 
-        //он клик при выборе уели в категориях
+        //он клик при выборе цели в категориях
         View.OnClickListener listenerForGoal =new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if( !txtCost.getText().toString().isEmpty() && Double.parseDouble(txtCost.getText().toString())>0){
-                    //получаю текущего юзера и устанавливаю кей
+                if (auth.getCurrentGoal() != null) {
+                    if (!txtCost.getText().toString().isEmpty() && Double.parseDouble(txtCost.getText().toString()) > 0) {
+                        //получаю текущего юзера и устанавливаю кей
 
-                    User user=new User();
-                    Auth auth=Auth.getInstance();
-
-                    progressBar.setVisibility(View.VISIBLE);
-
-                    double costOfGood= Double.parseDouble(txtCost.getText().toString());
-                    GoalProvider goalProvider=new GoalProvider();
-
-                    goalProvider.getGoalsFromFirebase(auth.getCurrentUser().getKey(), new OnGoalRetrievedListener() {
-                        @Override
-                        public void onGoalRetrieved(ArrayList<Goal> goalList) {
-
-                            if(goalList != null && !goalList.isEmpty()) {
-
-                                Goal currentGoal = goalList.get(0);
-                                currentGoal.setFullness(currentGoal.getFullness() + costOfGood);
-                                goalProvider.updateGoal(currentGoal);
-                            }
-
-                        }
-                    });
-
-                    txtCost.getText().clear();
-                    dropDownCategory.setSelection(0);
-                    progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(view.getContext(),"Деньги добавлены к вашей цели",Toast.LENGTH_LONG).show();
+                        User user = new User();
 
 
+                        progressBar.setVisibility(View.VISIBLE);
+
+                        double costOfGood = Double.parseDouble(txtCost.getText().toString());
+                        GoalProvider goalProvider = new GoalProvider();
+                        Goal currentGoal = auth.getCurrentGoal();
+
+                        currentGoal.setFullness(currentGoal.getFullness() + costOfGood);
+                        goalProvider.updateGoal(currentGoal);
 
 
-                    //________________________________________________________________
-                    btnAddGood.setOnClickListener(listenerForUsualGood);
-                    txtNameOfGood.setEnabled(true);
-                    txtNameOfGood.setBackgroundResource(R.drawable.body_for_edit_text);
+                        txtCost.getText().clear();
+                        dropDownCategory.setSelection(0);
+                        progressBar.setVisibility(View.INVISIBLE);
+                        Toast.makeText(view.getContext(), "Деньги добавлены к вашей цели", Toast.LENGTH_LONG).show();
 
-                    txtPurchaseOfPurpose.setEnabled(true);
-                    txtPurchaseOfPurpose.setBackgroundResource(R.drawable.body_for_edit_text);
-                    //________________________________________________________________
 
+                        //________________________________________________________________
+                        btnAddGood.setOnClickListener(listenerForUsualGood);
+                        txtNameOfGood.setEnabled(true);
+                        txtNameOfGood.setBackgroundResource(R.drawable.body_for_edit_text);
+
+                        txtPurchaseOfPurpose.setEnabled(true);
+                        txtPurchaseOfPurpose.setBackgroundResource(R.drawable.body_for_edit_text);
+                        //________________________________________________________________
+
+                    } else {
+                        Toast.makeText(view.getContext(), "Заполните все поля!", Toast.LENGTH_LONG).show();
+                    }
                 }else{
-                    Toast.makeText(view.getContext(),"Заполните все поля!",Toast.LENGTH_LONG).show();
+                    Snackbar.make(getView(),"У вас нет целей!", BaseTransientBottomBar.LENGTH_SHORT).show();
                 }
             }
         };

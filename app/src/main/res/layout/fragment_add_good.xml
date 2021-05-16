@@ -57,10 +57,12 @@
        android:textColor="@color/white"
        android:layout_centerHorizontal="true"
        android:textSize="30dp"
+
        />
    <EditText
        android:id="@+id/txtNameOfGood"
        android:layout_width="323dp"
+       android:maxLength="10"
        android:layout_height="37dp"
        android:layout_centerHorizontal="true"
        android:paddingLeft="20dp"
@@ -93,7 +95,7 @@
        android:layout_marginTop="50dp"
        android:inputType="numberDecimal"
        android:paddingLeft="20dp"
-       android:maxLength="12"
+       android:maxLength="10"
        android:background="@drawable/body_for_edit_text" />
 
    <TextView

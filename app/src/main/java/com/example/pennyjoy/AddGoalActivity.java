@@ -114,11 +114,15 @@ public class AddGoalActivity extends AppCompatActivity {
                    double costOfGoal= Double.parseDouble(txtCostOfGoal.getText().toString());
 
                    Goal goal=new Goal(imageOfGoal,nameOfGoal,costOfGoal,whatFor,keyOfUser);
+                   if(auth.getCurrentGoal() == null) {
+                       auth.setCurrentGoal(goal);
+                   }
                    GoalProvider goalProvider=new GoalProvider();
                    goalProvider.addGoal(goal);
 
                    GoalsList goalsList = GoalsList.getInstance();
                    goalsList.add(goal);
+
 
                    txtNameOfGoal.getText().clear();
                    txtCostOfGoal.getText().clear();
