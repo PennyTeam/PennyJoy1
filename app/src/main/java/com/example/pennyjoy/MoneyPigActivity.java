@@ -60,27 +60,32 @@ public class MoneyPigActivity extends AppCompatActivity {
         alertDialog = new AlertDialog.Builder(this);
         Goal currentGoal = auth.getCurrentGoal();
 
-        byte[] imageBytes = new byte[0];
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            imageBytes = Base64.getDecoder().decode(currentGoal.getImage());
-            image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);imageOfGoal.setImageBitmap(image);
+        if(!goalsList.isEmpty()) {
+            byte[] imageBytes = new byte[0];
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                imageBytes = Base64.getDecoder().decode(currentGoal.getImage());
+                image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                imageOfGoal.setImageBitmap(image);
+            }
+            lblNameOfGoal.setText(currentGoal.getName());
+            lblProgressOfGoal.setText(decimalFormat.format(currentGoal.getFullness()) + " / "
+                    + decimalFormat.format(currentGoal.getCost()));
+            progressBar.setProgress((int) ((currentGoal.getFullness() / currentGoal.getCost()) * 100));
         }
-        lblNameOfGoal.setText(currentGoal.getName());
-        lblProgressOfGoal.setText(decimalFormat.format(currentGoal.getFullness())+" / "
-                +decimalFormat.format(currentGoal.getCost()));
-        progressBar.setProgress((int) ((currentGoal.getFullness() / currentGoal.getCost()) * 100));
     }
 
 
 
     public void addGoalClicked(View v){
         Intent intent=new Intent(this,AddGoalActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
     public void listOfGoalsBtnClicked(View v){
         alertDialog.setTitle("Остальные цели");
 if(!goalsList.isEmpty()&& goalsList!=null) {
+
     String[] goalsTitles = new String[goalsList.size()];
     for (int i = 0; i < goalsTitles.length; i++) {
         goalsTitles[i] = goalsList.get(i).getName();

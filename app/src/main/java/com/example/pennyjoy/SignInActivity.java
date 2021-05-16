@@ -38,8 +38,7 @@ public class  SignInActivity extends AppCompatActivity {
     private SharedPreferences.Editor editor;
     private Auth auth = Auth.getInstance();
     private ProgressBar progressBar;
-
-
+    GoalsList goalsList = GoalsList.getInstance();
 
 
 
@@ -109,15 +108,12 @@ public class  SignInActivity extends AppCompatActivity {
                                 OnGoalRetrievedListener listener1 = new OnGoalRetrievedListener() {
                                     @Override
                                     public void onGoalRetrieved(ArrayList<Goal> goalList) {
-                                        GoalsList goalsList = GoalsList.getInstance();
+
                                         //сохраняю текующую цель сразу, чтобы она быстрее отображалась
                                         auth.setCurrentGoal(goalList.get(0));
-                                        //добавляю в лист все цели кроме текущей
-                                        for(int i = 0; i<goalList.size(); i++){
-                                            if(goalList.get(i)!=auth.getCurrentGoal()){
-                                                goalsList.add(goalList.get(i));
-                                            }
-                                        }
+
+                                        goalsList.addAll(goalList);
+
                                     }
                                 };
                                 GoalProvider goalProvider = new GoalProvider();

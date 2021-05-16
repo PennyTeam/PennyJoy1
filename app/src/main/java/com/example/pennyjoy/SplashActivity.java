@@ -26,6 +26,7 @@ import Providers.UsersCurrencyProvider;
 public class SplashActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     Auth auth=Auth.getInstance();
+    GoalsList goalsList = GoalsList.getInstance();
 
 
     @Override
@@ -67,13 +68,10 @@ public class SplashActivity extends AppCompatActivity {
                             @Override
                             public void onGoalRetrieved(ArrayList<Goal> goalList) {
                                 if(goalList !=null && !goalList.isEmpty()) {
-                                    GoalsList goalsList = GoalsList.getInstance();
+//сохраняю текущую цель в auth, чтобы она быстрее отображалась
                                     auth.setCurrentGoal(goalList.get(0));
-                                    for (int i = 0; i < goalList.size(); i++) {
-                                        if (goalList.get(i) != auth.getCurrentGoal()) {
-                                            goalsList.add(goalList.get(i));
-                                        }
-                                    }
+                                    goalsList.addAll(goalList);
+
                                 }
 
                             }
