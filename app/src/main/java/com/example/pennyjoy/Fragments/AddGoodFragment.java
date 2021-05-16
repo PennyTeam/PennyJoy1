@@ -42,6 +42,7 @@ import Models.Auth;
 import Models.Category;
 import Models.CategoryList;
 import Models.Goal;
+import Models.GoalsList;
 import Models.Good;
 import Models.User;
 import Notifycations.ReminderForTimer;
@@ -165,34 +166,69 @@ public class AddGoodFragment extends Fragment {
                 if (auth.getCurrentGoal() != null) {
                     if (!txtCost.getText().toString().isEmpty() && Double.parseDouble(txtCost.getText().toString()) > 0) {
                         //получаю текущего юзера и устанавливаю кей
-
-                        User user = new User();
-
-
-                        progressBar.setVisibility(View.VISIBLE);
-
-                        double costOfGood = Double.parseDouble(txtCost.getText().toString());
                         GoalProvider goalProvider = new GoalProvider();
                         Goal currentGoal = auth.getCurrentGoal();
+                        double costOfGood = Double.parseDouble(txtCost.getText().toString());
+                        //если юзер закончил цель
+                        if(costOfGood + currentGoal.getFullness() >= currentGoal.getCost()){
+                            goalProvider.deleteGoal(currentGoal);
 
-                        currentGoal.setFullness(currentGoal.getFullness() + costOfGood);
-                        goalProvider.updateGoal(currentGoal);
+                            currentGoal.setFullness(currentGoal.getFullness() + costOfGood);
+                            Good good =new Good(4,currentGoal.getName(), currentGoal.getFullness()
+                            ,currentGoal.getWhatFor(),currentGoal.getUserKey());
+
+                            GoodProvider provider=new GoodProvider();
+                            provider.addGood(good);
 
 
-                        txtCost.getText().clear();
-                        dropDownCategory.setSelection(0);
-                        progressBar.setVisibility(View.INVISIBLE);
-                        Toast.makeText(view.getContext(), "Деньги добавлены к вашей цели", Toast.LENGTH_LONG).show();
+
+                            GoalsList goalsList =GoalsList.getInstance();
 
 
-                        //________________________________________________________________
-                        btnAddGood.setOnClickListener(listenerForUsualGood);
-                        txtNameOfGood.setEnabled(true);
-                        txtNameOfGood.setBackgroundResource(R.drawable.body_for_edit_text);
+                            goalsList.remove(currentGoal);
+                            if( goalsList != null && !goalsList.isEmpty()) {
+                                auth.setCurrentGoal(goalsList.get(0));
+                            }else{
+                                auth.setCurrentGoal(null);
+                            }
+                            txtCost.getText().clear();
+                            dropDownCategory.setSelection(0);
 
-                        txtPurchaseOfPurpose.setEnabled(true);
-                        txtPurchaseOfPurpose.setBackgroundResource(R.drawable.body_for_edit_text);
-                        //________________________________________________________________
+                            //________________________________________________________________
+                            btnAddGood.setOnClickListener(listenerForUsualGood);
+                            txtNameOfGood.setEnabled(true);
+                            txtNameOfGood.setBackgroundResource(R.drawable.body_for_edit_text);
+
+                            txtPurchaseOfPurpose.setEnabled(true);
+                            txtPurchaseOfPurpose.setBackgroundResource(R.drawable.body_for_edit_text);
+                            //________________________________________________________________
+                            Toast.makeText(getContext(),"Поздравляем! Вы завершили свою цель!",Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+
+
+                            progressBar.setVisibility(View.VISIBLE);
+
+
+                            currentGoal.setFullness(currentGoal.getFullness() + costOfGood);
+                            goalProvider.updateGoal(currentGoal);
+
+
+                            txtCost.getText().clear();
+                            dropDownCategory.setSelection(0);
+                            progressBar.setVisibility(View.INVISIBLE);
+                            Toast.makeText(view.getContext(), "Деньги добавлены к вашей цели", Toast.LENGTH_LONG).show();
+
+
+                            //________________________________________________________________
+                            btnAddGood.setOnClickListener(listenerForUsualGood);
+                            txtNameOfGood.setEnabled(true);
+                            txtNameOfGood.setBackgroundResource(R.drawable.body_for_edit_text);
+
+                            txtPurchaseOfPurpose.setEnabled(true);
+                            txtPurchaseOfPurpose.setBackgroundResource(R.drawable.body_for_edit_text);
+                            //________________________________________________________________
+                        }
 
                     } else {
                         Toast.makeText(view.getContext(), "Заполните все поля!", Toast.LENGTH_LONG).show();

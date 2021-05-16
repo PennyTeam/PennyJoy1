@@ -40,6 +40,10 @@ public class GoalProvider {
         goal.child(g.getKey()).setValue(g);
     }
 
+    public  void deleteGoal(Goal g){
+        goal.child(g.getKey()).removeValue();
+    }
+
 
 
     public void getGoalsFromFirebase(String keyOfUser, OnGoalRetrievedListener listener){

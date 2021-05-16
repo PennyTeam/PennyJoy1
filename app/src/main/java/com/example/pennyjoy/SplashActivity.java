@@ -68,7 +68,7 @@ public class SplashActivity extends AppCompatActivity {
                             @Override
                             public void onGoalRetrieved(ArrayList<Goal> goalList) {
                                 if(goalList !=null && !goalList.isEmpty()) {
-//сохраняю текущую цель в auth, чтобы она быстрее отображалась
+                                    //сохраняю текущую цель в auth, чтобы она быстрее отображалась
                                     auth.setCurrentGoal(goalList.get(0));
                                     goalsList.addAll(goalList);
 

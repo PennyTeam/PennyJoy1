@@ -17,11 +17,7 @@ public class GoalsList extends ArrayList<Goal> {
     }
 
 
-    public ArrayList<Goal> getGoalArrayList() {
-        return goalArrayList;
-    }
 
-   /* public void add(Goal goal){
-        goalArrayList.add(goal);
-    }*/
+
+
 }

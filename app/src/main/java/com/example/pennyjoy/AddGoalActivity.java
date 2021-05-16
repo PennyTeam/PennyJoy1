@@ -128,10 +128,10 @@ public class AddGoalActivity extends AppCompatActivity {
                    txtCostOfGoal.getText().clear();
                    txtWhatFor.getText().clear();
                    addImageOfGoalBtn.setText("Выбрать фото цели");
-                   Toast.makeText(getApplicationContext(),"Цель добавлена, Удачи!",Toast.LENGTH_LONG).show();
+                   Toast.makeText(getApplicationContext(),"Цель добавлена, Удачи!",Toast.LENGTH_SHORT).show();
 
                }else{
-                   Snackbar.make(v, "Заполните все поля корректно", Snackbar.LENGTH_LONG).show();
+                   Snackbar.make(v, "Заполните все поля корректно", Snackbar.LENGTH_SHORT).show();
                }
            }
        });
