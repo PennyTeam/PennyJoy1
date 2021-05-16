@@ -26,7 +26,7 @@ public class MoneyPigActivity extends AppCompatActivity {
     private Bitmap image;
     private ArrayList<Goal> goals;
     private Auth auth=Auth.getInstance();
-    private TextView lblNameOfGoal;
+    private TextView lblNameOfGoal,lblProgressOfGoal,lblCurrencyOfGoalProgress;
 
 
     @Override
@@ -39,6 +39,11 @@ public class MoneyPigActivity extends AppCompatActivity {
         goalProvider =new GoalProvider();
         imageOfGoal=findViewById(R.id.imageOfCurrentGoal);
         lblNameOfGoal=findViewById(R.id.lblNameOfGoal);
+
+        lblProgressOfGoal=findViewById(R.id.lblProgressOfGoal);
+        lblCurrencyOfGoalProgress=findViewById(R.id.lblCurrencyOfGoalProgress);
+
+        lblCurrencyOfGoalProgress.setText(auth.getCurrentCurrency().getLabel());
         goalProvider.getGoalsFromFirebase(auth.getCurrentUser().getKey(), new OnGoalRetrievedListener() {
             @Override
             public void onGoalRetrieved(ArrayList<Goal> goalList) {
@@ -54,7 +59,7 @@ public class MoneyPigActivity extends AppCompatActivity {
                         imageOfGoal.setImageBitmap(image);
                     }
                     lblNameOfGoal.setText(currentGoal.getName());
-
+                    lblProgressOfGoal.setText(currentGoal.getFullness()+"/"+currentGoal.getCost());
                 }
 
             }

@@ -3,12 +3,16 @@ package com.example.pennyjoy.Fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -105,14 +109,14 @@ public class AddGoodFragment extends Fragment {
         });
 
 
-
-        btnAddGood.setOnClickListener(new View.OnClickListener() {
+        //он клик для добавления обычного продукта
+        View.OnClickListener listenerForUsualGood=new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!txtNameOfGood.getText().toString().isEmpty() && !txtCost.getText().toString().isEmpty()
-                && !txtPurchaseOfPurpose.getText().toString().trim().isEmpty()
-                && Double.parseDouble(txtCost.getText().toString())>0
-                && counterOfSymbols >= 90
+                        && !txtPurchaseOfPurpose.getText().toString().trim().isEmpty()
+                        && Double.parseDouble(txtCost.getText().toString())>0
+                        && counterOfSymbols >= 90
                         && !txtPurchaseOfPurpose.getText().toString().trim().isEmpty()){
                     //получаю текущего юзера и устанавливаю кей
 
@@ -142,9 +146,76 @@ public class AddGoodFragment extends Fragment {
                 }else{
                     Toast.makeText(view.getContext(),"Заполните все поля!",Toast.LENGTH_LONG).show();
                 }
+            }
+        };
+
+        //он клик при выборе уели в категориях
+        View.OnClickListener listenerForGoal =new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if( !txtCost.getText().toString().isEmpty() && Double.parseDouble(txtCost.getText().toString())>0){
+                    //получаю текущего юзера и устанавливаю кей
+
+                    User user=new User();
+                    Auth auth=Auth.getInstance();
+
+                    progressBar.setVisibility(View.VISIBLE);
+
+                    double costOfGood= Double.parseDouble(txtCost.getText().toString());
+
+
+
+                    txtCost.getText().clear();
+                    dropDownCategory.setSelection(0);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(view.getContext(),"Деньги добавлены к вашей цели",Toast.LENGTH_LONG).show();
+
+
+
+
+                    //________________________________________________________________
+                    btnAddGood.setOnClickListener(listenerForUsualGood);
+                    txtNameOfGood.setEnabled(true);
+                    txtNameOfGood.setBackgroundResource(R.drawable.body_for_edit_text);
+
+                    txtPurchaseOfPurpose.setEnabled(true);
+                    txtPurchaseOfPurpose.setBackgroundResource(R.drawable.body_for_edit_text);
+                    //________________________________________________________________
+
+                }else{
+                    Toast.makeText(view.getContext(),"Заполните все поля!",Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+        dropDownCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 4 ){
+                    btnAddGood.setOnClickListener(listenerForGoal);
+                   txtNameOfGood.setEnabled(false);
+                   txtNameOfGood.setBackgroundResource(R.drawable.body_for_edit_text_enebled);
+
+                   txtPurchaseOfPurpose.setEnabled(false);
+                   txtPurchaseOfPurpose.setBackgroundResource(R.drawable.body_for_edit_text_enebled);
+
+                }
+                else{
+                    btnAddGood.setOnClickListener(listenerForUsualGood);
+                    txtNameOfGood.setEnabled(true);
+                    txtNameOfGood.setBackgroundResource(R.drawable.body_for_edit_text);
+
+                    txtPurchaseOfPurpose.setEnabled(true);
+                    txtPurchaseOfPurpose.setBackgroundResource(R.drawable.body_for_edit_text);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
+
+        btnAddGood.setOnClickListener(listenerForUsualGood);
 
         txtPurchaseOfPurpose.addTextChangedListener(new TextWatcher(){
 

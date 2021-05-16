@@ -7,6 +7,7 @@ public class Goal {
     private String whatFor;
     private String userKey;
     private String key;
+    private double fullness;
 
 
     public Goal(String image, String name, double cost, String whatFor, String keyOfUser) {
@@ -15,9 +16,19 @@ public class Goal {
         this.cost = cost;
         this.whatFor = whatFor;
         this.userKey=keyOfUser;
+        fullness=0;
     }
 
     public Goal() {
+    }
+
+
+    public double getFullness() {
+        return fullness;
+    }
+
+    public void setFullness(double fullness) {
+        this.fullness = fullness;
     }
 
     public String getImage() {
