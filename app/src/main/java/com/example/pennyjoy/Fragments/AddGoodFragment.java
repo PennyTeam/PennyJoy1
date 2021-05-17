@@ -174,7 +174,7 @@ public class AddGoodFragment extends Fragment {
                             goalProvider.deleteGoal(currentGoal);
 
                             currentGoal.setFullness(currentGoal.getFullness() + costOfGood);
-                            Good good =new Good(4,currentGoal.getName(), currentGoal.getFullness()
+                            Good good =new Good(7,currentGoal.getName(), currentGoal.getFullness()
                             ,currentGoal.getWhatFor(),currentGoal.getUserKey());
 
                             GoodProvider provider=new GoodProvider();
@@ -241,7 +241,7 @@ public class AddGoodFragment extends Fragment {
         dropDownCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 4 ){
+                if(position == 7 ){
                     btnAddGood.setOnClickListener(listenerForGoal);
 
                     txtNameOfGood.getText().clear();

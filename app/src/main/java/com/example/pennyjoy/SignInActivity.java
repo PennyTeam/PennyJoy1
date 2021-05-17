@@ -110,9 +110,10 @@ public class  SignInActivity extends AppCompatActivity {
                                     public void onGoalRetrieved(ArrayList<Goal> goalList) {
 
                                         //сохраняю текующую цель сразу, чтобы она быстрее отображалась
-                                        auth.setCurrentGoal(goalList.get(0));
-
-                                        goalsList.addAll(goalList);
+                                        if(goalList !=  null && !goalList.isEmpty()) {
+                                            auth.setCurrentGoal(goalList.get(0));
+                                            goalsList.addAll(goalList);
+                                        }
 
                                     }
                                 };

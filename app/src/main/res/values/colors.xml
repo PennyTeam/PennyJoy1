@@ -14,4 +14,22 @@
     <color name="forTargetLayout">#C0C0C0</color>
     <color name="crimson">#8B1414</color>
     <color name="gray">#B0B0B0</color>
+
+
+
+
+    <color name="food">#E15141</color>
+    <color name="travelings">#70C1F7</color>
+    <color name="transport">#AD52F4</color>
+    <color name="car">#586DF3</color>
+    <color name="cloth">#19EC7A</color>
+    <color name="debts">#FF0000</color>
+    <color name="investments">#F1C44D</color>
+    <color name="goals">#56BCA6</color>
+    <color name="lodging">#E59A35</color>
+    <color name="entertainment">#84D947</color>
+    <color name="health">#EA5181</color>
+    <color name="goods">#4BA65B</color>
+    <color name="smth">#7D8E9B</color>
+
 </resources>
