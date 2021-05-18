@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -24,18 +27,34 @@ public class ChartsActivity extends AppCompatActivity {
         PieChart pieChart = findViewById(R.id.pieChartOfSpendings);
 
         ArrayList<PieEntry> students = new ArrayList<PieEntry>();
-        students.add(new PieEntry(16, "2015"));
-        students.add(new PieEntry(90, "2016"));
-        students.add(new PieEntry(20, "2020"));
-        students.add(new PieEntry(100, "2021"));
-        students.add(new PieEntry(120, "2022"));
-        students.add(new PieEntry(130, "2023"));
+        students.add(new PieEntry(0.13f));
+        students.add(new PieEntry(0.26f));
+
+        Drawable foodIcon=null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            foodIcon = getDrawable(R.drawable.foodicon);
+        }
+
+        students.add(new PieEntry(0.39f));
+
+        students.add(new PieEntry(0.42f));
+        students.add(new PieEntry(0.55f,foodIcon));
+        students.add(new PieEntry(0.68f,foodIcon));
+        students.add(new PieEntry(0.81f,foodIcon));
+        students.add(new PieEntry(0.94f,foodIcon));
+        students.add(new PieEntry(1.07f,foodIcon));
+        students.add(new PieEntry(1.20f,foodIcon));
+        students.add(new PieEntry(1.33f,foodIcon));
+        students.add(new PieEntry(1.46f,foodIcon));
+        students.add(new PieEntry(1.59f,foodIcon));
+
 
         for (PieEntry pieEntry:students) {
 
             if(pieEntry.getValue() == 0){
                 pieEntry.setLabel("");
             }
+
         }
 
         PieDataSet pieDataSet = new PieDataSet(students,"Students");
@@ -54,6 +73,7 @@ public class ChartsActivity extends AppCompatActivity {
         PieData pieData = new PieData(pieDataSet);
 
         pieDataSet.setDrawValues(false);
+
 
 
         pieChart.setData(pieData);
