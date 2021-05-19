@@ -154,7 +154,7 @@ public class SetUserActivity extends AppCompatActivity {
             updatedUser.setLogin(newLogin);
             updatedUser.setName(newName);
             updatedUser.setSalary(Double.parseDouble(newSalary));
-
+            updatedUser.setUsersCurrentMonth(auth.getCurrentUser().getUsersCurrentMonth());
             updatedUser.setSurname(newSurname);
 
             UserProvider provider = new UserProvider();
@@ -189,10 +189,12 @@ public class SetUserActivity extends AppCompatActivity {
                 goalProvider.updateGoal(currentGoal);
 
             }
+            //вот здесь проблема с UI
             progressBar.setVisibility(View.GONE);
             currencySymbol.setText(auth.getCurrentCurrency().getLabel());
             editTextSalary.setText(decimalFormat.format(auth.getCurrentUser().getSalary()));
             Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
+            //вот здесь проблема с UI
         }
     };
 
@@ -236,9 +238,8 @@ public class SetUserActivity extends AppCompatActivity {
                             User updatedUser = auth.getCurrentUser();
                             updatedUser.setAccIsActive(auth.getCurrentUser().getAccIsActive());
                             updatedUser.setLogin(newLogin);
-                            DateFormat dateFormat = new SimpleDateFormat("MM");
-                            Date date = new Date();
-                            updatedUser.setUsersCurrentMonth(Integer.parseInt(dateFormat.format(date)));
+
+                            updatedUser.setUsersCurrentMonth(auth.getCurrentUser().getUsersCurrentMonth());
                             updatedUser.setName(newName);
                             updatedUser.setSalary(Double.parseDouble(newSalary));
                             updatedUser.setSurname(newSurname);
