@@ -53,4 +53,12 @@ returnToFragments.setOnClickListener(new View.OnClickListener() {
 });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, AddGoodAndOtherActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

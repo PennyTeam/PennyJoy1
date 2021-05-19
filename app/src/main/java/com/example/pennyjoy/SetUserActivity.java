@@ -21,8 +21,11 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import Interfaces.OnCurrencyConvertRetrievedListener;
 import Interfaces.OnGoalRetrievedListener;
@@ -32,6 +35,7 @@ import Models.CategoryList;
 import Models.CurrenciesList;
 import Models.Currency;
 import Models.Goal;
+import Models.GoalsList;
 import Models.Good;
 import Models.User;
 import Providers.CurrencyProvider;
@@ -58,12 +62,13 @@ public class SetUserActivity extends AppCompatActivity {
     private String newSalary;
     private ProgressBar progressBar;
     private DecimalFormat decimalFormat=new DecimalFormat("#.###");
+    private GoalsList goalsList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_user);
         btnSaveSettings = findViewById(R.id.save_settings);
-
+        goalsList = GoalsList.getInstance();
         btnDeleteAccount = findViewById(R.id.delete_user_btn);
         btnSetPasswd = findViewById(R.id.buttonPasswd);
         editTextName = findViewById(R.id.etext_name);
@@ -115,10 +120,10 @@ public class SetUserActivity extends AppCompatActivity {
     OnGoodsRetrievedListener goodsListener=new OnGoodsRetrievedListener() {
         @Override
         public void OnRetrieved(ArrayList<Good> goods) {
-            for (Good g:goods) {
-                double cost=g.getCost()*valueOfCurrency;
+            for (Good g : goods) {
+                double cost = g.getCost() * valueOfCurrency;
                 g.setCost(cost);
-                GoodProvider provider=new GoodProvider();
+                GoodProvider provider = new GoodProvider();
                 provider.updateGood(g);
             }
             User updatedUser = auth.getCurrentUser();
@@ -129,11 +134,10 @@ public class SetUserActivity extends AppCompatActivity {
 
             updatedUser.setSurname(newSurname);
 
-            UserProvider provider=new UserProvider();
+            UserProvider provider = new UserProvider();
             provider.updateUser(updatedUser);
 
             auth.setCurrentUser(updatedUser);
-
 
 
             sharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
@@ -144,32 +148,35 @@ public class SetUserActivity extends AppCompatActivity {
             currencySymbol.setText(auth.getCurrentCurrency().getLabel());
             editTextSalary.setText(decimalFormat.format(auth.getCurrentUser().getSalary()));
 
-            //уюрать
-            GoalProvider goalProvider=new GoalProvider();
+            GoalProvider goalProvider = new GoalProvider();
 
-            goalProvider.getGoalsFromFirebase(auth.getCurrentUser().getKey(), new OnGoalRetrievedListener() {
-                @Override
-                public void onGoalRetrieved(ArrayList<Goal> goalList) {
-                    progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
-                    if(goalList != null && !goalList.isEmpty()) {
+            progressBar.setVisibility(View.INVISIBLE);
+            Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
 
-                        Goal currentGoal = goalList.get(0);
-                        currentGoal.setFullness(currentGoal.getFullness() * valueOfCurrency);
-                        currentGoal.setCost(currentGoal.getCost() * valueOfCurrency);
-                        goalProvider.updateGoal(currentGoal);
+            if (goalsList != null && !goalsList.isEmpty()) {
+
+                Goal currentGoal = auth.getCurrentGoal();
 
 
+                for (Goal g : goalsList) {
+                    if (!g.equals(currentGoal)){
+                        g.setCost(g.getCost() * valueOfCurrency);
+                        g.setFullness(g.getFullness() * valueOfCurrency);
+                        goalProvider.updateGoal(g);
                     }
-
                 }
-            });
-            //уюрать
+                currentGoal.setFullness(currentGoal.getFullness() * valueOfCurrency);
+                currentGoal.setCost(currentGoal.getCost() * valueOfCurrency);
+                goalProvider.updateGoal(currentGoal);
+
+            }
+        }
+
            // progressBar.setVisibility(View.INVISIBLE);
 
 
             //Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
-        }
+
     };
 
 
@@ -242,6 +249,9 @@ public class SetUserActivity extends AppCompatActivity {
                             User updatedUser = auth.getCurrentUser();
                             updatedUser.setAccIsActive(auth.getCurrentUser().getAccIsActive());
                             updatedUser.setLogin(newLogin);
+                            DateFormat dateFormat = new SimpleDateFormat("MM");
+                            Date date = new Date();
+                            updatedUser.setUsersCurrentMonth(Integer.parseInt(dateFormat.format(date)));
                             updatedUser.setName(newName);
                             updatedUser.setSalary(Double.parseDouble(newSalary));
                             updatedUser.setSurname(newSurname);
