@@ -91,13 +91,7 @@ public class SetUserActivity extends AppCompatActivity {
         //currencyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         currencyAdapter.setDropDownViewResource(R.layout.drop_down_item_currency);
 
-        //делаем так, так как не корректно работает с userKey и key
-        /*Currency currencyForPosition=auth.getCurrentCurrency();
-        currencyForPosition.setKey(null);
-        currencyForPosition.setUserKey(null);
 
-
-        int positionOfCurrency = currencyAdapter.getPosition(currencyForPosition);*/
         dropDownCurrency.setAdapter(currencyAdapter);
         dropDownCurrency.setSelection(auth.getCurrentCurrency().getId());
 
@@ -145,13 +139,9 @@ public class SetUserActivity extends AppCompatActivity {
             editor.putString("loginOfTheAuthorizedUser", updatedUser.getLogin());
 
             editor.commit();
-            currencySymbol.setText(auth.getCurrentCurrency().getLabel());
-            editTextSalary.setText(decimalFormat.format(auth.getCurrentUser().getSalary()));
+
 
             GoalProvider goalProvider = new GoalProvider();
-
-            progressBar.setVisibility(View.INVISIBLE);
-            Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
 
             if (goalsList != null && !goalsList.isEmpty()) {
 
@@ -169,13 +159,17 @@ public class SetUserActivity extends AppCompatActivity {
                 currentGoal.setCost(currentGoal.getCost() * valueOfCurrency);
                 goalProvider.updateGoal(currentGoal);
 
+                progressBar.setVisibility(View.GONE);
+
+                currencySymbol.setText(auth.getCurrentCurrency().getLabel());
+                editTextSalary.setText(decimalFormat.format(auth.getCurrentUser().getSalary()));
+
+                Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
+
             }
         }
 
-           // progressBar.setVisibility(View.INVISIBLE);
 
-
-            //Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
 
     };
 
