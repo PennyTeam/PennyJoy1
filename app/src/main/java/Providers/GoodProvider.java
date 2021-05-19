@@ -40,7 +40,6 @@ public class GoodProvider {
         goods.child(good.getKey()).setValue(good);
     }
 
-    public void deleteUser(User user){ }
 
 
     public void getGoodsFromFirebase(String keyOfUser, OnGoodsRetrievedListener listener){

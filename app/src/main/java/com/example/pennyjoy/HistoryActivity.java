@@ -8,22 +8,22 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 
-import Interfaces.OnGoodsRetrievedListener;
+
+
 import Models.Auth;
-import Models.Good;
+
 import Adapters.GoodsAdapter;
-import Models.User;
-import Providers.GoodProvider;
+import Models.GoodsList;
+
 
 public class HistoryActivity extends AppCompatActivity {
 
     private ListView listViewHistoryOfGoods;
-    private ArrayList<Good> goodArrayList;
     private GoodsAdapter goodsAdapter;
     private Auth auth;
     private TextView lblEmpty;
+    private GoodsList goodsList;
 
 
 
@@ -34,40 +34,27 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
 
         auth=Auth.getInstance();
+        goodsList=GoodsList.getInstance();
+
         lblEmpty=findViewById(R.id.lblEmptyInHistory);
-        lblEmpty.setVisibility(View.VISIBLE);
+
 
 
         listViewHistoryOfGoods = findViewById(R.id.listViewOfGoods);
 
 
-
-        goodArrayList = new ArrayList<>();
-        goodsAdapter = new GoodsAdapter(getApplicationContext(),R.layout.good_template, goodArrayList);
-
-        listViewHistoryOfGoods.setAdapter(goodsAdapter);
-
-
-
-
-
-        OnGoodsRetrievedListener listener = new OnGoodsRetrievedListener() {
-            @Override
-            public void OnRetrieved(ArrayList<Good> goods) {
-                goodArrayList.clear();
-                goodArrayList.addAll(goods);
-                if(!goodArrayList.isEmpty()) {
-                    lblEmpty.setVisibility(View.INVISIBLE);
-                }
-                goodsAdapter.notifyDataSetChanged();
-
-            }
-        };
-        GoodProvider goodProvider = new GoodProvider();
+        if(goodsList != null && !goodsList.isEmpty()){
+            lblEmpty.setVisibility(View.GONE);
+            goodsAdapter = new GoodsAdapter(getApplicationContext(), R.layout.good_template, goodsList);
+            listViewHistoryOfGoods.setAdapter(goodsAdapter);
+        }else{
+            lblEmpty.setVisibility(View.VISIBLE);
+        }
 
 
-        String userKey = auth.getCurrentUser().getKey();
-        goodProvider.getGoodsFromFirebase(userKey,listener);
+
+
+
 
     }
 }

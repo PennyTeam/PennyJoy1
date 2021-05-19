@@ -44,6 +44,7 @@ import Models.CategoryList;
 import Models.Goal;
 import Models.GoalsList;
 import Models.Good;
+import Models.GoodsList;
 import Models.User;
 import Notifycations.ReminderForTimer;
 import Providers.GoalProvider;
@@ -143,6 +144,8 @@ public class AddGoodFragment extends Fragment {
                     Good good=new Good(category.getId(),nameOfGood,costOfGood,purchaseOfPurpose,keyOfUser);
                     GoodProvider provider=new GoodProvider();
                     provider.addGood(good);
+                    GoodsList goodsList=  GoodsList.getInstance();
+                    goodsList.add(good);
 
 
                     txtNameOfGood.getText().clear();
@@ -180,7 +183,8 @@ public class AddGoodFragment extends Fragment {
                             GoodProvider provider=new GoodProvider();
                             provider.addGood(good);
 
-
+                            GoodsList goodsList=  GoodsList.getInstance();
+                            goodsList.add(good);
 
                             GoalsList goalsList =GoalsList.getInstance();
 

@@ -29,13 +29,11 @@ import java.io.InputStream;
 import java.util.Base64;
 
 import Models.Auth;
-import Models.Category;
+
 import Models.Goal;
 import Models.GoalsList;
-import Models.Good;
 import Models.User;
 import Providers.GoalProvider;
-import Providers.GoodProvider;
 
 public class AddGoalActivity extends AppCompatActivity {
     private TextView currencyOfCostInAddGoal,lblCounterOfSymbols;

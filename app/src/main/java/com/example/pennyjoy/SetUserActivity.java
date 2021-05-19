@@ -8,11 +8,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -28,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import Interfaces.OnCurrencyConvertRetrievedListener;
-import Interfaces.OnGoalRetrievedListener;
 import Interfaces.OnGoodsRetrievedListener;
 import Models.Auth;
 import Models.CategoryList;
@@ -37,6 +37,7 @@ import Models.Currency;
 import Models.Goal;
 import Models.GoalsList;
 import Models.Good;
+import Models.GoodsList;
 import Models.User;
 import Providers.CurrencyProvider;
 import Providers.GoalProvider;
@@ -63,6 +64,8 @@ public class SetUserActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private DecimalFormat decimalFormat=new DecimalFormat("#.###");
     private GoalsList goalsList;
+
+    private GoodsList goodsList=GoodsList.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,15 +114,41 @@ public class SetUserActivity extends AppCompatActivity {
         }
         passwdStars.setText(passwordStars);
     }
-    OnGoodsRetrievedListener goodsListener=new OnGoodsRetrievedListener() {
+
+
+
+
+    OnCurrencyConvertRetrievedListener listener=new OnCurrencyConvertRetrievedListener() {
         @Override
-        public void OnRetrieved(ArrayList<Good> goods) {
-            for (Good g : goods) {
+        public void onRetrieved(double currency) {
+            valueOfCurrency = currency;
+
+            Currency currencyFromDropDown = (Currency) dropDownCurrency.getSelectedItem();
+            currencyFromDropDown.setUserKey(auth.getCurrentUser().getKey());
+            currencyFromDropDown.setKey(auth.getCurrentCurrency().getKey());
+
+            auth.setCurrentCurrency(currencyFromDropDown);
+            SharedPreferences mySharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = mySharedPreferences.edit();
+            editor.putInt("idOfCurrency", auth.getCurrentCurrency().getId());
+            editor.apply();
+            UsersCurrencyProvider usersCurrencyProvider = new UsersCurrencyProvider();
+            usersCurrencyProvider.updateCurrency(auth.getCurrentCurrency());
+            //_____
+
+            //------
+
+            newSalary = auth.getCurrentUser().getSalary() * valueOfCurrency + "";
+
+
+            //работаю с товарами
+            for (Good g : goodsList) {
                 double cost = g.getCost() * valueOfCurrency;
                 g.setCost(cost);
                 GoodProvider provider = new GoodProvider();
                 provider.updateGood(g);
             }
+            //работаю с юзером
             User updatedUser = auth.getCurrentUser();
             updatedUser.setAccIsActive(auth.getCurrentUser().getAccIsActive());
             updatedUser.setLogin(newLogin);
@@ -149,7 +178,7 @@ public class SetUserActivity extends AppCompatActivity {
 
 
                 for (Goal g : goalsList) {
-                    if (!g.equals(currentGoal)){
+                    if (!g.equals(currentGoal)) {
                         g.setCost(g.getCost() * valueOfCurrency);
                         g.setFullness(g.getFullness() * valueOfCurrency);
                         goalProvider.updateGoal(g);
@@ -159,50 +188,14 @@ public class SetUserActivity extends AppCompatActivity {
                 currentGoal.setCost(currentGoal.getCost() * valueOfCurrency);
                 goalProvider.updateGoal(currentGoal);
 
-                progressBar.setVisibility(View.GONE);
-
-                currencySymbol.setText(auth.getCurrentCurrency().getLabel());
-                editTextSalary.setText(decimalFormat.format(auth.getCurrentUser().getSalary()));
-
-                Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
-
             }
-        }
-
-
-
-    };
-
-
-
-    OnCurrencyConvertRetrievedListener listener=new OnCurrencyConvertRetrievedListener() {
-        @Override
-        public void onRetrieved(double currency) {
-            valueOfCurrency=currency;
-
-            Currency currencyFromDropDown=(Currency) dropDownCurrency.getSelectedItem();
-            currencyFromDropDown.setUserKey(auth.getCurrentUser().getKey());
-            currencyFromDropDown.setKey(auth.getCurrentCurrency().getKey());
-
-            auth.setCurrentCurrency(currencyFromDropDown);
-            SharedPreferences mySharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES),Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = mySharedPreferences.edit();
-            editor.putInt("idOfCurrency", auth.getCurrentCurrency().getId());
-            editor.apply();
-            UsersCurrencyProvider usersCurrencyProvider=new UsersCurrencyProvider();
-            usersCurrencyProvider.updateCurrency(auth.getCurrentCurrency());
-            //_____
-
-            //------
-
-            newSalary =auth.getCurrentUser().getSalary()*valueOfCurrency+"";
-
-
-
-            GoodProvider goodProvider=new GoodProvider();
-            goodProvider.getGoodsFromFirebase(auth.getCurrentUser().getKey(),goodsListener);
+            progressBar.setVisibility(View.GONE);
+            currencySymbol.setText(auth.getCurrentCurrency().getLabel());
+            editTextSalary.setText(decimalFormat.format(auth.getCurrentUser().getSalary()));
+            Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
         }
     };
+
 
     public void onClick(View v){
         int id = v.getId();

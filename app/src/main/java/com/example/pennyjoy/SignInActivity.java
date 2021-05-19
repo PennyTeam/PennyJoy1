@@ -16,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 
 import Interfaces.OnGoalRetrievedListener;
+import Interfaces.OnGoodsRetrievedListener;
 import Interfaces.OnUserRetrievedListener;
 import Interfaces.OnUsersCurrencyRetrievedListener;
 import Models.Auth;
@@ -24,8 +25,11 @@ import Models.CurrenciesList;
 import Models.Currency;
 import Models.Goal;
 import Models.GoalsList;
+import Models.Good;
+import Models.GoodsList;
 import Models.User;
 import Providers.GoalProvider;
+import Providers.GoodProvider;
 import Providers.UserProvider;
 import Providers.UsersCurrencyProvider;
 
@@ -38,7 +42,8 @@ public class  SignInActivity extends AppCompatActivity {
     private SharedPreferences.Editor editor;
     private Auth auth = Auth.getInstance();
     private ProgressBar progressBar;
-    GoalsList goalsList = GoalsList.getInstance();
+    private GoalsList goalsList = GoalsList.getInstance();
+    private GoodsList goodsList=GoodsList.getInstance();
 
 
 
@@ -119,6 +124,19 @@ public class  SignInActivity extends AppCompatActivity {
                                 };
                                 GoalProvider goalProvider = new GoalProvider();
                                 goalProvider.getGoalsFromFirebase(auth.getCurrentUser().getKey(), listener1);
+
+
+                                //заполняем лист с товарами
+                                GoodProvider goodProvider=new GoodProvider();
+
+                                goodProvider.getGoodsFromFirebase(user.getKey(), new OnGoodsRetrievedListener() {
+                                    @Override
+                                    public void OnRetrieved(ArrayList<Good> goods) {
+                                        if(goods != null && !goods.isEmpty()){
+                                            goodsList.addAll(goods);
+                                        }
+                                    }
+                                });
 
 
                                 CurrenciesList currenciesList = CurrenciesList.getInstance();

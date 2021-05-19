@@ -10,6 +10,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 
 import Interfaces.OnGoalRetrievedListener;
+import Interfaces.OnGoodsRetrievedListener;
 import Interfaces.OnUserRetrievedListener;
 import Interfaces.OnUsersCurrencyRetrievedListener;
 import Models.Auth;
@@ -18,15 +19,19 @@ import Models.CurrenciesList;
 import Models.Currency;
 import Models.Goal;
 import Models.GoalsList;
+import Models.Good;
+import Models.GoodsList;
 import Models.User;
 import Providers.GoalProvider;
+import Providers.GoodProvider;
 import Providers.UserProvider;
 import Providers.UsersCurrencyProvider;
 
 public class SplashActivity extends AppCompatActivity {
-    SharedPreferences sharedPreferences;
-    Auth auth=Auth.getInstance();
-    GoalsList goalsList = GoalsList.getInstance();
+    private SharedPreferences sharedPreferences;
+    private Auth auth=Auth.getInstance();
+    private GoalsList goalsList = GoalsList.getInstance();
+    private GoodsList goodsList=GoodsList.getInstance();
 
 
     @Override
@@ -77,6 +82,18 @@ public class SplashActivity extends AppCompatActivity {
                             }
                         };
                         goalProvider.getGoalsFromFirebase(user.getKey(),listener1);
+
+                        //заполняем лист с товарами
+                        GoodProvider goodProvider=new GoodProvider();
+
+                        goodProvider.getGoodsFromFirebase(user.getKey(), new OnGoodsRetrievedListener() {
+                            @Override
+                            public void OnRetrieved(ArrayList<Good> goods) {
+                                if(goods != null && !goods.isEmpty()){
+                                    goodsList.addAll(goods);
+                                }
+                            }
+                        });
 
 
                         CurrenciesList currenciesList=CurrenciesList.getInstance();

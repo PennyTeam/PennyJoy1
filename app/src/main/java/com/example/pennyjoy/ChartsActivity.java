@@ -54,8 +54,8 @@ public class ChartsActivity extends AppCompatActivity {
 
         for (PieEntry pieEntry:students) {
 
-            if(pieEntry.getValue() == 0){
-                pieEntry.setLabel("");
+            if(pieEntry.getValue() <= 0.42f){
+                pieEntry.setIcon(null);
             }
 
         }
