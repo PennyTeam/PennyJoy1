@@ -24,29 +24,32 @@ public class ChartsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charts);
 
+        Drawable foodIcon=null;
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            foodIcon = getDrawable(R.drawable.foodicon);
+        }
+
         PieChart pieChart = findViewById(R.id.pieChartOfSpendings);
 
         ArrayList<PieEntry> students = new ArrayList<PieEntry>();
         students.add(new PieEntry(0.13f));
         students.add(new PieEntry(0.26f));
 
-        Drawable foodIcon=null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            foodIcon = getDrawable(R.drawable.foodicon);
-        }
 
-        students.add(new PieEntry(0.39f));
 
-        students.add(new PieEntry(0.42f));
-        students.add(new PieEntry(0.55f,foodIcon));
-        students.add(new PieEntry(0.68f,foodIcon));
-        students.add(new PieEntry(0.81f,foodIcon));
-        students.add(new PieEntry(0.94f,foodIcon));
-        students.add(new PieEntry(1.07f,foodIcon));
-        students.add(new PieEntry(1.20f,foodIcon));
-        students.add(new PieEntry(1.33f,foodIcon));
-        students.add(new PieEntry(1.46f,foodIcon));
-        students.add(new PieEntry(1.59f,foodIcon));
+        students.add(new PieEntry(0.39f,foodIcon));
+
+        students.add(new PieEntry(0.42f,foodIcon));
+        students.add(new PieEntry(0.55f));
+        students.add(new PieEntry(0.68f));
+        students.add(new PieEntry(0.81f));
+        students.add(new PieEntry(0.94f));
+        students.add(new PieEntry(1.07f));
+        students.add(new PieEntry(1.20f));
+        students.add(new PieEntry(1.33f));
+        students.add(new PieEntry(1.46f));
+        students.add(new PieEntry(1.59f));
 
 
         for (PieEntry pieEntry:students) {
