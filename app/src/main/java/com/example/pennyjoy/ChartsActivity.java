@@ -24,10 +24,8 @@ public class ChartsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charts);
 
-        Drawable foodIcon=null;
 
-
-
+        
         PieChart pieChart = findViewById(R.id.pieChartOfSpendings);
 
         ArrayList<PieEntry> students = new ArrayList<PieEntry>();
