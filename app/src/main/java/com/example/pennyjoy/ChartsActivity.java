@@ -19,48 +19,37 @@ import java.util.ArrayList;
 
 public class ChartsActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charts);
 
-        Drawable foodIcon = getApplicationContext().getResources().getDrawable(R.drawable.fastfood);
-        Drawable travel =  getApplicationContext().getResources().getDrawable(R.drawable.travel);
-        Drawable transport =  getApplicationContext().getResources().getDrawable(R.drawable.transport);
-        Drawable myCar =  getApplicationContext().getResources().getDrawable(R.drawable.my_car);
-        Drawable clothes =  getApplicationContext().getResources().getDrawable(R.drawable.clothes);
-        Drawable debts =  getApplicationContext().getResources().getDrawable(R.drawable.loans);
-        Drawable investments =  getApplicationContext().getResources().getDrawable(R.drawable.investments);
-        Drawable goals =  getApplicationContext().getResources().getDrawable(R.drawable.goals);
-        Drawable accommodation =  getApplicationContext().getResources().getDrawable(R.drawable.house);
-        Drawable entertainment =  getApplicationContext().getResources().getDrawable(R.drawable.entertainment);
-        Drawable beauty_and_health =  getApplicationContext().getResources().getDrawable(R.drawable.beauty_and_health);
-        Drawable goods =  getApplicationContext().getResources().getDrawable(R.drawable.shopping);
-        Drawable more =  getApplicationContext().getResources().getDrawable(R.drawable.sort);
+        Drawable foodIcon=null;
 
-
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            foodIcon = getDrawable(R.drawable.foodicon);
+        }
 
         PieChart pieChart = findViewById(R.id.pieChartOfSpendings);
 
         ArrayList<PieEntry> students = new ArrayList<PieEntry>();
+        students.add(new PieEntry(0.13f));
+        students.add(new PieEntry(0.26f));
 
 
 
-        students.add(new PieEntry(0.13f, foodIcon));
-        students.add(new PieEntry(0.26f, travel));
-        students.add(new PieEntry(0.39f, transport));
+        students.add(new PieEntry(0.39f,foodIcon));
 
-        students.add(new PieEntry(0.42f,myCar));
-        students.add(new PieEntry(0.55f, clothes));
-        students.add(new PieEntry(0.68f, debts));
-        students.add(new PieEntry(0.81f, investments));
-        students.add(new PieEntry(0.94f, goals));
-        students.add(new PieEntry(1.07f, accommodation));
-        students.add(new PieEntry(1.20f, entertainment));
-        students.add(new PieEntry(1.33f, beauty_and_health));
-        students.add(new PieEntry(1.46f, goods));
-        students.add(new PieEntry(1.59f, more));
+        students.add(new PieEntry(0.42f,foodIcon));
+        students.add(new PieEntry(0.55f));
+        students.add(new PieEntry(0.68f));
+        students.add(new PieEntry(0.81f));
+        students.add(new PieEntry(0.94f));
+        students.add(new PieEntry(1.07f));
+        students.add(new PieEntry(1.20f));
+        students.add(new PieEntry(1.33f));
+        students.add(new PieEntry(1.46f));
+        students.add(new PieEntry(1.59f));
 
 
         for (PieEntry pieEntry:students) {
