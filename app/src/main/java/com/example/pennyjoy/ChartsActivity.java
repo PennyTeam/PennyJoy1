@@ -28,6 +28,8 @@ public class ChartsActivity extends AppCompatActivity {
 
         //gohg
 
+        //i hope it's work
+
 
         PieChart pieChart = findViewById(R.id.pieChartOfSpendings);
 
