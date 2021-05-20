@@ -36,7 +36,7 @@ public class ChartsActivity extends AppCompatActivity {
         students.add(new PieEntry(0.13f));
         students.add(new PieEntry(0.26f));
 
-        //work???
+
 
         students.add(new PieEntry(0.39f,foodIcon));
 
