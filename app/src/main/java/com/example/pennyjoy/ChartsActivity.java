@@ -24,12 +24,6 @@ public class ChartsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charts);
 
-        //hvjv
-
-        //gohg
-
-        //i hope it's work
-
         //Drawable foodIcon=getApplicationContext().getResources().getDrawable(R.drawable.foodicon);
 
         PieChart pieChart = findViewById(R.id.pieChartOfSpendings);

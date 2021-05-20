@@ -114,7 +114,6 @@ public class SplashActivity extends AppCompatActivity {
                                     categoryList.init();
 
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
                                     startActivity(intent);
                                 }
                             });
@@ -125,7 +124,6 @@ public class SplashActivity extends AppCompatActivity {
                     else{
                         sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
                         Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
-
                         startActivity(intent);
                         return;
                     }
@@ -137,7 +135,6 @@ public class SplashActivity extends AppCompatActivity {
         else{
             sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
             Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
-
             startActivity(intent);
             return;
         }
