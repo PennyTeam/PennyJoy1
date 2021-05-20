@@ -27,6 +27,8 @@ public class ChartsActivity extends AppCompatActivity {
         //hvjv
 
         //gohg
+
+
         PieChart pieChart = findViewById(R.id.pieChartOfSpendings);
 
         ArrayList<PieEntry> students = new ArrayList<PieEntry>();
