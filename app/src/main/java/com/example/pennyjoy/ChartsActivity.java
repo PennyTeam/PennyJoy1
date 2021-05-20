@@ -24,7 +24,7 @@ public class ChartsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charts);
 
-        //
+        //hvjv
 
         PieChart pieChart = findViewById(R.id.pieChartOfSpendings);
 
