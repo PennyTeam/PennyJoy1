@@ -14,6 +14,7 @@ import androidx.core.app.NotificationManagerCompat;
 import com.example.pennyjoy.AddGoodAndOtherActivity;
 import com.example.pennyjoy.Fragments.AddGoodFragment;
 import com.example.pennyjoy.R;
+import com.example.pennyjoy.SplashActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,7 +29,10 @@ public class ReminderForTimer extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         nameOfGood=intent.getStringExtra("nameOfGood");
-        intent=new Intent(context, AddGoodAndOtherActivity.class);
+        //________________________________________________________________
+        intent=new Intent(context, SplashActivity.class);
+        intent.putExtra("isUserTouchedNotification",true);
+        //________________________________________________________________
 
         pendingIntent=PendingIntent.getActivity(context,0,intent,0);
         NotificationCompat.Builder builder=new NotificationCompat.Builder(context,"notifyTimer")
