@@ -26,9 +26,7 @@ public class ChartsActivity extends AppCompatActivity {
 
         Drawable foodIcon=null;
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            foodIcon = getDrawable(R.drawable.foodicon);
-        }
+
 
         PieChart pieChart = findViewById(R.id.pieChartOfSpendings);
 
@@ -38,7 +36,7 @@ public class ChartsActivity extends AppCompatActivity {
 
 
 
-        students.add(new PieEntry(0.39f,foodIcon));
+        students.add(new PieEntry(0.39f));
 
         students.add(new PieEntry(0.42f));
         students.add(new PieEntry(0.55f));

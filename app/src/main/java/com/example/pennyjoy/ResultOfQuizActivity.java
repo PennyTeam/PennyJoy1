@@ -48,7 +48,7 @@ returnToFragments.setOnClickListener(new View.OnClickListener() {
     public void onClick(View v) {
         Intent intent = new Intent(v.getContext(), AddGoodAndOtherActivity.class);
         startActivity(intent);
-        finish();
+
     }
 });
 
@@ -59,6 +59,6 @@ returnToFragments.setOnClickListener(new View.OnClickListener() {
         super.onBackPressed();
         Intent intent = new Intent(this, AddGoodAndOtherActivity.class);
         startActivity(intent);
-        finish();
+
     }
 }
