@@ -30,6 +30,7 @@ public class ChartsActivity extends AppCompatActivity {
 
         //i hope it's work
 
+        //Drawable foodIcon=getApplicationContext().getResources().getDrawable(R.drawable.foodicon);
 
         PieChart pieChart = findViewById(R.id.pieChartOfSpendings);
 
@@ -51,7 +52,7 @@ public class ChartsActivity extends AppCompatActivity {
         students.add(new PieEntry(1.33f));
         students.add(new PieEntry(1.46f));
         students.add(new PieEntry(1.59f));
-
+//
 
         for (PieEntry pieEntry:students) {
 
