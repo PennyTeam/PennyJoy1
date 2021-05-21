@@ -3,6 +3,7 @@ package com.example.pennyjoy;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -140,6 +141,9 @@ public class SetUserActivity extends AppCompatActivity {
 
             newSalary = auth.getCurrentUser().getSalary() * valueOfCurrency + "";
 
+            //переменная для общих трат
+           double newTotalSpends= auth.getCurrentUser().getTotalSpends() * valueOfCurrency;
+
 
             //работаю с товарами
             for (Good g : goodsList) {
@@ -156,6 +160,7 @@ public class SetUserActivity extends AppCompatActivity {
             updatedUser.setSalary(Double.parseDouble(newSalary));
             updatedUser.setUsersCurrentMonth(auth.getCurrentUser().getUsersCurrentMonth());
             updatedUser.setSurname(newSurname);
+            updatedUser.setTotalSpends(newTotalSpends);
 
             UserProvider provider = new UserProvider();
             provider.updateUser(updatedUser);
@@ -168,6 +173,8 @@ public class SetUserActivity extends AppCompatActivity {
             editor.putString("loginOfTheAuthorizedUser", updatedUser.getLogin());
 
             editor.commit();
+
+
 
 
             GoalProvider goalProvider = new GoalProvider();
@@ -189,13 +196,19 @@ public class SetUserActivity extends AppCompatActivity {
                 goalProvider.updateGoal(currentGoal);
 
             }
-            //вот здесь проблема с UI
-            progressBar.setVisibility(View.GONE);
-            currencySymbol.setText(auth.getCurrentCurrency().getLabel());
-            editTextSalary.setText(decimalFormat.format(auth.getCurrentUser().getSalary()));
-            Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
-            //вот здесь проблема с UI
+            //сделали так потому что без этого thread все крашится так как тольоко главный thread модет менять UI
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    progressBar.setVisibility(View.GONE);
+                    currencySymbol.setText(auth.getCurrentCurrency().getLabel());
+                    editTextSalary.setText(decimalFormat.format(auth.getCurrentUser().getSalary()));
+                    Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         }
+
     };
 
 

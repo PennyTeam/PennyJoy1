@@ -49,6 +49,7 @@ import Models.User;
 import Notifycations.ReminderForTimer;
 import Providers.GoalProvider;
 import Providers.GoodProvider;
+import Providers.UserProvider;
 
 public class AddGoodFragment extends Fragment {
 
@@ -110,7 +111,7 @@ public class AddGoodFragment extends Fragment {
         //----------------------
 
 
-
+        //кнопка для истории
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,7 +132,7 @@ public class AddGoodFragment extends Fragment {
                         && !txtPurchaseOfPurpose.getText().toString().trim().isEmpty()){
                     //получаю текущего юзера и устанавливаю кей
 
-                    User user=new User();
+
 
 
                     progressBar.setVisibility(View.VISIBLE);
@@ -146,6 +147,10 @@ public class AddGoodFragment extends Fragment {
                     provider.addGood(good);
                     GoodsList goodsList=  GoodsList.getInstance();
                     goodsList.add(good);
+
+                    auth.getCurrentUser().setTotalSpends(auth.getCurrentUser().getTotalSpends() + costOfGood);
+                    UserProvider userProvider=new UserProvider();
+                    userProvider.updateUser(auth.getCurrentUser());
 
 
                     txtNameOfGood.getText().clear();
@@ -186,6 +191,13 @@ public class AddGoodFragment extends Fragment {
                             GoodsList goodsList=  GoodsList.getInstance();
                             goodsList.add(good);
 
+
+                            auth.getCurrentUser().setTotalSpends(auth.getCurrentUser().getTotalSpends() + costOfGood);
+
+                            UserProvider userProvider=new UserProvider();
+                            userProvider.updateUser(auth.getCurrentUser());
+
+
                             GoalsList goalsList =GoalsList.getInstance();
 
 
@@ -217,6 +229,10 @@ public class AddGoodFragment extends Fragment {
                             currentGoal.setFullness(currentGoal.getFullness() + costOfGood);
                             goalProvider.updateGoal(currentGoal);
 
+                            auth.getCurrentUser().setTotalSpends(auth.getCurrentUser().getTotalSpends() + costOfGood);
+
+                            UserProvider userProvider=new UserProvider();
+                            userProvider.updateUser(auth.getCurrentUser());
 
                             txtCost.getText().clear();
                             dropDownCategory.setSelection(0);

@@ -96,7 +96,7 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
 
 
 
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
             Toast.makeText(this, "Теперь войдите в аккаунт", Toast.LENGTH_LONG).show();
             startActivity(intent);
         }else{

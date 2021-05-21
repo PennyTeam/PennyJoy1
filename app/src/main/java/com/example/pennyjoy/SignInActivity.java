@@ -88,6 +88,8 @@ public class  SignInActivity extends AppCompatActivity {
                         user1.setPasswd(user.getPasswd());
                         user1.setLogin(user.getLogin());
                         user1.setKey(user.getKey());
+                        user1.setUsersCurrentMonth(user.getUsersCurrentMonth());
+                        user1.setTotalSpends(user.getTotalSpends());
                         if(!passWd.equals( user1.getPasswd()) || user1.getLogin()==null){
                             Snackbar.make(v, "Логин или пароль не верны", Snackbar.LENGTH_LONG).show();
                         }

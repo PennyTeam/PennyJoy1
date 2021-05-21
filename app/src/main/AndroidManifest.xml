@@ -71,7 +71,8 @@
 
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivityNoAcc3" />
+        <activity android:name=".SignUpActivityNoAcc3"
+            android:noHistory="true"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

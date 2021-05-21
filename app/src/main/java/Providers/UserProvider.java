@@ -48,12 +48,15 @@ public class UserProvider {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot single : snapshot.getChildren()){
                   User user1 = (User)single.getValue(User.class);
+                  user.setAccIsActive(user1.getAccIsActive());
                   user.setKey(user1.getKey());
                   user.setLogin(user1.getLogin());
                   user.setPasswd(user1.getPasswd());
                   user.setName(user1.getName());
                   user.setSurname(user1.getSurname());
                   user.setSalary(user1.getSalary());
+                  user.setTotalSpends(user1.getTotalSpends());
+                  user.setUsersCurrentMonth(user1.getUsersCurrentMonth());
                 }
                 listener.OnRetrieved(user);
             }

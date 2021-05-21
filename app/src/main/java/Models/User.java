@@ -13,8 +13,9 @@ public class User {
     private String passwd;
     private double salary;
     private String key;
-    private static boolean accIsActive = true;
+    private static boolean accIsActive ;
     private int usersCurrentMonth;
+    private double totalSpends;
 
 
 
@@ -25,13 +26,23 @@ public class User {
         this.login = login;
         this.passwd = passwd;
         this.salary = salary;
+
         this.accIsActive = true;
+        this.totalSpends=0;
     }
 
     public User(){};
 
     //здесь геттеры и сеттеры
 
+
+    public double getTotalSpends() {
+        return totalSpends;
+    }
+
+    public void setTotalSpends(double totalSpends) {
+        this.totalSpends = totalSpends;
+    }
 
     public int getUsersCurrentMonth() {
         return usersCurrentMonth;
