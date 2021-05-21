@@ -11,6 +11,7 @@ import android.os.Bundle;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -24,32 +25,47 @@ public class ChartsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charts);
 
-        Drawable foodIcon=null;
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            foodIcon = getDrawable(R.drawable.foodicon);
-        }
+        Drawable food=getApplicationContext().getResources().getDrawable(R.drawable.fastfood);
+        Drawable travel =getApplicationContext().getResources().getDrawable(R.drawable.travel);
+        Drawable transport=getApplicationContext().getResources().getDrawable(R.drawable.transport);
+        Drawable car=getApplicationContext().getResources().getDrawable(R.drawable.my_car);
+        Drawable cloth=getApplicationContext().getResources().getDrawable(R.drawable.clothes);
+        Drawable loans=getApplicationContext().getResources().getDrawable(R.drawable.loans);
+        Drawable investments=getApplicationContext().getResources().getDrawable(R.drawable.investments);
+        Drawable goals=getApplicationContext().getResources().getDrawable(R.drawable.goals);
+        Drawable house =getApplicationContext().getResources().getDrawable(R.drawable.house);
+        Drawable entertainment=getApplicationContext().getResources().getDrawable(R.drawable.entertainment);
+        Drawable beauty_and_health=getApplicationContext().getResources().getDrawable(R.drawable.beauty_and_health);
+        Drawable shop=getApplicationContext().getResources().getDrawable(R.drawable.shopping);
+        Drawable smth=getApplicationContext().getResources().getDrawable(R.drawable.sort);
 
         PieChart pieChart = findViewById(R.id.pieChartOfSpendings);
 
         ArrayList<PieEntry> students = new ArrayList<PieEntry>();
-        students.add(new PieEntry(0.13f));
-        students.add(new PieEntry(0.26f));
+        students.add(new PieEntry(0.13f,food));
+        students.add(new PieEntry(0.26f,travel));
 
 
 
-        students.add(new PieEntry(0.39f,foodIcon));
+        students.add(new PieEntry(0.39f,transport));
 
-        students.add(new PieEntry(0.42f,foodIcon));
-        students.add(new PieEntry(0.55f));
-        students.add(new PieEntry(0.68f));
-        students.add(new PieEntry(0.81f));
-        students.add(new PieEntry(0.94f));
-        students.add(new PieEntry(1.07f));
-        students.add(new PieEntry(1.20f));
-        students.add(new PieEntry(1.33f));
-        students.add(new PieEntry(1.46f));
-        students.add(new PieEntry(1.59f));
+        students.add(new PieEntry(0.42f,car));
+        students.add(new PieEntry(0.55f,cloth));
+        students.add(new PieEntry(0.68f,loans));
+        students.add(new PieEntry(0.81f,investments));
+        students.add(new PieEntry(0.94f,goals));
+        students.add(new PieEntry(1.07f,house));
+        students.add(new PieEntry(1.20f,entertainment));
+        students.add(new PieEntry(1.33f,beauty_and_health));
+        students.add(new PieEntry(1.46f,shop));
+
+
+
+
+
+
+
+        students.add(new PieEntry(1.59f,smth));
 
 
         for (PieEntry pieEntry:students) {
@@ -58,18 +74,26 @@ public class ChartsActivity extends AppCompatActivity {
                 pieEntry.setIcon(null);
             }
 
+
         }
 
         PieDataSet pieDataSet = new PieDataSet(students,"Students");
 
 
 
-        int[] colors=new int[]{R.color.food,R.color.travelings, R.color.transport,R.color.car
-        ,R.color.cloth, R.color.debts, R.color.investments, R.color.goals,
-                R.color.lodging,R.color.entertainment, R.color.health,R.color.goods
-                ,R.color.smth};
+
+
+
+        int[] colors=new int[]{(R.color.food),( R.color.travelings),(R.color.transport),
+                (R.color.car),(R.color.cloth),(R.color.debts),(R.color.investments),
+                (R.color.goals),R.color.lodging, R.color.entertainment, R.color.health,
+                R.color.goods, (R.color.smth)};
+
+
+
 
         pieDataSet.setColors(colors,getApplicationContext());
+
 
 
 
@@ -78,6 +102,8 @@ public class ChartsActivity extends AppCompatActivity {
         pieDataSet.setDrawValues(false);
 
 
+
+       ;
 
         pieChart.setData(pieData);
         pieChart.getDescription().setEnabled(false);
