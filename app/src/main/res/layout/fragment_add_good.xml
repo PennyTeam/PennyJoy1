@@ -85,7 +85,7 @@
        android:layout_centerHorizontal="true"
        android:textSize="30dp"
        />
-   <!-- в макс длине не уверен- -->
+
 
    <EditText
        android:id="@+id/txtCostOfGood"

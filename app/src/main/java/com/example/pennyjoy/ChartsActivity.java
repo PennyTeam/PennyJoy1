@@ -1,5 +1,6 @@
 package com.example.pennyjoy;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.TypedArray;
@@ -8,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
@@ -21,9 +23,14 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+
+import Models.Auth;
 
 public class ChartsActivity extends AppCompatActivity {
 
@@ -45,10 +52,32 @@ public class ChartsActivity extends AppCompatActivity {
     private Drawable smth;
 
     private int[] colors;
+
+
+    private TextView lblCurrency, lblPercentage, lblSpends;
+
+    private Auth auth=Auth.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charts);
+
+        lblCurrency=findViewById(R.id.lblCurrencyOfSpends);
+        lblPercentage=findViewById(R.id.lblPercentageOfSpends);
+        lblSpends=findViewById(R.id.lblSpends);
+
+        double totalSpends= auth.getCurrentUser().getTotalSpends();
+        double salary=auth.getCurrentUser().getSalary();
+
+
+        lblCurrency.setText(auth.getCurrentCurrency().getLabel());
+        lblPercentage.setText((totalSpends / salary) * 100 + "% из вашей вашей зарплаты потрачено ");
+        if((totalSpends/salary)*100 >=100){
+            lblSpends.setText("Вы потратили всю свою зарплату");
+        }else {
+            lblSpends.setText(totalSpends + " из " + salary);
+        }
 
         // инициализирую иконки для категорий
         food=getApplicationContext().getResources().getDrawable(R.drawable.fastfood);
@@ -85,11 +114,6 @@ public class ChartsActivity extends AppCompatActivity {
         students.add(new PieEntry(1.20f,entertainment));
         students.add(new PieEntry(1.33f,beauty_and_health));
         students.add(new PieEntry(1.46f,shop));
-
-
-
-
-
 
 
         students.add(new PieEntry(1.59f,smth));
@@ -163,6 +187,7 @@ public class ChartsActivity extends AppCompatActivity {
         //конец работы с горизонтальным графиком
     }
 
+
     private void showHorizontalBarChart(){
         ArrayList<Double> spendsList=new ArrayList<>();
         ArrayList<BarEntry> entries=new ArrayList<>();
@@ -176,13 +201,32 @@ public class ChartsActivity extends AppCompatActivity {
         }
 
         //fit the data into bar
-        for (int i = 0; i < spendsList.size(); i++) {
-            BarEntry barEntry = new BarEntry(i, spendsList.get(i).floatValue()+300);
-            entries.add(barEntry);
-        }
+
+
+
+        entries.add(new BarEntry(12f, 0.13f));
+        entries.add(new BarEntry(11f, 0.26f));
+        entries.add(new BarEntry(10f, 0.39f));
+        entries.add(new BarEntry(9f, 0.42f));
+        entries.add(new BarEntry(8f, 0.55f));
+        entries.add(new BarEntry(7f, 0.68f));
+        entries.add(new BarEntry(6f, 0.81f));
+        entries.add(new BarEntry(5f, 0.94f));
+        entries.add(new BarEntry(4f, 1.07f));
+        entries.add(new BarEntry(3f, 1.20f));
+        entries.add(new BarEntry(2f, 1.33f));
+        entries.add(new BarEntry(1f, 1.46f));
+        entries.add(new BarEntry(0f, 1.59f));
+
+
 
 
         BarDataSet barDataSet=new BarDataSet(entries,title);
+
+      
+
+
+
         barDataSet.setColors(colors,getApplicationContext());
 
 
@@ -192,10 +236,12 @@ public class ChartsActivity extends AppCompatActivity {
 
 
 
+
         BarData data = new BarData(barDataSet);
+
         horizontalBarChart.setData(data);
 
-        horizontalBarChart.getXAxis().setSpaceMax(1);
+
         horizontalBarChart.animateY(500, Easing.EaseInOutCubic);
 
 
@@ -203,22 +249,31 @@ public class ChartsActivity extends AppCompatActivity {
 
 
 
-        YAxis yAxisRight = horizontalBarChart.getAxisRight();
-        YAxis yAxisLeft = horizontalBarChart.getAxisLeft();
+
+
+
         XAxis xAxis = horizontalBarChart.getXAxis();
-        Legend l = horizontalBarChart.getLegend();
-
-        yAxisLeft.setTextColor(Color.WHITE);
-        yAxisRight.setTextColor(Color.WHITE);
-        xAxis.setTextColor(Color.WHITE);
-        l.setTextColor(Color.WHITE);
-
         xAxis.setEnabled(false);
+
 
         YAxis yAxis = horizontalBarChart.getAxisLeft();
         yAxis.setEnabled(false);
+
         YAxis yAxis2 = horizontalBarChart.getAxisRight();
         yAxis2.setEnabled(false);
+
+
+
+
+
+
+        Legend l = horizontalBarChart.getLegend();
+        l.setEnabled(false);
+
+
+
+
+
 
 
 
@@ -231,13 +286,12 @@ public class ChartsActivity extends AppCompatActivity {
         horizontalBarChart.getAxisRight().setDrawGridLines(false);
         horizontalBarChart.getDescription().setEnabled(false);
 
-        horizontalBarChart.setScaleY(0.45f);
+        horizontalBarChart.setScaleY(0.70f);
 
 
         horizontalBarChart.setPinchZoom(false);
         horizontalBarChart.setDoubleTapToZoomEnabled(false);
 
 
-        l.setEnabled(false);
     }
 }

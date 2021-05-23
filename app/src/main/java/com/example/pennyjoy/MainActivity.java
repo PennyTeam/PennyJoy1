@@ -52,16 +52,43 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void moneyPigBtnClicked(View v){
+        if(clicked) {
+            //закрываем fab menu
+            clicked = true;
+            setVisibility(clicked);
+            setClickable(clicked);
+            setAnimation(clicked);
+            clicked = false;
+        }
+
         Intent intent=new Intent(this,MoneyPigActivity.class);
         startActivityForResult(intent,mainRequest);
     }
 
     public void addGoodClicked(View v){
+        if(clicked) {
+            //закрываем fab menu
+            clicked = true;
+            setVisibility(clicked);
+            setClickable(clicked);
+            setAnimation(clicked);
+            clicked = false;
+        }
+
         Intent intent=new Intent(this,AddGoodAndOtherActivity.class);
         startActivityForResult(intent,mainRequest);
     }
 
     public void chartBtnClicked(View v){
+        if(clicked) {
+            //закрываем fab menu
+            clicked = true;
+            setVisibility(clicked);
+            setClickable(clicked);
+            setAnimation(clicked);
+            clicked = false;
+        }
+
         Intent intent=new Intent(this,ChartsActivity.class);
         startActivityForResult(intent,mainRequest);
     }
@@ -81,12 +108,21 @@ public class MainActivity extends AppCompatActivity {
 
     //метод для настроек юзера
     public void settingsOfUserClicked(View v){
+        if(clicked ) {
+            //закрываем fab menu
+            clicked = true;
+            setVisibility(clicked);
+            setClickable(clicked);
+            setAnimation(clicked);
+            clicked = false;
+        }
+
         Intent intent = new Intent(this, SetUserActivity.class);
         startActivityForResult(intent,12099);
     }
 
 
-    //метод для настроек валют
+    //метод для logout
     public void LogOutBtnClicked(View v){
 
         Intent intent = new Intent(this, SignInActivity.class);

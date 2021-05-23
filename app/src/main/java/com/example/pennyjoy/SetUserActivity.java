@@ -124,88 +124,101 @@ public class SetUserActivity extends AppCompatActivity {
         public void onRetrieved(double currency) {
             valueOfCurrency = currency;
 
-            Currency currencyFromDropDown = (Currency) dropDownCurrency.getSelectedItem();
-            currencyFromDropDown.setUserKey(auth.getCurrentUser().getKey());
-            currencyFromDropDown.setKey(auth.getCurrentCurrency().getKey());
-
-            auth.setCurrentCurrency(currencyFromDropDown);
-            SharedPreferences mySharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = mySharedPreferences.edit();
-            editor.putInt("idOfCurrency", auth.getCurrentCurrency().getId());
-            editor.apply();
-            UsersCurrencyProvider usersCurrencyProvider = new UsersCurrencyProvider();
-            usersCurrencyProvider.updateCurrency(auth.getCurrentCurrency());
-            //_____
-
-            //------
-
-            newSalary = auth.getCurrentUser().getSalary() * valueOfCurrency + "";
-
-            //переменная для общих трат
-           double newTotalSpends= auth.getCurrentUser().getTotalSpends() * valueOfCurrency;
-
-
-            //работаю с товарами
-            for (Good g : goodsList) {
-                double cost = g.getCost() * valueOfCurrency;
-                g.setCost(cost);
-                GoodProvider provider = new GoodProvider();
-                provider.updateGood(g);
-            }
-            //работаю с юзером
-            User updatedUser = auth.getCurrentUser();
-            updatedUser.setAccIsActive(auth.getCurrentUser().getAccIsActive());
-            updatedUser.setLogin(newLogin);
-            updatedUser.setName(newName);
-            updatedUser.setSalary(Double.parseDouble(newSalary));
-            updatedUser.setUsersCurrentMonth(auth.getCurrentUser().getUsersCurrentMonth());
-            updatedUser.setSurname(newSurname);
-            updatedUser.setTotalSpends(newTotalSpends);
-
-            UserProvider provider = new UserProvider();
-            provider.updateUser(updatedUser);
-
-            auth.setCurrentUser(updatedUser);
-
-
-            sharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
-            editor = sharedPreferences.edit();
-            editor.putString("loginOfTheAuthorizedUser", updatedUser.getLogin());
-
-            editor.commit();
-
-
-
-
-            GoalProvider goalProvider = new GoalProvider();
-
-            if (goalsList != null && !goalsList.isEmpty()) {
-
-                Goal currentGoal = auth.getCurrentGoal();
-
-
-                for (Goal g : goalsList) {
-                    if (!g.equals(currentGoal)) {
-                        g.setCost(g.getCost() * valueOfCurrency);
-                        g.setFullness(g.getFullness() * valueOfCurrency);
-                        goalProvider.updateGoal(g);
+            newSalary =Double.parseDouble(editTextSalary.getText().toString()) * valueOfCurrency + "";
+            if(decimalFormat.format(Double.parseDouble(newSalary)).length() >9){
+                //сделали так потому что без этого thread все крашится так как тольоко главный thread модет менять UI
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressBar.setVisibility(View.GONE);
+                        Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content),
+                                "Зарплата слишком большая для конвертации", Snackbar.LENGTH_SHORT).show();
                     }
-                }
-                currentGoal.setFullness(currentGoal.getFullness() * valueOfCurrency);
-                currentGoal.setCost(currentGoal.getCost() * valueOfCurrency);
-                goalProvider.updateGoal(currentGoal);
+                });
 
-            }
-            //сделали так потому что без этого thread все крашится так как тольоко главный thread модет менять UI
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    progressBar.setVisibility(View.GONE);
-                    currencySymbol.setText(auth.getCurrentCurrency().getLabel());
-                    editTextSalary.setText(decimalFormat.format(auth.getCurrentUser().getSalary()));
-                    Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
+            }else {
+
+
+                Currency currencyFromDropDown = (Currency) dropDownCurrency.getSelectedItem();
+                currencyFromDropDown.setUserKey(auth.getCurrentUser().getKey());
+                currencyFromDropDown.setKey(auth.getCurrentCurrency().getKey());
+
+                auth.setCurrentCurrency(currencyFromDropDown);
+                SharedPreferences mySharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = mySharedPreferences.edit();
+                editor.putInt("idOfCurrency", auth.getCurrentCurrency().getId());
+                editor.apply();
+                UsersCurrencyProvider usersCurrencyProvider = new UsersCurrencyProvider();
+                usersCurrencyProvider.updateCurrency(auth.getCurrentCurrency());
+                //_____
+
+                //------
+
+
+                //переменная для общих трат
+                double newTotalSpends = auth.getCurrentUser().getTotalSpends() * valueOfCurrency;
+
+
+                //работаю с товарами
+                for (Good g : goodsList) {
+                    double cost = g.getCost() * valueOfCurrency;
+                    g.setCost(cost);
+                    GoodProvider provider = new GoodProvider();
+                    provider.updateGood(g);
                 }
-            });
+                //работаю с юзером
+                User updatedUser = auth.getCurrentUser();
+                updatedUser.setAccIsActive(auth.getCurrentUser().getAccIsActive());
+                updatedUser.setLogin(newLogin);
+                updatedUser.setName(newName);
+                updatedUser.setSalary(Double.parseDouble(newSalary));
+                updatedUser.setUsersCurrentMonth(auth.getCurrentUser().getUsersCurrentMonth());
+                updatedUser.setSurname(newSurname);
+                updatedUser.setTotalSpends(newTotalSpends);
+
+                UserProvider provider = new UserProvider();
+                provider.updateUser(updatedUser);
+
+                auth.setCurrentUser(updatedUser);
+
+
+                sharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
+                editor = sharedPreferences.edit();
+                editor.putString("loginOfTheAuthorizedUser", updatedUser.getLogin());
+
+                editor.commit();
+
+
+                GoalProvider goalProvider = new GoalProvider();
+
+                if (goalsList != null && !goalsList.isEmpty()) {
+
+                    Goal currentGoal = auth.getCurrentGoal();
+
+
+                    for (Goal g : goalsList) {
+                        if (!g.equals(currentGoal)) {
+                            g.setCost(g.getCost() * valueOfCurrency);
+                            g.setFullness(g.getFullness() * valueOfCurrency);
+                            goalProvider.updateGoal(g);
+                        }
+                    }
+                    currentGoal.setFullness(currentGoal.getFullness() * valueOfCurrency);
+                    currentGoal.setCost(currentGoal.getCost() * valueOfCurrency);
+                    goalProvider.updateGoal(currentGoal);
+
+                }
+                //сделали так потому что без этого thread все крашится так как тольоко главный thread модет менять UI
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressBar.setVisibility(View.GONE);
+                        currencySymbol.setText(auth.getCurrentCurrency().getLabel());
+                        editTextSalary.setText(decimalFormat.format(auth.getCurrentUser().getSalary()));
+                        Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
 
         }
 

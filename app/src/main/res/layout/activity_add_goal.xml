@@ -46,7 +46,8 @@
                         android:layout_height="29dp"
                         android:layout_centerHorizontal="true"
                         android:paddingLeft="20dp"
-                        android:background="@drawable/body_for_edit_text" />
+                        android:background="@drawable/body_for_edit_text"
+                        android:maxLength="10" />
 
 
                 </RelativeLayout>
@@ -80,7 +81,7 @@
                         android:layout_centerHorizontal="true"
                         android:inputType="numberDecimal"
                         android:paddingLeft="20dp"
-                        android:maxLength="12"
+                        android:maxLength="10"
                         android:background="@drawable/body_for_edit_text" />
 
                     <TextView
@@ -124,8 +125,8 @@
 
                 <EditText
                     android:id="@+id/txtWhatForYouNeedGoal"
-                    android:layout_width="337dp"
-                    android:layout_height="189dp"
+                    android:layout_width="310dp"
+                    android:layout_height="130dp"
                     android:layout_centerHorizontal="true"
                     android:gravity="top"
                     android:paddingTop="10dp"
@@ -141,8 +142,11 @@
                     android:layout_alignParentRight="true"
                     android:text="0/120"
                     android:textSize="17dp"
-                    android:layout_marginTop="210dp"
-                    android:layout_marginRight="40dp"/>
+                    android:layout_alignBottom="@id/txtWhatForYouNeedGoal"
+
+                    android:layout_marginRight="60dp"
+                    android:layout_marginBottom="5dp"
+                    />
             </RelativeLayout>
 
             <RelativeLayout

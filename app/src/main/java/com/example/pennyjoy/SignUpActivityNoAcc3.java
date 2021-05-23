@@ -69,7 +69,7 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
             String surname=intent2.getExtras().getString("surnameFromSecondAct");
             String login=intent2.getExtras().getString("login");
             String passwd=intent2.getExtras().getString("passwd");
-            float salary=Float.parseFloat(this.salary.getText().toString());
+            double salary=Double.parseDouble(this.salary.getText().toString());
 
             Auth auth=Auth.getInstance();
 

@@ -23,4 +23,9 @@
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/horizontal_progress_bar</item>
     </style>
+
+    <style name="HorizontalDeterminateProgressBarForSpends">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/horizontal_bar_for_spends</item>
+    </style>
 </resources>
