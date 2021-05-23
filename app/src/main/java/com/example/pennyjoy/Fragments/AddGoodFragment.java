@@ -142,7 +142,7 @@ public class AddGoodFragment extends Fragment {
                     double costOfGood= Double.parseDouble(txtCost.getText().toString());
                     Category category=(Category) dropDownCategory.getSelectedItem();
 
-                    Good good=new Good(category.getId(),nameOfGood,costOfGood,purchaseOfPurpose,keyOfUser);
+                    Good good=new Good(category.getId(),nameOfGood,costOfGood,purchaseOfPurpose,keyOfUser,System.currentTimeMillis());
                     GoodProvider provider=new GoodProvider();
                     provider.addGood(good);
                     GoodsList goodsList=  GoodsList.getInstance();
@@ -183,7 +183,7 @@ public class AddGoodFragment extends Fragment {
 
                             currentGoal.setFullness(currentGoal.getFullness() + costOfGood);
                             Good good =new Good(7,currentGoal.getName(), currentGoal.getFullness()
-                            ,currentGoal.getWhatFor(),currentGoal.getUserKey());
+                            ,currentGoal.getWhatFor(),currentGoal.getUserKey(), System.currentTimeMillis());
 
                             GoodProvider provider=new GoodProvider();
                             provider.addGood(good);

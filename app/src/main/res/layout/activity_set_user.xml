@@ -202,7 +202,7 @@
                 android:orientation="horizontal"
                 android:layout_height="wrap_content"
                 android:background="@drawable/template_for_tv_in_set_user_name"
-                android:id="@+id/listViewWithSalary"
+                android:id="@+id/linearWithSalary"
                 android:layout_centerInParent="true">
                 <RelativeLayout
                     android:layout_width="match_parent"

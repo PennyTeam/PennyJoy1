@@ -10,14 +10,18 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -28,15 +32,23 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.renderer.HorizontalBarChartRenderer;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+import Adapters.GoodsAdapter;
+import Adapters.LegendAdapter;
 import Models.Auth;
+import Models.GoodsList;
+import Models.RoundedHorizontalBarChartRenderer;
 
 public class ChartsActivity extends AppCompatActivity {
+
 
     private HorizontalBarChart horizontalBarChart;
     private PieChart pieChart;
@@ -65,6 +77,9 @@ public class ChartsActivity extends AppCompatActivity {
     private ProgressBar spendsProgress;
 
     private DecimalFormat decimalFormat = new DecimalFormat( "#.###" );
+
+    private ListView listView;
+    private LegendAdapter legendAdapter;
 
 
     @Override
@@ -118,26 +133,38 @@ public class ChartsActivity extends AppCompatActivity {
          //работа с круглым графиком
         pieChart = findViewById(R.id.pieChartOfSpendings);
 
+        Legend pieLegend=pieChart.getLegend();
+
         ArrayList<PieEntry> students = new ArrayList<PieEntry>();
-        students.add(new PieEntry(0.13f,food));
-        students.add(new PieEntry(0.26f,travel));
+        students.add(new PieEntry(0.13f,"Продукты",food));
+        students.add(new PieEntry(0.26f,"Путешествия",travel));
 
 
 
-        students.add(new PieEntry(0.39f,transport));
+        students.add(new PieEntry(0.39f,"Транспорт",transport));
 
-        students.add(new PieEntry(0.42f,car));
-        students.add(new PieEntry(0.55f,cloth));
-        students.add(new PieEntry(0.68f,loans));
-        students.add(new PieEntry(0.81f,investments));
-        students.add(new PieEntry(0.94f,goals));
-        students.add(new PieEntry(1.07f,house));
-        students.add(new PieEntry(1.20f,entertainment));
-        students.add(new PieEntry(1.33f,beauty_and_health));
-        students.add(new PieEntry(1.46f,shop));
+        students.add(new PieEntry(0.42f,"Автомобиль",car));
+        students.add(new PieEntry(0.55f,"Одежда",cloth));
+        students.add(new PieEntry(0.68f,"Долги",loans));
+        students.add(new PieEntry(0.81f,"Интвестиции",investments));
+        students.add(new PieEntry(0.94f,"Цели",goals));
+        students.add(new PieEntry(1.07f,"Жилье",house));
+        students.add(new PieEntry(1.20f,"Развелчения и досуг",entertainment));
+        students.add(new PieEntry(1.33f,"Красота и здоровье",beauty_and_health));
+        students.add(new PieEntry(1.46f,"Покупки",shop));
 
 
-        students.add(new PieEntry(1.59f,smth));
+        students.add(new PieEntry(1.59f,"Прочее",smth));
+
+
+
+
+
+        listView = findViewById(R.id.listViewOfLegend);
+
+
+
+
 
 
         for (PieEntry pieEntry:students) {
@@ -149,7 +176,9 @@ public class ChartsActivity extends AppCompatActivity {
 
         }
 
-        PieDataSet pieDataSet = new PieDataSet(students,"Students");
+
+
+        PieDataSet pieDataSet = new PieDataSet(students,"");
 
 
 
@@ -191,14 +220,35 @@ public class ChartsActivity extends AppCompatActivity {
         pieChart.animateY(500, Easing.EaseInOutCubic);
         pieChart.animate();
 
+
+        List<LegendEntry> legendEntries=new ArrayList<>();
+        for (int i=0;i<13;i++){
+            if(pieLegend.getEntries()[i].label.equals("")){
+                break;
+            }
+            if(students.get(i).getValue()>0) {
+                legendEntries.add(pieLegend.getEntries()[i]);
+            }
+        }
+
+
+        legendAdapter = new LegendAdapter(getApplicationContext(), R.layout.legend_template, legendEntries,200,100);
+        listView.setAdapter(legendAdapter);
+
+
         //конец работы с круглым графиком
 
 
         //работа с горизонталиным графиком
 
-        horizontalBarChart=findViewById(R.id.barChartOfSpendings);
+        /*horizontalBarChart=findViewById(R.id.barChartOfSpendings);
 
-        showHorizontalBarChart();
+        RoundedHorizontalBarChartRenderer roundedBarChartRenderer= new RoundedHorizontalBarChartRenderer(horizontalBarChart ,
+                horizontalBarChart.getAnimator(),horizontalBarChart.getViewPortHandler());
+        roundedBarChartRenderer.setmRadius(20f);
+        horizontalBarChart.setRenderer(roundedBarChartRenderer);
+
+        showHorizontalBarChart();*/
 
 
 
@@ -208,6 +258,7 @@ public class ChartsActivity extends AppCompatActivity {
     }
 
 
+    /*
     private void showHorizontalBarChart(){
         ArrayList<Double> spendsList=new ArrayList<>();
         ArrayList<BarEntry> entries=new ArrayList<>();
@@ -244,6 +295,8 @@ public class ChartsActivity extends AppCompatActivity {
         BarDataSet barDataSet=new BarDataSet(entries,title);
 
       
+        barDataSet.setValueTextColor(R.color.white);
+
 
 
 
@@ -301,17 +354,23 @@ public class ChartsActivity extends AppCompatActivity {
         horizontalBarChart.getAxisRight().setDrawLabels(false);
         horizontalBarChart.getXAxis().setDrawLabels(false);
 
+
         horizontalBarChart.getAxisLeft().setDrawGridLines(false);
         horizontalBarChart.getXAxis().setDrawGridLines(false);
         horizontalBarChart.getAxisRight().setDrawGridLines(false);
         horizontalBarChart.getDescription().setEnabled(false);
 
-        horizontalBarChart.setScaleY(0.70f);
+       // horizontalBarChart.setScaleY(0.70f);
 
 
         horizontalBarChart.setPinchZoom(false);
         horizontalBarChart.setDoubleTapToZoomEnabled(false);
 
 
+
+
     }
+
+     */
+
 }

@@ -2,29 +2,40 @@ package Models;
 
 
 
-public class
-Good {
+public class Good {
     private int category;
     private String name;
     private double cost;
     private String purchaseOfPurpose;
     private String userKey;
     private String key;
+    private long createDate;
 
 
     public Good() {
     }
 
-    public Good(int category, String name, double price, String purchaseOfPurpose, String userKey) {
+
+
+    public Good(int category, String name, double price, String purchaseOfPurpose, String userKey,long createDate) {
         this.category = category;
         this.name = name;
         this.cost = price;
         this.purchaseOfPurpose = purchaseOfPurpose;
         this.userKey = userKey;
+        this.createDate=createDate;
     }
 
     //геттеры и сеттеры
 
+
+    public long getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(long createDate) {
+        this.createDate = createDate;
+    }
 
     public int getCategory() {
         return category;
