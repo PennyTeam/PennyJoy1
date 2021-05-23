@@ -104,6 +104,7 @@
                         android:layout_toLeftOf="@id/progressOfSpends"
                         android:layout_toRightOf="@id/progressOfSpends" />
 
+
                     <com.github.mikephil.charting.charts.HorizontalBarChart
                         android:id="@+id/barChartOfSpendings"
                         android:layout_width="350dp"

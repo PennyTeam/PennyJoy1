@@ -3,12 +3,15 @@ package com.example.pennyjoy;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -28,6 +31,7 @@ import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import Models.Auth;
@@ -58,6 +62,11 @@ public class ChartsActivity extends AppCompatActivity {
 
     private Auth auth=Auth.getInstance();
 
+    private ProgressBar spendsProgress;
+
+    private DecimalFormat decimalFormat = new DecimalFormat( "#.###" );
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,16 +76,28 @@ public class ChartsActivity extends AppCompatActivity {
         lblPercentage=findViewById(R.id.lblPercentageOfSpends);
         lblSpends=findViewById(R.id.lblSpends);
 
+        spendsProgress=findViewById(R.id.progressOfSpends);
+
         double totalSpends= auth.getCurrentUser().getTotalSpends();
         double salary=auth.getCurrentUser().getSalary();
 
 
-        lblCurrency.setText(auth.getCurrentCurrency().getLabel());
-        lblPercentage.setText((totalSpends / salary) * 100 + "% из вашей вашей зарплаты потрачено ");
+
+
+        lblPercentage.setText(decimalFormat.format((totalSpends / salary) * 100) + "% из вашей вашей зарплаты потрачено ");
+        //заполнение прогресс бара
+        ObjectAnimator animation = ObjectAnimator.ofInt(spendsProgress, "progress", (int) ((totalSpends/salary)*100));
+        animation.setDuration(450);
+        animation.setInterpolator(new DecelerateInterpolator());
+        animation.start();
+        //заполнение прогресс бара
+
         if((totalSpends/salary)*100 >=100){
+            lblCurrency.setText("");
             lblSpends.setText("Вы потратили всю свою зарплату");
         }else {
-            lblSpends.setText(totalSpends + " из " + salary);
+            lblCurrency.setText(auth.getCurrentCurrency().getLabel());
+            lblSpends.setText(decimalFormat.format(totalSpends )+ " из " + decimalFormat.format(salary));
         }
 
         // инициализирую иконки для категорий
@@ -159,9 +180,8 @@ public class ChartsActivity extends AppCompatActivity {
         pieChart.setData(pieData);
         pieChart.getDescription().setEnabled(false);
 
-        pieChart.setCenterText("Total Questions 5" );
-        pieChart.setCenterTextSize(14f);
-        pieChart.setCenterTextColor(Color.WHITE);
+
+
 
 
         pieChart.getLegend().setEnabled(false);
