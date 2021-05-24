@@ -1,6 +1,7 @@
 package Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pennyjoy.R;
 import com.github.mikephil.charting.components.LegendEntry;
@@ -20,7 +22,9 @@ import java.util.List;
 import Models.Auth;
 import Models.Good;
 
-public class LegendAdapter  extends ArrayAdapter<LegendEntry> {
+public class LegendAdapter extends ArrayAdapter<LegendEntry>{
+
+
 
 
     private android.content.Context Context;
@@ -44,30 +48,28 @@ public class LegendAdapter  extends ArrayAdapter<LegendEntry> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View v = LayoutInflater.from(this.Context).inflate(resource,null);
+        View v = LayoutInflater.from(this.Context).inflate(resource, null);
 
-        DecimalFormat decimalFormat =new DecimalFormat("#.###");
+        DecimalFormat decimalFormat = new DecimalFormat("#.###");
 
-        LegendEntry legendEntry=this.getItem(position);
-
-
+        LegendEntry legendEntry = this.getItem(position);
 
 
-        View colorOfCategory=v.findViewById(R.id.rectangleForCategoryColor);
+        View colorOfCategory = v.findViewById(R.id.rectangleForCategoryColor);
         colorOfCategory.setBackgroundColor(legendEntry.formColor);
 
-        TextView lblNameOfCategory=v.findViewById(R.id.lblNameOfCategory);
+        TextView lblNameOfCategory = v.findViewById(R.id.lblNameOfCategory);
         lblNameOfCategory.setText(legendEntry.label);
 
 
-        TextView lblCostOfCategory=v.findViewById(R.id.lblCostOfCategory);
+        TextView lblCostOfCategory = v.findViewById(R.id.lblCostOfCategory);
         lblCostOfCategory.setText(decimalFormat.format(costOfCategory));
 
-        TextView lblCurrencyOfCategoryCost=v.findViewById(R.id.lblCurrencyOfCategoryCost);
-        Auth auth=Auth.getInstance();
+        TextView lblCurrencyOfCategoryCost = v.findViewById(R.id.lblCurrencyOfCategoryCost);
+        Auth auth = Auth.getInstance();
         lblCurrencyOfCategoryCost.setText(auth.getCurrentCurrency().getLabel());
 
-        TextView lblPercentageOfCategory=v.findViewById(R.id.lblPercentageOfCategory);
+        TextView lblPercentageOfCategory = v.findViewById(R.id.lblPercentageOfCategory);
         lblPercentageOfCategory.setText(decimalFormat.format(percentage));
 
 

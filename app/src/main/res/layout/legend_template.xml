@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:textSize="15dp"
-                    android:text="Развлечения и досуг"
+                    android:text="Красота и здоровье"
                     android:gravity="center"
                     android:maxWidth="110dp"
                     android:layout_toRightOf="@id/rectangleForCategoryColor"

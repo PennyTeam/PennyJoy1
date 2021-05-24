@@ -2,6 +2,8 @@ package com.example.pennyjoy;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.animation.ObjectAnimator;
 import android.content.res.TypedArray;
@@ -12,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Adapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -222,7 +225,7 @@ public class ChartsActivity extends AppCompatActivity {
         pieChart.animate();
 
 
-        List<LegendEntry> legendEntries=new ArrayList<>();
+        ArrayList<LegendEntry> legendEntries=new ArrayList<>();
         for (int i=0;i<13;i++){
             if(pieLegend.getEntries()[i].label.equals("")){
                 break;
@@ -233,10 +236,11 @@ public class ChartsActivity extends AppCompatActivity {
         }
 
 
-        legendAdapter = new LegendAdapter(getApplicationContext(), R.layout.legend_template, legendEntries,200,100);
+        legendAdapter = new LegendAdapter(getApplicationContext(),R.layout.legend_template,  legendEntries,200,100);
         listView.setAdapter(legendAdapter);
         listView.setScrollContainer(false);
-        legendAdapter.notifyDataSetChanged();
+
+
 
 
 
