@@ -7,7 +7,7 @@
     android:background="@color/black"
     tools:context=".ChartsActivity">
 
-
+<!-- -->
     <!-- Customize your theme here. -->
         <ScrollView
             android:fillViewport="true"
