@@ -110,7 +110,7 @@ public class HistoryActivity extends AppCompatActivity {
         }else{
             Toast.makeText(getApplicationContext(), "История пуста", Toast.LENGTH_SHORT).show();
         }
-
+// is it ???
 
     }
 }
