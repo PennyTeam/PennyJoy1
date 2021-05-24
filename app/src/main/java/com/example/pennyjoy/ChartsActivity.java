@@ -49,6 +49,7 @@ import Models.RoundedHorizontalBarChartRenderer;
 
 public class ChartsActivity extends AppCompatActivity {
 
+    //smth
 
     private HorizontalBarChart horizontalBarChart;
     private PieChart pieChart;

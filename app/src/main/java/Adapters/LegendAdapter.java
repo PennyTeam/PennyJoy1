@@ -40,6 +40,7 @@ public class LegendAdapter  extends ArrayAdapter<LegendEntry> {
         this.costOfCategory=costOfCategory;
     }
 
+    //smth
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

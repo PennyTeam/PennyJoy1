@@ -8,6 +8,7 @@
     tools:context=".ChartsActivity">
 
 
+    <!-- Customize your theme here. -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
