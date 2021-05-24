@@ -235,6 +235,20 @@ public class ChartsActivity extends AppCompatActivity {
 
         legendAdapter = new LegendAdapter(getApplicationContext(), R.layout.legend_template, legendEntries,200,100);
         listView.setAdapter(legendAdapter);
+        listView.setScrollContainer(false);
+        legendAdapter.notifyDataSetChanged();
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         //конец работы с круглым графиком
