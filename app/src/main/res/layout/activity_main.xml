@@ -81,6 +81,9 @@
                     android:src="@drawable/log_out_from_as"
                     app:backgroundTint="@color/crimson"
                     android:foreground="?android:attr/selectableItemBackground"
+
+                    app:rippleColor="@android:color/black"
+                    app:borderWidth="0dp"
                     />
             </RelativeLayout>
 
@@ -107,7 +110,8 @@
                     app:fabSize="normal"
 
                     android:visibility="invisible"
-
+                    app:rippleColor="@android:color/black"
+                    app:borderWidth="0dp"
                     android:onClick="settingsOfUserClicked"
                     app:maxImageSize="40dp"
                     />
@@ -131,6 +135,8 @@
                     android:clickable="true"
                     app:fabSize="normal"
                     app:maxImageSize="40dp"
+                    app:rippleColor="@android:color/black"
+                    app:borderWidth="0dp"
                     android:onClick="settingsClicked"
 
                     />

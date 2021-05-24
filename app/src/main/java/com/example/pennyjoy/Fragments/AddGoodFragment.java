@@ -34,8 +34,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 
 import Interfaces.OnGoalRetrievedListener;
 import Models.Auth;
@@ -142,7 +144,12 @@ public class AddGoodFragment extends Fragment {
                     double costOfGood= Double.parseDouble(txtCost.getText().toString());
                     Category category=(Category) dropDownCategory.getSelectedItem();
 
-                    Good good=new Good(category.getId(),nameOfGood,costOfGood,purchaseOfPurpose,keyOfUser,System.currentTimeMillis());
+
+                    Date cDate = new Date();
+                    String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
+
+                    Good good=new Good(category.getId(),nameOfGood,costOfGood,purchaseOfPurpose,keyOfUser,currentDate
+                    ,true,true);
                     GoodProvider provider=new GoodProvider();
                     provider.addGood(good);
                     GoodsList goodsList=  GoodsList.getInstance();
@@ -181,9 +188,13 @@ public class AddGoodFragment extends Fragment {
                         if(costOfGood + currentGoal.getFullness() >= currentGoal.getCost()){
                             goalProvider.deleteGoal(currentGoal);
 
+                            Date cDate = new Date();
+                            String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
+
                             currentGoal.setFullness(currentGoal.getFullness() + costOfGood);
                             Good good =new Good(7,currentGoal.getName(), currentGoal.getFullness()
-                            ,currentGoal.getWhatFor(),currentGoal.getUserKey(), System.currentTimeMillis());
+                            ,currentGoal.getWhatFor(),currentGoal.getUserKey(),currentDate
+                            ,true,true);
 
                             GoodProvider provider=new GoodProvider();
                             provider.addGood(good);

@@ -1,61 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/stroke_of_listview">
-    <TextView
-        android:id="@+id/goodTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left|center_vertical"
-        android:text="Продукт"
-        android:textSize="25dp"
-        android:textColor="@color/white"
-        android:layout_marginLeft="15dp"/>
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_vertical"
-    android:paddingTop="100dp">
+    android:background="@color/black">
 
-    <TextView
-        android:id="@+id/essayOfGood"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerInParent="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
 
-        android:layout_gravity="center"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginBottom="0dp"
-        android:background="@drawable/background_for_essay"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:text="Цель"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="#4F4F4F"
+                android:layout_toLeftOf="@id/goodTitle"
+                android:layout_toRightOf="@id/currencyOfCostInHistoryOfGood"
+                />
+
+                <TextView
+                    android:id="@+id/goodTitle"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="Продукт"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="15dp"/>
+
+
+
+                <TextView
+                    android:id="@+id/numberPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Цена"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="60dp"/>
+
+
+
+                <TextView
+                    android:id="@+id/currencyOfCostInHistoryOfGood"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:text="p"
+                    android:textColor="@color/white"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"/>
+
+
+
+
+                <TextView
+                    android:id="@+id/essayOfGood"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+
+
+                    android:layout_below="@id/currencyOfCostInHistoryOfGood"
+                    android:background="@drawable/background_for_essay"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:text="Цель"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="#4F4F4F"
+                android:layout_toLeftOf="@id/goodTitle"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/currencyOfCostInHistoryOfGood"
+                android:layout_below="@id/essayOfGood"
+                />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
 </RelativeLayout>
-
-
-    <TextView
-        android:id="@+id/numberPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Цена"
-        android:textColor="@color/white"
-        android:textSize="25dp"
-        android:layout_gravity="right|center_vertical"
-        android:layout_marginRight="60dp"/>
-
-    <TextView
-        android:id="@+id/currencyOfCostInHistoryOfGood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:layout_gravity="right|center_vertical"
-        android:layout_marginRight="10dp"/>
-
-</FrameLayout>

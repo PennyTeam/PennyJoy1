@@ -24,5 +24,25 @@
         android:textSize="40dp"
         android:textStyle="bold"
         />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/delete"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/white"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:focusable="true"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:maxImageSize="40dp"
+        app:rippleColor="@android:color/black"
+        app:borderWidth="0dp"
+        android:onClick="clearHistoryClicked"
+
+        />
 
 </RelativeLayout>

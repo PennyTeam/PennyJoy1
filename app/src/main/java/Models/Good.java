@@ -9,7 +9,9 @@ public class Good {
     private String purchaseOfPurpose;
     private String userKey;
     private String key;
-    private long createDate;
+    private String createDate;
+    private boolean isActual;
+    private boolean isActiveForHistory;
 
 
     public Good() {
@@ -17,23 +19,43 @@ public class Good {
 
 
 
-    public Good(int category, String name, double price, String purchaseOfPurpose, String userKey,long createDate) {
+    public Good(int category, String name, double price, String purchaseOfPurpose, String userKey,String createDate
+    ,boolean isActual, boolean isActiveForHistory) {
         this.category = category;
         this.name = name;
         this.cost = price;
         this.purchaseOfPurpose = purchaseOfPurpose;
         this.userKey = userKey;
         this.createDate=createDate;
+
+        this.isActual=isActual;
+        this.isActiveForHistory=isActiveForHistory;
     }
 
     //геттеры и сеттеры
 
 
-    public long getCreateDate() {
+    public boolean getActual() {
+        return isActual;
+    }
+
+    public void setActual(boolean actual) {
+        isActual = actual;
+    }
+
+    public boolean getActiveForHistory() {
+        return isActiveForHistory;
+    }
+
+    public void setActiveForHistory(boolean activeForHistory) {
+        isActiveForHistory = activeForHistory;
+    }
+
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(long createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 

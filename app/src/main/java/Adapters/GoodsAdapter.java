@@ -36,6 +36,7 @@ private int resource;
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View v = LayoutInflater.from(this.Context).inflate(resource,null);
+
         TextView productTitle = v.findViewById(R.id.goodTitle);
         TextView anEssay = v.findViewById(R.id.essayOfGood);
         TextView priceInNumbers = v.findViewById(R.id.numberPrice);
