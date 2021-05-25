@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,12 +38,30 @@ private int resource;
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View v = LayoutInflater.from(this.Context).inflate(resource,null);
 
+        Good good = this.getItem(position);
+
         TextView productTitle = v.findViewById(R.id.goodTitle);
         TextView anEssay = v.findViewById(R.id.essayOfGood);
         TextView priceInNumbers = v.findViewById(R.id.numberPrice);
         TextView currencyOfCostInHistoryOfGood=v.findViewById(R.id.currencyOfCostInHistoryOfGood);
 
-        Good good = this.getItem(position);
+        RelativeLayout containerForLblTime=v.findViewById(R.id.containerForLblTime);
+        TextView lblTime=v.findViewById(R.id.lblTime);
+
+
+        //делаю header со временем
+        lblTime.setText(good.getCreateDate());
+        if (position > 0) {
+            if (this.getItem(position).getCreateDate().equalsIgnoreCase(this.getItem(position - 1).getCreateDate())) {
+                containerForLblTime.setVisibility(View.GONE);
+            } else {
+                containerForLblTime.setVisibility(View.VISIBLE);
+            }
+        } else {
+            containerForLblTime.setVisibility(View.VISIBLE);
+        }
+
+
         productTitle.setText(good.getName());
         Auth auth=Auth.getInstance();
         currencyOfCostInHistoryOfGood.setText(auth.getCurrentCurrency().getLabel());

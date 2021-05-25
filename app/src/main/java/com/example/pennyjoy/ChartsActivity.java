@@ -140,25 +140,25 @@ public class ChartsActivity extends AppCompatActivity {
         Legend pieLegend=pieChart.getLegend();
 
         ArrayList<PieEntry> students = new ArrayList<PieEntry>();
-        students.add(new PieEntry(0.13f,"Продукты",food));
-        students.add(new PieEntry(0.26f,"Путешествия",travel));
+        students.add(new PieEntry(0.13f,food,0));
+        students.add(new PieEntry(0.26f,travel,1));
 
 
 
-        students.add(new PieEntry(0.39f,"Транспорт",transport));
+        students.add(new PieEntry(0.39f,transport,2));
 
-        students.add(new PieEntry(0.42f,"Автомобиль",car));
-        students.add(new PieEntry(0.55f,"Одежда",cloth));
-        students.add(new PieEntry(0.68f,"Долги",loans));
-        students.add(new PieEntry(0.81f,"Интвестиции",investments));
-        students.add(new PieEntry(0.94f,"Цели",goals));
-        students.add(new PieEntry(1.07f,"Жилье",house));
-        students.add(new PieEntry(1.20f,"Развелчения и досуг",entertainment));
-        students.add(new PieEntry(1.33f,"Красота и здоровье",beauty_and_health));
-        students.add(new PieEntry(1.46f,"Покупки",shop));
+        students.add(new PieEntry(0.42f,car,3));
+        students.add(new PieEntry(0.55f,cloth,4));
+        students.add(new PieEntry(0.68f,loans,5));
+        students.add(new PieEntry(0.81f,investments,6));
+        students.add(new PieEntry(0.94f,goals,7));
+        students.add(new PieEntry(1.07f,house,8));
+        students.add(new PieEntry(1.20f,entertainment,9));
+        students.add(new PieEntry(1.33f,beauty_and_health,10));
+        students.add(new PieEntry(1.46f,shop,11));
 
 
-        students.add(new PieEntry(1.59f,"Прочее",smth));
+        students.add(new PieEntry(1.59f,smth,12));
 
 
 
@@ -226,17 +226,17 @@ public class ChartsActivity extends AppCompatActivity {
 
 
         ArrayList<LegendEntry> legendEntries=new ArrayList<>();
+        ArrayList<Object> dataOfCategories=new ArrayList<Object>();
         for (int i=0;i<13;i++){
-            if(pieLegend.getEntries()[i].label.equals("")){
-                break;
-            }
             if(students.get(i).getValue()>0) {
                 legendEntries.add(pieLegend.getEntries()[i]);
+                dataOfCategories.add(students.get(i).getData());
             }
         }
 
 
-        legendAdapter = new LegendAdapter(getApplicationContext(),R.layout.legend_template,  legendEntries,200,100);
+        legendAdapter = new LegendAdapter(getApplicationContext(),R.layout.legend_template,  legendEntries,200,100,
+                dataOfCategories);
         listView.setAdapter(legendAdapter);
         listView.setScrollContainer(false);
 

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import Models.Auth;
 
@@ -58,6 +59,7 @@ public class HistoryActivity extends AppCompatActivity {
                     goodsListWhichActualForHistory.add(g);
                 }
             }
+            Collections.reverse(goodsListWhichActualForHistory);
         }
         else{
             lblEmpty.setVisibility(View.VISIBLE);
@@ -65,7 +67,9 @@ public class HistoryActivity extends AppCompatActivity {
         if(goodsListWhichActualForHistory != null && !goodsListWhichActualForHistory.isEmpty() ) {
             lblEmpty.setVisibility(View.GONE);
             goodsAdapter = new GoodsAdapter(getApplicationContext(), R.layout.good_template, goodsListWhichActualForHistory);
+
             listViewHistoryOfGoods.setAdapter(goodsAdapter);
+
         }else{
             lblEmpty.setVisibility(View.VISIBLE);
         }

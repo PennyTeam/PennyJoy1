@@ -22,9 +22,7 @@ import java.util.List;
 import Models.Auth;
 import Models.Good;
 
-public class LegendAdapter extends ArrayAdapter<LegendEntry>{
-
-
+public class LegendAdapter extends ArrayAdapter<LegendEntry> {
 
 
     private android.content.Context Context;
@@ -32,16 +30,18 @@ public class LegendAdapter extends ArrayAdapter<LegendEntry>{
     private int resource;
     private double costOfCategory;
     private int percentage;
+    private ArrayList<Object> dataOfCategory;
 
     public LegendAdapter(@NonNull Context context, int resource, @NonNull List<LegendEntry> legendEntries, double costOfCategory
-            , int percentage) {
+            , int percentage, ArrayList<Object> dataOfCategory) {
         super(context, resource, legendEntries);
 
         this.Context = context;
         this.resource = resource;
         this.legendEntryArrayList = legendEntries;
-        this.percentage=percentage;
-        this.costOfCategory=costOfCategory;
+        this.percentage = percentage;
+        this.costOfCategory = costOfCategory;
+        this.dataOfCategory = dataOfCategory;
     }
 
     //smth
@@ -58,8 +58,61 @@ public class LegendAdapter extends ArrayAdapter<LegendEntry>{
         View colorOfCategory = v.findViewById(R.id.rectangleForCategoryColor);
         colorOfCategory.setBackgroundColor(legendEntry.formColor);
 
+
+        //________________________________________
+        //сделали так потому что при использование лейбла в конструкотре entire все ужасно вышлядит и иконка сливается с названием.
+        // А visibility не делается, вообщем только так
+
         TextView lblNameOfCategory = v.findViewById(R.id.lblNameOfCategory);
-        lblNameOfCategory.setText(legendEntry.label);
+
+        String name = "";
+        switch ((int)dataOfCategory.get(position)) {
+            case 0:
+                name = "Продукты";
+                break;
+            case 1:
+                name = "Путешествия";
+                break;
+            case 2:
+                name = "Транспорт";
+                break;
+            case 3:
+                name = "Автомобиль";
+                break;
+            case 4:
+                name = "Одежда";
+                break;
+            case 5:
+                name = "Долги";
+                break;
+            case 6:
+                name = "Инвестиции";
+                break;
+            case 7:
+                name = "Цели";
+                break;
+            case 8:
+                name = "Жилье";
+                break;
+            case 9:
+                name = "Развлечения и досуг";
+                break;
+            case 10:
+                name = "Красота и здоровье";
+                break;
+            case 11:
+                name = "Покупки";
+                break;
+            case 12:
+                name = "Прочее";
+                break;
+        }
+
+        //________________________________________
+
+
+
+        lblNameOfCategory.setText(name);
 
 
         TextView lblCostOfCategory = v.findViewById(R.id.lblCostOfCategory);
