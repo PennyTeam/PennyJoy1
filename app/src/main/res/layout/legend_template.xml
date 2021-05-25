@@ -21,7 +21,6 @@
                     android:id="@+id/rectangleForCategoryColor"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:background="@color/white"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="10dp"
                     >
@@ -32,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:textSize="15dp"
-                    android:text="Красота и здоровье"
+
                     android:gravity="center"
                     android:maxWidth="110dp"
                     android:layout_toRightOf="@id/rectangleForCategoryColor"
@@ -46,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:text="99999999"
+
                     android:gravity="center"
                     android:maxWidth="110dp"
                     android:layout_centerHorizontal="true"
@@ -58,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:text="p"
+
                     android:layout_toRightOf="@id/lblCostOfCategory"
                     android:layout_marginLeft="10dp"/>
 
@@ -68,7 +67,6 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:text="100"
                     android:layout_toRightOf="@id/lblCurrencyOfCategoryCost"
                     android:layout_marginLeft="50dp"/>
 

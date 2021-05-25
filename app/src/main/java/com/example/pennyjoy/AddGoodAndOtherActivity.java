@@ -37,7 +37,7 @@ public class AddGoodAndOtherActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentHelper).commit();
         getSupportFragmentManager().beginTransaction().replace(R.id.container, addGoodFragment).commit();
 
-//???????????help me
+
 
        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 

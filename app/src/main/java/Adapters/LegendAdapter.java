@@ -28,19 +28,19 @@ public class LegendAdapter extends ArrayAdapter<LegendEntry> {
     private android.content.Context Context;
     private List<LegendEntry> legendEntryArrayList;
     private int resource;
-    private double costOfCategory;
-    private int percentage;
+    private ArrayList<Double> costOfCategoryList;
+    private ArrayList<Double> percentageList;
     private ArrayList<Object> dataOfCategory;
 
-    public LegendAdapter(@NonNull Context context, int resource, @NonNull List<LegendEntry> legendEntries, double costOfCategory
-            , int percentage, ArrayList<Object> dataOfCategory) {
+    public LegendAdapter(@NonNull Context context, int resource, @NonNull List<LegendEntry> legendEntries, ArrayList<Double> costList
+            , ArrayList<Double> percentageList, ArrayList<Object> dataOfCategory) {
         super(context, resource, legendEntries);
 
         this.Context = context;
         this.resource = resource;
         this.legendEntryArrayList = legendEntries;
-        this.percentage = percentage;
-        this.costOfCategory = costOfCategory;
+        this.percentageList = percentageList;
+        this.costOfCategoryList = costList;
         this.dataOfCategory = dataOfCategory;
     }
 
@@ -50,82 +50,112 @@ public class LegendAdapter extends ArrayAdapter<LegendEntry> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View v = LayoutInflater.from(this.Context).inflate(resource, null);
 
-        DecimalFormat decimalFormat = new DecimalFormat("#.###");
-
         LegendEntry legendEntry = this.getItem(position);
+        if((int)dataOfCategory.get(position) != -1) {
+
+            DecimalFormat decimalFormat = new DecimalFormat("#.###");
 
 
-        View colorOfCategory = v.findViewById(R.id.rectangleForCategoryColor);
-        colorOfCategory.setBackgroundColor(legendEntry.formColor);
+            View colorOfCategory = v.findViewById(R.id.rectangleForCategoryColor);
+            colorOfCategory.setBackgroundColor(legendEntry.formColor);
 
 
-        //________________________________________
-        //сделали так потому что при использование лейбла в конструкотре entire все ужасно вышлядит и иконка сливается с названием.
-        // А visibility не делается, вообщем только так
+            TextView lblCostOfCategory = v.findViewById(R.id.lblCostOfCategory);
 
-        TextView lblNameOfCategory = v.findViewById(R.id.lblNameOfCategory);
 
-        String name = "";
-        switch ((int)dataOfCategory.get(position)) {
-            case 0:
-                name = "Продукты";
-                break;
-            case 1:
-                name = "Путешествия";
-                break;
-            case 2:
-                name = "Транспорт";
-                break;
-            case 3:
-                name = "Автомобиль";
-                break;
-            case 4:
-                name = "Одежда";
-                break;
-            case 5:
-                name = "Долги";
-                break;
-            case 6:
-                name = "Инвестиции";
-                break;
-            case 7:
-                name = "Цели";
-                break;
-            case 8:
-                name = "Жилье";
-                break;
-            case 9:
-                name = "Развлечения и досуг";
-                break;
-            case 10:
-                name = "Красота и здоровье";
-                break;
-            case 11:
-                name = "Покупки";
-                break;
-            case 12:
-                name = "Прочее";
-                break;
+            TextView lblCurrencyOfCategoryCost = v.findViewById(R.id.lblCurrencyOfCategoryCost);
+            Auth auth = Auth.getInstance();
+            lblCurrencyOfCategoryCost.setText(auth.getCurrentCurrency().getLabel());
+
+            TextView lblPercentageOfCategory = v.findViewById(R.id.lblPercentageOfCategory);
+
+
+            //________________________________________
+            //сделали так потому что при использование лейбла в конструкотре entire все ужасно вышлядит и иконка сливается с названием.
+            // А visibility не делается, вообщем только так
+
+            TextView lblNameOfCategory = v.findViewById(R.id.lblNameOfCategory);
+
+            String name = "";
+            switch ((int) dataOfCategory.get(position)) {
+                case 0:
+                    name = "Продукты";
+                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
+                    break;
+                case 1:
+                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
+                    name = "Путешествия";
+                    break;
+                case 2:
+                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get(position)));
+                    name = "Транспорт";
+                    break;
+                case 3:
+                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
+                    name = "Автомобиль";
+                    break;
+                case 4:
+                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
+                    name = "Одежда";
+                    break;
+                case 5:
+                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
+                    name = "Долги";
+                    break;
+                case 6:
+                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
+                    name = "Инвестиции";
+                    break;
+                case 7:
+                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
+                    name = "Цели";
+                    break;
+                case 8:
+                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
+                    name = "Жилье";
+                    break;
+                case 9:
+                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
+                    name = "Развлечения и досуг";
+                    break;
+                case 10:
+                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
+                    name = "Красота и здоровье";
+                    break;
+                case 11:
+                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
+                    name = "Покупки";
+                    break;
+                case 12:
+                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
+                    name = "Прочее";
+                    break;
+            }
+
+            //________________________________________
+
+
+            lblNameOfCategory.setText(name);
+
+
+
+
+
+            return v;
         }
-
-        //________________________________________
-
-
-
-        lblNameOfCategory.setText(name);
-
-
-        TextView lblCostOfCategory = v.findViewById(R.id.lblCostOfCategory);
-        lblCostOfCategory.setText(decimalFormat.format(costOfCategory));
-
-        TextView lblCurrencyOfCategoryCost = v.findViewById(R.id.lblCurrencyOfCategoryCost);
-        Auth auth = Auth.getInstance();
-        lblCurrencyOfCategoryCost.setText(auth.getCurrentCurrency().getLabel());
-
-        TextView lblPercentageOfCategory = v.findViewById(R.id.lblPercentageOfCategory);
-        lblPercentageOfCategory.setText(decimalFormat.format(percentage));
-
-
         return v;
     }
 }

@@ -66,4 +66,35 @@ public class GoodProvider {
 
     }
 
+    public void getGoodsFromFirebaseByDate(String keyOfUser, OnGoodsRetrievedListener listener,String date){
+        ArrayList<Good> goodList=new ArrayList<>();
+        Query query = goods.orderByChild("userKey").equalTo(keyOfUser);
+        //__________________________________________________
+        //**************************************************
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot single : snapshot.getChildren()){
+
+                    String [] dateList=date.split("-");
+
+                    Good good = (Good)single.getValue(Good.class);
+                    String [] dateListOfGood=date.split("-");
+
+                    if(dateList[0].equals(dateListOfGood[0]) && dateList[1].equals(dateListOfGood[1]) ) {
+                        goodList.add(good);
+                    }
+                }
+                listener.OnRetrieved(goodList);
+                goodList.clear();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
 }

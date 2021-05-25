@@ -32,4 +32,6 @@
     <color name="goods">#4BA65B</color>
     <color name="smth">#7D8E9B</color>
 
+    <color name="ifEmpty">#1C1C1C</color>
+
 </resources>

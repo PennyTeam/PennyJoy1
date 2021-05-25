@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black"
     tools:context=".ChartsActivity">
 
@@ -13,19 +13,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <RelativeLayout
                     android:id="@+id/containerForLblSpends"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="20dp">
 
-
-
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/pieChartOfSpendings"
                         android:layout_width="300dp"
                         android:layout_height="300dp"
                         android:layout_centerInParent="true"/>
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fabSettings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+
+                        android:src="@drawable/calendaricon"
+
+                        android:backgroundTint="@color/white"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:focusable="true"
+                        android:clickable="true"
+                        app:fabSize="normal"
+                        app:maxImageSize="40dp"
+                        app:rippleColor="@android:color/black"
+                        app:borderWidth="0dp"
+                        android:onClick="calendarClicked"
+
+                        />
                 </RelativeLayout>
 
 

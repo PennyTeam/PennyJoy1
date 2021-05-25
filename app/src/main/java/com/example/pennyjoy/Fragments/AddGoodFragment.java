@@ -67,9 +67,7 @@ public class AddGoodFragment extends Fragment {
 
 
 
-    //Is there anybody out there that's payin' attention?
-    //i'm here!1!!1!
-    //grgrgrgrhrhrhththtttttttttttttttttttttt
+
 
     @Nullable
     @Override
@@ -267,7 +265,7 @@ public class AddGoodFragment extends Fragment {
                         Toast.makeText(view.getContext(), "Заполните все поля!", Toast.LENGTH_LONG).show();
                     }
                 }else{
-                    Snackbar.make(getView(),"У вас нет целей!", BaseTransientBottomBar.LENGTH_SHORT).show();
+                    Snackbar.make(getView(),"У вас пока нет целей", BaseTransientBottomBar.LENGTH_SHORT).show();
                 }
             }
         };
