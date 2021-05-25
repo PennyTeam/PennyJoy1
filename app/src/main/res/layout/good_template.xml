@@ -17,6 +17,8 @@
             android:paddingBottom="20dp"
             android:visibility="gone"
             >
+
+            <!-- -->
             <TextView
                 android:id="@+id/lblTime"
                 android:layout_width="match_parent"
