@@ -72,7 +72,7 @@ private int resource;
         v.setTag(R.string.good_int_for_tag, good);
 
 
-
+//smth
         return v;
     }
 }
