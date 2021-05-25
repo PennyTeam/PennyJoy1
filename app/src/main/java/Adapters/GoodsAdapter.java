@@ -61,7 +61,7 @@ private int resource;
             containerForLblTime.setVisibility(View.VISIBLE);
         }
 
-
+//
         productTitle.setText(good.getName());
         Auth auth=Auth.getInstance();
         currencyOfCostInHistoryOfGood.setText(auth.getCurrentCurrency().getLabel());
