@@ -73,7 +73,10 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
 
             Auth auth=Auth.getInstance();
 
-            User user=new User(name,surname,login,passwd,salary);
+            Date cDate = new Date();
+            String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
+
+            User user=new User(name,surname,login,passwd,salary,currentDate);
 
             DateFormat dateFormat = new SimpleDateFormat("MM");
             Date date = new Date();

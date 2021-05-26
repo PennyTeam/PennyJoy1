@@ -121,11 +121,20 @@ public class ChartsActivity extends AppCompatActivity {
 
     private DatePickerDialog datePickerDialog;
 
+    private ProgressBar progressBar;
+
+    private boolean isAnotherDateOpened=false;
+
+    private double totalSpends;
+    private double salary;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charts);
+
+        progressBar=findViewById(R.id.progressBarInCharts);
 
         lblCurrency=findViewById(R.id.lblCurrencyOfSpends);
         lblPercentage=findViewById(R.id.lblPercentageOfSpends);
@@ -152,27 +161,13 @@ public class ChartsActivity extends AppCompatActivity {
         percentageList=new ArrayList<>();
         costList=new ArrayList<>();
 
-        double totalSpends= auth.getCurrentUser().getTotalSpends();
-        double salary=auth.getCurrentUser().getSalary();
+        totalSpends= auth.getCurrentUser().getTotalSpends();
+        salary=auth.getCurrentUser().getSalary();
 
 
 
 
-        lblPercentage.setText(decimalFormat.format((totalSpends / salary) * 100) + "% из вашей вашей зарплаты потрачено ");
-        //заполнение прогресс бара
-        ObjectAnimator animation = ObjectAnimator.ofInt(spendsProgress, "progress", (int) ((totalSpends/salary)*100));
-        animation.setDuration(450);
-        animation.setInterpolator(new DecelerateInterpolator());
-        animation.start();
-        //заполнение прогресс бара
 
-        if((totalSpends/salary)*100 >=100){
-            lblCurrency.setText("");
-            lblSpends.setText("Вы потратили всю свою зарплату");
-        }else {
-            lblCurrency.setText(auth.getCurrentCurrency().getLabel());
-            lblSpends.setText(decimalFormat.format(totalSpends )+ " из " + decimalFormat.format(salary));
-        }
 
         // инициализирую иконки для категорий
         food=getApplicationContext().getResources().getDrawable(R.drawable.fastfood);
@@ -207,6 +202,7 @@ public class ChartsActivity extends AppCompatActivity {
         DatePickerDialog.OnDateSetListener dateSetListener=new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                progressBar.setVisibility(View.VISIBLE);
                 month+=1;
                 String date=makeDateString(year,month);
                 String [] dateList=date.split("-");
@@ -216,25 +212,106 @@ public class ChartsActivity extends AppCompatActivity {
                 String [] currentDateList=currentDate.split("-");
 
 
+                Date uDate = new Date();
+                String usersDate = auth.getCurrentUser().getDateCreate();
+                String [] usersDateList=usersDate.split("-");
 
-                if(Integer.parseInt(dateList[0]) <= Integer.parseInt(currentDateList[0])) {
-                    if(!dateList[1].equals(currentDateList[1]) && Integer.parseInt(dateList[1]) < Integer.parseInt(currentDateList[1])) {
-                        //System.out.println(date);
+
+                if(isAnotherDateOpened){
+                      if(Integer.parseInt(dateList[0]) <= Integer.parseInt(currentDateList[0])
+                        && Integer.parseInt(dateList[0]) >= Integer.parseInt(usersDateList[0])) {
+                    if( Integer.parseInt(dateList[1]) <= Integer.parseInt(currentDateList[1])
+                            && Integer.parseInt(dateList[1]) >= Integer.parseInt(usersDateList[1])) {
+                        if(dateList[1].equals(currentDateList[1])) {
+                            isAnotherDateOpened = false;
+                        }
                         GoodProvider goodProvider = new GoodProvider();
                         goodProvider.getGoodsFromFirebaseByDate(auth.getCurrentUser().getKey(), new OnGoodsRetrievedListener() {
                             @Override
                             public void OnRetrieved(ArrayList<Good> goods) {
-                                initDataForPieChart(goods);
+                                totalSpends=0;
+                                for (Good g:goods) {
+                                    totalSpends+=g.getCost();
+                                }
 
+                                foodCount=0;
+                                travelCount=0;
+                                transportCount=0;
+                                 carCount=0;
+                                 clothCount=0;
+                                loansCount=0;
+                                investmentsCount=0;
+                                goalsCount=0;
+                                houseCount=0;
+                                entertainmentCount=0;
+                                beauty_and_healthCount=0;
+                                shopCount=0;
+                                smthCount=0;
+
+                                costList.clear();
+                                percentageList.clear();
+                                spendsList.clear();
+                                initDataForPieChart(goods);
+                                progressBar.setVisibility(View.GONE);
                             }
                         }, date);
                     }else{
+                        progressBar.setVisibility(View.GONE);
                         Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content),
                                 "Вы выбрали некоректную дату", Snackbar.LENGTH_SHORT).show();
                     }
                 }else{
+                    progressBar.setVisibility(View.GONE);
                     Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content),
                             "Вы выбрали некоректную дату", Snackbar.LENGTH_SHORT).show();
+                }
+                }
+                else  {
+                    if (Integer.parseInt(dateList[0]) <= Integer.parseInt(currentDateList[0])
+                            && Integer.parseInt(dateList[0]) >= Integer.parseInt(usersDateList[0])) {
+                        if (Integer.parseInt(dateList[1]) < Integer.parseInt(currentDateList[1])
+                                && Integer.parseInt(dateList[1]) >= Integer.parseInt(usersDateList[1])) {
+                            isAnotherDateOpened = true;
+                            GoodProvider goodProvider = new GoodProvider();
+                            goodProvider.getGoodsFromFirebaseByDate(auth.getCurrentUser().getKey(), new OnGoodsRetrievedListener() {
+                                @Override
+                                public void OnRetrieved(ArrayList<Good> goods) {
+                                    totalSpends=0;
+                                    for (Good g:goods) {
+                                        totalSpends+=g.getCost();
+                                    }
+
+                                    foodCount = 0;
+                                    travelCount = 0;
+                                    transportCount = 0;
+                                    carCount = 0;
+                                    clothCount = 0;
+                                    loansCount = 0;
+                                    investmentsCount = 0;
+                                    goalsCount = 0;
+                                    houseCount = 0;
+                                    entertainmentCount = 0;
+                                    beauty_and_healthCount = 0;
+                                    shopCount = 0;
+                                    smthCount = 0;
+
+                                    costList.clear();
+                                    percentageList.clear();
+                                    spendsList.clear();
+                                    initDataForPieChart(goods);
+                                    progressBar.setVisibility(View.GONE);
+                                }
+                            }, date);
+                        } else {
+                            progressBar.setVisibility(View.GONE);
+                            Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content),
+                                    "Вы выбрали некоректную дату", Snackbar.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        progressBar.setVisibility(View.GONE);
+                        Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content),
+                                "Вы выбрали некоректную дату", Snackbar.LENGTH_SHORT).show();
+                    }
                 }
             }
         };
@@ -261,6 +338,21 @@ public class ChartsActivity extends AppCompatActivity {
     }
 
     public void initDataForPieChart(ArrayList<Good> goods){
+        lblPercentage.setText(decimalFormat.format((totalSpends / salary) * 100) + "% из вашей вашей зарплаты потрачено ");
+        //заполнение прогресс бара
+        ObjectAnimator animation = ObjectAnimator.ofInt(spendsProgress, "progress", (int) ((totalSpends/salary)*100));
+        animation.setDuration(450);
+        animation.setInterpolator(new DecelerateInterpolator());
+        animation.start();
+        //заполнение прогресс бара
+
+        if((totalSpends/salary)*100 >=100){
+            lblCurrency.setText("");
+            lblSpends.setText("Вы потратили всю свою зарплату");
+        }else {
+            lblCurrency.setText(auth.getCurrentCurrency().getLabel());
+            lblSpends.setText(decimalFormat.format(totalSpends )+ " из " + decimalFormat.format(salary));
+        }
 
         for (Good g:goods) {
             switch (g.getCategory()){
@@ -323,35 +415,35 @@ public class ChartsActivity extends AppCompatActivity {
         costList.add(smthCount);
 
         //добавляю элементы в percentageList
-        percentageList.add((foodCount/auth.getCurrentUser().getTotalSpends())*100);
-        percentageList.add((travelCount/auth.getCurrentUser().getTotalSpends())*100);
-        percentageList.add((transportCount/auth.getCurrentUser().getTotalSpends())*100);
-        percentageList.add((carCount/auth.getCurrentUser().getTotalSpends())*100);
-        percentageList.add((clothCount/auth.getCurrentUser().getTotalSpends())*100);
-        percentageList.add((loansCount/auth.getCurrentUser().getTotalSpends())*100);
-        percentageList.add((investmentsCount/auth.getCurrentUser().getTotalSpends())*100);
-        percentageList.add((goalsCount/auth.getCurrentUser().getTotalSpends())*100);
-        percentageList.add((houseCount/auth.getCurrentUser().getTotalSpends())*100);
-        percentageList.add((entertainmentCount/auth.getCurrentUser().getTotalSpends())*100);
-        percentageList.add((beauty_and_healthCount/auth.getCurrentUser().getTotalSpends())*100);
-        percentageList.add((shopCount/auth.getCurrentUser().getTotalSpends())*100);
-        percentageList.add((smthCount/auth.getCurrentUser().getTotalSpends())*100);
+        percentageList.add((foodCount/totalSpends)*100);
+        percentageList.add((travelCount/totalSpends)*100);
+        percentageList.add((transportCount/totalSpends)*100);
+        percentageList.add((carCount/totalSpends)*100);
+        percentageList.add((clothCount/totalSpends)*100);
+        percentageList.add((loansCount/totalSpends)*100);
+        percentageList.add((investmentsCount/totalSpends)*100);
+        percentageList.add((goalsCount/totalSpends)*100);
+        percentageList.add((houseCount/totalSpends)*100);
+        percentageList.add((entertainmentCount/totalSpends)*100);
+        percentageList.add((beauty_and_healthCount/totalSpends)*100);
+        percentageList.add((shopCount/totalSpends)*100);
+        percentageList.add((smthCount/totalSpends)*100);
 
 
         if(goods != null && !goods.isEmpty()) {
-            spendsList.add(new PieEntry((float) (foodCount / auth.getCurrentUser().getTotalSpends()) * 100, food, 0));
-            spendsList.add(new PieEntry((float) (travelCount / auth.getCurrentUser().getTotalSpends()) * 100, travel, 1));
-            spendsList.add(new PieEntry((float) (transportCount / auth.getCurrentUser().getTotalSpends()) * 100, transport, 2));
-            spendsList.add(new PieEntry((float) (carCount / auth.getCurrentUser().getTotalSpends()) * 100, car, 3));
-            spendsList.add(new PieEntry((float) (clothCount / auth.getCurrentUser().getTotalSpends()) * 100, cloth, 4));
-            spendsList.add(new PieEntry((float) (loansCount / auth.getCurrentUser().getTotalSpends()) * 100, loans, 5));
-            spendsList.add(new PieEntry((float) (investmentsCount / auth.getCurrentUser().getTotalSpends()) * 100, investments, 6));
-            spendsList.add(new PieEntry((float) (goalsCount / auth.getCurrentUser().getTotalSpends()) * 100, goals, 7));
-            spendsList.add(new PieEntry((float) (houseCount / auth.getCurrentUser().getTotalSpends()) * 100, house, 8));
-            spendsList.add(new PieEntry((float) (entertainmentCount / auth.getCurrentUser().getTotalSpends()) * 100, entertainment, 9));
-            spendsList.add(new PieEntry((float) (beauty_and_healthCount / auth.getCurrentUser().getTotalSpends()) * 100, beauty_and_health, 10));
-            spendsList.add(new PieEntry((float) (shopCount / auth.getCurrentUser().getTotalSpends()) * 100, shop, 11));
-            spendsList.add(new PieEntry((float) (smthCount / auth.getCurrentUser().getTotalSpends()) * 100, smth, 12));
+            spendsList.add(new PieEntry((float) (foodCount / totalSpends) * 100, food, 0));
+            spendsList.add(new PieEntry((float) (travelCount / totalSpends) * 100, travel, 1));
+            spendsList.add(new PieEntry((float) (transportCount /totalSpends) * 100, transport, 2));
+            spendsList.add(new PieEntry((float) (carCount / totalSpends) * 100, car, 3));
+            spendsList.add(new PieEntry((float) (clothCount / totalSpends) * 100, cloth, 4));
+            spendsList.add(new PieEntry((float) (loansCount / totalSpends) * 100, loans, 5));
+            spendsList.add(new PieEntry((float) (investmentsCount / totalSpends) * 100, investments, 6));
+            spendsList.add(new PieEntry((float) (goalsCount / totalSpends) * 100, goals, 7));
+            spendsList.add(new PieEntry((float) (houseCount / totalSpends) * 100, house, 8));
+            spendsList.add(new PieEntry((float) (entertainmentCount / totalSpends) * 100, entertainment, 9));
+            spendsList.add(new PieEntry((float) (beauty_and_healthCount / totalSpends) * 100, beauty_and_health, 10));
+            spendsList.add(new PieEntry((float) (shopCount / totalSpends) * 100, shop, 11));
+            spendsList.add(new PieEntry((float) (smthCount / totalSpends) * 100, smth, 12));
 
 
 
@@ -377,7 +469,7 @@ public class ChartsActivity extends AppCompatActivity {
 
         for (PieEntry pieEntry:spendsList) {
 
-            if(pieEntry.getValue() <= 0.42f){
+            if(pieEntry.getValue() <= 2.9f){
                 pieEntry.setIcon(null);
             }
 

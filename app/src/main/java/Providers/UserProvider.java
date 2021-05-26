@@ -57,6 +57,7 @@ public class UserProvider {
                   user.setSalary(user1.getSalary());
                   user.setTotalSpends(user1.getTotalSpends());
                   user.setUsersCurrentMonth(user1.getUsersCurrentMonth());
+                  user.setDateCreate(user1.getDateCreate());
                 }
                 listener.OnRetrieved(user);
             }

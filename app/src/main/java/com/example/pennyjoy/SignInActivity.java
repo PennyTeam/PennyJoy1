@@ -81,6 +81,7 @@ public class  SignInActivity extends AppCompatActivity {
                     //получаем юзера из UserProvider при помощи интерфейса
                     public void OnRetrieved(User user) {
                         progressBar.setVisibility(View.INVISIBLE);
+
                         user1.setAccIsActive(user.getAccIsActive());
                         user1.setSalary(user.getSalary());
                         user1.setSurname(user.getSurname());
@@ -90,6 +91,8 @@ public class  SignInActivity extends AppCompatActivity {
                         user1.setKey(user.getKey());
                         user1.setUsersCurrentMonth(user.getUsersCurrentMonth());
                         user1.setTotalSpends(user.getTotalSpends());
+                        user1.setDateCreate(user.getDateCreate());
+
                         if(!passWd.equals( user1.getPasswd()) || user1.getLogin()==null){
                             Snackbar.make(v, "Логин или пароль не верны", Snackbar.LENGTH_LONG).show();
                         }

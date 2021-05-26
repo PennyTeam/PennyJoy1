@@ -23,6 +23,8 @@ public class Goal {
     }
 
 
+
+
     public double getFullness() {
         return fullness;
     }

@@ -16,16 +16,18 @@ public class User {
     private static boolean accIsActive ;
     private int usersCurrentMonth;
     private double totalSpends;
+    private String dateCreate;
 
 
 
 
-    public User(String Name, String surname, String login, String passwd, double salary) {
+    public User(String Name, String surname, String login, String passwd, double salary,String dateCreate) {
         this.name = Name;
         this.surname = surname;
         this.login = login;
         this.passwd = passwd;
         this.salary = salary;
+        this.dateCreate=dateCreate;
 
         this.accIsActive = true;
         this.totalSpends=0;
@@ -35,6 +37,14 @@ public class User {
 
     //здесь геттеры и сеттеры
 
+
+    public String getDateCreate() {
+        return dateCreate;
+    }
+
+    public void setDateCreate(String dateCreate) {
+        this.dateCreate = dateCreate;
+    }
 
     public double getTotalSpends() {
         return totalSpends;

@@ -39,8 +39,39 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/containerForChart">
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChartOfSpendingsInMain"
+                    android:layout_width="270dp"
+                    android:layout_height="270dp"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/containerForChart"
+                android:layout_above="@id/containerForSettingsFab"
+
+                >
+
+                <ListView
+
+                    android:id="@+id/listViewOfLegendInMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/containerForBtnCharts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_below="@id/containerForChart"
                 android:padding="20dp">
+
                 <ImageButton
                     android:id="@+id/chartBtn"
                     android:layout_width="wrap_content"

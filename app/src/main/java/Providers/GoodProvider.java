@@ -79,7 +79,7 @@ public class GoodProvider {
                     String [] dateList=date.split("-");
 
                     Good good = (Good)single.getValue(Good.class);
-                    String [] dateListOfGood=date.split("-");
+                    String [] dateListOfGood=good.getCreateDate().split("-");
 
                     if(dateList[0].equals(dateListOfGood[0]) && dateList[1].equals(dateListOfGood[1]) ) {
                         goodList.add(good);
