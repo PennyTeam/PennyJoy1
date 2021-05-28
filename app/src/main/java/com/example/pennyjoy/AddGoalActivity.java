@@ -176,7 +176,5 @@ public class AddGoalActivity extends AppCompatActivity {
             return null;
         }
 
-        public void addGoalClicked(){
 
-        }
 }

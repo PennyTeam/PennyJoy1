@@ -6,6 +6,7 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -15,13 +16,17 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import Models.Auth;
 import Models.Category;
@@ -65,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
     //сам piechart и иконки категорий к нему
     private PieChart pieChart;
     private Legend pieLegend;
-    private ArrayList<Double> percentageList;
-    private ArrayList<Double> costList;
+
     private Drawable food;
     private Drawable travel;
     private Drawable transport;
@@ -90,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
     private GoodsList goodsList = GoodsList.getInstance();
     private ArrayList<Good> goodArrayList;
 
+    private ArrayList<Double>sortedListWithCategories;
+
 
 
     private double totalSpends;
@@ -101,6 +107,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
 
         settings = findViewById(R.id.fabSettings);
         settingsOfUser = findViewById(R.id.fabSettingsOfUser);
@@ -142,14 +156,16 @@ public class MainActivity extends AppCompatActivity {
                 (R.color.goals),R.color.lodging, R.color.entertainment, R.color.health,
                 R.color.goods, (R.color.smth)};
 
-actualGoodsArrayList = new ArrayList<>();
-for(Good g : goodsList){
-    if(g.getActual()){
-        actualGoodsArrayList.add(g);
-    }
-}
-    }
 
+        actualGoodsArrayList = new ArrayList<>();
+        for(Good g : goodsList){
+            if(g.getActual()){
+                actualGoodsArrayList.add(g);
+            }
+        }
+
+        initDataForPieChart(actualGoodsArrayList);
+    }
 
     public void moneyPigBtnClicked(View v) {
         if (clicked) {
@@ -162,6 +178,28 @@ for(Good g : goodsList){
         }
 
         Intent intent = new Intent(this, MoneyPigActivity.class);
+        //очищаем все
+
+
+
+        foodCount = 0;
+        travelCount = 0;
+        transportCount = 0;
+        carCount = 0;
+        clothCount = 0;
+        loansCount = 0;
+        investmentsCount = 0;
+        goalsCount = 0;
+        houseCount = 0;
+        entertainmentCount = 0;
+        beauty_and_healthCount = 0;
+        shopCount = 0;
+        smthCount = 0;
+
+
+        spendsList.clear();
+
+        //очищаем все
         startActivityForResult(intent, mainRequest);
     }
 
@@ -176,6 +214,28 @@ for(Good g : goodsList){
         }
 
         Intent intent = new Intent(this, AddGoodAndOtherActivity.class);
+        //очищаем все
+
+
+
+        foodCount = 0;
+        travelCount = 0;
+        transportCount = 0;
+        carCount = 0;
+        clothCount = 0;
+        loansCount = 0;
+        investmentsCount = 0;
+        goalsCount = 0;
+        houseCount = 0;
+        entertainmentCount = 0;
+        beauty_and_healthCount = 0;
+        shopCount = 0;
+        smthCount = 0;
+
+
+        spendsList.clear();
+
+        //очищаем все
         startActivityForResult(intent, mainRequest);
     }
 
@@ -190,6 +250,28 @@ for(Good g : goodsList){
         }
 
         Intent intent = new Intent(this, ChartsActivity.class);
+        //очищаем все
+
+
+
+        foodCount = 0;
+        travelCount = 0;
+        transportCount = 0;
+        carCount = 0;
+        clothCount = 0;
+        loansCount = 0;
+        investmentsCount = 0;
+        goalsCount = 0;
+        houseCount = 0;
+        entertainmentCount = 0;
+        beauty_and_healthCount = 0;
+        shopCount = 0;
+        smthCount = 0;
+
+
+        spendsList.clear();
+
+        //очищаем все
         startActivityForResult(intent, mainRequest);
     }
 
@@ -218,6 +300,28 @@ for(Good g : goodsList){
         }
 
         Intent intent = new Intent(this, SetUserActivity.class);
+        //очищаем все
+
+
+
+        foodCount = 0;
+        travelCount = 0;
+        transportCount = 0;
+        carCount = 0;
+        clothCount = 0;
+        loansCount = 0;
+        investmentsCount = 0;
+        goalsCount = 0;
+        houseCount = 0;
+        entertainmentCount = 0;
+        beauty_and_healthCount = 0;
+        shopCount = 0;
+        smthCount = 0;
+
+
+        spendsList.clear();
+
+        //очищаем все
         startActivityForResult(intent, 12099);
     }
 
@@ -271,24 +375,23 @@ for(Good g : goodsList){
     }
 
     public void initDataForPieChart(ArrayList<Good> goods) {
-
-
+        sortTop4Categories(goods);
 
 
         if (goods != null && !goods.isEmpty()) {
-            spendsList.add(new PieEntry((float) (foodCount / totalSpends) * 100, food, 0));
-            spendsList.add(new PieEntry((float) (travelCount / totalSpends) * 100, travel, 1));
-            spendsList.add(new PieEntry((float) (transportCount / totalSpends) * 100, transport, 2));
-            spendsList.add(new PieEntry((float) (carCount / totalSpends) * 100, car, 3));
-            spendsList.add(new PieEntry((float) (clothCount / totalSpends) * 100, cloth, 4));
-            spendsList.add(new PieEntry((float) (loansCount / totalSpends) * 100, loans, 5));
-            spendsList.add(new PieEntry((float) (investmentsCount / totalSpends) * 100, investments, 6));
-            spendsList.add(new PieEntry((float) (goalsCount / totalSpends) * 100, goals, 7));
-            spendsList.add(new PieEntry((float) (houseCount / totalSpends) * 100, house, 8));
-            spendsList.add(new PieEntry((float) (entertainmentCount / totalSpends) * 100, entertainment, 9));
-            spendsList.add(new PieEntry((float) (beauty_and_healthCount / totalSpends) * 100, beauty_and_health, 10));
-            spendsList.add(new PieEntry((float) (shopCount / totalSpends) * 100, shop, 11));
-            spendsList.add(new PieEntry((float) (smthCount / totalSpends) * 100, smth, 12));
+            spendsList.add(new PieEntry((float) (sortedListWithCategories.get(0) / totalSpends) * 100, food, 0));
+            spendsList.add(new PieEntry((float) (sortedListWithCategories.get(1) / totalSpends) * 100, travel, 1));
+            spendsList.add(new PieEntry((float) (sortedListWithCategories.get(2)/ totalSpends) * 100, transport, 2));
+            spendsList.add(new PieEntry((float) (sortedListWithCategories.get(3) / totalSpends) * 100, car, 3));
+            spendsList.add(new PieEntry((float) (sortedListWithCategories.get(4) / totalSpends) * 100, cloth, 4));
+            spendsList.add(new PieEntry((float) (sortedListWithCategories.get(5) / totalSpends) * 100, loans, 5));
+            spendsList.add(new PieEntry((float) (sortedListWithCategories.get(6) / totalSpends) * 100, investments, 6));
+            spendsList.add(new PieEntry((float) (sortedListWithCategories.get(7) / totalSpends) * 100, goals, 7));
+            spendsList.add(new PieEntry((float) (sortedListWithCategories.get(8) / totalSpends) * 100, house, 8));
+            spendsList.add(new PieEntry((float) (sortedListWithCategories.get(9) / totalSpends) * 100, entertainment, 9));
+            spendsList.add(new PieEntry((float) (sortedListWithCategories.get(10) / totalSpends) * 100, beauty_and_health, 10));
+            spendsList.add(new PieEntry((float) (sortedListWithCategories.get(11) / totalSpends) * 100, shop, 11));
+            spendsList.add(new PieEntry((float) (sortedListWithCategories.get(12) / totalSpends) * 100, smth, 12));
 
 
         } else {
@@ -308,10 +411,48 @@ for(Good g : goodsList){
 
 
         }
+
+        PieDataSet pieDataSet = new PieDataSet(spendsList,"");
+
+
+
+
+
+
+
+
+
+        pieDataSet.setColors(colors,getApplicationContext());
+
+
+
+
+        PieData pieData = new PieData(pieDataSet);
+
+        pieDataSet.setDrawValues(false);
+
+
+
+        ;
+
+        pieChart.setData(pieData);
+        pieChart.getDescription().setEnabled(false);
+
+
+
+
+
+        pieChart.getLegend().setEnabled(false);
+        pieChart.setHoleRadius(60f);
+        pieChart.setHoleColor(Color.BLACK);
+
+        pieChart.animateY(500, Easing.EaseInOutCubic);
+        pieChart.animate();
+
     }
 
-    public ArrayList<Double> sortTop4Categories(ArrayList<Good>actualGoodsArrayList){
-        ArrayList<Double>sortedListWithCategories = new ArrayList<>();
+    public void sortTop4Categories(ArrayList<Good>actualGoodsArrayList){
+        sortedListWithCategories = new ArrayList<>();
 
         for (Good g : actualGoodsArrayList) {
             switch (g.getCategory()) {
@@ -355,27 +496,75 @@ for(Good g : goodsList){
                     smthCount += g.getCost();
                     break;
             }
-            sortedListWithCategories.add(foodCount);
-            sortedListWithCategories.add(travelCount);
-            sortedListWithCategories.add(transportCount);
-            sortedListWithCategories.add(carCount);
-            sortedListWithCategories.add(clothCount);
-            sortedListWithCategories.add(loansCount);
-            sortedListWithCategories.add(investmentsCount);
-            sortedListWithCategories.add(goalsCount);
-            sortedListWithCategories.add(houseCount);
-            sortedListWithCategories.add(entertainmentCount);
-            sortedListWithCategories.add(beauty_and_healthCount);
-            sortedListWithCategories.add(shopCount);
-            sortedListWithCategories.add(smthCount);
+
+        }
+
+        sortedListWithCategories.add(foodCount);
+        sortedListWithCategories.add(travelCount);
+        sortedListWithCategories.add(transportCount);
+        sortedListWithCategories.add(carCount);
+        sortedListWithCategories.add(clothCount);
+        sortedListWithCategories.add(loansCount);
+        sortedListWithCategories.add(investmentsCount);
+        sortedListWithCategories.add(goalsCount);
+        sortedListWithCategories.add(houseCount);
+        sortedListWithCategories.add(entertainmentCount);
+        sortedListWithCategories.add(beauty_and_healthCount);
+        sortedListWithCategories.add(shopCount);
+        sortedListWithCategories.add(smthCount);
+
+
+
+        ArrayList<Double> listWithBetaCategoriesCount = new ArrayList<>();
+        for (double d : sortedListWithCategories) {
+            listWithBetaCategoriesCount.add(d);
+        }
+
+        Collections.sort(listWithBetaCategoriesCount);
+        Collections.reverse(listWithBetaCategoriesCount);
 
 
 
 
+        ArrayList<Integer> num = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < sortedListWithCategories.size(); j++) {
+                if (listWithBetaCategoriesCount.get(i).doubleValue() == sortedListWithCategories.get(j).doubleValue()) {
+                    num.add(j);
+
+                }
+            }
         }
 
 
 
-        return sortedListWithCategories;
+
+        Collections.sort(num);
+
+
+
+
+        for (int i=0;i<num.size();i++) {
+            for(int j=0;j<sortedListWithCategories.size();j++){
+                if(i<num.size()) {
+                    if (num.get(i) != j) {
+                        sortedListWithCategories.set(j, 0.0);
+                    } else {
+                        i++;
+                    }
+                }else{
+                    for(;j<sortedListWithCategories.size();j++) {
+                        sortedListWithCategories.set(j, 0.0);
+                    }
+                }
+            }
+        }
+
+
+
+        for (Double d:sortedListWithCategories) {
+            System.out.println(d);
+        }
+
     }
 }

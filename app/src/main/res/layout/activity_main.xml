@@ -43,8 +43,8 @@
 
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/pieChartOfSpendingsInMain"
-                    android:layout_width="270dp"
-                    android:layout_height="270dp"
+                    android:layout_width="290dp"
+                    android:layout_height="290dp"
                     android:layout_centerInParent="true"/>
             </RelativeLayout>
             <RelativeLayout
