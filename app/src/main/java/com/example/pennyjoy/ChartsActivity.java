@@ -516,7 +516,8 @@ public class ChartsActivity extends AppCompatActivity {
         pieChart.animate();
 
 
-        ArrayList<LegendEntry> legendEntries=new ArrayList<>();
+        ArrayList<LegendEntry>
+                legendEntries=new ArrayList<>();
         ArrayList<Object> dataOfCategories=new ArrayList<Object>();
         for (int i=0;i<spendsList.size();i++){
             if(spendsList.get(i).getValue()>0) {
