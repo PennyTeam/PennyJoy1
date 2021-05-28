@@ -29,7 +29,6 @@ public class HistoryActivity extends AppCompatActivity {
 
     private ListView listViewHistoryOfGoods;
     private GoodsAdapter goodsAdapter;
-    private Auth auth;
     private TextView lblEmpty;
     private GoodsList goodsList;
     private ArrayList<Good> goodsListWhichActualForHistory=new ArrayList<>();
@@ -42,7 +41,7 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        auth=Auth.getInstance();
+
         goodsList=GoodsList.getInstance();
 
         lblEmpty=findViewById(R.id.lblEmptyInHistory);

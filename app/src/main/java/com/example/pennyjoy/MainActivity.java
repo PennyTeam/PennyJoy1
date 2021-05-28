@@ -32,6 +32,7 @@ import java.util.Collections;
 import Adapters.LegendAdapterForMain;
 import Models.Auth;
 import Models.Category;
+import Models.GoalsList;
 import Models.Good;
 import Models.GoodsList;
 
@@ -93,11 +94,10 @@ public class MainActivity extends AppCompatActivity {
 
     private int[] colors;
 
-    private Auth auth = Auth.getInstance();
+    private Auth auth ;
     private ArrayList<Good>actualGoodsArrayList;
     private DecimalFormat decimalFormat = new DecimalFormat("#.###");
-    private GoodsList goodsList = GoodsList.getInstance();
-    private ArrayList<Good> goodArrayList;
+    private GoodsList goodsList;
 
     private ArrayList<Double>sortedListWithCategories;
 
@@ -112,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //onStart();
 
     }
 
@@ -120,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        auth = Auth.getInstance();
+        goodsList = GoodsList.getInstance();
 
         settings = findViewById(R.id.fabSettings);
         settingsOfUser = findViewById(R.id.fabSettingsOfUser);
@@ -133,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         to_bottom_anim = AnimationUtils.loadAnimation(this, R.anim.to_bottom_anim_for_fab);
 
 
-        goodArrayList = new ArrayList<>();
+
         totalSpends = auth.getCurrentUser().getTotalSpends();
         salary = auth.getCurrentUser().getSalary();
         spendsList = new ArrayList<>();
@@ -337,6 +338,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SignInActivity.class);
         SharedPreferences sharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
         sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
+
+        auth.setCurrentCurrency(null);
+        auth.setCurrentGoal(null);
+        auth.setCurrentUser(null);
+
+        goodsList.clear();
+        GoalsList goalsList =GoalsList.getInstance();
+        goalsList.clear();
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         startActivity(intent);
@@ -444,7 +453,6 @@ public class MainActivity extends AppCompatActivity {
         pieChart.getDescription().setEnabled(false);
 
 
-//smthhhhhhhhhhhhhhhhhhhhhhhhhhhhh
 
 
         pieChart.getLegend().setEnabled(false);
@@ -464,7 +472,6 @@ public class MainActivity extends AppCompatActivity {
                 dataOfCategories.add(spendsList.get(i).getData());
             }
         }
-        //listView = findViewById(R.id.listViewOfLegend);
         legendAdapterForMain = new LegendAdapterForMain(getApplicationContext(), R.layout.legent_template_for_main,legendEntries, dataOfCategories);
         listView.setAdapter(legendAdapterForMain);
 
@@ -548,7 +555,11 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Integer> num = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < sortedListWithCategories.size(); j++) {
-                if (listWithBetaCategoriesCount.get(i).doubleValue() == sortedListWithCategories.get(j).doubleValue()) {
+                if(listWithBetaCategoriesCount.get(i).doubleValue() == 0.0){
+                    i++;
+                    break;
+                }
+                else if (listWithBetaCategoriesCount.get(i).doubleValue() == sortedListWithCategories.get(j).doubleValue()) {
                     num.add(j);
 
                 }

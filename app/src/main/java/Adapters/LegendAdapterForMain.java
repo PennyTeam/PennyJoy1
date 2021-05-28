@@ -115,7 +115,7 @@ public class LegendAdapterForMain extends ArrayAdapter<LegendEntry> {
                     name = "Красота и здоровье";
                     break;
                 case 11:
-
+                    name = "Покупки";
                     break;
                 case 12:
                     name = "Прочее";

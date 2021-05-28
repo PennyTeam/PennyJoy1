@@ -80,7 +80,7 @@ public class  SignInActivity extends AppCompatActivity {
                     @Override
                     //получаем юзера из UserProvider при помощи интерфейса
                     public void OnRetrieved(User user) {
-                        progressBar.setVisibility(View.INVISIBLE);
+
 
                         user1.setAccIsActive(user.getAccIsActive());
                         user1.setSalary(user.getSalary());
@@ -125,41 +125,51 @@ public class  SignInActivity extends AppCompatActivity {
                                             goalsList.addAll(goalList);
                                         }
 
+                                        //заполняем лист с товарами
+                                        GoodProvider goodProvider=new GoodProvider();
+
+                                        goodProvider.getGoodsFromFirebase(user.getKey(), new OnGoodsRetrievedListener() {
+                                            @Override
+                                            public void OnRetrieved(ArrayList<Good> goods) {
+                                                if(goods != null && !goods.isEmpty()){
+                                                    goodsList.addAll(goods);
+                                                }
+
+                                                CurrenciesList currenciesList = CurrenciesList.getInstance();
+                                                currenciesList.init();
+                                                if(auth.getCurrentCurrency() == null) {
+                                                    UsersCurrencyProvider usersCurrencyProvider=new UsersCurrencyProvider();
+                                                    usersCurrencyProvider.getUsersCurrencyFromFirebase(auth.getCurrentUser().getKey()
+                                                            , new OnUsersCurrencyRetrievedListener() {
+                                                                @Override
+                                                                public void OnRetrieved(Currency currency) {
+                                                                    auth.setCurrentCurrency(currency);
+                                                                    editor.putInt("idOfCurrency",currency.getId()).commit();
+                                                                    startActivityForResult(intent, MAIN_REQUEST_CODE);
+                                                                    progressBar.setVisibility(View.INVISIBLE);
+                                                                }
+                                                            });
+                                                }else{
+                                                    startActivityForResult(intent, MAIN_REQUEST_CODE);
+                                                    progressBar.setVisibility(View.INVISIBLE);
+                                                }
+
+
+                                            }
+                                        });
+
                                     }
                                 };
                                 GoalProvider goalProvider = new GoalProvider();
                                 goalProvider.getGoalsFromFirebase(auth.getCurrentUser().getKey(), listener1);
 
 
-                                //заполняем лист с товарами
-                                GoodProvider goodProvider=new GoodProvider();
-
-                                goodProvider.getGoodsFromFirebase(user.getKey(), new OnGoodsRetrievedListener() {
-                                    @Override
-                                    public void OnRetrieved(ArrayList<Good> goods) {
-                                        if(goods != null && !goods.isEmpty()){
-                                            goodsList.addAll(goods);
-                                        }
-                                    }
-                                });
 
 
-                                CurrenciesList currenciesList = CurrenciesList.getInstance();
-                                currenciesList.init();
-                                if(auth.getCurrentCurrency() == null) {
-                                    UsersCurrencyProvider usersCurrencyProvider=new UsersCurrencyProvider();
-                                    usersCurrencyProvider.getUsersCurrencyFromFirebase(auth.getCurrentUser().getKey()
-                                            , new OnUsersCurrencyRetrievedListener() {
-                                        @Override
-                                        public void OnRetrieved(Currency currency) {
-                                            auth.setCurrentCurrency(currency);
-                                            editor.putInt("idOfCurrency",currency.getId()).commit();
-                                        }
-                                    });
-                                }
 
 
-                                startActivityForResult(intent, MAIN_REQUEST_CODE);
+
+
                             }
                         }
                     }

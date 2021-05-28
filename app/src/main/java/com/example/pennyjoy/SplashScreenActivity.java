@@ -76,47 +76,43 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                                 }
 
+                                //заполняем лист с товарами
+                                GoodProvider goodProvider=new GoodProvider();
+
+                                goodProvider.getGoodsFromFirebase(user.getKey(), new OnGoodsRetrievedListener() {
+                                    @Override
+                                    public void OnRetrieved(ArrayList<Good> goods) {
+                                        if(goods != null && !goods.isEmpty()){
+                                            goodsList.addAll(goods);
+                                        }
+                                        CurrenciesList currenciesList=CurrenciesList.getInstance();
+                                        currenciesList.init();
+                                        SharedPreferences mySharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
+                                        int idOfCurrency=mySharedPreferences.getInt("idOfCurrency",-1);
+                                        if(idOfCurrency==-1) {
+                                            auth.setCurrentCurrency(currenciesList.getCurrencies().get(0));
+                                        }
+
+                                        else{
+                                            UsersCurrencyProvider usersCurrencyProvider=new UsersCurrencyProvider();
+                                            usersCurrencyProvider.getUsersCurrencyFromFirebase(auth.getCurrentUser().getKey(), new OnUsersCurrencyRetrievedListener() {
+                                                @Override
+                                                public void OnRetrieved(Currency currency) {
+                                                    auth.setCurrentCurrency(currency);
+                                                    CategoryList categoryList=CategoryList.getInstance();
+                                                    categoryList.init();
+
+                                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
                             }
                         };
                         goalProvider.getGoalsFromFirebase(user.getKey(),listener1);
-
-                        //заполняем лист с товарами
-                        GoodProvider goodProvider=new GoodProvider();
-
-                        goodProvider.getGoodsFromFirebase(user.getKey(), new OnGoodsRetrievedListener() {
-                            @Override
-                            public void OnRetrieved(ArrayList<Good> goods) {
-                                if(goods != null && !goods.isEmpty()){
-                                    goodsList.addAll(goods);
-                                }
-                            }
-                        });
-
-
-                        CurrenciesList currenciesList=CurrenciesList.getInstance();
-                        currenciesList.init();
-                        SharedPreferences mySharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
-                        int idOfCurrency=mySharedPreferences.getInt("idOfCurrency",-1);
-                        if(idOfCurrency==-1) {
-                            auth.setCurrentCurrency(currenciesList.getCurrencies().get(0));
-                        }
-
-                        else{
-                            UsersCurrencyProvider usersCurrencyProvider=new UsersCurrencyProvider();
-                            usersCurrencyProvider.getUsersCurrencyFromFirebase(auth.getCurrentUser().getKey(), new OnUsersCurrencyRetrievedListener() {
-                                @Override
-                                public void OnRetrieved(Currency currency) {
-                                    auth.setCurrentCurrency(currency);
-                                    CategoryList categoryList=CategoryList.getInstance();
-                                    categoryList.init();
-
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
-                                    startActivity(intent);
-                                }
-                            });
-                        }
-
 
                     }
                     else{

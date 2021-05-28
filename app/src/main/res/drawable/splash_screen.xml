@@ -5,7 +5,9 @@
     <item android:drawable="@android:color/black"/>
 
     <!-- Лого приложения - 144dp версия иконки приложения -->
-    <item android:gravity="center" android:drawable="@drawable/logo_foreground"
+    <item android:gravity="center" android:drawable="@drawable/logo1"
        />
+
+
 
 </layer-list>
