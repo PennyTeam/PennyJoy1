@@ -15,7 +15,7 @@
     </style>
 
     <style name="SplashTheme" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="backgroundTint">@color/black</item>
+        <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
 
@@ -28,4 +28,7 @@
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/horizontal_bar_for_spends</item>
     </style>
+
+
+
 </resources>

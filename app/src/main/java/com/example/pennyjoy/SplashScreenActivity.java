@@ -27,30 +27,27 @@ import Providers.GoodProvider;
 import Providers.UserProvider;
 import Providers.UsersCurrencyProvider;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashScreenActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private Auth auth=Auth.getInstance();
     private GoalsList goalsList = GoalsList.getInstance();
     private GoodsList goodsList=GoodsList.getInstance();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // убедитесь, что вызываете до super.onCreate()
+        setTheme(R.style.SplashTheme);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+
         isUserExist();
     }
-
-
-
-
 
 
 
     //функция для проверки наличия юзера
     public void isUserExist(){
 
-        sharedPreferences=getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES),Context.MODE_PRIVATE);
+        sharedPreferences=getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
 
 
         String login=sharedPreferences.getString("loginOfTheAuthorizedUser",null);
@@ -142,6 +139,5 @@ public class SplashActivity extends AppCompatActivity {
             return;
         }
     }
-
 
 }

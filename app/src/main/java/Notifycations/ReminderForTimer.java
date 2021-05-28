@@ -4,20 +4,12 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.example.pennyjoy.AddGoodAndOtherActivity;
-import com.example.pennyjoy.Fragments.AddGoodFragment;
 import com.example.pennyjoy.R;
-import com.example.pennyjoy.SplashActivity;
-
-import java.util.ArrayList;
-import java.util.Collections;
+import com.example.pennyjoy.SplashScreenActivity;
 
 public class ReminderForTimer extends BroadcastReceiver {
     private int num = (int) System.currentTimeMillis();
@@ -30,7 +22,7 @@ public class ReminderForTimer extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         nameOfGood=intent.getStringExtra("nameOfGood");
 
-        intent=new Intent(context, SplashActivity.class);
+        intent=new Intent(context, SplashScreenActivity.class);
 
         pendingIntent=PendingIntent.getActivity(context,0,intent,0);
         NotificationCompat.Builder builder=new NotificationCompat.Builder(context,"notifyTimer")

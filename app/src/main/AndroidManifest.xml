@@ -4,81 +4,41 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PennyJoy">
-        <activity android:name=".SplashActivity"
-            android:noHistory="true">
+        <activity android:name=".SplashScreenActivity"
+            android:noHistory="true"
+            android:theme="@style/SplashTheme"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddGoalActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-            </intent-filter>
-        </activity>
-        <activity android:name=".ResultOfQuizActivity"
-            android:noHistory="true"/>
-
-        <activity android:name=".QuestionsActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-            </intent-filter>
-        </activity>
+        <activity android:name=".AddGoalActivity"></activity>
+        <activity
+            android:name=".ResultOfQuizActivity"
+            android:noHistory="true" />
+        <activity android:name=".QuestionsActivity"></activity>
         <activity android:name=".HistoryActivity" />
-        <activity android:name=".SignInActivity"
-            android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".SignInActivity"
+            android:noHistory="true"></activity>
         <activity android:name=".SetUserActivity" />
         <activity android:name=".SetPasswdActivity" />
-        <activity android:name=".MoneyPigActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-            </intent-filter>
-        </activity>
-        <activity android:name=".AddGoodAndOtherActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-            </intent-filter>
-        </activity>
-        <activity android:name=".ChartsActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".SignUpActivityNoAcc1">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-            </intent-filter>
-        </activity>
-        <activity android:name=".SignUpActivityNoAcc2">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-            </intent-filter>
-        </activity>
-        <activity android:name=".SignUpActivityNoAcc3"
-            android:noHistory="true"/>
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-            </intent-filter>
-        </activity>
+        <activity android:name=".MoneyPigActivity"></activity>
+        <activity android:name=".AddGoodAndOtherActivity"></activity>
+        <activity android:name=".ChartsActivity"></activity>
+        <activity android:name=".SignUpActivityNoAcc1"></activity>
+        <activity android:name=".SignUpActivityNoAcc2"></activity>
+        <activity
+            android:name=".SignUpActivityNoAcc3"
+            android:noHistory="true" />
+        <activity android:name=".MainActivity"></activity>
 
         <receiver android:name="Notifycations.ReminderForTimer" />
     </application>
