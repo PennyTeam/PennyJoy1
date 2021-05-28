@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -28,6 +29,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import Adapters.LegendAdapterForMain;
 import Models.Auth;
 import Models.Category;
 import Models.Good;
@@ -48,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton settingsOfUser;
     private FloatingActionButton fabLogOut;
     private ListView listView;
+    private ArrayList<LegendEntry> legendEntries;
+    private ArrayList<Object> dataOfCategories;
+    private LegendAdapterForMain legendAdapterForMain;
     private ArrayList<PieEntry> spendsList;
 
 
@@ -107,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //onStart();
 
     }
 
@@ -375,8 +380,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initDataForPieChart(ArrayList<Good> goods) {
-        sortTop4Categories(goods);
 
+        sortTop4Categories(goods);
 
         if (goods != null && !goods.isEmpty()) {
             spendsList.add(new PieEntry((float) (sortedListWithCategories.get(0) / totalSpends) * 100, food, 0));
@@ -400,7 +405,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        listView = findViewById(R.id.listViewOfLegend);
+
 
 
         for (PieEntry pieEntry : spendsList) {
@@ -448,6 +453,20 @@ public class MainActivity extends AppCompatActivity {
 
         pieChart.animateY(500, Easing.EaseInOutCubic);
         pieChart.animate();
+
+
+        //
+        legendEntries = new ArrayList<LegendEntry>();
+        dataOfCategories = new ArrayList<>();
+        for (int i=0;i<spendsList.size();i++){
+            if(spendsList.get(i).getValue()>0) {
+                legendEntries.add(pieLegend.getEntries()[i]);
+                dataOfCategories.add(spendsList.get(i).getData());
+            }
+        }
+        //listView = findViewById(R.id.listViewOfLegend);
+        legendAdapterForMain = new LegendAdapterForMain(getApplicationContext(), R.layout.legent_template_for_main,legendEntries, dataOfCategories);
+        listView.setAdapter(legendAdapterForMain);
 
     }
 
@@ -565,6 +584,8 @@ public class MainActivity extends AppCompatActivity {
         for (Double d:sortedListWithCategories) {
             System.out.println(d);
         }
+
+
 
     }
 }

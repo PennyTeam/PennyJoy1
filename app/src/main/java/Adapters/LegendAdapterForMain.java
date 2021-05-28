@@ -55,11 +55,11 @@ public class LegendAdapterForMain extends ArrayAdapter<LegendEntry> {
             TextView lblCostOfCategory = v.findViewById(R.id.lblCostOfCategory);
 
 
-            TextView lblCurrencyOfCategoryCost = v.findViewById(R.id.lblCurrencyOfCategoryCost);
-            Auth auth = Auth.getInstance();
-            lblCurrencyOfCategoryCost.setText(auth.getCurrentCurrency().getLabel());
+            //TextView lblCurrencyOfCategoryCost = v.findViewById(R.id.lblCurrencyOfCategoryCost);
+           // Auth auth = Auth.getInstance();
+            //lblCurrencyOfCategoryCost.setText(auth.getCurrentCurrency().getLabel());
 
-            TextView lblPercentageOfCategory = v.findViewById(R.id.lblPercentageOfCategory);
+            //TextView lblPercentageOfCategory = v.findViewById(R.id.lblPercentageOfCategory);
 
 
             //________________________________________

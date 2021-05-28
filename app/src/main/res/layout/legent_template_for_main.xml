@@ -30,9 +30,11 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textSize="20dp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-light"
         android:text="LABEL"
         android:gravity="center"
-        android:maxWidth="110dp"
+        android:maxWidth="125dp"
         android:layout_toRightOf="@id/rectangleForCategoryColor"
         android:layout_marginLeft="20dp"/>
     </RelativeLayout>
