@@ -46,6 +46,7 @@
                         android:layout_height="29dp"
                         android:layout_centerHorizontal="true"
                         android:paddingLeft="20dp"
+                        android:singleLine="true"
                         android:background="@drawable/body_for_edit_text"
                         android:maxLength="10"
                         android:inputType="text"/>
@@ -81,6 +82,7 @@
                         android:layout_height="29dp"
                         android:layout_centerHorizontal="true"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:paddingLeft="20dp"
                         android:maxLength="10"
                         android:background="@drawable/body_for_edit_text" />
