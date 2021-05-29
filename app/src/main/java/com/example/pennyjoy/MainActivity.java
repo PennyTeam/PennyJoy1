@@ -1,19 +1,25 @@
 package com.example.pennyjoy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.animation.ObjectAnimator;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -96,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Auth auth ;
     private ArrayList<Good>actualGoodsArrayList;
-    private DecimalFormat decimalFormat = new DecimalFormat("#.###");
     private GoodsList goodsList;
 
     private ArrayList<Double>sortedListWithCategories;
@@ -107,11 +112,45 @@ public class MainActivity extends AppCompatActivity {
 
     private double salary;
 
+    private Dialog dialog;
+
+    private TextView lblMainInf,lblCategoriesLabels;
+    private AppCompatButton closeAD;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+        Intent intent=getIntent();
+        if(intent.getExtras().getBoolean("isMonthEnded")) {
+
+            LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View myView = layoutInflater.inflate(R.layout.aler_dialog_in_main_tamplate, null, false);
+
+
+            lblCategoriesLabels=(TextView)myView.findViewById(R.id.lblTop4CategoriesInMonth);
+            lblMainInf=(TextView)myView.findViewById(R.id.lblMainInfAboutEndOfMonth);
+            closeAD=(AppCompatButton)myView.findViewById(R.id.btnCloseAD);
+
+            lblMainInf.setText(intent.getExtras().getString("mainInf"));
+            lblCategoriesLabels.setText(intent.getExtras().getString("top4CategoriesLabels"));
+
+            dialog = new Dialog(MainActivity.this);
+            dialog.setContentView(myView);
+            closeAD.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+
+            dialog.show();
+        }
+
 
     }
 
@@ -206,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
         spendsList.clear();
 
         //очищаем все
-        startActivityForResult(intent, mainRequest);
+        startActivity(intent);
     }
 
     public void addGoodClicked(View v) {
@@ -242,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
         spendsList.clear();
 
         //очищаем все
-        startActivityForResult(intent, mainRequest);
+        startActivity(intent);
     }
 
     public void chartBtnClicked(View v) {
@@ -278,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
         spendsList.clear();
 
         //очищаем все
-        startActivityForResult(intent, mainRequest);
+        startActivity(intent);
     }
 
     //метод для главной кнопки настроек
@@ -328,7 +367,7 @@ public class MainActivity extends AppCompatActivity {
         spendsList.clear();
 
         //очищаем все
-        startActivityForResult(intent, 12099);
+        startActivity(intent);
     }
 
 
@@ -592,9 +631,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        for (Double d:sortedListWithCategories) {
-            System.out.println(d);
-        }
+
 
 
 

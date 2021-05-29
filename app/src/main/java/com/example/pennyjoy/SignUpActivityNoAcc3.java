@@ -21,7 +21,6 @@ import Models.Auth;
 import Models.CurrenciesList;
 import Models.Currency;
 import Models.User;
-import Providers.CurrencyProvider;
 import Providers.UserProvider;
 import Providers.UsersCurrencyProvider;
 
@@ -78,10 +77,9 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
 
             User user=new User(name,surname,login,passwd,salary,currentDate);
 
-            DateFormat dateFormat = new SimpleDateFormat("MM");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
             Date date = new Date();
-            user.setUsersCurrentMonth(Integer.parseInt(dateFormat.format(date)));
-            Log.e("MOTH!!!!!!!!!!!!!!!!:",user.getUsersCurrentMonth()+"");
+            user.setUsersCurrentDate(dateFormat.format(date));
 
             UserProvider provider=new UserProvider();
             provider.addUser(user);

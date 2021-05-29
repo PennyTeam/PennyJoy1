@@ -44,7 +44,7 @@ public class LegendAdapter extends ArrayAdapter<LegendEntry> {
         this.dataOfCategory = dataOfCategory;
     }
 
-    //smth
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

@@ -5,9 +5,9 @@
     <item android:drawable="@android:color/black"/>
 
     <!-- Лого приложения - 144dp версия иконки приложения -->
-    <item android:gravity="center" android:drawable="@drawable/logo1"
+    <item android:gravity="center" android:drawable="@drawable/logoforsplash"
        />
-
+    
 
 
 </layer-list>

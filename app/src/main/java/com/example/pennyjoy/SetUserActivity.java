@@ -3,14 +3,11 @@ package com.example.pennyjoy;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,14 +20,9 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import java.text.DateFormat;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
 import Interfaces.OnCurrencyConvertRetrievedListener;
-import Interfaces.OnGoodsRetrievedListener;
 import Models.Auth;
 import Models.CategoryList;
 import Models.CurrenciesList;
@@ -172,7 +164,7 @@ public class SetUserActivity extends AppCompatActivity {
                 updatedUser.setLogin(newLogin);
                 updatedUser.setName(newName);
                 updatedUser.setSalary(Double.parseDouble(newSalary));
-                updatedUser.setUsersCurrentMonth(auth.getCurrentUser().getUsersCurrentMonth());
+                updatedUser.setUsersCurrentDate(auth.getCurrentUser().getUsersCurrentDate());
                 updatedUser.setSurname(newSurname);
                 updatedUser.setTotalSpends(newTotalSpends);
 
@@ -265,7 +257,7 @@ public class SetUserActivity extends AppCompatActivity {
                             updatedUser.setAccIsActive(auth.getCurrentUser().getAccIsActive());
                             updatedUser.setLogin(newLogin);
 
-                            updatedUser.setUsersCurrentMonth(auth.getCurrentUser().getUsersCurrentMonth());
+                            updatedUser.setUsersCurrentDate(auth.getCurrentUser().getUsersCurrentDate());
                             updatedUser.setName(newName);
                             updatedUser.setSalary(Double.parseDouble(newSalary));
                             updatedUser.setSurname(newSurname);

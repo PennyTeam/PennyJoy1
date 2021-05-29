@@ -59,7 +59,6 @@ import Interfaces.OnGoodsRetrievedListener;
 import Models.Auth;
 import Models.Good;
 import Models.GoodsList;
-import Models.RoundedHorizontalBarChartRenderer;
 import Providers.GoodProvider;
 
 public class ChartsActivity extends AppCompatActivity {

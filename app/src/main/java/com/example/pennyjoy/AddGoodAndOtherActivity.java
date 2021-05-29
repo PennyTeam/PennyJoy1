@@ -65,11 +65,10 @@ public class AddGoodAndOtherActivity extends AppCompatActivity {
             }
         });
 
-if(res == 3){
-    AlertDialog.Builder ad = new AlertDialog.Builder(this);
-    ad.setTitle("Советник по покупкам").setMessage("Вам стоит отказаться от покупки в пользу целей!");
-    ad.show();
-}
-
+        if(res == 3){
+            AlertDialog.Builder ad = new AlertDialog.Builder(this);
+            ad.setTitle("Советник по покупкам").setMessage("Вам стоит отказаться от покупки в пользу целей!");
+            ad.show();
+        }
     }
 }

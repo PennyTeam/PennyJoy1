@@ -1,10 +1,5 @@
 package Models;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 public class User {
 
     private String name;
@@ -14,9 +9,10 @@ public class User {
     private double salary;
     private String key;
     private static boolean accIsActive ;
-    private int usersCurrentMonth;
+    private String usersCurrentDate;
     private double totalSpends;
     private String dateCreate;
+    private int efficiency;
 
 
 
@@ -38,6 +34,14 @@ public class User {
     //здесь геттеры и сеттеры
 
 
+    public int getEfficiency() {
+        return efficiency;
+    }
+
+    public void setEfficiency(int efficiency) {
+        this.efficiency = efficiency;
+    }
+
     public String getDateCreate() {
         return dateCreate;
     }
@@ -54,12 +58,13 @@ public class User {
         this.totalSpends = totalSpends;
     }
 
-    public int getUsersCurrentMonth() {
-        return usersCurrentMonth;
+
+    public String getUsersCurrentDate() {
+        return usersCurrentDate;
     }
 
-    public void setUsersCurrentMonth(int usersCurrentMonth) {
-        this.usersCurrentMonth = usersCurrentMonth;
+    public void setUsersCurrentDate(String usersCurrentDate) {
+        this.usersCurrentDate = usersCurrentDate;
     }
 
 

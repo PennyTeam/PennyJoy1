@@ -1,9 +1,6 @@
 package Providers;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -56,8 +53,9 @@ public class UserProvider {
                   user.setSurname(user1.getSurname());
                   user.setSalary(user1.getSalary());
                   user.setTotalSpends(user1.getTotalSpends());
-                  user.setUsersCurrentMonth(user1.getUsersCurrentMonth());
+                  user.setUsersCurrentDate(user1.getUsersCurrentDate());
                   user.setDateCreate(user1.getDateCreate());
+                  user.setEfficiency(user1.getEfficiency());
                 }
                 listener.OnRetrieved(user);
             }

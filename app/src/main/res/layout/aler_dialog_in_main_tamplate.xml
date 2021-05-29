@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:layout_height="match_parent">
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:background="@drawable/iconok"
+        android:layout_centerHorizontal="true"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="20dp">
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="80dp">
+                <TextView
+                    android:id="@+id/lblEndOfMonth"
+                    android:layout_marginTop="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Конец месяца"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="40dp"/>
+
+                <TextView
+                    android:id="@+id/lblMainInfAboutEndOfMonth"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="В прошлом месяце вы не плохо потрудились. Так держать!"
+                    android:gravity="center"
+                    android:textSize="33dp"
+                    android:layout_below="@id/lblEndOfMonth"/>
+
+                <TextView
+                    android:id="@+id/lblTop4"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Топ 4 категории за месяц"
+                    android:gravity="left"
+                    android:textColor="@color/black"
+                    android:layout_below="@id/lblMainInfAboutEndOfMonth"
+                    android:textSize="33dp"/>
+
+
+                <TextView
+                    android:id="@+id/lblTop4CategoriesInMonth"
+                    android:paddingTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Развлечения и досуг"
+                    android:gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:layout_below="@+id/lblTop4"
+                    android:textSize="25dp"/>
+
+              <androidx.appcompat.widget.AppCompatButton
+                  android:id="@+id/btnCloseAD"
+                  android:layout_width="200dp"
+                  android:layout_height="wrap_content"
+                  android:background="@drawable/btn_close_in_ad"
+                  android:text="Хорошо"
+                  android:textAllCaps="false"
+                  android:layout_centerInParent="true"
+                  android:textSize="25dp"
+                  android:layout_below="@id/lblTop4CategoriesInMonth"
+                  android:layout_marginTop="30dp"
+                  />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

@@ -213,6 +213,9 @@ public class AddGoodFragment extends Fragment {
 
 
                             goalsList.remove(currentGoal);
+
+                            auth.getCurrentUser().setEfficiency(auth.getCurrentUser().getEfficiency() + 25);
+                            userProvider.updateUser(auth.getCurrentUser());
                             if( goalsList != null && !goalsList.isEmpty()) {
                                 auth.setCurrentGoal(goalsList.get(0));
                             }else{

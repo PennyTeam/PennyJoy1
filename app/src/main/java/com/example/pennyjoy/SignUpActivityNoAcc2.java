@@ -43,18 +43,13 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
             String name= intent2.getExtras().getString("name");
             String surname= intent2.getExtras().getString("surname");
 
-            User user1 = new User();
+
             OnUserRetrievedListener listener = new OnUserRetrievedListener() {
                 @Override
                 public void OnRetrieved(User user) {
                     progressBar.setVisibility(View.INVISIBLE);
-                    user1.setSalary(user.getSalary());
-                    user1.setSurname(user.getSurname());
-                    user1.setName(user.getName());
-                    user1.setPasswd(user.getPasswd());
-                    user1.setLogin(user.getLogin());
-                    user1.setKey(user.getKey());
-                    if( user1.getLogin()!=null){
+
+                    if( user.getLogin()!=null){
                         txtLogin.setError("Данный логин уже используется");
                     }else{
                         intent.putExtra("login",txtLogin.getText().toString());
