@@ -26,8 +26,8 @@ public class ReminderForTimer extends BroadcastReceiver {
 
         pendingIntent=PendingIntent.getActivity(context,0,intent,0);
         NotificationCompat.Builder builder=new NotificationCompat.Builder(context,"notifyTimer")
-                //здесь должен быть наш лого!!!!!!!!!!!!!!!!!!!!!
-                .setSmallIcon(R.drawable.lamp)
+
+                .setSmallIcon(R.drawable.logoofpennyjoy)
                 .setContentTitle("Время раздумий закончилось!")
                 .setContentText("Таймер на обдумывание "+nameOfGood+ " подошел к концу.")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)

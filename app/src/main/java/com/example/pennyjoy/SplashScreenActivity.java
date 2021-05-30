@@ -132,7 +132,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                                                     Date cDate = new Date();
                                                     String currentDate = new SimpleDateFormat("yyyy-MM").format(cDate);
 
-                                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                    Intent intent = new Intent(getApplicationContext(), SlideActivity.class);
 
                                                     if(!auth.getCurrentUser().getUsersCurrentDate().equals(currentDate)){
                                                         int efficiency= countEfficiency();

@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PennyJoy">
+
         <activity
             android:name=".SplashScreenActivity"
             android:noHistory="true"
@@ -19,6 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SlideActivity"
+            android:noHistory="true"></activity>
         <activity android:name=".AddGoalActivity" />
         <activity
             android:name=".ResultOfQuizActivity"

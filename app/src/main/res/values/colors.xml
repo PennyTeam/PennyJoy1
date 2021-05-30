@@ -14,6 +14,7 @@
     <color name="forTargetLayout">#C0C0C0</color>
     <color name="crimson">#8B1414</color>
     <color name="gray">#B0B0B0</color>
+    <color name="transparentWhite">#939393</color>
 
     <color name="green">#3BBE25</color>
 
@@ -35,5 +36,7 @@
     <color name="smth">#7D8E9B</color>
 
     <color name="ifEmpty">#1C1C1C</color>
+
+
 
 </resources>

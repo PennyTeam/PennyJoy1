@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         Intent intent=getIntent();
-        if(intent.getExtras().getBoolean("isMonthEnded")) {
+        if(intent.getExtras() != null && intent.getExtras().getBoolean("isMonthEnded")) {
 
             LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View myView = layoutInflater.inflate(R.layout.aler_dialog_in_main_tamplate, null, false);

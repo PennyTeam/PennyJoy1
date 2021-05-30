@@ -122,7 +122,7 @@ public class ChartsActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
 
-    private boolean isAnotherDateOpened=false;
+
 
     private double totalSpends;
     private double salary;
@@ -138,7 +138,7 @@ public class ChartsActivity extends AppCompatActivity {
         lblCurrency=findViewById(R.id.lblCurrencyOfSpends);
         lblPercentage=findViewById(R.id.lblPercentageOfSpends);
         lblSpends=findViewById(R.id.lblSpends);
-        
+
         initDatePicker();
 
         spendsProgress=findViewById(R.id.progressOfSpends);
@@ -202,116 +202,65 @@ public class ChartsActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 progressBar.setVisibility(View.VISIBLE);
-                month+=1;
-                String date=makeDateString(year,month);
-                String [] dateList=date.split("-");
+                month += 1;
+                String date = makeDateString(year, month);
+                String[] dateList = date.split("-");
 
                 Date cDate = new Date();
                 String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
-                String [] currentDateList=currentDate.split("-");
+                String[] currentDateList = currentDate.split("-");
 
 
-                Date uDate = new Date();
                 String usersDate = auth.getCurrentUser().getDateCreate();
-                String [] usersDateList=usersDate.split("-");
+                String[] usersDateList = usersDate.split("-");
 
-
-                if(isAnotherDateOpened){
-                      if(Integer.parseInt(dateList[0]) <= Integer.parseInt(currentDateList[0])
-                        && Integer.parseInt(dateList[0]) >= Integer.parseInt(usersDateList[0])) {
-                    if( Integer.parseInt(dateList[1]) <= Integer.parseInt(currentDateList[1])
-                            && Integer.parseInt(dateList[1]) >= Integer.parseInt(usersDateList[1])) {
-                        if(dateList[1].equals(currentDateList[1])) {
-                            isAnotherDateOpened = false;
-                        }
+                if (isItCorrectDateChoosed(dateList, currentDateList, usersDateList) == true) {
                         GoodProvider goodProvider = new GoodProvider();
                         goodProvider.getGoodsFromFirebaseByDate(auth.getCurrentUser().getKey(), new OnGoodsRetrievedListener() {
                             @Override
                             public void OnRetrieved(ArrayList<Good> goods) {
-                                totalSpends=0;
-                                for (Good g:goods) {
-                                    totalSpends+=g.getCost();
+                                ArrayList<Good> goodsForHistory = new ArrayList<>();
+                                totalSpends = 0;
+
+                                if (dateList[0].equals(currentDateList[0]) && dateList[1].equals(currentDateList[1])) {
+
+                                    goodsForHistory.addAll(goodsListWhichActual);
+                                } else {
+                                    for (Good g : goods) {
+                                        goodsForHistory.add(g);
+                                    }
                                 }
 
-                                foodCount=0;
-                                travelCount=0;
-                                transportCount=0;
-                                 carCount=0;
-                                 clothCount=0;
-                                loansCount=0;
-                                investmentsCount=0;
-                                goalsCount=0;
-                                houseCount=0;
-                                entertainmentCount=0;
-                                beauty_and_healthCount=0;
-                                shopCount=0;
-                                smthCount=0;
+                                for (Good g : goodsForHistory) {
+                                    totalSpends += g.getCost();
+                                }
+
+                                foodCount = 0;
+                                travelCount = 0;
+                                transportCount = 0;
+                                carCount = 0;
+                                clothCount = 0;
+                                loansCount = 0;
+                                investmentsCount = 0;
+                                goalsCount = 0;
+                                houseCount = 0;
+                                entertainmentCount = 0;
+                                beauty_and_healthCount = 0;
+                                shopCount = 0;
+                                smthCount = 0;
 
                                 costList.clear();
                                 percentageList.clear();
                                 spendsList.clear();
-                                initDataForPieChart(goods);
+                                initDataForPieChart(goodsForHistory);
                                 progressBar.setVisibility(View.GONE);
                             }
                         }, date);
-                    }else{
-                        progressBar.setVisibility(View.GONE);
-                        Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content),
-                                "Вы выбрали некоректную дату", Snackbar.LENGTH_SHORT).show();
-                    }
-                }else{
-                    progressBar.setVisibility(View.GONE);
-                    Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content),
-                            "Вы выбрали некоректную дату", Snackbar.LENGTH_SHORT).show();
-                }
-                }
-                else  {
-                    if (Integer.parseInt(dateList[0]) <= Integer.parseInt(currentDateList[0])
-                            && Integer.parseInt(dateList[0]) >= Integer.parseInt(usersDateList[0])) {
-                        if (Integer.parseInt(dateList[1]) < Integer.parseInt(currentDateList[1])
-                                && Integer.parseInt(dateList[1]) >= Integer.parseInt(usersDateList[1])) {
-                            isAnotherDateOpened = true;
-                            GoodProvider goodProvider = new GoodProvider();
-                            goodProvider.getGoodsFromFirebaseByDate(auth.getCurrentUser().getKey(), new OnGoodsRetrievedListener() {
-                                @Override
-                                public void OnRetrieved(ArrayList<Good> goods) {
-                                    totalSpends=0;
-                                    for (Good g:goods) {
-                                        totalSpends+=g.getCost();
-                                    }
-
-                                    foodCount = 0;
-                                    travelCount = 0;
-                                    transportCount = 0;
-                                    carCount = 0;
-                                    clothCount = 0;
-                                    loansCount = 0;
-                                    investmentsCount = 0;
-                                    goalsCount = 0;
-                                    houseCount = 0;
-                                    entertainmentCount = 0;
-                                    beauty_and_healthCount = 0;
-                                    shopCount = 0;
-                                    smthCount = 0;
-
-                                    costList.clear();
-                                    percentageList.clear();
-                                    spendsList.clear();
-                                    initDataForPieChart(goods);
-                                    progressBar.setVisibility(View.GONE);
-                                }
-                            }, date);
-                        } else {
-                            progressBar.setVisibility(View.GONE);
-                            Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content),
-                                    "Вы выбрали некоректную дату", Snackbar.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        progressBar.setVisibility(View.GONE);
-                        Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content),
-                                "Вы выбрали некоректную дату", Snackbar.LENGTH_SHORT).show();
-                    }
-                }
+            }else{
+                progressBar.setVisibility(View.GONE);
+                Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content),
+                        "Вы выбрали некоректную дату", Snackbar.LENGTH_SHORT).show();
+            }
             }
         };
 
@@ -325,6 +274,38 @@ public class ChartsActivity extends AppCompatActivity {
 
         datePickerDialog=new DatePickerDialog(this,style,dateSetListener,year,month,day);
     }
+
+    private boolean isItCorrectDateChoosed(String[] dateList, String[] currentDateList
+            , String[] usersDateList) {
+        boolean isMonthCorrect = false;
+        boolean isYearCorrect = false;
+
+
+            if (Integer.parseInt(dateList[0]) == Integer.parseInt(currentDateList[0])
+                    || Integer.parseInt(dateList[0]) == Integer.parseInt(usersDateList[0])) {
+                if (Integer.parseInt(dateList[0]) == Integer.parseInt(currentDateList[0])
+                        && Integer.parseInt(dateList[1]) <= Integer.parseInt(currentDateList[1])) {
+                    isYearCorrect = true;
+                    isMonthCorrect = true;
+                } else if (Integer.parseInt(dateList[0]) == Integer.parseInt(usersDateList[0])
+                        && Integer.parseInt(dateList[1]) >= Integer.parseInt(usersDateList[1])) {
+                    isYearCorrect = true;
+                    isMonthCorrect = true;
+                }
+            } else {
+                isMonthCorrect = true;
+                if (Integer.parseInt(dateList[0]) < Integer.parseInt(currentDateList[0])
+                        && Integer.parseInt(dateList[0]) > Integer.parseInt(usersDateList[0])) {
+                    isYearCorrect = true;
+                }
+            }
+
+
+
+        return isYearCorrect && isMonthCorrect;
+    }
+
+
 
     private String makeDateString(int year, int month) {
         String monthString =month+"";
@@ -539,6 +520,7 @@ public class ChartsActivity extends AppCompatActivity {
         datePickerDialog.getDatePicker().findViewById(Resources.getSystem().getIdentifier("day", "id", "android")).setVisibility(View.GONE);
         datePickerDialog.show();
     }
+
 
 
 }
