@@ -101,8 +101,11 @@ public class  SignInActivity extends AppCompatActivity {
                             if (!user1.getAccIsActive()) {
                                 Snackbar.make(v, "Аккаунт был удален!", Snackbar.LENGTH_LONG).show();
                             } else {
-
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                Intent intentFromNoAccc3=getIntent();
+                                Intent intent=new Intent(getApplicationContext(), MainActivity.class);
+                                if(intentFromNoAccc3.getExtras().getBoolean("isUserHereFirstTime") ) {
+                                 intent.setClass(getApplicationContext(), SlideActivity.class);
+                                }
 
                                 //работа с категориями
                                 CategoryList categoryList=CategoryList.getInstance();
@@ -146,12 +149,12 @@ public class  SignInActivity extends AppCompatActivity {
                                                                 public void OnRetrieved(Currency currency) {
                                                                     auth.setCurrentCurrency(currency);
                                                                     editor.putInt("idOfCurrency",currency.getId()).commit();
-                                                                    startActivityForResult(intent, MAIN_REQUEST_CODE);
+                                                                    startActivity(intent);
                                                                     progressBar.setVisibility(View.INVISIBLE);
                                                                 }
                                                             });
                                                 }else{
-                                                    startActivityForResult(intent, MAIN_REQUEST_CODE);
+                                                    startActivity(intent);
                                                     progressBar.setVisibility(View.INVISIBLE);
                                                 }
 

@@ -288,7 +288,8 @@ public class ChartsActivity extends AppCompatActivity {
                     isYearCorrect = true;
                     isMonthCorrect = true;
                 } else if (Integer.parseInt(dateList[0]) == Integer.parseInt(usersDateList[0])
-                        && Integer.parseInt(dateList[1]) >= Integer.parseInt(usersDateList[1])) {
+                        && Integer.parseInt(dateList[1]) >= Integer.parseInt(usersDateList[1])
+                && Integer.parseInt(dateList[1]) <= Integer.parseInt(currentDateList[1])) {
                     isYearCorrect = true;
                     isMonthCorrect = true;
                 }
@@ -298,6 +299,10 @@ public class ChartsActivity extends AppCompatActivity {
                         && Integer.parseInt(dateList[0]) > Integer.parseInt(usersDateList[0])) {
                     isYearCorrect = true;
                 }
+            }
+            if(Integer.parseInt(dateList[0]) == Integer.parseInt(usersDateList[0] )
+                && Integer.parseInt(dateList[1]) < Integer.parseInt(usersDateList[1]) ){
+                isMonthCorrect=false;
             }
 
 

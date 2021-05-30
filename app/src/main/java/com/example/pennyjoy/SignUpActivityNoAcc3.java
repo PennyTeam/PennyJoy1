@@ -61,6 +61,7 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
     public void saveUserClicked(View v){
         if( !salary.getText().toString().isEmpty()) {
             Intent intent = new Intent(this, SignInActivity.class);
+            intent.putExtra("isUserHereFirstTime",true);
 
             //получаю данные со второго активити
             Intent intent2= getIntent();
