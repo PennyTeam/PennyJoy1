@@ -46,7 +46,7 @@ public class MoneyPigActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_money_pig);
-
+        alertDialog = new AlertDialog.Builder(this);
 
     }
 
@@ -68,7 +68,7 @@ public class MoneyPigActivity extends AppCompatActivity {
 
         lblCurrencyOfGoalProgress.setText(auth.getCurrentCurrency().getLabel());
 
-        alertDialog = new AlertDialog.Builder(this);
+
 
 
         if(currentGoal != null) {
@@ -109,7 +109,7 @@ public class MoneyPigActivity extends AppCompatActivity {
                 goalsTitles[i] = goalsList.get(i+1).getName();
             }
             if(goalsTitles.length == 0){
-                alertDialog.setMessage("У вас есть только текущаяя цель!");
+                alertDialog.setMessage("У вас есть только текущая цель!");
                 alertDialog.show();
             }else {
                 alertDialog.setItems(goalsTitles, new DialogInterface.OnClickListener() {

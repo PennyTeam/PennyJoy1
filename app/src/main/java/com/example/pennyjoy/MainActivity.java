@@ -15,6 +15,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
@@ -104,12 +105,11 @@ public class MainActivity extends AppCompatActivity {
 
     private int[] colors;
 
-    private Auth auth ;
-    private ArrayList<Good>actualGoodsArrayList;
+    private Auth auth;
+    private ArrayList<Good> actualGoodsArrayList;
     private GoodsList goodsList;
 
-    private ArrayList<Double>sortedListWithCategories;
-
+    private ArrayList<Double> sortedListWithCategories;
 
 
     private double totalSpends;
@@ -118,8 +118,9 @@ public class MainActivity extends AppCompatActivity {
 
     private Dialog dialog;
 
-    private TextView lblMainInf,lblCategoriesLabels;
+    private TextView lblMainInf, lblCategoriesLabels;
     private AppCompatButton closeAD;
+    private AlertDialog.Builder alertDialog;
 
 
     @Override
@@ -128,18 +129,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-        Intent intent=getIntent();
-        if(intent.getExtras() != null && intent.getExtras().getBoolean("isMonthEnded")) {
+        Intent intent = getIntent();
+        if (intent.getExtras() != null && intent.getExtras().getBoolean("isMonthEnded")) {
 
             LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View myView = layoutInflater.inflate(R.layout.aler_dialog_in_main_tamplate, null, false);
 
 
-            lblCategoriesLabels=(TextView)myView.findViewById(R.id.lblTop4CategoriesInMonth);
-            lblMainInf=(TextView)myView.findViewById(R.id.lblMainInfAboutEndOfMonth);
-            closeAD=(AppCompatButton)myView.findViewById(R.id.btnCloseAD);
-
+            lblCategoriesLabels = (TextView) myView.findViewById(R.id.lblTop4CategoriesInMonth);
+            lblMainInf = (TextView) myView.findViewById(R.id.lblMainInfAboutEndOfMonth);
+            closeAD = (AppCompatButton) myView.findViewById(R.id.btnCloseAD);
             lblMainInf.setText(intent.getExtras().getString("mainInf"));
             lblCategoriesLabels.setText(intent.getExtras().getString("top4CategoriesLabels"));
 
@@ -161,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        alertDialog = new AlertDialog.Builder(this);
         auth = Auth.getInstance();
         goodsList = GoodsList.getInstance();
 
@@ -177,38 +176,36 @@ public class MainActivity extends AppCompatActivity {
         to_bottom_anim = AnimationUtils.loadAnimation(this, R.anim.to_bottom_anim_for_fab);
 
 
-
         totalSpends = auth.getCurrentUser().getTotalSpends();
         salary = auth.getCurrentUser().getSalary();
         spendsList = new ArrayList<>();
 
 
-
         food = getApplicationContext().getResources().getDrawable(R.drawable.fastfood);
-        travel =getApplicationContext().getResources().getDrawable(R.drawable.travel);
-        transport=getApplicationContext().getResources().getDrawable(R.drawable.transport);
-        car=getApplicationContext().getResources().getDrawable(R.drawable.my_car);
-        cloth=getApplicationContext().getResources().getDrawable(R.drawable.clothes);
-        loans=getApplicationContext().getResources().getDrawable(R.drawable.loans);
-        investments=getApplicationContext().getResources().getDrawable(R.drawable.investments);
-        goals=getApplicationContext().getResources().getDrawable(R.drawable.goals);
-        house =getApplicationContext().getResources().getDrawable(R.drawable.house);
-        entertainment=getApplicationContext().getResources().getDrawable(R.drawable.entertainment);
-        beauty_and_health=getApplicationContext().getResources().getDrawable(R.drawable.beauty_and_health);
-        shop=getApplicationContext().getResources().getDrawable(R.drawable.shopping);
-        smth=getApplicationContext().getResources().getDrawable(R.drawable.sort);
+        travel = getApplicationContext().getResources().getDrawable(R.drawable.travel);
+        transport = getApplicationContext().getResources().getDrawable(R.drawable.transport);
+        car = getApplicationContext().getResources().getDrawable(R.drawable.my_car);
+        cloth = getApplicationContext().getResources().getDrawable(R.drawable.clothes);
+        loans = getApplicationContext().getResources().getDrawable(R.drawable.loans);
+        investments = getApplicationContext().getResources().getDrawable(R.drawable.investments);
+        goals = getApplicationContext().getResources().getDrawable(R.drawable.goals);
+        house = getApplicationContext().getResources().getDrawable(R.drawable.house);
+        entertainment = getApplicationContext().getResources().getDrawable(R.drawable.entertainment);
+        beauty_and_health = getApplicationContext().getResources().getDrawable(R.drawable.beauty_and_health);
+        shop = getApplicationContext().getResources().getDrawable(R.drawable.shopping);
+        smth = getApplicationContext().getResources().getDrawable(R.drawable.sort);
 
         pieChart = findViewById(R.id.pieChartOfSpendingsInMain);
         pieLegend = pieChart.getLegend();
-        colors=new int[]{(R.color.food),( R.color.travelings),(R.color.transport),
-                (R.color.car),(R.color.cloth),(R.color.debts),(R.color.investments),
-                (R.color.goals),R.color.lodging, R.color.entertainment, R.color.health,
+        colors = new int[]{(R.color.food), (R.color.travelings), (R.color.transport),
+                (R.color.car), (R.color.cloth), (R.color.debts), (R.color.investments),
+                (R.color.goals), R.color.lodging, R.color.entertainment, R.color.health,
                 R.color.goods, (R.color.smth)};
 
 
         actualGoodsArrayList = new ArrayList<>();
-        for(Good g : goodsList){
-            if(g.getActual()){
+        for (Good g : goodsList) {
+            if (g.getActual()) {
                 actualGoodsArrayList.add(g);
             }
         }
@@ -228,7 +225,6 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, MoneyPigActivity.class);
         //очищаем все
-
 
 
         foodCount = 0;
@@ -266,7 +262,6 @@ public class MainActivity extends AppCompatActivity {
         //очищаем все
 
 
-
         foodCount = 0;
         travelCount = 0;
         transportCount = 0;
@@ -300,7 +295,6 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, ChartsActivity.class);
         //очищаем все
-
 
 
         foodCount = 0;
@@ -352,7 +346,6 @@ public class MainActivity extends AppCompatActivity {
         //очищаем все
 
 
-
         foodCount = 0;
         travelCount = 0;
         transportCount = 0;
@@ -387,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
         auth.setCurrentUser(null);
 
         goodsList.clear();
-        GoalsList goalsList =GoalsList.getInstance();
+        GoalsList goalsList = GoalsList.getInstance();
         goalsList.clear();
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
@@ -438,7 +431,7 @@ public class MainActivity extends AppCompatActivity {
         if (goods != null && !goods.isEmpty()) {
             spendsList.add(new PieEntry((float) (sortedListWithCategories.get(0) / totalSpends) * 100, food, 0));
             spendsList.add(new PieEntry((float) (sortedListWithCategories.get(1) / totalSpends) * 100, travel, 1));
-            spendsList.add(new PieEntry((float) (sortedListWithCategories.get(2)/ totalSpends) * 100, transport, 2));
+            spendsList.add(new PieEntry((float) (sortedListWithCategories.get(2) / totalSpends) * 100, transport, 2));
             spendsList.add(new PieEntry((float) (sortedListWithCategories.get(3) / totalSpends) * 100, car, 3));
             spendsList.add(new PieEntry((float) (sortedListWithCategories.get(4) / totalSpends) * 100, cloth, 4));
             spendsList.add(new PieEntry((float) (sortedListWithCategories.get(5) / totalSpends) * 100, loans, 5));
@@ -457,9 +450,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-
-
         for (PieEntry pieEntry : spendsList) {
 
             if (pieEntry.getValue() <= 2.9f) {
@@ -469,19 +459,10 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        PieDataSet pieDataSet = new PieDataSet(spendsList,"");
+        PieDataSet pieDataSet = new PieDataSet(spendsList, "");
 
 
-
-
-
-
-
-
-
-        pieDataSet.setColors(colors,getApplicationContext());
-
-
+        pieDataSet.setColors(colors, getApplicationContext());
 
 
         PieData pieData = new PieData(pieDataSet);
@@ -489,13 +470,10 @@ public class MainActivity extends AppCompatActivity {
         pieDataSet.setDrawValues(false);
 
 
-
         ;
 
         pieChart.setData(pieData);
         pieChart.getDescription().setEnabled(false);
-
-
 
 
         pieChart.getLegend().setEnabled(false);
@@ -509,18 +487,18 @@ public class MainActivity extends AppCompatActivity {
         //
         legendEntries = new ArrayList<LegendEntry>();
         dataOfCategories = new ArrayList<>();
-        for (int i=0;i<spendsList.size();i++){
-            if(spendsList.get(i).getValue()>0) {
+        for (int i = 0; i < spendsList.size(); i++) {
+            if (spendsList.get(i).getValue() > 0) {
                 legendEntries.add(pieLegend.getEntries()[i]);
                 dataOfCategories.add(spendsList.get(i).getData());
             }
         }
-        legendAdapterForMain = new LegendAdapterForMain(getApplicationContext(), R.layout.legent_template_for_main,legendEntries, dataOfCategories);
+        legendAdapterForMain = new LegendAdapterForMain(getApplicationContext(), R.layout.legent_template_for_main, legendEntries, dataOfCategories);
         listView.setAdapter(legendAdapterForMain);
 
     }
 
-    public void sortTop4Categories(ArrayList<Good>actualGoodsArrayList){
+    public void sortTop4Categories(ArrayList<Good> actualGoodsArrayList) {
         sortedListWithCategories = new ArrayList<>();
 
         for (Good g : actualGoodsArrayList) {
@@ -583,7 +561,6 @@ public class MainActivity extends AppCompatActivity {
         sortedListWithCategories.add(smthCount);
 
 
-
         ArrayList<Double> listWithBetaCategoriesCount = new ArrayList<>();
         for (double d : sortedListWithCategories) {
             listWithBetaCategoriesCount.add(d);
@@ -593,16 +570,13 @@ public class MainActivity extends AppCompatActivity {
         Collections.reverse(listWithBetaCategoriesCount);
 
 
-
-
         ArrayList<Integer> num = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < sortedListWithCategories.size(); j++) {
-                if(listWithBetaCategoriesCount.get(i).doubleValue() == 0.0){
+                if (listWithBetaCategoriesCount.get(i).doubleValue() == 0.0) {
                     i++;
                     break;
-                }
-                else if (listWithBetaCategoriesCount.get(i).doubleValue() == sortedListWithCategories.get(j).doubleValue()) {
+                } else if (listWithBetaCategoriesCount.get(i).doubleValue() == sortedListWithCategories.get(j).doubleValue()) {
                     num.add(j);
 
                 }
@@ -610,29 +584,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-
         Collections.sort(num);
 
 
-
-
-        for (int i=0;i<num.size();i++) {
-            for(int j=0;j<sortedListWithCategories.size();j++){
-                if(i<num.size()) {
+        for (int i = 0; i < num.size(); i++) {
+            for (int j = 0; j < sortedListWithCategories.size(); j++) {
+                if (i < num.size()) {
                     if (num.get(i) != j) {
                         sortedListWithCategories.set(j, 0.0);
                     } else {
                         i++;
                     }
-                }else{
-                    for(;j<sortedListWithCategories.size();j++) {
+                } else {
+                    for (; j < sortedListWithCategories.size(); j++) {
                         sortedListWithCategories.set(j, 0.0);
                     }
                 }
             }
         }
-
 
 
         //ксли юзер нечаянно нажал на бэк
@@ -645,5 +614,28 @@ public class MainActivity extends AppCompatActivity {
         this.getOnBackPressedDispatcher().addCallback(this, callback);
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        alertDialog.setMessage("Вы уверены, что хотите выйти из приложения?");
+        alertDialog.setIcon(R.drawable.ic_baseline_exit_to_app_24);
+        alertDialog.setTitle("Предупреждение");
+        alertDialog.setCancelable(false);
+        alertDialog.setPositiveButton("Да", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+                System.exit(-1 );
+
+            }
+        });
+        alertDialog.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+           Toast.makeText(getApplicationContext(), "Отмена...",Toast.LENGTH_SHORT ).show();
+            }
+        });
+        alertDialog.show();
     }
 }
