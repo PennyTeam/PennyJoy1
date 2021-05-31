@@ -103,7 +103,7 @@ public class  SignInActivity extends AppCompatActivity {
                             } else {
                                 Intent intentFromNoAccc3=getIntent();
                                 Intent intent=new Intent(getApplicationContext(), MainActivity.class);
-                                if(intentFromNoAccc3.getExtras()!=null&&intentFromNoAccc3.getExtras().getBoolean("isUserHereFirstTime") ) {
+                                if(intentFromNoAccc3.getExtras() != null && intentFromNoAccc3.getExtras().getBoolean("isUserHereFirstTime") ) {
                                  intent.setClass(getApplicationContext(), SlideActivity.class);
                                 }
 
