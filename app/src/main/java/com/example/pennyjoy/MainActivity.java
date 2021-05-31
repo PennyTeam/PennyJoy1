@@ -1,12 +1,14 @@
 package com.example.pennyjoy;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.animation.ObjectAnimator;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -41,6 +43,8 @@ import Models.Category;
 import Models.GoalsList;
 import Models.Good;
 import Models.GoodsList;
+import Models.User;
+import Providers.UserProvider;
 
 public class MainActivity extends AppCompatActivity {
     private int mainRequest = 1;
@@ -631,8 +635,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        //ксли юзер нечаянно нажал на бэк
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
 
-
+            }
+        };
+        this.getOnBackPressedDispatcher().addCallback(this, callback);
 
 
     }

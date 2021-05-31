@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.pennyjoy">
 
     <application
@@ -13,7 +14,8 @@
         <activity
             android:name=".SplashScreenActivity"
             android:noHistory="true"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:alwaysRetainTaskState="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,7 +43,9 @@
         <activity
             android:name=".SignUpActivityNoAcc3"
             android:noHistory="true" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"/>
+
+
 
         <receiver android:name="Notifycations.ReminderForTimer" />
     </application>

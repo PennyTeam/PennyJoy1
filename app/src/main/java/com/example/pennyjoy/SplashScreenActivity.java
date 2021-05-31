@@ -168,7 +168,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                                                         intent.putExtra("isMonthEnded",false);
                                                     }
 
-
                                                     startActivity(intent);
                                                 }
                                             });
