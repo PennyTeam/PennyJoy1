@@ -83,9 +83,9 @@ public class FragmentHelper extends Fragment {
                         if (Math.abs(valueOfX) > MIN_DISTANCE) {
                             if (x1 > x2) {
                                 Intent intent = new Intent(v.getContext(), QuestionsActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 ((Activity) getContext()).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                                getActivity().finish();
                             }
                         }
 

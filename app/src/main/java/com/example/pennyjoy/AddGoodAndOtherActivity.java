@@ -6,10 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.pennyjoy.Fragments.AddGoodFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -22,12 +29,52 @@ public class AddGoodAndOtherActivity extends AppCompatActivity {
     private FragmentTimer fragmentTimer;
     private AddGoodFragment addGoodFragment;
 
+    private TextView lblResult;
+    private ImageView imageOfResult;
+
+    private Dialog dialogFromQuiz;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_good_and_other);
         Intent intent = getIntent();
-        int res = intent.getIntExtra("flagOfResultInFragments", 10000);
+
+        if(intent.getExtras() != null && intent.getExtras().getBoolean("fromQuiz")) {
+            int resultOfQuiz = intent.getIntExtra("flagOfResult", 1000);
+
+            LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View myView = layoutInflater.inflate(R.layout.alert_dialog_result, null, false);
+
+
+            lblResult = (TextView) myView.findViewById(R.id.lblResult);
+            imageOfResult= (ImageView) myView.findViewById(R.id.image_of_result);
+
+
+            switch (resultOfQuiz) {
+                case 1:
+                    imageOfResult.setImageDrawable(getResources().getDrawable(R.drawable.check_for_result));
+                    lblResult.setText(R.string.yes);
+                    break;
+                case -1:
+                    imageOfResult.setImageDrawable(getResources().getDrawable(R.drawable.cross_for_result));
+                    lblResult.setText(R.string.no);
+                    break;
+                case -2:
+                    imageOfResult.setImageDrawable(getResources().getDrawable(R.drawable.cross_for_result));
+                    lblResult.setText(R.string.mb_no);
+                    break;
+                case 2:
+                    imageOfResult.setImageDrawable(getResources().getDrawable(R.drawable.check_for_result));
+                    lblResult.setText(R.string.mb_yes);
+                    break;
+            }
+            dialogFromQuiz = new Dialog(AddGoodAndOtherActivity.this);
+            dialogFromQuiz.setContentView(myView);
+            dialogFromQuiz.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialogFromQuiz.show();
+        }
+
         fragmentHelper = new FragmentHelper();
         fragmentTimer = new FragmentTimer();
 
@@ -65,10 +112,6 @@ public class AddGoodAndOtherActivity extends AppCompatActivity {
             }
         });
 
-        if(res == 3){
-            AlertDialog.Builder ad = new AlertDialog.Builder(this);
-            ad.setTitle("Советник по покупкам").setMessage("Вам стоит отказаться от покупки в пользу целей!");
-            ad.show();
-        }
+
     }
 }

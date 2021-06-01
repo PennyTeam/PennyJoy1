@@ -1,5 +1,6 @@
 package com.example.pennyjoy;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -15,6 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pennyjoy.Fragments.AddGoodFragment;
+
+import Models.Auth;
+import Models.GoalsList;
 
 public class QuestionsActivity extends AppCompatActivity {
     //массивы из вопросов и ответов
@@ -272,6 +276,17 @@ public class QuestionsActivity extends AppCompatActivity {
         });
 
 
+        OnBackPressedCallback callback = new OnBackPressedCallback(true ) {
+            @Override
+            public void handleOnBackPressed() {
+               Toast.makeText(getApplicationContext(),"Пожалуйста, пройдите тест до конца",Toast.LENGTH_SHORT).show();
+            }
+        };
+        this.getOnBackPressedDispatcher().addCallback(this, callback);
+
+
+
+
     }
 
     public boolean getTheBiggestList(int[]ar1,int[]ar2 ){
@@ -403,58 +418,72 @@ public class QuestionsActivity extends AppCompatActivity {
     }
 
     public void alertDialog(int cMinus, int cPlus){
+        Auth auth=Auth.getInstance();
+        if(auth.getCurrentGoal() != null) {
+            alertDialog.setCancelable(false);
+            alertDialog.setTitle("Внимание!").setMessage("В данный момент у вас есть цель! Готовы ли вы пренебречь вашей целью в пользу покупки?");
+            alertDialog.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(getApplicationContext(), AddGoodAndOtherActivity.class);
+                    Toast.makeText(getApplicationContext(),"Вы отказались от своей покупки в плользу цели",Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                    finish();
 
-                alertDialog.setCancelable(false);
-                alertDialog.setTitle("Внимание!").setMessage("У вас есть цели (количество)! Готовы ли вы пренебречь целями в пользу покупки?");
-                alertDialog.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        intent.putExtra("flagOfResultInFragments", 3);
+                }
+            });
+            alertDialog.setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (cMinus > cPlus) {
+                        Intent intent = new Intent(getApplicationContext(), AddGoodAndOtherActivity.class);
+                        Toast.makeText(getApplicationContext(), "Ваш результат", Toast.LENGTH_SHORT).show();
+                        intent.putExtra("flagOfResult", -2);//ОТРИЦАТЕЛЬНЫЙ ОТВЕТ (мб нет)
                         intent.putExtra("fromQuiz", true);
                         startActivity(intent);
-
                         finish();
-
+                    } else {
+                        Intent intent = new Intent(getApplicationContext(), AddGoodAndOtherActivity.class);
+                        Toast.makeText(getApplicationContext(), "Ваш результат", Toast.LENGTH_SHORT).show();
+                        intent.putExtra("flagOfResult", 2);//положительный ответ (мб да)
+                        intent.putExtra("fromQuiz", true);
+                        startActivity(intent);
+                        finish();
                     }
-                });
-                alertDialog.setPositiveButton("Да", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if(cMinus>cPlus){
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            Toast.makeText(getApplicationContext(), "Ваш результат", Toast.LENGTH_SHORT).show();
-                            intent.putExtra("flagOfResult", -2);//ОТРИЦАТЕЛЬНЫЙ ОТВЕТ (мб нет)
-                            intent.putExtra("fromQuiz", true);
-                            startActivity(intent);
-                            finish();
-                        }
-
-                        else {
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            Toast.makeText(getApplicationContext(), "Ваш результат", Toast.LENGTH_SHORT).show();
-                            intent.putExtra("flagOfResult", 2);//положительный ответ (мб да)
-                            intent.putExtra("fromQuiz", true);
-                            startActivity(intent);
-                            finish();
-                        }
-                    }
-                });
-                alertDialog.show();
+                }
+            });
+            alertDialog.show();
+        }else{
+            if (cMinus > cPlus) {
+                Intent intent = new Intent(getApplicationContext(), AddGoodAndOtherActivity.class);
+                Toast.makeText(getApplicationContext(), "Ваш результат", Toast.LENGTH_SHORT).show();
+                intent.putExtra("flagOfResult", -2);//ОТРИЦАТЕЛЬНЫЙ ОТВЕТ (мб нет)
+                intent.putExtra("fromQuiz", true);
+                startActivity(intent);
+                finish();
+            } else {
+                Intent intent = new Intent(getApplicationContext(), AddGoodAndOtherActivity.class);
+                Toast.makeText(getApplicationContext(), "Ваш результат", Toast.LENGTH_SHORT).show();
+                intent.putExtra("flagOfResult", 2);//положительный ответ (мб да)
+                intent.putExtra("fromQuiz", true);
+                startActivity(intent);
+                finish();
             }
+        }
+    }
 
 
             public void intentWithCategorical(int cMinus, int cPlus){
                 if (cMinus > cPlus) {
                     Toast.makeText(getApplicationContext(), "Ваш результат", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), AddGoodAndOtherActivity.class);
                     intent.putExtra("flagOfResult", -1);//отрицательный категоричный
                     intent.putExtra("fromQuiz", true);
                     startActivity(intent);
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Ваш результат", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), AddGoodAndOtherActivity.class);
                     intent.putExtra("flagOfResult", 1);//положительный категоричный
                     intent.putExtra("fromQuiz", true);
                     startActivity(intent);
