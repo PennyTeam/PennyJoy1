@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/black">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/image_of_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:background="@drawable/check_for_result"
+
+            android:layout_marginBottom="-40dp"
+            android:padding="20dp"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewOfResult"
+            android:layout_width="335dp"
+            android:layout_height="268dp"
+            app:cardCornerRadius="20dp"
+            android:layout_centerInParent="true">
+            <!-- в паддинге не уверен -->
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        >
+
+
+                        <TextView
+                            android:id="@+id/lblResult"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Данный товар вам дейтсвительно нужен. Смело берите!"
+                            android:gravity="center"
+                            android:textSize="36dp"
+                            android:textColor="@color/black"
+                            android:layout_centerInParent="true"
+                            />
+
+
+
+
+                    </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+
+</LinearLayout>
+    <!--
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background_for_essay"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="-50dp" >
+
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/imageView_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|right"
+                android:clickable="true"
+                android:src="@drawable/iconok" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    -->

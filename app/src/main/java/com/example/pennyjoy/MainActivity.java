@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -117,8 +118,13 @@ public class MainActivity extends AppCompatActivity {
     private double salary;
 
     private Dialog dialog;
+    private Dialog dialogFromQuiz;
 
     private TextView lblMainInf, lblCategoriesLabels;
+
+    private TextView lblResult;
+    private ImageView imageOfResult;
+
     private AppCompatButton closeAD;
     private AlertDialog.Builder alertDialog;
 
@@ -150,8 +156,43 @@ public class MainActivity extends AppCompatActivity {
                     dialog.dismiss();
                 }
             });
-
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.show();
+        }
+        if(intent.getExtras() != null && intent.getExtras().getBoolean("fromQuiz")) {
+            int resultOfQuiz = intent.getIntExtra("flagOfResult", 1000);
+
+            LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View myView = layoutInflater.inflate(R.layout.alert_dialog_result, null, false);
+
+
+            lblResult = (TextView) myView.findViewById(R.id.lblResult);
+            //imageOfResult= (ImageView) myView.findViewById(R.id.image_of_result);
+
+
+            switch (resultOfQuiz) {
+                case 1:
+                    //imageOfResult.setImageResource(R.drawable.check_for_result);
+                    //imageOfResult.setImageDrawable(getResources().getDrawable(R.drawable.check_for_result));
+                    lblResult.setText(R.string.yes);
+                    break;
+                case -1:
+                    //imageOfResult.setImageDrawable(getResources().getDrawable(R.drawable.cross_for_result));
+                    lblResult.setText(R.string.no);
+                    break;
+                case -2:
+                    //imageOfResult.setImageDrawable(getResources().getDrawable(R.drawable.cross_for_result));
+                    lblResult.setText(R.string.mb_no);
+                    break;
+                case 2:
+                    //imageOfResult.setImageDrawable(getResources().getDrawable(R.drawable.check_for_result));
+                    lblResult.setText(R.string.mb_yes);
+                    break;
+            }
+            dialogFromQuiz = new Dialog(MainActivity.this);
+            dialogFromQuiz.setContentView(myView);
+            dialogFromQuiz.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialogFromQuiz.show();
         }
 
 
@@ -160,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         alertDialog = new AlertDialog.Builder(this);
         auth = Auth.getInstance();
         goodsList = GoodsList.getInstance();

@@ -409,9 +409,9 @@ public class QuestionsActivity extends AppCompatActivity {
                 alertDialog.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(getApplicationContext(), AddGoodAndOtherActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.putExtra("flagOfResultInFragments", 3);
-
+                        intent.putExtra("fromQuiz", true);
                         startActivity(intent);
 
                         finish();
@@ -422,17 +422,19 @@ public class QuestionsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if(cMinus>cPlus){
-                            Intent intent = new Intent(getApplicationContext(), ResultOfQuizActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             Toast.makeText(getApplicationContext(), "Ваш результат", Toast.LENGTH_SHORT).show();
                             intent.putExtra("flagOfResult", -2);//ОТРИЦАТЕЛЬНЫЙ ОТВЕТ (мб нет)
+                            intent.putExtra("fromQuiz", true);
                             startActivity(intent);
                             finish();
                         }
 
                         else {
-                            Intent intent = new Intent(getApplicationContext(), ResultOfQuizActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             Toast.makeText(getApplicationContext(), "Ваш результат", Toast.LENGTH_SHORT).show();
                             intent.putExtra("flagOfResult", 2);//положительный ответ (мб да)
+                            intent.putExtra("fromQuiz", true);
                             startActivity(intent);
                             finish();
                         }
@@ -445,14 +447,16 @@ public class QuestionsActivity extends AppCompatActivity {
             public void intentWithCategorical(int cMinus, int cPlus){
                 if (cMinus > cPlus) {
                     Toast.makeText(getApplicationContext(), "Ваш результат", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), ResultOfQuizActivity.class);
-                    intent.putExtra("flagOfResult", -1);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("flagOfResult", -1);//отрицательный категоричный
+                    intent.putExtra("fromQuiz", true);
                     startActivity(intent);
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Ваш результат", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), ResultOfQuizActivity.class);
-                    intent.putExtra("flagOfResult", 1);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("flagOfResult", 1);//положительный категоричный
+                    intent.putExtra("fromQuiz", true);
                     startActivity(intent);
                     finish();
                 }

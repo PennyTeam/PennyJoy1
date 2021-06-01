@@ -96,6 +96,7 @@ public class  SignInActivity extends AppCompatActivity {
 
                         if(!passWd.equals( user1.getPasswd()) || user1.getLogin()==null){
                             Snackbar.make(v, "Логин или пароль не верны", Snackbar.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
                         }
                         else {
                             if (!user1.getAccIsActive()) {
@@ -166,12 +167,6 @@ public class  SignInActivity extends AppCompatActivity {
                                 };
                                 GoalProvider goalProvider = new GoalProvider();
                                 goalProvider.getGoalsFromFirebase(auth.getCurrentUser().getKey(), listener1);
-
-
-
-
-
-
 
 
                             }

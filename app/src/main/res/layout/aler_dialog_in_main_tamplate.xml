@@ -17,8 +17,11 @@
             android:layout_height="333dp"
             app:cardCornerRadius="20dp"
             android:layout_centerInParent="true">
-
+            <!-- в паддинге не уверен -->
             <ScrollView
+
+                android:paddingTop="30dp"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#000000"
