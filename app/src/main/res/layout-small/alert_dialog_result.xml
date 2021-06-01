@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#00000000">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#00000000">
+
+        <FrameLayout
+            android:background="#00000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="55dp" >
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewOfResult"
+            android:layout_width="335dp"
+            android:layout_height="268dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/background_for_essay"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="-50dp" >
+            <!-- в паддинге не уверен -->
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                >
+
+
+                <TextView
+                    android:id="@+id/lblResult"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Данный товар вам дейтсвительно нужен. Смело берите!"
+                    android:gravity="center"
+                    android:textSize="36dp"
+                    android:textColor="@color/black"
+                    android:layout_centerInParent="true"
+                    />
+
+
+
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </FrameLayout>
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/image_of_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:layout_marginBottom="-40dp"
+            android:layout_gravity="center_horizontal"
+            />
+    </FrameLayout>
+
+</FrameLayout>
+    <!--
+ <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent" >
+
+     <FrameLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center" >
+
+         <FrameLayout
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:padding="15dp" >
+
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:orientation="vertical"
+                 android:padding="10dp" >
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Sign In"
+                     android:textColor="@color/white"
+                     android:textSize="16dp" />
+
+                 <EditText
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="15dp"
+
+                     android:hint="Username"
+                     android:padding="5dp"
+                     android:singleLine="true"
+                     android:textColorHint="@color/white" />
+
+                 <EditText
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="15dp"
+
+                     android:hint="Password"
+                     android:inputType="textPassword"
+                     android:padding="5dp"
+                     android:singleLine="true"
+                     android:textColorHint="@color/white" />
+             </LinearLayout>
+         </FrameLayout>
+
+         <ImageView
+             android:layout_width="30dp"
+             android:layout_height="30dp"
+             android:layout_gravity="right|top"
+             android:contentDescription="engerg"
+             android:src="@drawable/iconok" />
+     </FrameLayout>
+ </FrameLayout>
+  -->

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HistoryActivity"
+    android:background="@color/black">
+
+    <ListView
+        android:id="@+id/listViewOfGoods"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="30dp" />
+    <TextView
+        android:id="@+id/lblEmptyInHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:paddingBottom="20dp"
+        android:textColor="#848484"
+        android:text="Пока пусто!"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/delete"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/white"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:focusable="true"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:maxImageSize="40dp"
+        app:rippleColor="@android:color/black"
+        app:borderWidth="0dp"
+        android:onClick="clearHistoryClicked"
+
+        />
+
+</RelativeLayout>

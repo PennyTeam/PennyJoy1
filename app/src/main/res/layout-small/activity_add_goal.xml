@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddGoalActivity"
+    android:background="@color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/containerForWhatForYourGoal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/containerForNameOfGoal"
+                    android:layout_marginTop="20dp"
+                    >
+                    <TextView
+                        android:id="@+id/lblNameOfGoal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nameAddGood"
+                        android:textColor="#C4C4C4"
+                        android:textStyle="bold"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="30dp"
+                        />
+
+                    <EditText
+                        android:layout_below="@id/lblNameOfGoal"
+                        android:id="@+id/txtNameOfGoal"
+                        android:layout_width="323dp"
+                        android:layout_height="29dp"
+                        android:layout_centerHorizontal="true"
+                        android:paddingLeft="20dp"
+                        android:singleLine="true"
+                        android:background="@drawable/body_for_edit_text"
+                        android:maxLength="10"
+                        android:inputType="text"/>
+
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:id="@+id/containerForCost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:layout_below="@id/containerForNameOfGoal"
+                    >
+                    <TextView
+                        android:id="@+id/lblCostOfGoal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/costAddGood"
+                        android:textColor="#C4C4C4"
+                        android:textStyle="bold"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="30dp"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/txtCostOfGoal"
+                        android:layout_below="@id/lblCostOfGoal"
+                        android:layout_width="323dp"
+                        android:layout_height="29dp"
+                        android:layout_centerHorizontal="true"
+                        android:inputType="numberDecimal"
+                        android:singleLine="true"
+                        android:paddingLeft="20dp"
+                        android:maxLength="10"
+                        android:background="@drawable/body_for_edit_text" />
+
+                    <TextView
+                        android:id="@+id/currencyOfCostInAddGoal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="35dp"
+                        android:textColor="@color/black"
+                        android:textSize="29dp"
+                        android:layout_marginRight="70dp"/>
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/containerForWhatForYourGoal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:layout_centerInParent="true"
+
+                >
+
+
+
+                <TextView
+                    android:id="@+id/lblWhatForYouNeedGoal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/what_for"
+                    android:textColor="#C4C4C4"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="30dp"
+                    />
+
+                <EditText
+                    android:id="@+id/txtWhatForYouNeedGoal"
+                    android:layout_width="310dp"
+                    android:layout_height="130dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="top"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:maxLength="120"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/body_for_edit_text"/>
+                <TextView
+                    android:id="@+id/counterOfTextInputAddGoal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentRight="true"
+                    android:text="0/120"
+                    android:textSize="17dp"
+                    android:layout_alignBottom="@id/txtWhatForYouNeedGoal"
+
+                    android:layout_marginRight="60dp"
+                    android:layout_marginBottom="5dp"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/containerForChoiceOfImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:layout_below="@id/containerForWhatForYourGoal"
+                android:layout_above="@id/containerForAddGoalBtn"
+                >
+            <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addPictureOfGoal"
+                    android:layout_width="500dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/body_for_btn_radius_13_dp_sign_in"
+                    android:layout_centerInParent="true"
+                    android:backgroundTint="@color/white"
+                    android:text="Выбрать фото цели"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:onClick="chooseImageClicked"
+                    android:textAllCaps="false"
+                    android:textSize="20dp"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/containerForAddGoalBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+
+                android:layout_alignParentBottom="true">
+                <ImageButton
+                    android:id="@+id/addGoalBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black"
+                    android:layout_centerHorizontal="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+
+                    android:src="@drawable/addgoodbtn"
+
+
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

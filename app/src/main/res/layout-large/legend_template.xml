@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/rectangleForCategoryColor"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="10dp"
+                    >
+                </View>
+                <TextView
+                    android:id="@+id/lblNameOfCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+
+                    android:gravity="center"
+                    android:maxWidth="110dp"
+                    android:layout_toRightOf="@id/rectangleForCategoryColor"
+                    android:layout_marginLeft="7dp"/>
+
+
+
+                <TextView
+                    android:id="@+id/lblCostOfCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+
+                    android:gravity="center"
+                    android:maxWidth="110dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="15dp"/>
+
+                <TextView
+                    android:id="@+id/lblCurrencyOfCategoryCost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+
+                    android:layout_toRightOf="@id/lblCostOfCategory"
+                    android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:id="@+id/lblPercentageOfCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:layout_toRightOf="@id/lblCurrencyOfCategoryCost"
+                    android:layout_marginLeft="50dp"/>
+
+
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

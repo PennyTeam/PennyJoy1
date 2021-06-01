@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,19 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".QuestionsActivity"
     android:background="@color/black">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerInParent="true"
-        android:paddingBottom="30dp">
-
-
+        android:layout_centerInParent="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
+            android:padding="90dp"
             >
            <TextView
                android:id="@+id/lblQuestion"
@@ -34,7 +32,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
+            android:padding="90dp"
             >
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/answerFirst"
@@ -50,7 +48,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp">
+            android:padding="90dp">
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/answerSecond"
                 android:layout_width="wrap_content"
@@ -64,7 +62,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
+            android:padding="90dp"
             >
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/answerThird"
@@ -79,7 +77,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp">
+            android:padding="90dp">
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/answerFourth"
                 android:layout_width="wrap_content"
@@ -90,6 +88,8 @@
                 android:padding="15dp"/>
         </RelativeLayout>
 
+
+
     </LinearLayout>
 
-</RelativeLayout>
+</ScrollView>

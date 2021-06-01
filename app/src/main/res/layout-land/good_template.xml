@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+        <RelativeLayout
+            android:id="@+id/containerForLblTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:visibility="gone"
+            >
+
+            <!-- -->
+
+
+
+            <!-- -->
+            <TextView
+                android:id="@+id/lblTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="0.48"
+                android:background="#333333"
+                android:textSize="34dp"
+                android:text="2021-05-13"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="#4F4F4F"
+                android:layout_toLeftOf="@id/goodTitle"
+                android:layout_toRightOf="@id/currencyOfCostInHistoryOfGood"
+                />
+
+                <TextView
+                    android:id="@+id/goodTitle"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="Продукт"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="15dp"/>
+
+
+
+                <TextView
+                    android:id="@+id/numberPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Цена"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="60dp"/>
+
+
+
+                <TextView
+                    android:id="@+id/currencyOfCostInHistoryOfGood"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:text="p"
+                    android:textColor="@color/white"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"/>
+
+
+
+
+                <TextView
+                    android:id="@+id/essayOfGood"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+
+
+                    android:layout_below="@id/currencyOfCostInHistoryOfGood"
+                    android:background="@drawable/background_for_essay"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:text="Цель"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="#4F4F4F"
+                android:layout_toLeftOf="@id/goodTitle"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/currencyOfCostInHistoryOfGood"
+                android:layout_below="@id/essayOfGood"
+                />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+</RelativeLayout>

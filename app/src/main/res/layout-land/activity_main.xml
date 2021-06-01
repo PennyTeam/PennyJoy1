@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+            <ImageButton
+                android:id="@+id/moneyPigBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:layout_alignParentRight="true"
+                android:onClick="moneyPigBtnClicked"
+                android:src="@drawable/buttonmoneypig"
+
+                 />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/containerForChart">
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChartOfSpendingsInMain"
+                    android:layout_width="290dp"
+                    android:layout_height="290dp"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/containerForChart"
+                android:layout_above="@id/containerForSettingsFab"
+
+                >
+
+                <ListView
+                    android:dividerHeight="10dp"
+                    android:layout_marginTop="50dp"
+                    android:id="@+id/listViewOfLegendInMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/containerForBtnCharts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_below="@id/containerForChart"
+                android:padding="20dp">
+
+                <ImageButton
+                    android:id="@+id/chartBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="20dp"
+                    android:onClick="chartBtnClicked"
+                    android:foreground="?android:attr/selectableItemBackground"
+
+
+                    android:src="@drawable/chart_btn_image"
+                    tools:ignore="VectorDrawableCompat" />
+            </RelativeLayout>
+
+
+
+
+
+            <RelativeLayout
+                android:id="@+id/containerForLogOutFab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:layout_alignParentBottom="true">
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabLogOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="130dp"
+                    android:focusable="true"
+                    android:clickable="true"
+                    app:fabSize="normal"
+                    android:visibility="invisible"
+                    app:maxImageSize="42dp"
+                    android:onClick="LogOutBtnClicked"
+                    android:src="@drawable/log_out_from_as"
+                    app:backgroundTint="@color/crimson"
+                    android:foreground="?android:attr/selectableItemBackground"
+
+                    app:rippleColor="@android:color/black"
+                    app:borderWidth="0dp"
+                    />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:id="@+id/containerForUserFab"
+                android:layout_marginBottom="70dp"
+                android:layout_above="@id/containerForSettingsFab"
+                android:layout_alignParentBottom="true">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabSettingsOfUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/person_image"
+                    android:backgroundTint="@color/white"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:focusable="true"
+                    android:clickable="true"
+                    app:fabSize="normal"
+
+                    android:visibility="invisible"
+                    app:rippleColor="@android:color/black"
+                    app:borderWidth="0dp"
+                    android:onClick="settingsOfUserClicked"
+                    app:maxImageSize="40dp"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/containerForSettingsFab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:layout_alignParentBottom="true">
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabSettings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/settings"
+                    android:backgroundTint="@color/white"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:focusable="true"
+                    android:clickable="true"
+                    app:fabSize="normal"
+                    app:maxImageSize="40dp"
+                    app:rippleColor="@android:color/black"
+                    app:borderWidth="0dp"
+                    android:onClick="settingsClicked"
+
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:layout_alignParentBottom="true">
+                <ImageButton
+                    android:id="@+id/addGoodBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black"
+                    android:layout_alignParentLeft="true"
+
+                    android:onClick="addGoodClicked"
+                    android:foreground="?android:attr/selectableItemBackground"
+
+                    android:src="@drawable/btn_add_good_image" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+</ScrollView>

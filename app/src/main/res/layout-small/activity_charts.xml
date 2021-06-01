@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black"
+    tools:context=".ChartsActivity">
+
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/containerForLblSpends"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pieChartOfSpendings"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_centerInParent="true"/>
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fabSettings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+
+                        android:src="@drawable/calendaricon"
+
+                        android:backgroundTint="@color/white"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:focusable="true"
+                        android:clickable="true"
+                        app:fabSize="normal"
+                        app:maxImageSize="40dp"
+                        app:rippleColor="@android:color/black"
+                        app:borderWidth="0dp"
+                        android:onClick="calendarClicked"
+
+                        />
+                </RelativeLayout>
+
+
+
+
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="2dp"
+                        android:background="#808080"
+
+                        android:layout_toLeftOf="@id/progressOfSpends"
+                        android:layout_toRightOf="@id/progressOfSpends" />
+
+                    <TextView
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/lblPercentageOfSpends"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15dp"
+                        android:textColor="#CFCFCF"
+                        android:text="74% из вашей вашей зарплаты потрачено "
+                        />
+
+
+                    <ProgressBar
+                        android:id="@+id/progressOfSpends"
+                        android:layout_below="@id/lblPercentageOfSpends"
+                        android:layout_marginTop="10dp"
+                        android:minHeight="12dip"
+                        android:maxHeight="12dip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="false"
+                        android:progress="0"
+                        android:progressDrawable="@drawable/horizontal_bar_for_spends"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+
+                    <TextView
+                        android:id="@+id/lblSpends"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:textColor="@color/white"
+                        android:text="1480 из 20000"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@id/progressOfSpends"
+                        />
+                    <TextView
+                        android:id="@+id/lblCurrencyOfSpends"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:textColor="@color/white"
+                        android:text="p"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@id/lblSpends"
+                        android:layout_below="@id/progressOfSpends"
+                        />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="2dp"
+                        android:background="#808080"
+                        android:layout_below="@id/lblSpends"
+                        android:layout_marginTop="15dp"
+                        android:layout_toLeftOf="@id/progressOfSpends"
+                        android:layout_toRightOf="@id/progressOfSpends" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
+                    <LinearLayout
+                        android:id="@+id/containerForLblTable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <RelativeLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:textColor="@color/white"
+                                android:textSize="25dp"
+                                android:text="Категория"
+                                android:textStyle="bold"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:textColor="@color/white"
+                                android:textSize="25dp"
+                                android:text="Трата"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:textColor="@color/white"
+                                android:textSize="25dp"
+                                android:text="Трата(%)"
+                                android:textStyle="bold"/>
+
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                    <ListView
+                        android:dividerHeight="10dp"
+                        android:id="@+id/listViewOfLegend"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/containerForLblTable"
+
+                        />
+                </RelativeLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <ProgressBar
+        android:id="@+id/progressBarInCharts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/purple_500"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        />
+
+
+
+</RelativeLayout>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SetPasswdActivity"
+    android:background="@color/black">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:id="@+id/containerForLblOldPasswd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:padding="10dp">
+                    <TextView
+                        android:id="@+id/enter_old_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="@string/enter_old_passwd"
+                        android:textColor="#848484"
+                        android:textSize="30dp" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/containerForTxtOldPasswd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:layout_below="@id/containerForLblOldPasswd">
+                    <EditText
+                        android:id="@+id/old_passwd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:inputType="textPassword"
+                        android:gravity="center"
+                        android:ellipsize="start"
+                        android:singleLine="true"
+                        android:textSize="30dp"
+                        android:text=""
+                        android:background="@drawable/template_for_tv_in_set_user_name" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_below="@id/containerForTxtOldPasswd"
+                    android:id="@+id/bigContainerForNewPasswd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/containerForLblNewPasswd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="60dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/newPasswd_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="Новый пароль"
+                            android:textColor="#848484"
+                            android:textSize="30dp" />
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/containerForTxtNewPasswd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:layout_below="@id/containerForLblNewPasswd">
+
+                        <EditText
+                            android:id="@+id/new_password1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:inputType="textPassword"
+                            android:singleLine="true"
+                            android:gravity="center"
+                            android:ellipsize="start"
+                            android:textSize="25dp"
+                            android:maxLength="16"
+                            android:text=""
+                            android:background="@drawable/template_for_tv_in_set_user_name" />
+                    </RelativeLayout>
+
+
+
+                    <RelativeLayout
+                        android:id="@+id/containerForLblNewPasswdRepeat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/containerForTxtNewPasswd"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="Повторите новый пароль"
+                            android:gravity="center"
+                            android:textColor="#848484"
+                            android:textSize="30dp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/containerForTxtNewPasswdRepeat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:layout_marginBottom="30dp"
+                        android:layout_below="@id/containerForLblNewPasswdRepeat">
+                        <EditText
+                            android:id="@+id/newPasswd2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/template_for_tv_in_set_user_name"
+                            android:ellipsize="start"
+                            android:gravity="center"
+                            android:inputType="textPassword"
+                            android:maxLength="16"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textSize="25dp" />
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/containerForBtnSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="20dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/save_new_passwd"
+                        android:layout_width="294dp"
+                        android:layout_height="55dp"
+                        android:layout_centerInParent="true"
+                        android:textAllCaps="false"
+                        android:textSize="23dp"
+                        android:text="Сохранить"
+                        android:textColor="@color/black"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:background="@drawable/body_for_btn_radius_13_dp_sign_in" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBarInSetPasswd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/purple_500"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        />
+
+
+</RelativeLayout>

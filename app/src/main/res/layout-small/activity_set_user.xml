@@ -258,8 +258,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_toRightOf="@id/currencyDropDown"
-                android:layout_marginLeft="-50dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="120dp"
                 android:src="@drawable/selector_for_currency"/>
         </RelativeLayout>
 

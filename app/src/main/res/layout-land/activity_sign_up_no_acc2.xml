@@ -7,6 +7,9 @@
     tools:context=".SignUpActivityNoAcc2"
     android:background="@color/black">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,6 +90,7 @@
         </RelativeLayout>
 
     </LinearLayout>
+    </ScrollView>
 
     <ProgressBar
         android:id="@+id/progressBarInSignUpNoAcc2"

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivityNoAcc2"
+    android:background="@color/black">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="30dp"
+                >
+
+
+                <EditText
+                    android:id="@+id/txtLogin"
+                    android:layout_width="521dp"
+                    android:layout_height="73dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/body_for_edit_text"
+                    android:hint="@string/string_login"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="20dp"
+                    android:textSize="30dp" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="30dp">
+
+                <EditText
+                    android:id="@+id/txtPasswd"
+                    android:layout_width="521dp"
+                    android:layout_height="73dp"
+                    android:layout_centerInParent="true"
+                    android:textSize="30dp"
+                    android:paddingLeft="20dp"
+                    android:inputType="textPassword"
+                    android:hint="@string/string_passwd"
+                    android:background="@drawable/body_for_edit_text"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="30dp">
+                <EditText
+                    android:id="@+id/txtRepeatPasswd"
+                    android:layout_width="521dp"
+                    android:layout_height="73dp"
+                    android:layout_centerInParent="true"
+                    android:inputType="textPassword"
+                    android:hint="@string/string_repeat_passwd"
+                    android:textSize="30dp"
+                    android:paddingLeft="20dp"
+                    android:background="@drawable/body_for_edit_text"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="30dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnNextSecond"
+                    android:layout_width="387dp"
+                    android:layout_height="66dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/body_for_btn_radius_13_dp_sign_in"
+                    android:onClick="nextLog2"
+                    android:text="@string/string_next_for_btn"
+                    android:textAllCaps="false"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:textSize="30dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBarInSignUpNoAcc2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/purple_500"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        />
+
+
+</RelativeLayout>
