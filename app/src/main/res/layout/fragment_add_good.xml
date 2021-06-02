@@ -62,7 +62,7 @@
    <EditText
        android:id="@+id/txtNameOfGood"
        android:layout_width="323dp"
-       android:maxLength="10"
+       android:maxLength="13"
        android:layout_height="37dp"
        android:singleLine="true"
        android:layout_centerHorizontal="true"

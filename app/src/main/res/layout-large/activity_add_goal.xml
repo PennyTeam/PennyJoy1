@@ -48,7 +48,7 @@
                         android:paddingLeft="20dp"
                         android:singleLine="true"
                         android:background="@drawable/body_for_edit_text"
-                        android:maxLength="10"
+                        android:maxLength="13"
                         android:inputType="text"/>
 
 

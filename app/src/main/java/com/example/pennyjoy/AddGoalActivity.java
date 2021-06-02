@@ -1,15 +1,18 @@
 package com.example.pennyjoy;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -26,6 +29,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Base64;
 
 import Models.Auth;
@@ -39,12 +43,14 @@ public class AddGoalActivity extends AppCompatActivity {
     private TextView currencyOfCostInAddGoal,lblCounterOfSymbols;
     private Auth auth;
     private final int Pick_image = 1;
+    private final int Make_a_photo = 0;
     private String imageOfGoal;
     private AppCompatButton addImageOfGoalBtn;
     private ImageButton addGoalBtn;
     private EditText txtNameOfGoal, txtCostOfGoal, txtWhatFor;
     private GoalsList goalsList = GoalsList.getInstance();
     private int counterOfSymbols=0;
+    private AlertDialog.Builder alertDialog;
 
 
 
@@ -69,8 +75,24 @@ public class AddGoalActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+break;
+
+            case Make_a_photo:
+                if(resultCode == RESULT_OK && data!=null){
+                    try {
+                        Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                        imageOfGoal = convertBitmapToBase64(bitmap);
+                        addImageOfGoalBtn.setText("Фото выбрано");
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+                break;
         }
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +102,7 @@ public class AddGoalActivity extends AppCompatActivity {
         currencyOfCostInAddGoal=findViewById(R.id.currencyOfCostInAddGoal);
         currencyOfCostInAddGoal.setText(auth.getCurrentCurrency().getLabel());
         addImageOfGoalBtn=findViewById(R.id.addPictureOfGoal);
-
+        alertDialog = new AlertDialog.Builder(this);
 
         txtNameOfGoal=findViewById(R.id.txtNameOfGoal);
         txtCostOfGoal=findViewById(R.id.txtCostOfGoal);
@@ -155,14 +177,34 @@ public class AddGoalActivity extends AppCompatActivity {
 
 
         public void chooseImageClicked(View view) {
+            alertDialog.setTitle("Выбор фото");
+            String []arrayOfOptions = new String[]{"Выбрать из галереи", "Сделать фото", "Закрыть"};
+            alertDialog.setCancelable(false);
 
-            //Вызываем стандартную галерею для выбора изображения с помощью Intent.ACTION_PICK:
-            Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-            //Тип получаемых объектов - image:
-            photoPickerIntent.setType("image/*");
-            //Запускаем переход с ожиданием обратного результата в виде информации об изображении:
-            startActivityForResult(photoPickerIntent, Pick_image);
+            alertDialog.setItems(arrayOfOptions, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if(which == 0){
+                        //Вызываем стандартную галерею для выбора изображения с помощью Intent.ACTION_PICK:
+                        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                        //Тип получаемых объектов - image:
+                        photoPickerIntent.setType("image/*");
+                        //Запускаем переход с ожиданием обратного результата в виде информации об изображении:
+                        startActivityForResult(photoPickerIntent, Pick_image);
+                    }
+                    else if(which == 1){
+                        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(cameraIntent, Make_a_photo);
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "Операция отменена", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+alertDialog.show();
         }
+
+
         public String convertBitmapToBase64(Bitmap bitmap){
             ByteArrayOutputStream stream =new ByteArrayOutputStream();
 
