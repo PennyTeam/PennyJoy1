@@ -18,18 +18,15 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Base64;
 
 import Models.Auth;
@@ -117,7 +114,7 @@ break;
            @Override
            public void onClick(View v) {
                if(goalsList.size() == 6){
-                   Snackbar.make(v, "Количество целей не может быть больше 6!", Snackbar.LENGTH_SHORT).show();
+                   Snackbar.make(v, "Количество целей не может быть больше 6", Snackbar.LENGTH_SHORT).show();
                }
                else {
 
@@ -197,7 +194,7 @@ break;
                         startActivityForResult(cameraIntent, Make_a_photo);
                     }
                     else {
-                        Toast.makeText(getApplicationContext(), "Операция отменена", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(view,"Операция отменена", BaseTransientBottomBar.LENGTH_SHORT).show();
                     }
                 }
             });

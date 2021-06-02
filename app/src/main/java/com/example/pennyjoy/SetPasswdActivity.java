@@ -3,17 +3,17 @@ package com.example.pennyjoy;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
+
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import Models.Auth;
@@ -57,7 +57,7 @@ public class SetPasswdActivity extends AppCompatActivity {
                     ad.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(getApplicationContext(), "Операция отменена", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(v,"Операция отменена", BaseTransientBottomBar.LENGTH_SHORT).show();
                         }
                     });
                     ad.setPositiveButton("Да", new DialogInterface.OnClickListener() {

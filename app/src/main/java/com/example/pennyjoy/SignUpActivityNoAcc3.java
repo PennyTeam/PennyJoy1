@@ -6,12 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -46,7 +48,7 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
         ArrayAdapter<Currency> currencyAdapter=new ArrayAdapter<Currency>(getApplicationContext(),
                 R.layout.currency_spinner_item,currenciesList.getCurrencies());
 
-        //currencyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         currencyAdapter.setDropDownViewResource(R.layout.drop_down_item_currency);
 
 
@@ -61,6 +63,7 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
     public void saveUserClicked(View v){
         if( !salary.getText().toString().isEmpty()) {
             Intent intent = new Intent(this, SignInActivity.class);
+
             intent.putExtra("isUserHereFirstTime",true);
 
             //получаю данные со второго активити
@@ -78,6 +81,11 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
 
             User user=new User(name,surname,login,passwd,salary,currentDate);
 
+            user.setAccIsActive(true);
+            user.setTotalSpends(0);
+            user.setUsersCurrentDate(currentDate);
+            user.setEfficiency(0);
+
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
             Date date = new Date();
             user.setUsersCurrentDate(dateFormat.format(date));
@@ -85,6 +93,7 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
             UserProvider provider=new UserProvider();
             provider.addUser(user);
             auth.setCurrentUser(user);
+
 
             Currency currency=(Currency) dropDownCurrency.getSelectedItem();
             currency.setUserKey(auth.getCurrentUser().getKey());
@@ -102,7 +111,7 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
             Toast.makeText(this, "Теперь войдите в аккаунт", Toast.LENGTH_LONG).show();
             startActivity(intent);
         }else{
-            Toast.makeText(getApplicationContext(),"Заполните все поля верно",Toast.LENGTH_LONG).show();
+            Snackbar.make(v,"Заполните все поля верно", BaseTransientBottomBar.LENGTH_SHORT).show();
         }
     }
 

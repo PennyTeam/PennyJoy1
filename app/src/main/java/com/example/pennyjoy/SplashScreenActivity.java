@@ -6,10 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 
@@ -83,7 +83,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             OnUserRetrievedListener listener = new OnUserRetrievedListener() {
                 @Override
                 public void OnRetrieved(User user) {
-                    if(login.equals(user.getLogin())&& user.getAccIsActive()==true){
+                    if(login.equals(user.getLogin())&& user.getAccIsActive()==true && user != null){
 
                         //здесь вызываю маин при совпадении логина в сп с логином из бд
                         //и настраиваю флаги
@@ -134,19 +134,19 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
-                                                    if(!auth.getCurrentUser().getUsersCurrentDate().equals(currentDate)){
-                                                        int efficiency= countEfficiency();
-                                                        String inf="";
-                                                        String categoriesLabels="";
-                                                        if(efficiency>=100){
-                                                            inf=getResources().getString(R.string.goodJobForMonth);
-                                                        }else{
-                                                            inf=getResources().getString(R.string.badJobForMonth);
+                                                    if(!auth.getCurrentUser().getUsersCurrentDate().equals(currentDate)) {
+                                                        int efficiency = countEfficiency();
+                                                        String inf = "";
+                                                        String categoriesLabels = "";
+                                                        if (efficiency >= 100) {
+                                                            inf = getResources().getString(R.string.goodJobForMonth);
+                                                        } else {
+                                                            inf = getResources().getString(R.string.badJobForMonth);
                                                         }
-                                                        categoriesLabels=initCategoriesLabels();
-                                                        intent.putExtra("isMonthEnded",true);
-                                                        intent.putExtra("mainInf",inf);
-                                                        intent.putExtra("top4CategoriesLabels",categoriesLabels);
+                                                        categoriesLabels = initCategoriesLabels();
+                                                        intent.putExtra("monthEnded", auth.getCurrentUser().getUsersCurrentDate());
+                                                        intent.putExtra("mainInf", inf);
+                                                        intent.putExtra("top4CategoriesLabels", categoriesLabels);
 
                                                         //очищаем юзера
                                                         auth.getCurrentUser().setEfficiency(0);
@@ -156,19 +156,19 @@ public class SplashScreenActivity extends AppCompatActivity {
                                                         provider.updateUser(auth.getCurrentUser());
 
                                                         //очищаем товары
-                                                        for (Good g:goodsList){
-                                                            if(g.getActual()){
+                                                        for (Good g : goodsList) {
+                                                            if (g.getActual()) {
                                                                 g.setActual(false);
                                                                 goodProvider.updateGood(g);
                                                             }
                                                         }
 
 
-                                                    }else{
-                                                        intent.putExtra("isMonthEnded",false);
                                                     }
-
+                                                    Toast.makeText(getApplicationContext(),"Добро пожаловать в PennyJoy!",Toast.LENGTH_SHORT).show();
                                                     startActivity(intent);
+
+
                                                 }
                                             });
                                         }
@@ -308,20 +308,30 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
         ArrayList<Integer> num = new ArrayList<>();
+        boolean isAlreadyExist;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < sortedListWithCategories.size(); j++) {
-                if(listWithBetaCategoriesCount.get(i).doubleValue() == 0.0){
+                isAlreadyExist=false;
+                if (listWithBetaCategoriesCount.get(i).doubleValue() == 0.0) {
                     i++;
                     break;
-                }
-                else if (listWithBetaCategoriesCount.get(i).doubleValue() == sortedListWithCategories.get(j).doubleValue()) {
-                    num.add(j);
+                } else if (listWithBetaCategoriesCount.get(i).doubleValue() == sortedListWithCategories.get(j).doubleValue()) {
+                    if(num.size()>0 ){
+                        for (int item:num) {
+                            if(item == j){
+                                isAlreadyExist=true;
+                            }
+                        }
 
+                    }
+                    if(!isAlreadyExist) {
+                        num.add(j);
+                        isAlreadyExist=false;
+                        break;
+                    }
                 }
             }
         }
-
-
 
 
         Collections.sort(num);
@@ -373,7 +383,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                         break;
                     case 4:
 
-                        res += "`Одежда\n";
+                        res += "-Одежда\n";
                         break;
                     case 5:
 

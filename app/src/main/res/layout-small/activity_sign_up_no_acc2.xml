@@ -27,6 +27,7 @@
                 android:layout_centerInParent="true"
                 android:background="@drawable/body_for_edit_text"
                 android:hint="@string/string_login"
+                android:maxLength="20"
                 android:inputType="textPersonName"
                 android:paddingLeft="20dp"
                 android:textSize="30dp" />
@@ -45,6 +46,7 @@
                 android:layout_centerInParent="true"
                 android:textSize="30dp"
                 android:paddingLeft="20dp"
+                android:maxLength="16"
                 android:inputType="textPassword"
                 android:hint="@string/string_passwd"
                 android:background="@drawable/body_for_edit_text"/>
@@ -63,6 +65,7 @@
                 android:inputType="textPassword"
                 android:hint="@string/string_repeat_passwd"
                 android:textSize="30dp"
+                android:maxLength="16"
                 android:paddingLeft="20dp"
                 android:background="@drawable/body_for_edit_text"/>
 

@@ -1,30 +1,30 @@
 package com.example.pennyjoy.Fragments;
 
 import android.app.Activity;
-import android.app.PendingIntent;
 import android.content.Intent;
-import android.graphics.Path;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Layout;
-import android.view.GestureDetector;
+
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
+
 import android.widget.ImageView;
-import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.GestureDetectorCompat;
+
 import androidx.fragment.app.Fragment;
 
 import com.example.pennyjoy.QuestionsActivity;
 import com.example.pennyjoy.R;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class FragmentHelper extends Fragment {
 
@@ -57,15 +57,57 @@ public class FragmentHelper extends Fragment {
         arrow_animation_to_left2 = AnimationUtils.loadAnimation(getContext(), R.anim.arrow_animation_left2);
         arrow=view.findViewById(R.id.arrow);
 
+        arrow_animation_to_left.setRepeatCount(Animation.INFINITE);
+        arrow.startAnimation(arrow_animation_to_left);
 
-        final Handler handler = new Handler();
+        arrow_animation_to_left.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                arrow.startAnimation(arrow_animation_to_left2);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        arrow_animation_to_left2.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        arrow.startAnimation(arrow_animation_to_left);
+                    }
+                }, 1000);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+
+
+        /*final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 startAnimation();
                 handler.postDelayed(this, timeForRepeat);
             }
-        }, timeForRepeat-1000);
+        }, timeForRepeat-1000);*/
 
 
         view.setOnTouchListener(new View.OnTouchListener() {
@@ -97,6 +139,7 @@ public class FragmentHelper extends Fragment {
     }
 
     public void startAnimation(){
+        arrow_animation_to_left.setRepeatCount(Animation.INFINITE);
         arrow.startAnimation(arrow_animation_to_left);
 
         arrow_animation_to_left.setAnimationListener(new Animation.AnimationListener() {
@@ -108,6 +151,7 @@ public class FragmentHelper extends Fragment {
             @Override
             public void onAnimationEnd(Animation animation) {
                 arrow.startAnimation(arrow_animation_to_left2);
+                getView().clearAnimation();
             }
 
             @Override

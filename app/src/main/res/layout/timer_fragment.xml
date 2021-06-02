@@ -8,13 +8,20 @@
     android:background="@color/black">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <RelativeLayout
+            android:id="@+id/containerForMainLbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
             android:padding="30dp">
 
             <TextView
@@ -28,6 +35,9 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:layout_above="@id/containerForDropDay"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/containerForDropMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="20dp">
@@ -37,7 +47,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bodyforcategoryspinner"
-
                 android:layout_centerHorizontal="true"
                 />
 
@@ -45,14 +54,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/selectorforspinner"
-                android:layout_marginLeft="280dp"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/monthDropDown"
+                android:layout_marginLeft="-45dp"
+                android:layout_alignBottom="@id/monthDropDown"
+
                 />
 
         </RelativeLayout>
 
         <RelativeLayout
+            android:layout_above="@id/containerForDropHour"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/containerForDropDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="20dp">
@@ -70,14 +83,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/selectorforspinner"
-                android:layout_marginLeft="280dp"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/dayDropDown"
+                android:layout_marginLeft="-45dp"
+                android:layout_alignBottom="@id/dayDropDown"
                 />
 
         </RelativeLayout>
 
         <RelativeLayout
+            android:layout_centerHorizontal="true"
+            android:id="@+id/containerForDropHour"
+            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="20dp">
@@ -95,18 +111,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/selectorforspinner"
-                android:layout_marginLeft="280dp"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/hourDropDown"
+                android:layout_marginLeft="-45dp"
+                android:layout_alignBottom="@id/hourDropDown"
                 />
 
         </RelativeLayout>
 
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/containerForName"
+            android:layout_above="@id/containerForBtn"
+            android:layout_below="@id/containerForDropHour"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="40dp">
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -119,19 +138,26 @@
 
             <EditText
                 android:id="@+id/txtNameOfGoodForTimer"
-                android:layout_width="323dp"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:layout_height="37dp"
+                android:layout_centerInParent="true"
                 android:background="@drawable/body_for_edit_text"
-                android:layout_marginTop="40dp"
                 android:textColor="@color/black"
                 android:textSize="20dp"
+                android:singleLine="true"
+                android:maxLength="13"
                 android:paddingLeft="15dp"/>
 
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/containerForBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:padding="30dp">
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/setTimerBtn"
@@ -144,8 +170,7 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 />
         </RelativeLayout>
-
-
+        </RelativeLayout>
     </LinearLayout>
 
 

@@ -96,14 +96,15 @@
                 android:id="@+id/containerForLogOutFab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:layout_alignParentBottom="true">
+                android:paddingRight="20dp"
+
+                android:layout_above="@id/containerForUserFab">
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fabLogOut"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginBottom="130dp"
+
                     android:focusable="true"
                     android:clickable="true"
                     app:fabSize="normal"
@@ -123,30 +124,28 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
+                android:paddingRight="20dp"
                 android:id="@+id/containerForUserFab"
-                android:layout_marginBottom="70dp"
                 android:layout_above="@id/containerForSettingsFab"
-                android:layout_alignParentBottom="true">
+                >
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fabSettingsOfUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:src="@drawable/person_image"
                     android:backgroundTint="@color/white"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:focusable="true"
                     android:clickable="true"
-                    app:fabSize="normal"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="settingsOfUserClicked"
+                    android:src="@drawable/person_image"
 
                     android:visibility="invisible"
-                    app:rippleColor="@android:color/black"
                     app:borderWidth="0dp"
-                    android:onClick="settingsOfUserClicked"
+                    app:fabSize="normal"
                     app:maxImageSize="40dp"
-                    />
+                    app:rippleColor="@android:color/black" />
             </RelativeLayout>
 
             <RelativeLayout

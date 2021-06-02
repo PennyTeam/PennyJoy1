@@ -5,7 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
-import android.animation.ObjectAnimator;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,13 +15,10 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,22 +31,20 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import Adapters.LegendAdapterForMain;
 import Models.Auth;
-import Models.Category;
 import Models.GoalsList;
 import Models.Good;
 import Models.GoodsList;
-import Models.User;
-import Providers.UserProvider;
+
 
 public class MainActivity extends AppCompatActivity {
-    private int mainRequest = 1;
 
     private Animation open_anim;
     private Animation close_anim;
@@ -106,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int[] colors;
 
-    private Auth auth;
+    private Auth auth=Auth.getInstance();
     private ArrayList<Good> actualGoodsArrayList;
     private GoodsList goodsList;
 
@@ -134,8 +129,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        Intent intent = getIntent();
-        if (intent.getExtras() != null && intent.getExtras().getBoolean("isMonthEnded")) {
+
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final Intent intent = getIntent();
+        if (intent.getExtras() != null &&
+                !auth.getCurrentUser().getUsersCurrentDate().equals(intent.getExtras().getString("monthEnded"))
+        && !intent.hasExtra("DONE")) {
 
             LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View myView = layoutInflater.inflate(R.layout.aler_dialog_in_main_tamplate, null, false);
@@ -157,9 +162,10 @@ public class MainActivity extends AppCompatActivity {
             });
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.show();
+
+           intent.putExtra("DONE", 0);
+
         }
-
-
     }
 
     @Override
@@ -167,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         alertDialog = new AlertDialog.Builder(this);
-        auth = Auth.getInstance();
         goodsList = GoodsList.getInstance();
 
         settings = findViewById(R.id.fabSettings);
@@ -391,7 +396,7 @@ public class MainActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         startActivity(intent);
-        Toast.makeText(this, "Вы вышли", Toast.LENGTH_SHORT).show();
+        Snackbar.make(v,"Вы вышли", BaseTransientBottomBar.LENGTH_SHORT).show();
     }
 
 
@@ -577,14 +582,27 @@ public class MainActivity extends AppCompatActivity {
 
 
         ArrayList<Integer> num = new ArrayList<>();
+        boolean isAlreadyExist;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < sortedListWithCategories.size(); j++) {
+                isAlreadyExist=false;
                 if (listWithBetaCategoriesCount.get(i).doubleValue() == 0.0) {
                     i++;
                     break;
                 } else if (listWithBetaCategoriesCount.get(i).doubleValue() == sortedListWithCategories.get(j).doubleValue()) {
-                    num.add(j);
+                    if(num.size()>0 ){
+                        for (int item:num) {
+                            if(item == j){
+                                isAlreadyExist=true;
+                            }
+                        }
 
+                    }
+                    if(!isAlreadyExist) {
+                        num.add(j);
+                        isAlreadyExist=false;
+                        break;
+                    }
                 }
             }
         }

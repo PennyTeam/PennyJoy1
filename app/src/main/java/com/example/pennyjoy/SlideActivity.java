@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import Adapters.SliderAdapter;
 
@@ -46,6 +47,7 @@ public class SlideActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                Toast.makeText(getApplicationContext(),"Добро пожаловать в PennyJoy!",Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });

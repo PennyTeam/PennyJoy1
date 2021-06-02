@@ -28,6 +28,7 @@
                     android:id="@+id/txtLogin"
                     android:layout_width="521dp"
                     android:layout_height="73dp"
+                    android:maxLength="20"
                     android:layout_centerInParent="true"
                     android:background="@drawable/body_for_edit_text"
                     android:hint="@string/string_login"
@@ -51,6 +52,7 @@
                     android:paddingLeft="20dp"
                     android:inputType="textPassword"
                     android:hint="@string/string_passwd"
+                    android:maxLength="16"
                     android:background="@drawable/body_for_edit_text"/>
             </RelativeLayout>
 
@@ -68,6 +70,7 @@
                     android:hint="@string/string_repeat_passwd"
                     android:textSize="30dp"
                     android:paddingLeft="20dp"
+                    android:maxLength="16"
                     android:background="@drawable/body_for_edit_text"/>
 
             </RelativeLayout>

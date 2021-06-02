@@ -7,15 +7,14 @@
     tools:context=".SignUpActivityNoAcc2"
     android:background="@color/black">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerInParent="true">
+
 
         <RelativeLayout
+            android:id="@+id/containerForLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@id/containerForPasswd"
+            android:layout_marginBottom="40dp"
             android:padding="30dp"
             >
 
@@ -27,6 +26,7 @@
                 android:layout_centerInParent="true"
                 android:background="@drawable/body_for_edit_text"
                 android:hint="@string/string_login"
+                android:maxLength="20"
                 android:inputType="textPersonName"
                 android:paddingLeft="20dp"
                 android:textSize="30dp" />
@@ -34,6 +34,8 @@
 
 
         <RelativeLayout
+            android:id="@+id/containerForPasswd"
+            android:layout_centerInParent="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="30dp">
@@ -47,13 +49,17 @@
                 android:paddingLeft="20dp"
                 android:inputType="textPassword"
                 android:hint="@string/string_passwd"
+                android:maxLength="16"
                 android:background="@drawable/body_for_edit_text"/>
         </RelativeLayout>
 
 
         <RelativeLayout
+            android:id="@+id/containerForPasswdRepeat"
+            android:layout_below="@id/containerForPasswd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:padding="30dp">
             <EditText
                 android:id="@+id/txtRepeatPasswd"
@@ -64,13 +70,16 @@
                 android:hint="@string/string_repeat_passwd"
                 android:textSize="30dp"
                 android:paddingLeft="20dp"
+                android:maxLength="16"
                 android:background="@drawable/body_for_edit_text"/>
 
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/containerForBtnNext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:padding="30dp">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -86,7 +95,6 @@
                 android:textSize="20dp" />
         </RelativeLayout>
 
-    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progressBarInSignUpNoAcc2"

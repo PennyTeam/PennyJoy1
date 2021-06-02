@@ -6,10 +6,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,16 +19,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.pennyjoy.AddGoodAndOtherActivity;
+
 import com.example.pennyjoy.R;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
 
-import Models.Category;
+
 import Notifycations.ReminderForTimer;
 
 public class FragmentTimer extends Fragment {
@@ -154,10 +151,10 @@ public class FragmentTimer extends Fragment {
 
                         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     }else{
-                        Toast.makeText(getContext(), "Выберите дату", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(getView(),"Выберите дату", BaseTransientBottomBar.LENGTH_SHORT).show();
                     }
                 }else{
-                    Toast.makeText(getContext(), "Заполните все поля!", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(getView(),"Заполните все поля!", BaseTransientBottomBar.LENGTH_SHORT).show();
                 }
             }
         });

@@ -33,7 +33,7 @@
         android:textStyle="bold"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
-        android:maxWidth="125dp"
+        android:maxWidth="130dp"
         android:layout_toRightOf="@id/rectangleForCategoryColor"
         android:layout_marginLeft="20dp"/>
     </RelativeLayout>

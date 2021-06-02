@@ -1,12 +1,8 @@
 package com.example.pennyjoy.Fragments;
 
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
+
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,24 +18,23 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.pennyjoy.HistoryActivity;
-import com.example.pennyjoy.MainActivity;
+
 import com.example.pennyjoy.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Base64;
+
 import java.util.Date;
 
-import Interfaces.OnGoalRetrievedListener;
+
 import Models.Auth;
 import Models.Category;
 import Models.CategoryList;
@@ -47,8 +42,6 @@ import Models.Goal;
 import Models.GoalsList;
 import Models.Good;
 import Models.GoodsList;
-import Models.User;
-import Notifycations.ReminderForTimer;
 import Providers.GoalProvider;
 import Providers.GoodProvider;
 import Providers.UserProvider;
@@ -169,7 +162,7 @@ public class AddGoodFragment extends Fragment {
 
 
                 }else{
-                    Toast.makeText(view.getContext(),"Заполните все поля!",Toast.LENGTH_LONG).show();
+                    Snackbar.make(getView(),"Заполните все поля!", BaseTransientBottomBar.LENGTH_SHORT).show();
                 }
             }
         };
@@ -265,7 +258,7 @@ public class AddGoodFragment extends Fragment {
                         }
 
                     } else {
-                        Toast.makeText(view.getContext(), "Заполните все поля!", Toast.LENGTH_LONG).show();
+                        Snackbar.make(getView(),"Заполните все поля!", BaseTransientBottomBar.LENGTH_SHORT).show();
                     }
                 }else{
                     Snackbar.make(getView(),"У вас пока нет целей", BaseTransientBottomBar.LENGTH_SHORT).show();

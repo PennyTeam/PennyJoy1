@@ -27,7 +27,7 @@
                 android:id="@+id/editTextLogin"
                 android:layout_width="321dp"
                 android:layout_height="53dp"
-
+                android:maxLength="20"
                 android:layout_centerHorizontal="true"
 
 
@@ -51,8 +51,7 @@
                 android:layout_height="53dp"
 
                 android:layout_centerHorizontal="true"
-
-
+                android:maxLength="16"
                 android:background="@drawable/body_for_edit_text"
                 android:hint="@string/string_passwd"
                 android:inputType="textPassword"

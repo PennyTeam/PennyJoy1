@@ -5,24 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
-import Models.Auth;
 
 import Adapters.GoodsAdapter;
 import Models.Good;
 import Models.GoodsList;
-import Models.User;
 import Providers.GoodProvider;
-import Providers.UserProvider;
+
 
 
 public class HistoryActivity extends AppCompatActivity {
@@ -89,7 +89,7 @@ public class HistoryActivity extends AppCompatActivity {
             ad.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(getApplicationContext(), "Операция отменена", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(view,"Операция отменена", BaseTransientBottomBar.LENGTH_SHORT).show();
                 }
             });
             ad.setPositiveButton("Да", new DialogInterface.OnClickListener() {
@@ -111,9 +111,9 @@ public class HistoryActivity extends AppCompatActivity {
             });
             ad.show();
         }else{
-            Toast.makeText(getApplicationContext(), "История пуста", Toast.LENGTH_SHORT).show();
+            Snackbar.make(view,"История пуста", BaseTransientBottomBar.LENGTH_SHORT).show();
         }
-// is it ???
+
 
     }
 }

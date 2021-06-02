@@ -1,153 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/black">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="30dp">
 
-            <TextView
-
+            <RelativeLayout
+                android:id="@+id/containerForMainLbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Выберите срок"
-                android:textColor="@color/white"
-                android:textSize="30dp"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="20dp">
-
-            <Spinner
-                android:id="@+id/monthDropDown"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bodyforcategoryspinner"
-
+                android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                />
+                android:layout_marginTop="30dp"
+                android:padding="30dp">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/selectorforspinner"
-                android:layout_marginLeft="280dp"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="20dp"
-                />
+                <TextView
 
-        </RelativeLayout>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Выберите срок"
+                    android:textColor="@color/white"
+                    android:textSize="30dp"/>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="20dp">
+            </RelativeLayout>
 
-            <Spinner
-                android:id="@+id/dayDropDown"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bodyforcategoryspinner"
-
+            <RelativeLayout
+                android:layout_above="@id/containerForDropDay"
                 android:layout_centerHorizontal="true"
-                />
-
-            <ImageView
+                android:id="@+id/containerForDropMonth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/selectorforspinner"
-                android:layout_marginLeft="280dp"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="20dp"
-                />
+                android:padding="20dp">
 
-        </RelativeLayout>
+                <Spinner
+                    android:id="@+id/monthDropDown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bodyforcategoryspinner"
+                    android:layout_centerHorizontal="true"
+                    />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="20dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/selectorforspinner"
+                    android:layout_toRightOf="@id/monthDropDown"
+                    android:layout_marginLeft="-45dp"
+                    android:layout_alignBottom="@id/monthDropDown"
 
-            <Spinner
-                android:id="@+id/hourDropDown"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bodyforcategoryspinner"
+                    />
 
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_above="@id/containerForDropHour"
                 android:layout_centerHorizontal="true"
-                />
-
-            <ImageView
+                android:id="@+id/containerForDropDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/selectorforspinner"
-                android:layout_marginLeft="280dp"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="20dp"
-                />
+                android:padding="20dp">
 
-        </RelativeLayout>
+                <Spinner
+                    android:id="@+id/dayDropDown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bodyforcategoryspinner"
 
+                    android:layout_centerHorizontal="true"
+                    />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="40dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/selectorforspinner"
+                    android:layout_toRightOf="@id/dayDropDown"
+                    android:layout_marginLeft="-45dp"
+                    android:layout_alignBottom="@id/dayDropDown"
+                    />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Наименование"
-                android:textColor="@color/white"
-                android:textSize="20dp"
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_centerHorizontal="true"
-                />
+                android:id="@+id/containerForDropHour"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
 
-            <EditText
-                android:id="@+id/txtNameOfGoodForTimer"
-                android:layout_width="323dp"
-                android:layout_height="37dp"
-                android:background="@drawable/body_for_edit_text"
-                android:layout_marginTop="40dp"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:paddingLeft="15dp"/>
+                <Spinner
+                    android:id="@+id/hourDropDown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bodyforcategoryspinner"
 
-        </RelativeLayout>
+                    android:layout_centerHorizontal="true"
+                    />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="30dp">
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/setTimerBtn"
-                android:layout_width="208dp"
-                android:layout_height="57dp"
-                android:background="@drawable/body_for_btn_radius_13_dp_sign_in"
-                android:text="Поставить таймер"
-                android:textAllCaps="false"
-                android:textSize="20dp"
-                android:foreground="?android:attr/selectableItemBackground"
-                />
-        </RelativeLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/selectorforspinner"
+                    android:layout_toRightOf="@id/hourDropDown"
+                    android:layout_marginLeft="-45dp"
+                    android:layout_alignBottom="@id/hourDropDown"
+                    />
+
+            </RelativeLayout>
 
 
+            <RelativeLayout
+                android:id="@+id/containerForName"
+                android:layout_above="@id/containerForBtn"
+                android:layout_below="@id/containerForDropHour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:id="@+id/lblName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Наименование"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:padding="10dp"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <EditText
+                    android:id="@+id/txtNameOfGoodForTimer"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_height="37dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/body_for_edit_text"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:maxLength="13"
+                    android:singleLine="true"
+                    android:layout_below="@id/lblName"
+                    android:paddingLeft="15dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/containerForBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:padding="30dp">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/setTimerBtn"
+                    android:layout_width="208dp"
+                    android:layout_height="57dp"
+                    android:background="@drawable/body_for_btn_radius_13_dp_sign_in"
+                    android:text="Поставить таймер"
+                    android:textAllCaps="false"
+                    android:textSize="20dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    />
+            </RelativeLayout>
     </LinearLayout>
 
 
 
-</RelativeLayout>
+</ScrollView>

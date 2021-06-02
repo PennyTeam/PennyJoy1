@@ -51,6 +51,7 @@
                         android:singleLine="true"
                         android:textSize="30dp"
                         android:text=""
+                        android:maxLength="16"
                         android:background="@drawable/template_for_tv_in_set_user_name" />
 
                 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.pennyjoy;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -10,7 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -37,7 +40,6 @@ public class  SignInActivity extends AppCompatActivity {
     private EditText login, passwd;
     private Button btnEnter, btnSignUp;
     final int SIGN_UP_REQUEST_CODE = 23;
-    final int MAIN_REQUEST_CODE = 115;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private Auth auth = Auth.getInstance();
@@ -101,6 +103,7 @@ public class  SignInActivity extends AppCompatActivity {
                         else {
                             if (!user1.getAccIsActive()) {
                                 Snackbar.make(v, "Аккаунт был удален!", Snackbar.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.GONE);
                             } else {
                                 Intent intentFromNoAccc3=getIntent();
                                 Intent intent=new Intent(getApplicationContext(), MainActivity.class);
@@ -156,6 +159,7 @@ public class  SignInActivity extends AppCompatActivity {
                                                             });
                                                 }else{
                                                     startActivity(intent);
+                                                    Toast.makeText(getApplicationContext(),"Добро пожаловать в PennyJoy!",Toast.LENGTH_SHORT).show();
                                                     progressBar.setVisibility(View.INVISIBLE);
                                                 }
 
@@ -176,6 +180,9 @@ public class  SignInActivity extends AppCompatActivity {
                 UserProvider userProvider = new UserProvider();
                 userProvider.getUserFromFirebaseByLogin(logIn,listener);
                 progressBar.setVisibility(View.VISIBLE);
+            }else{
+                Snackbar.make(v, "Логин или пароль не верны", Snackbar.LENGTH_LONG).show();
+
             }
         }
         //нажали на кнопку "Регистрация"
@@ -191,7 +198,6 @@ public class  SignInActivity extends AppCompatActivity {
         if(passWord.length()>6 && passWord.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,10}$")){
             return true;
         }else {
-            passwd.setError("Введите пароль корректно!");
             return false;
         }
 
@@ -202,7 +208,7 @@ public class  SignInActivity extends AppCompatActivity {
         if(!loginForCheck.trim().isEmpty() && loginForCheck.length()>5){
             return true;
         }
-        login.setError("Заполните логин корректно!");
+
         return false;
     }
 
@@ -214,6 +220,9 @@ public class  SignInActivity extends AppCompatActivity {
         editor.putString("loginOfTheAuthorizedUser",login);
         editor.commit();
     }
+
+
+
 
 
 }

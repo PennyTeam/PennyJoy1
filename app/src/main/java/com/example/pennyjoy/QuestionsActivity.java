@@ -5,7 +5,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +14,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.pennyjoy.Fragments.AddGoodFragment;
 
 import Models.Auth;
-import Models.GoalsList;
 
 public class QuestionsActivity extends AppCompatActivity {
     //массивы из вопросов и ответов
@@ -311,6 +308,11 @@ public class QuestionsActivity extends AppCompatActivity {
         question_button_animation_to_left.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
+                firstAnswerBtn.setClickable(false);
+                secondAnswerBtn.setClickable(false);
+                thirdAnswerBtn.setClickable(false);
+                fourthAnswerBtn.setClickable(false);
+
             }
 
             @Override
@@ -318,6 +320,7 @@ public class QuestionsActivity extends AppCompatActivity {
                 lblQuestion.setText(questions[counterOfClicksForQuestions]);
                 firstAnswerBtn.startAnimation(first_button_animation_to_left);
                 lblQuestion.startAnimation(question_button_animation_to_left2);
+
             }
 
             @Override
@@ -358,10 +361,15 @@ public class QuestionsActivity extends AppCompatActivity {
                     secondAnswerBtn.setText(answers[counterOfClicksForAnswers++]);
                     thirdAnswerBtn.startAnimation(third_button_animation_to_left);
                     secondAnswerBtn.startAnimation(second_button_animation_to_left2);
+
+
                 }else{
                     secondAnswerBtn.setText(answers[counterOfClicksForAnswers++]);
                     secondAnswerBtn.startAnimation(second_button_animation_to_left2);
                 }
+
+                firstAnswerBtn.setClickable(true);
+                secondAnswerBtn.setClickable(true);
 
             }
 
@@ -406,6 +414,9 @@ public class QuestionsActivity extends AppCompatActivity {
                 if(counterOfClicksForAnswers<14) {
                     fourthAnswerBtn.setText(answers[counterOfClicksForAnswers++]);
                     fourthAnswerBtn.startAnimation(fourth_button_animation_to_left2);
+                    thirdAnswerBtn.setClickable(true);
+                    fourthAnswerBtn.setClickable(true);
+
                 }
             }
 

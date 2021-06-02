@@ -53,6 +53,7 @@
                         android:inputType="textPassword"
                         android:gravity="center"
                         android:ellipsize="start"
+                        android:maxLength="16"
                         android:singleLine="true"
                         android:textSize="30dp"
                         android:text=""

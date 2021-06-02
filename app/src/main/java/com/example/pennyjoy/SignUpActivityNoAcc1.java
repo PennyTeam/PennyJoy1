@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+
+
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 public class SignUpActivityNoAcc1 extends AppCompatActivity {
     int signUpNoAccRequestCode=1;
@@ -33,13 +36,13 @@ public class SignUpActivityNoAcc1 extends AppCompatActivity {
                 nameIsUpper=true;
 
             }else{
-                txtName.setError("Введите имя корректно");
+                Snackbar.make(v,"Заполните все поля", BaseTransientBottomBar.LENGTH_SHORT).show();
             }
             if(Character.isUpperCase(txtSurname.getText().toString().charAt(0))) {
                 surnameIsUpper=true;
 
             }else{
-                txtSurname.setError("Введите фамилию корректно");
+                Snackbar.make(v,"Заполните все поля", BaseTransientBottomBar.LENGTH_SHORT).show();
             }
 
             //здесь проверяем те бул переменные; отвечающие за наличие больших первых букв
@@ -47,17 +50,11 @@ public class SignUpActivityNoAcc1 extends AppCompatActivity {
                 Intent intent = new Intent(this, SignUpActivityNoAcc2.class);
                 intent.putExtra("name", txtName.getText().toString());
                 intent.putExtra("surname", txtSurname.getText().toString());
-                startActivityForResult(intent, signUpNoAccRequestCode);
+                startActivity(intent);
             }
         }else{
-            Toast.makeText(getApplicationContext(),"Заполните все поля",Toast.LENGTH_LONG).show();
+            Snackbar.make(v,"Заполните все поля", BaseTransientBottomBar.LENGTH_SHORT).show();
         }
     }
 
-    //он клик для возвтрата на первый активити  ОСТАВЛЯЕМ ЛИ? Я УДРАЛ КНОПКУ "НАЗАД"
-  /* public void btnGoBackTOSignIn(View v){
-        Intent intent = new Intent();
-        setResult(RESULT_OK, intent);
-        finish();
-    }*/
 }

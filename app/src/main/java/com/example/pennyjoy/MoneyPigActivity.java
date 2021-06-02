@@ -7,24 +7,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Base64;
 
-import Interfaces.OnGoalRetrievedListener;
 import Models.Auth;
 import Models.Goal;
 import Models.GoalsList;
-import Providers.GoalProvider;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MoneyPigActivity extends AppCompatActivity {

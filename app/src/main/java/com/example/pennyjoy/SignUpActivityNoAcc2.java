@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import Interfaces.OnUserRetrievedListener;
 import Models.User;
@@ -50,7 +52,8 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
                     progressBar.setVisibility(View.INVISIBLE);
 
                     if( user.getLogin()!=null){
-                        txtLogin.setError("Данный логин уже используется");
+                        Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content)
+                                ,"Данный логин уже используется", BaseTransientBottomBar.LENGTH_SHORT).show();
                     }else{
                         intent.putExtra("login",txtLogin.getText().toString());
                         intent.putExtra("passwd",txtPasswd.getText().toString());
@@ -58,7 +61,7 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
                         intent.putExtra("surnameFromSecondAct",surname);
                         //pr bar
 
-                        startActivityForResult(intent, signUpNoAccRequestCode);
+                        startActivity(intent);
                     }
                 }
             };
@@ -68,7 +71,7 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
 
 
         }else{
-            Toast.makeText(getApplicationContext(),"Заполните все поля верно",Toast.LENGTH_LONG).show();
+            Snackbar.make(v,"Заполните все поля верно", BaseTransientBottomBar.LENGTH_SHORT).show();
         }
     }
 

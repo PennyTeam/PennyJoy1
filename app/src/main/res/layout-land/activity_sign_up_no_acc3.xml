@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -43,8 +43,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="100dp"
+                android:layout_toRightOf="@id/currencyDropDown"
+                android:layout_marginLeft="-45dp"
                 android:src="@drawable/selector_for_currency"/>
         </RelativeLayout>
 
@@ -90,4 +90,4 @@
     </LinearLayout>
 
 
-</RelativeLayout>
+</ScrollView>

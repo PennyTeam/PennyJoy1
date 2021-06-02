@@ -136,6 +136,7 @@
                     android:paddingLeft="10dp"
                     android:maxLength="120"
                     android:layout_marginTop="50dp"
+                    android:maxLines="5"
                     android:background="@drawable/body_for_edit_text"/>
                 <TextView
                     android:id="@+id/counterOfTextInputAddGoal"

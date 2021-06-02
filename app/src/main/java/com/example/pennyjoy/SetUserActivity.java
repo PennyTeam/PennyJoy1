@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.DecimalFormat;
@@ -237,7 +238,7 @@ public class SetUserActivity extends AppCompatActivity {
                 ad.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "Операция отменена", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(v,"Операция отменена", BaseTransientBottomBar.LENGTH_SHORT).show();
                     }
                 });
                 ad.setPositiveButton("Да", new DialogInterface.OnClickListener() {
@@ -290,7 +291,7 @@ public class SetUserActivity extends AppCompatActivity {
             ad.setNegativeButton("Нет, отменить", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-               Toast.makeText(getApplicationContext(), "Операция отменена", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(v,"Операция отменена", BaseTransientBottomBar.LENGTH_SHORT).show();
                 }
             });
             ad.setPositiveButton("Да", new DialogInterface.OnClickListener() {
@@ -305,7 +306,9 @@ public class SetUserActivity extends AppCompatActivity {
                     categoryList.getCategoryList().clear();
                     progressBar.setVisibility(View.INVISIBLE);
                     Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
                     startActivity(intent);
                 }
             });
@@ -323,7 +326,7 @@ public class SetUserActivity extends AppCompatActivity {
         if(newName.length()>=2){
             return true;
         }
-        editTextName.setError("Минимум 2 символа!");
+
         return false;
     }
 
@@ -331,7 +334,6 @@ public class SetUserActivity extends AppCompatActivity {
         if(newSurname.length()>=2){
             return true;
         }
-        editTextSurname.setError("Минимум 2 символа!");
         return false;
     }
 
@@ -339,7 +341,6 @@ public class SetUserActivity extends AppCompatActivity {
         if(newLogin.length()>=6){
             return true;
         }
-        editTextLogin.setError("Логин должен включать в себя минимум 6 символов");
         return false;
     }
 
@@ -347,7 +348,7 @@ public class SetUserActivity extends AppCompatActivity {
         if(!newSalary.isEmpty() && newSalary != null){
             return true;
         }
-        editTextSalary.setError("Поле обязательно к заполнению");
+
         return false;
     }
 }

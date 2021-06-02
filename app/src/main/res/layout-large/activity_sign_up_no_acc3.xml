@@ -6,10 +6,13 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     tools:context=".SignUpActivityNoAcc3">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -22,8 +25,7 @@
                 android:layout_centerHorizontal="true"
                 android:textSize="30dp"
                 android:text="Выберите валюту"
-                android:textColor="@color/white"
-                android:layout_marginTop="130dp"/>
+                android:textColor="@color/white" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -43,8 +45,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="100dp"
+                android:layout_toRightOf="@id/currencyDropDown"
+                android:layout_marginLeft="-45dp"
                 android:src="@drawable/selector_for_currency"/>
         </RelativeLayout>
 
@@ -88,6 +90,7 @@
         </RelativeLayout>
 
     </LinearLayout>
+    </ScrollView>
 
 
 </RelativeLayout>

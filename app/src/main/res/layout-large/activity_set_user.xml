@@ -219,6 +219,7 @@
                         android:text="23,4,432222"
                         android:layout_marginLeft="30dp"
                         android:ellipsize="start"
+                        android:singleLine="true"
                         android:inputType="numberDecimal|number"/>
 
                     <TextView
