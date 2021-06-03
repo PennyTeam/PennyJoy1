@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,14 +17,14 @@
             android:layout_height="wrap_content"
             android:padding="20dp"
             android:layout_marginTop="100dp">
-           <TextView
-               android:id="@+id/lblQuestion"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="30dp"
-               android:gravity="left"
-               android:textColor="@color/white"
-               />
+            <TextView
+                android:id="@+id/lblQuestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:gravity="left"
+                android:textColor="@color/white"
+                />
         </RelativeLayout>
 
         <RelativeLayout
@@ -90,4 +90,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</ScrollView>

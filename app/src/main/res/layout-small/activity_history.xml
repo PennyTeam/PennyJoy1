@@ -8,6 +8,7 @@
     tools:context=".HistoryActivity"
     android:background="@color/black">
 
+
     <ListView
         android:id="@+id/listViewOfGoods"
         android:layout_width="match_parent"
@@ -21,7 +22,7 @@
         android:paddingBottom="20dp"
         android:textColor="#848484"
         android:text="Пока пусто!"
-        android:textSize="40dp"
+        android:textSize="20dp"
         android:textStyle="bold"
         />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -31,8 +32,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:src="@drawable/delete"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="20dp"
+
         android:backgroundTint="@color/white"
         android:foreground="?android:attr/selectableItemBackground"
         android:focusable="true"

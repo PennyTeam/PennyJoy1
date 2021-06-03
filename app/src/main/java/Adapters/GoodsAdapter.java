@@ -39,7 +39,7 @@ private int resource;
         View v = LayoutInflater.from(this.Context).inflate(resource,null);
 
         Good good = this.getItem(position);
-
+        //инициализируем переменные из template
         TextView productTitle = v.findViewById(R.id.goodTitle);
         TextView anEssay = v.findViewById(R.id.essayOfGood);
         TextView priceInNumbers = v.findViewById(R.id.numberPrice);
@@ -61,7 +61,7 @@ private int resource;
             containerForLblTime.setVisibility(View.VISIBLE);
         }
 
-//
+        //настраиваем template
         productTitle.setText(good.getName());
         Auth auth=Auth.getInstance();
         currencyOfCostInHistoryOfGood.setText(auth.getCurrentCurrency().getLabel());
@@ -72,7 +72,7 @@ private int resource;
         v.setTag(R.string.good_int_for_tag, good);
 
 
-//smth
+
         return v;
     }
 }

@@ -74,6 +74,8 @@ public class SignUpActivityNoAcc3 extends AppCompatActivity {
             String passwd=intent2.getExtras().getString("passwd");
             double salary=Double.parseDouble(this.salary.getText().toString());
 
+
+            //настраиваю юзера
             Auth auth=Auth.getInstance();
 
             Date cDate = new Date();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,7 +30,7 @@
                 android:onClick="moneyPigBtnClicked"
                 android:src="@drawable/buttonmoneypig"
 
-                 />
+                />
 
         </RelativeLayout>
 
@@ -43,8 +44,8 @@
 
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/pieChartOfSpendingsInMain"
-                    android:layout_width="290dp"
-                    android:layout_height="290dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_centerInParent="true"/>
             </RelativeLayout>
             <RelativeLayout
@@ -96,14 +97,14 @@
                 android:id="@+id/containerForLogOutFab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:layout_alignParentBottom="true">
+                android:paddingRight="20dp"
+                android:layout_below="@id/containerForBtnCharts">
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fabLogOut"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginBottom="130dp"
+
                     android:focusable="true"
                     android:clickable="true"
                     app:fabSize="normal"
@@ -123,11 +124,12 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
+                android:paddingRight="20dp"
                 android:id="@+id/containerForUserFab"
-                android:layout_marginBottom="70dp"
-                android:layout_above="@id/containerForSettingsFab"
-                android:layout_alignParentBottom="true">
+
+
+                android:layout_below="@id/containerForLogOutFab"
+                >
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fabSettingsOfUser"
@@ -178,7 +180,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
-                android:layout_alignParentBottom="true">
+                android:layout_below="@id/containerForUserFab"
+                >
                 <ImageButton
                     android:id="@+id/addGoodBtn"
                     android:layout_width="wrap_content"
@@ -207,4 +210,4 @@
 
 
 
-</RelativeLayout>
+</ScrollView>

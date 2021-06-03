@@ -122,6 +122,7 @@ public class FragmentTimer extends Fragment {
                 if(!txtNameOfGoodForTimer.getText().toString().isEmpty() ) {
                     if( !dropDownMonth.getSelectedItem().toString().equals("0 месяцев") || !dropDownDay.getSelectedItem().toString().equals("0 дней")
                             || !dropDownHour.getSelectedItem().toString().equals("0 часов")) {
+                        //делаем уведомление
                        Intent  intent = new Intent(getContext(), ReminderForTimer.class);
 
                         makingIntDate();
@@ -146,7 +147,8 @@ public class FragmentTimer extends Fragment {
                         long timeForCheck = 1000 * 10;
 
                         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                        //надо юзать finalDate
+                        //надо юзать finalDate, мы не испольщуем его для того чтобы не ждать все время. А лишь 10 секунд.
+                        // Чисто для проверки сделали
                         alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonClicked + timeForCheck, pendingIntent);
 
                         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -160,6 +162,7 @@ public class FragmentTimer extends Fragment {
         });
     }
 
+    //делаем из тоого, что выбрал юзер инт
     public void makingIntDate(){
         //делаю интовое число из селекта
         String selectedMonthString=dropDownMonth.getSelectedItem().toString();
@@ -199,6 +202,7 @@ public class FragmentTimer extends Fragment {
         //--------------------------------
     }
 
+    //переводим в милисикунды интовую дату
     public void makingLongData(){
         //я сделал с finalBettaMonth  потому что некорректно считает с одним finalMonth
         finalBettaMonth=1000* 60 * 60 * 24;
@@ -210,6 +214,7 @@ public class FragmentTimer extends Fragment {
 
     }
 
+    //рабоатем с уведомлением
     public void createNotificationChannel(){
         if(Build.VERSION.SDK_INT >=  android.os.Build.VERSION_CODES.O){
             String name="TimerReminderChannel";

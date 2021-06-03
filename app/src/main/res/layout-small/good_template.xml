@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:alpha="0.48"
                 android:background="#333333"
-                android:textSize="34dp"
+                android:textSize="24dp"
                 android:text="2021-05-13"
                 android:textColor="@color/white"
                 android:gravity="center"
@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:text="Продукт"
-                    android:textSize="25dp"
+                    android:textSize="15dp"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:layout_marginLeft="15dp"/>
@@ -71,9 +71,9 @@
                     android:text="Цена"
                     android:textStyle="bold"
                     android:textColor="@color/white"
-                    android:textSize="25dp"
+                    android:textSize="15dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="60dp"/>
+                    android:layout_marginRight="30dp"/>
 
 
 
@@ -82,7 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:textSize="25dp"
+                    android:textSize="15dp"
                     android:textStyle="bold"
                     android:text="p"
                     android:textColor="@color/white"
@@ -107,10 +107,10 @@
                     android:layout_below="@id/currencyOfCostInHistoryOfGood"
                     android:background="@drawable/background_for_essay"
                     android:paddingLeft="10dp"
-                    android:paddingTop="5dp"
+
                     android:text="Цель"
                     android:textColor="@color/black"
-                    android:textSize="15dp"
+                    android:textSize="17dp"
                     />
 
             <View

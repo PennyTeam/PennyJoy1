@@ -45,21 +45,13 @@ public class LegendAdapterForMain extends ArrayAdapter<LegendEntry> {
         LegendEntry legendEntry = this.getItem(position);
         if((int)dataOfCategory.get(position) != -1) {
 
-            DecimalFormat decimalFormat = new DecimalFormat("#.###");
-
 
             View colorOfCategory = v.findViewById(R.id.rectangleForCategoryColor);
             colorOfCategory.setBackgroundColor(legendEntry.formColor);
 
 
-            TextView lblCostOfCategory = v.findViewById(R.id.lblCostOfCategory);
 
 
-            //TextView lblCurrencyOfCategoryCost = v.findViewById(R.id.lblCurrencyOfCategoryCost);
-           // Auth auth = Auth.getInstance();
-            //lblCurrencyOfCategoryCost.setText(auth.getCurrentCurrency().getLabel());
-
-            //TextView lblPercentageOfCategory = v.findViewById(R.id.lblPercentageOfCategory);
 
 
             //________________________________________

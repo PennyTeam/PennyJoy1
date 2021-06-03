@@ -51,8 +51,9 @@ public class LegendAdapter extends ArrayAdapter<LegendEntry> {
         View v = LayoutInflater.from(this.Context).inflate(resource, null);
 
         LegendEntry legendEntry = this.getItem(position);
+        //проверка на то что юзер хоть что-то купил
         if((int)dataOfCategory.get(position) != -1) {
-
+            //инициализируем переменные
             DecimalFormat decimalFormat = new DecimalFormat("#.###");
 
 

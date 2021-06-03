@@ -128,15 +128,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
-
+        Toast.makeText(getApplicationContext(),"Добро пожаловать в PennyJoy!",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        //работаем с алертом, который оповещает об окончании месяца
         final Intent intent = getIntent();
         if (intent.getExtras() != null &&
                 !auth.getCurrentUser().getUsersCurrentDate().equals(intent.getExtras().getString("monthEnded"))
@@ -172,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        //инициализируем основные перемнные
         alertDialog = new AlertDialog.Builder(this);
         goodsList = GoodsList.getInstance();
 
@@ -206,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
         shop = getApplicationContext().getResources().getDrawable(R.drawable.shopping);
         smth = getApplicationContext().getResources().getDrawable(R.drawable.sort);
 
+        //цвета для графиков
         pieChart = findViewById(R.id.pieChartOfSpendingsInMain);
         pieLegend = pieChart.getLegend();
         colors = new int[]{(R.color.food), (R.color.travelings), (R.color.transport),
@@ -214,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
                 R.color.goods, (R.color.smth)};
 
 
+        //актуальные продукты
         actualGoodsArrayList = new ArrayList<>();
         for (Good g : goodsList) {
             if (g.getActual()) {
@@ -509,6 +510,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //делаем топ 4 категории
     public void sortTop4Categories(ArrayList<Good> actualGoodsArrayList) {
         sortedListWithCategories = new ArrayList<>();
 

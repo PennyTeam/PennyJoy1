@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SetPasswdActivity"
     android:background="@color/black">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
         <LinearLayout
@@ -30,7 +35,7 @@
                         android:gravity="center"
                         android:text="@string/enter_old_passwd"
                         android:textColor="#848484"
-                        android:textSize="30dp" />
+                        android:textSize="20dp" />
                 </RelativeLayout>
 
 
@@ -48,16 +53,17 @@
                         android:inputType="textPassword"
                         android:gravity="center"
                         android:ellipsize="start"
+                        android:maxLength="16"
                         android:singleLine="true"
                         android:textSize="30dp"
                         android:text=""
-                        android:maxLength="16"
                         android:background="@drawable/template_for_tv_in_set_user_name" />
 
                 </RelativeLayout>
 
 
                 <RelativeLayout
+                    android:layout_below="@id/containerForTxtOldPasswd"
                     android:id="@+id/bigContainerForNewPasswd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -69,7 +75,7 @@
                         android:id="@+id/containerForLblNewPasswd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="60dp"
                         >
 
                         <TextView
@@ -79,7 +85,7 @@
                             android:layout_centerInParent="true"
                             android:text="Новый пароль"
                             android:textColor="#848484"
-                            android:textSize="30dp" />
+                            android:textSize="20dp" />
                     </RelativeLayout>
 
 
@@ -121,7 +127,7 @@
                             android:text="Повторите новый пароль"
                             android:gravity="center"
                             android:textColor="#848484"
-                            android:textSize="30dp" />
+                            android:textSize="20dp" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -179,7 +185,7 @@
 
 
         </LinearLayout>
-
+    </ScrollView>
 
     <ProgressBar
         android:id="@+id/progressBarInSetPasswd"

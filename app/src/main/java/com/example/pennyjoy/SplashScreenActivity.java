@@ -58,6 +58,10 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private ArrayList<Good> actualGoodsArrayList;
 
+    private UserProvider provider;
+    private GoalProvider goalProvider;
+    private GoodProvider goodProvider;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // убедитесь, что вызываете до super.onCreate()
@@ -78,8 +82,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         String login=sharedPreferences.getString("loginOfTheAuthorizedUser",null);
 
         if(login!=null){
-            UserProvider provider=new UserProvider();
-            GoalProvider goalProvider = new GoalProvider();
+             provider=new UserProvider();
+             goalProvider = new GoalProvider();
             OnUserRetrievedListener listener = new OnUserRetrievedListener() {
                 @Override
                 public void OnRetrieved(User user) {
@@ -102,7 +106,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                                 }
 
                                 //заполняем лист с товарами
-                                GoodProvider goodProvider=new GoodProvider();
+                                 goodProvider=new GoodProvider();
 
                                 goodProvider.getGoodsFromFirebase(user.getKey(), new OnGoodsRetrievedListener() {
                                     @Override
@@ -116,6 +120,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                                         int idOfCurrency=mySharedPreferences.getInt("idOfCurrency",-1);
                                         if(idOfCurrency==-1) {
                                             auth.setCurrentCurrency(currenciesList.getCurrencies().get(0));
+                                            continueCheckingAfterCurrency();
+
                                         }
 
                                         else{
@@ -124,51 +130,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                                                 @Override
                                                 public void OnRetrieved(Currency currency) {
                                                     auth.setCurrentCurrency(currency);
-                                                    CategoryList categoryList=CategoryList.getInstance();
-                                                    categoryList.init();
 
-
-
-                                                    Date cDate = new Date();
-                                                    String currentDate = new SimpleDateFormat("yyyy-MM").format(cDate);
-
-                                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
-                                                    if(!auth.getCurrentUser().getUsersCurrentDate().equals(currentDate)) {
-                                                        int efficiency = countEfficiency();
-                                                        String inf = "";
-                                                        String categoriesLabels = "";
-                                                        if (efficiency >= 100) {
-                                                            inf = getResources().getString(R.string.goodJobForMonth);
-                                                        } else {
-                                                            inf = getResources().getString(R.string.badJobForMonth);
-                                                        }
-                                                        categoriesLabels = initCategoriesLabels();
-                                                        intent.putExtra("monthEnded", auth.getCurrentUser().getUsersCurrentDate());
-                                                        intent.putExtra("mainInf", inf);
-                                                        intent.putExtra("top4CategoriesLabels", categoriesLabels);
-
-                                                        //очищаем юзера
-                                                        auth.getCurrentUser().setEfficiency(0);
-                                                        auth.getCurrentUser().setTotalSpends(0);
-                                                        auth.getCurrentUser().setUsersCurrentDate(currentDate);
-
-                                                        provider.updateUser(auth.getCurrentUser());
-
-                                                        //очищаем товары
-                                                        for (Good g : goodsList) {
-                                                            if (g.getActual()) {
-                                                                g.setActual(false);
-                                                                goodProvider.updateGood(g);
-                                                            }
-                                                        }
-
-
-                                                    }
-                                                    Toast.makeText(getApplicationContext(),"Добро пожаловать в PennyJoy!",Toast.LENGTH_SHORT).show();
-                                                    startActivity(intent);
-
-
+                                                    continueCheckingAfterCurrency();
                                                 }
                                             });
                                         }
@@ -420,5 +383,51 @@ public class SplashScreenActivity extends AppCompatActivity {
         }
 
         return res;
+    }
+
+    public void continueCheckingAfterCurrency(){
+        CategoryList categoryList=CategoryList.getInstance();
+        categoryList.init();
+
+
+
+        Date cDate = new Date();
+        String currentDate = new SimpleDateFormat("yyyy-MM").format(cDate);
+
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+        if(!auth.getCurrentUser().getUsersCurrentDate().equals(currentDate)) {
+            int efficiency = countEfficiency();
+            String inf = "";
+            String categoriesLabels = "";
+            if (efficiency >= 100) {
+                inf = getResources().getString(R.string.goodJobForMonth);
+            } else {
+                inf = getResources().getString(R.string.badJobForMonth);
+            }
+            categoriesLabels = initCategoriesLabels();
+            intent.putExtra("monthEnded", auth.getCurrentUser().getUsersCurrentDate());
+            intent.putExtra("mainInf", inf);
+            intent.putExtra("top4CategoriesLabels", categoriesLabels);
+
+            //очищаем юзера
+            auth.getCurrentUser().setEfficiency(0);
+            auth.getCurrentUser().setTotalSpends(0);
+            auth.getCurrentUser().setUsersCurrentDate(currentDate);
+
+            provider.updateUser(auth.getCurrentUser());
+
+            //очищаем товары
+            for (Good g : goodsList) {
+                if (g.getActual()) {
+                    g.setActual(false);
+                    goodProvider.updateGood(g);
+                }
+            }
+
+
+        }
+        startActivity(intent);
+
     }
 }

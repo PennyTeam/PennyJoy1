@@ -33,7 +33,6 @@ public class FragmentHelper extends Fragment {
     private static int MIN_DISTANCE = 150;
 
 
-    private static long timeForRepeat = 1000 * 4;
 
     private ImageView arrow;
 
@@ -57,6 +56,7 @@ public class FragmentHelper extends Fragment {
         arrow_animation_to_left2 = AnimationUtils.loadAnimation(getContext(), R.anim.arrow_animation_left2);
         arrow=view.findViewById(R.id.arrow);
 
+        //делаем анимацию
         arrow_animation_to_left.setRepeatCount(Animation.INFINITE);
         arrow.startAnimation(arrow_animation_to_left);
 
@@ -100,16 +100,10 @@ public class FragmentHelper extends Fragment {
 
 
 
-        /*final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startAnimation();
-                handler.postDelayed(this, timeForRepeat);
-            }
-        }, timeForRepeat-1000);*/
 
 
+
+        //трэкаем свайп влево
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -138,26 +132,4 @@ public class FragmentHelper extends Fragment {
         });
     }
 
-    public void startAnimation(){
-        arrow_animation_to_left.setRepeatCount(Animation.INFINITE);
-        arrow.startAnimation(arrow_animation_to_left);
-
-        arrow_animation_to_left.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                arrow.startAnimation(arrow_animation_to_left2);
-                getView().clearAnimation();
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-    }
 }

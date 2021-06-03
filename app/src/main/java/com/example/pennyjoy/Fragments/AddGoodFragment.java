@@ -74,7 +74,7 @@ public class AddGoodFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
 
-
+        //инициализируем переменные
         floatingActionButton = view.findViewById(R.id.historyBtn);
         txtNameOfGood=view.findViewById(R.id.txtNameOfGood);
         txtCost=view.findViewById(R.id.txtCostOfGood);
@@ -125,7 +125,6 @@ public class AddGoodFragment extends Fragment {
                         && Double.parseDouble(txtCost.getText().toString())>0
                         && counterOfSymbols >= 90
                         && !txtPurchaseOfPurpose.getText().toString().trim().isEmpty()){
-                    //получаю текущего юзера и устанавливаю кей
 
 
 
@@ -137,6 +136,7 @@ public class AddGoodFragment extends Fragment {
                     double costOfGood= Double.parseDouble(txtCost.getText().toString());
                     Category category=(Category) dropDownCategory.getSelectedItem();
 
+                    //делаю продукт
 
                     Date cDate = new Date();
                     String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
@@ -153,6 +153,7 @@ public class AddGoodFragment extends Fragment {
                     userProvider.updateUser(auth.getCurrentUser());
 
 
+                    //очищаю, то что заполнил юзер
                     txtNameOfGood.getText().clear();
                     txtCost.getText().clear();
                     txtPurchaseOfPurpose.getText().clear();
@@ -227,6 +228,7 @@ public class AddGoodFragment extends Fragment {
                             //________________________________________________________________
                             Toast.makeText(getContext(),"Поздравляем! Вы завершили свою цель!",Toast.LENGTH_SHORT).show();
                         }
+                        //если юзер просто заполняет цель
                         else{
 
 
@@ -268,6 +270,7 @@ public class AddGoodFragment extends Fragment {
         dropDownCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //если юзер выбрал категорию то мы оставляем для заполнения только уель
                 if(position == 7 ){
                     btnAddGood.setOnClickListener(listenerForGoal);
 
@@ -298,7 +301,7 @@ public class AddGoodFragment extends Fragment {
         });
 
         btnAddGood.setOnClickListener(listenerForUsualGood);
-
+        //здесь у нас каунтер символов
         txtPurchaseOfPurpose.addTextChangedListener(new TextWatcher(){
 
             public void afterTextChanged(Editable s) {

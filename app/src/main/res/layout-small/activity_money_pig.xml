@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".MoneyPigActivity"
     android:background="@color/black">
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,11 +18,11 @@
             android:layout_height="match_parent">
 
             <RelativeLayout
+                android:id="@+id/containerForGoalName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
-                android:layout_alignParentTop="true"
-                android:layout_above="@id/containerForImage">
+                android:layout_alignParentTop="true">
 
                 <View
                     android:layout_width="0dp"
@@ -36,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:textSize="36dp"
+                    android:textSize="20dp"
                     android:textColor="#C4C4C4"
                     android:textStyle="bold"
                     android:text="Название цели"
@@ -59,7 +61,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
-                android:layout_centerInParent="true">
+                android:layout_below="@id/containerForGoalName"
+                >
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageOfCurrentGoal"
                     android:layout_width="208dp"
@@ -85,10 +88,12 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/containerForProgressOfGoal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
                 android:layout_below="@id/containerForImage"
+
                 >
 
                 <ProgressBar
@@ -125,41 +130,36 @@
                     android:layout_toRightOf="@id/lblProgressOfGoal" />
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp">
-
-            </RelativeLayout>
-
-
 
             <RelativeLayout
+                android:id="@+id/containerforBtns"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp">
+                android:layout_below="@id/containerForProgressOfGoal"
+                android:padding="7dp">
+
                 <ImageButton
                     android:id="@+id/addGoalBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentBottom="true"
-                    android:onClick="addGoalClicked"
+                    android:background="@color/black"
                     android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="addGoalClicked"
 
-                    android:src="@drawable/btn_add_good_image"/>
+                    android:src="@drawable/btn_add_good_image" />
 
                 <ImageButton
                     android:id="@+id/listOfCoalsBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
-                    android:onClick="listOfGoalsBtnClicked"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
+                    android:background="@color/black"
                     android:foreground="?android:attr/selectableItemBackground"
-                    android:src="@drawable/bookmark"/>
+                    android:onClick="listOfGoalsBtnClicked"
+                    android:src="@drawable/bookmark" />
 
             </RelativeLayout>
 
@@ -167,4 +167,5 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+
+</ScrollView>

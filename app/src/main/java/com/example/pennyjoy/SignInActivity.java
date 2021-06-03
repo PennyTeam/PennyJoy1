@@ -159,7 +159,7 @@ public class  SignInActivity extends AppCompatActivity {
                                                             });
                                                 }else{
                                                     startActivity(intent);
-                                                    Toast.makeText(getApplicationContext(),"Добро пожаловать в PennyJoy!",Toast.LENGTH_SHORT).show();
+
                                                     progressBar.setVisibility(View.INVISIBLE);
                                                 }
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,311 +11,311 @@
     android:background="@color/black">
 
     <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:id="@+id/containerForLblName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/containerForLblName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/name_for_edit_user"
-                android:textColor="#848484"
-                android:textSize="30dp" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/containerForTxtName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_below="@id/containerForLblName">
-            <EditText
-                android:id="@+id/etext_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/template_for_tv_in_set_user_name"
-                android:ellipsize="start"
-                android:ems="10"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text=""
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="30dp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/containerForLblSurname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/containerForTxtName">
-            <TextView
-                android:id="@+id/tv_surname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/surname_of_user"
-                android:textColor="#848484"
-                android:textSize="30dp" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/containerForTxtSurname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_below="@id/containerForLblSurname">
-            <EditText
-                android:id="@+id/etext_surname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/template_for_tv_in_set_user_name"
-                android:ellipsize="start"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text=""
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="30dp" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/containerForLblLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/containerForTxtSurname">
-            <TextView
-                android:id="@+id/tv_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/login_for_edit_user"
-                android:textColor="#848484"
-                android:textSize="30dp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/containerForTxtLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_below="@id/containerForLblLogin">
-            <EditText
-                android:id="@+id/etext_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/template_for_tv_in_set_user_name"
-                android:ellipsize="start"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text=""
-                android:maxLength="20"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="30dp" />
-        </RelativeLayout>
-
-
-
-        <RelativeLayout
-            android:layout_marginTop="20dp"
-            android:id="@+id/containerForPasswd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_below="@id/containerForTxtLogin">
-            <LinearLayout
-                android:id="@+id/buttonPasswd"
-                android:layout_width="394dp"
-                android:layout_height="53dp"
-                android:onClick="onClick"
-                android:layout_centerInParent="true"
-                android:background="@drawable/template_for_btn_with_passwd"
-                android:clickable="true"
-                android:orientation="horizontal">
+                >
 
                 <TextView
+                    android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:ellipsize="start"
-                    android:gravity="center"
-                    android:paddingLeft="15dp"
-                    android:text="@string/password_for_edit_user"
-                    android:textColor="@color/black"
-                    android:textSize="25dp" />
+                    android:layout_centerInParent="true"
+                    android:text="@string/name_for_edit_user"
+                    android:textColor="#848484"
+                    android:textSize="20dp" />
+            </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/text_password_for_edit"
+
+            <RelativeLayout
+                android:id="@+id/containerForTxtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_below="@id/containerForLblName">
+                <EditText
+                    android:id="@+id/etext_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="180dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/template_for_tv_in_set_user_name"
                     android:ellipsize="start"
+                    android:ems="10"
                     android:gravity="center"
+                    android:singleLine="true"
                     android:text=""
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="25dp" />
-            </LinearLayout>
-        </RelativeLayout>
+                    android:textSize="30dp" />
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/containerForLblSalary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/containerForPasswd">
-            <TextView
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/containerForLblSurname"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/salary_for_edit_user"
-                android:textColor="#848484"
-                android:textSize="30dp"
-                android:layout_centerInParent="true"
-                />
-        </RelativeLayout>
+                android:layout_below="@id/containerForTxtName">
+                <TextView
+                    android:id="@+id/tv_surname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/surname_of_user"
+                    android:textColor="#848484"
+                    android:textSize="20dp" />
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/containerForTxtSalary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_below="@id/containerForLblSalary">
-            <LinearLayout
-                android:layout_width="350.62dp"
-                android:orientation="horizontal"
+
+            <RelativeLayout
+                android:id="@+id/containerForTxtSurname"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/template_for_tv_in_set_user_name"
-                android:id="@+id/linearWithSalary"
-                android:layout_centerInParent="true">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <EditText
-                        android:id="@+id/etext_salary"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="30dp"
-                        android:textColor="@color/black"
-                        android:gravity="center"
-                        android:maxLength="9"
-                        android:text="23,4,432222"
-                        android:layout_marginLeft="30dp"
-                        android:ellipsize="start"
-                        android:singleLine="true"
-                        android:inputType="numberDecimal|number"/>
+                android:padding="10dp"
+                android:layout_below="@id/containerForLblSurname">
+                <EditText
+                    android:id="@+id/etext_surname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/template_for_tv_in_set_user_name"
+                    android:ellipsize="start"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="30dp" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/containerForLblLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/containerForTxtSurname">
+                <TextView
+                    android:id="@+id/tv_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/login_for_edit_user"
+                    android:textColor="#848484"
+                    android:textSize="20dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/containerForTxtLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_below="@id/containerForLblLogin">
+                <EditText
+                    android:id="@+id/etext_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/template_for_tv_in_set_user_name"
+                    android:ellipsize="start"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text=""
+                    android:maxLength="20"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="30dp" />
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:layout_marginTop="20dp"
+                android:id="@+id/containerForPasswd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_below="@id/containerForTxtLogin">
+                <LinearLayout
+                    android:id="@+id/buttonPasswd"
+                    android:layout_width="394dp"
+                    android:layout_height="53dp"
+                    android:onClick="onClick"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/template_for_btn_with_passwd"
+                    android:clickable="true"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/symbolOfCurrency"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="30dp"
-                        android:singleLine="true"
-                        android:text="p"
-
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="30dp"
+                        android:layout_gravity="center"
+                        android:ellipsize="start"
+                        android:gravity="center"
+                        android:paddingLeft="15dp"
+                        android:text="@string/password_for_edit_user"
                         android:textColor="@color/black"
-                        />
-                </RelativeLayout>
+                        android:textSize="15dp" />
 
+                    <TextView
+                        android:id="@+id/text_password_for_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="180dp"
+                        android:ellipsize="start"
+                        android:gravity="center"
+                        android:text=""
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="25dp" />
+                </LinearLayout>
+            </RelativeLayout>
 
-
-            </LinearLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/containerForSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:layout_below="@id/containerForTxtSalary">
-            <Spinner
-                android:id="@+id/currencyDropDown"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/containerForLblSalary"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/body_for_spinner_currency"
-                android:textSize="400dp"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
+                android:layout_below="@id/containerForPasswd">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/salary_for_edit_user"
+                    android:textColor="#848484"
+                    android:textSize="20dp"
+                    android:layout_centerInParent="true"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/containerForTxtSalary"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="120dp"
-                android:src="@drawable/selector_for_currency"/>
-        </RelativeLayout>
+                android:padding="10dp"
+                android:layout_below="@id/containerForLblSalary">
+                <LinearLayout
+                    android:layout_width="350.62dp"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/template_for_tv_in_set_user_name"
+                    android:id="@+id/linearWithSalary"
+                    android:layout_centerInParent="true">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/etext_salary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20dp"
+                            android:textColor="@color/black"
+                            android:gravity="center"
+                            android:maxLength="9"
+                            android:text="23,4,432222"
+                            android:layout_marginLeft="30dp"
+                            android:ellipsize="start"
+                            android:singleLine="true"
+                            android:inputType="numberDecimal|number"/>
 
-        <RelativeLayout
-            android:id="@+id/containerForDeleteBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:layout_below="@id/containerForSpinner">
+                        <TextView
+                            android:id="@+id/symbolOfCurrency"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20dp"
+                            android:singleLine="true"
+                            android:text="p"
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/delete_user_btn"
-                android:layout_width="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="30dp"
+                            android:textColor="@color/black"
+                            />
+                    </RelativeLayout>
+
+
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/containerForSpinner"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/template_for_btn_delete"
-                android:text="Удалить аккаунт"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:onClick="onClick"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:textSize="30dp" />
+                android:padding="20dp"
+                android:layout_below="@id/containerForTxtSalary">
+                <Spinner
+                    android:id="@+id/currencyDropDown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/body_for_spinner_currency"
+                    android:textSize="400dp"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@id/currencyDropDown"
+                    android:layout_marginLeft="-50dp"
+                    android:src="@drawable/selector_for_currency"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/containerForDeleteBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:layout_below="@id/containerForSpinner">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/delete_user_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/template_for_btn_delete"
+                    android:text="Удалить аккаунт"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:onClick="onClick"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:textSize="15dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/containerForBtnSaveChanges"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_below="@id/containerForDeleteBtn"
+                android:layout_marginTop="25dp"
+                >
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/save_settings"
+                    android:onClick="onClick"
+                    android:layout_width="294dp"
+                    android:layout_height="55dp"
+                    android:layout_centerInParent="true"
+                    android:textAllCaps="false"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:text="Сохранить"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:background="@drawable/template_for_btn_save_settings" />
+            </RelativeLayout>
+
+
+
+
+
+
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/containerForBtnSaveChanges"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_below="@id/containerForDeleteBtn"
-            android:layout_marginTop="25dp"
-            >
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/save_settings"
-                android:onClick="onClick"
-                android:layout_width="294dp"
-                android:layout_height="55dp"
-                android:layout_centerInParent="true"
-                android:textAllCaps="false"
-                android:textSize="30dp"
-                android:textColor="@color/black"
-                android:text="Сохранить"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:background="@drawable/template_for_btn_save_settings" />
-        </RelativeLayout>
-
-
-
-
-
-
-    </RelativeLayout>
-
-</ScrollView>
+    </ScrollView>
 
     <ProgressBar
         android:id="@+id/progressBarInSetUser"

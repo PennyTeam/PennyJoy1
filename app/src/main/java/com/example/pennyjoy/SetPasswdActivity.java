@@ -40,6 +40,7 @@ public class SetPasswdActivity extends AppCompatActivity {
         btnSaveNewPasswd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //проверяем корректность ввода
                 String newPasswd = newPasswd1.getText().toString();
                 String newPasswdRepeated = newPasswd2.getText().toString();
                 String oldPasswd = editTextOldPasswd.getText().toString();

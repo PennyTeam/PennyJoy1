@@ -47,7 +47,7 @@ public class SlideActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-                Toast.makeText(getApplicationContext(),"Добро пожаловать в PennyJoy!",Toast.LENGTH_SHORT).show();
+
                 startActivity(intent);
             }
         });
@@ -55,6 +55,7 @@ public class SlideActivity extends AppCompatActivity {
 
     }
 
+    //делаем точки индикации
     public void addDotsIndicator(int position){
         dots=new TextView[4];
         dotsLinear.removeAllViews();
@@ -85,6 +86,7 @@ public class SlideActivity extends AppCompatActivity {
         public void onPageSelected(int position) {
             addDotsIndicator(position);
 
+            //если открыди последний активити мы даем возмодность использовать кнопку "Закрыть"
             if(position == 3){
                 closeBtn.setVisibility(View.VISIBLE);
                 closeBtn.setEnabled(true);

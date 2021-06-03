@@ -36,8 +36,6 @@ public class ReminderForTimer extends BroadcastReceiver {
 
 
 
-
-
         ActivityManager m = (ActivityManager) context.getSystemService( ACTIVITY_SERVICE );
         List<ActivityManager.RunningTaskInfo> runningTaskInfoList =  m.getRunningTasks(10);
         Iterator<ActivityManager.RunningTaskInfo> itr = runningTaskInfoList.iterator();

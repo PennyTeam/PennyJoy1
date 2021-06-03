@@ -16,7 +16,6 @@ import Models.User;
 import Providers.UserProvider;
 
 public class SignUpActivityNoAcc2 extends AppCompatActivity {
-    private int signUpNoAccRequestCode=2;
     private EditText txtLogin, txtPasswd, txtRepeatedPasswd;
     private ProgressBar progressBar;
     @Override
@@ -59,7 +58,6 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
                         intent.putExtra("passwd",txtPasswd.getText().toString());
                         intent.putExtra("nameFromSecondAct",name);
                         intent.putExtra("surnameFromSecondAct",surname);
-                        //pr bar
 
                         startActivity(intent);
                     }

@@ -60,7 +60,7 @@ public class SliderAdapter extends PagerAdapter {
       layoutInflater=(LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
       //получили вью
       View view = layoutInflater.inflate(R.layout.slide_template,container,false);
-
+      //инициализировали переменные
         ImageView iconOfSlide=view.findViewById(R.id.iconOfSlide);
         TextView descOfSlide=view.findViewById(R.id.lblOfSlide);
 

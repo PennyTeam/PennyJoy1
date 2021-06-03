@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -20,7 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:textSize="30dp"
+                android:textSize="20dp"
                 android:text="Выберите валюту"
                 android:textColor="@color/white"
                 android:layout_marginTop="130dp"/>
@@ -59,7 +59,7 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/body_for_edit_text"
                 android:maxLength="9"
-                android:textSize="30dp"
+                android:textSize="10dp"
                 android:gravity="center"
                 android:inputType="numberDecimal"
                 android:hint="Заработная плата" />
@@ -77,7 +77,7 @@
                 android:layout_centerHorizontal="true"
                 android:onClick="saveUserClicked"
                 android:layout_alignParentBottom="true"
-                android:textSize="20dp"
+                android:textSize="10dp"
                 android:textAllCaps="false"
                 android:background="@drawable/body_for_btn_radius_13_dp_sign_in"
                 android:text="Зарегистрироваться"
@@ -90,4 +90,4 @@
     </LinearLayout>
 
 
-</RelativeLayout>
+</ScrollView>

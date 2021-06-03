@@ -63,6 +63,7 @@ public class SetUserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //инициализируем основные переменные
         setContentView(R.layout.activity_set_user);
         btnSaveSettings = findViewById(R.id.save_settings);
         goalsList = GoalsList.getInstance();
@@ -116,7 +117,7 @@ public class SetUserActivity extends AppCompatActivity {
         @Override
         public void onRetrieved(double currency) {
             valueOfCurrency = currency;
-
+            //если кол-во символов зарплаты после конвертации будет слишком большой мы не конвертируем ее и делаем снэкбар
             newSalary =Double.parseDouble(editTextSalary.getText().toString()) * valueOfCurrency + "";
             if(decimalFormat.format(Double.parseDouble(newSalary)).length() >9){
                 //сделали так потому что без этого thread все крашится так как тольоко главный thread модет менять UI
@@ -143,9 +144,7 @@ public class SetUserActivity extends AppCompatActivity {
                 editor.apply();
                 UsersCurrencyProvider usersCurrencyProvider = new UsersCurrencyProvider();
                 usersCurrencyProvider.updateCurrency(auth.getCurrentCurrency());
-                //_____
 
-                //------
 
 
                 //переменная для общих трат
@@ -249,10 +248,13 @@ public class SetUserActivity extends AppCompatActivity {
                         Currency currencyToConvert=(Currency) dropDownCurrency.getSelectedItem();
                         Currency currentCurrency=auth.getCurrentCurrency();
 
+                        //если юзер менял валюту
                         if(currencyToConvert.getId() != currentCurrency.getId() ) {
                             progressBar.setVisibility(View.VISIBLE);
                             currencyProvider.setNewCurrency(listener, currentCurrency.getCode(), currencyToConvert.getCode());
-                        }else {
+                        }
+                        //если юзер не менял валбту
+                        else {
                             progressBar.setVisibility(View.VISIBLE);
                             User updatedUser = auth.getCurrentUser();
                             updatedUser.setAccIsActive(auth.getCurrentUser().getAccIsActive());
@@ -322,6 +324,7 @@ public class SetUserActivity extends AppCompatActivity {
     }
 
 
+    //функции для проверки корректности ввода
     public boolean checkNewName(String newName){
         if(newName.length()>=2){
             return true;

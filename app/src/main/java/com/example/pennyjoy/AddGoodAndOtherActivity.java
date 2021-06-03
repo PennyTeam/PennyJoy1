@@ -49,7 +49,7 @@ public class AddGoodAndOtherActivity extends AppCompatActivity {
             lblResult = (TextView) myView.findViewById(R.id.lblResult);
             imageOfResult= (ImageView) myView.findViewById(R.id.image_of_result);
 
-
+            //рабоатем с главной информацией в алерте с результатом теста
             switch (resultOfQuiz) {
                 case 1:
                     imageOfResult.setImageDrawable(getResources().getDrawable(R.drawable.check_for_result));
@@ -90,6 +90,7 @@ public class AddGoodAndOtherActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.nav_add_good);
 
 
+        //работаем с фрагментами
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

@@ -12,8 +12,8 @@ import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 public class SignUpActivityNoAcc1 extends AppCompatActivity {
-    int signUpNoAccRequestCode=1;
     EditText txtName, txtSurname;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class SignUpActivityNoAcc1 extends AppCompatActivity {
             }
 
             //здесь проверяем те бул переменные; отвечающие за наличие больших первых букв
-            if(nameIsUpper == true && surnameIsUpper == true){
+            if(nameIsUpper && surnameIsUpper){
                 Intent intent = new Intent(this, SignUpActivityNoAcc2.class);
                 intent.putExtra("name", txtName.getText().toString());
                 intent.putExtra("surname", txtSurname.getText().toString());

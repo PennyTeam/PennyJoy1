@@ -72,7 +72,7 @@ public class AddGoalActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-break;
+                break;
 
             case Make_a_photo:
                 if(resultCode == RESULT_OK && data!=null){
@@ -126,7 +126,7 @@ break;
 
                        //получаю текущего юзера и устанавливаю кей
 
-                       User user = new User();
+
                        Auth auth = Auth.getInstance();
 
 
@@ -198,10 +198,11 @@ break;
                     }
                 }
             });
-alertDialog.show();
+            alertDialog.show();
         }
 
 
+        //здесь делаем из картинки стринг, чтобы сохранить
         public String convertBitmapToBase64(Bitmap bitmap){
             ByteArrayOutputStream stream =new ByteArrayOutputStream();
 

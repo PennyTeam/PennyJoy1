@@ -114,6 +114,7 @@ public class ChartsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charts);
 
+        //инициалируем основные переменные связанные с графиком, легендой и datePicker-ом
         progressBar=findViewById(R.id.progressBarInCharts);
 
         lblCurrency=findViewById(R.id.lblCurrencyOfSpends);
@@ -132,6 +133,7 @@ public class ChartsActivity extends AppCompatActivity {
 
         goodsList=GoodsList.getInstance();
         goodsListWhichActual=new ArrayList<>();
+        //делаем лист из актуальных, в плане месяца, переменных
         for (Good g:goodsList) {
             if(g.getActual() == true){
                 goodsListWhichActual.add(g);
@@ -177,7 +179,7 @@ public class ChartsActivity extends AppCompatActivity {
         //конец работы с круглым графиком
 
     }
-
+    //инициализирую дату и листенер для datePicker-а
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener=new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -256,12 +258,13 @@ public class ChartsActivity extends AppCompatActivity {
         datePickerDialog=new DatePickerDialog(this,style,dateSetListener,year,month,day);
     }
 
+    //роверяю выбрал ли юзер корректную дату(будущее, дату до его создания )
     private boolean isItCorrectDateChoosed(String[] dateList, String[] currentDateList
             , String[] usersDateList) {
         boolean isMonthCorrect = false;
         boolean isYearCorrect = false;
 
-
+        //если юзер выбрал год, который равняется текущему или дате создания
             if (Integer.parseInt(dateList[0]) == Integer.parseInt(currentDateList[0])
                     || Integer.parseInt(dateList[0]) == Integer.parseInt(usersDateList[0])) {
                 if (Integer.parseInt(dateList[0]) == Integer.parseInt(currentDateList[0])
@@ -274,7 +277,9 @@ public class ChartsActivity extends AppCompatActivity {
                     isYearCorrect = true;
                     isMonthCorrect = true;
                 }
-            } else {
+            }
+            //если юзер выбрал год, который между текущей и дате создания
+            else {
                 isMonthCorrect = true;
                 if (Integer.parseInt(dateList[0]) < Integer.parseInt(currentDateList[0])
                         && Integer.parseInt(dateList[0]) > Integer.parseInt(usersDateList[0])) {
@@ -302,7 +307,7 @@ public class ChartsActivity extends AppCompatActivity {
 
         return year+"-"+monthString;
     }
-
+    //длаем,все что связанно с графиком и легендой, а также проегресс баром
     public void initDataForPieChart(ArrayList<Good> goods){
         lblPercentage.setText(decimalFormat.format((totalSpends / salary) * 100) + "% из вашей вашей зарплаты потрачено ");
         //заполнение прогресс бара

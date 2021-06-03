@@ -50,7 +50,7 @@ public class HistoryActivity extends AppCompatActivity {
 
         listViewHistoryOfGoods = findViewById(R.id.listViewOfGoods);
 
-
+        //делаем листвью из проудктов
         if(goodsList != null && !goodsList.isEmpty()) {
             //создаю лист, который содержит не удаленные из истории товары
             for (Good g : goodsList) {
@@ -58,6 +58,7 @@ public class HistoryActivity extends AppCompatActivity {
                     goodsListWhichActualForHistory.add(g);
                 }
             }
+            //переварачиваю лист, чтобы на верху всегда был недавно добавленный продукт
             Collections.reverse(goodsListWhichActualForHistory);
         }
         else{
@@ -79,6 +80,7 @@ public class HistoryActivity extends AppCompatActivity {
 
     }
 
+
     public void clearHistoryClicked(View view){
         if(goodsListWhichActualForHistory != null && !goodsListWhichActualForHistory.isEmpty() ) {
             AlertDialog.Builder ad = new AlertDialog.Builder(view.getContext());
@@ -95,6 +97,7 @@ public class HistoryActivity extends AppCompatActivity {
             ad.setPositiveButton("Да", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    //очищаем продукты из истории
                     GoodProvider goodProvider = new GoodProvider();
                     for (Good g : goodsListWhichActualForHistory) {
                         g.setActiveForHistory(false);

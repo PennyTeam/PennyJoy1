@@ -64,8 +64,7 @@ public class MoneyPigActivity extends AppCompatActivity {
         lblCurrencyOfGoalProgress.setText(auth.getCurrentCurrency().getLabel());
 
 
-
-
+        //работаем с картинкой и в целом с текущей целью
         if(currentGoal != null) {
             byte[] imageBytes = new byte[0];
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -91,6 +90,7 @@ public class MoneyPigActivity extends AppCompatActivity {
         }
     }
 
+    //рабоатем с листом целей
     public void listOfGoalsBtnClicked(View v){
         alertDialog.setTitle("Остальные цели");
         if( goalsList!=null && !goalsList.isEmpty()) {
