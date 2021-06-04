@@ -41,7 +41,7 @@ public class CurrencyProvider {
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                        //Log.e("SHIT!! Smth with currency", e.toString());
+
                     }
 
                     @Override

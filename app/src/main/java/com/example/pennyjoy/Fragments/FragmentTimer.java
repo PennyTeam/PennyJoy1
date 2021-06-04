@@ -147,9 +147,8 @@ public class FragmentTimer extends Fragment {
                         long timeForCheck = 1000 * 10;
 
                         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                        //надо юзать finalDate, мы не испольщуем его для того чтобы не ждать все время. А лишь 10 секунд.
-                        // Чисто для проверки сделали
-                        alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonClicked + timeForCheck, pendingIntent);
+
+                        alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonClicked + finalDate, pendingIntent);
 
                         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     }else{
