@@ -66,7 +66,20 @@ private int resource;
         Auth auth=Auth.getInstance();
         currencyOfCostInHistoryOfGood.setText(auth.getCurrentCurrency().getLabel());
         DecimalFormat decimalFormat=new DecimalFormat("#.###");
-        priceInNumbers.setText(decimalFormat.format(good.getCost()));
+        String cost=decimalFormat.format(good.getCost());
+        if(cost.length() > 9){
+            String res="";
+            for(int i=0;i<=9;i++){
+                if( i == 9 ){
+                    res+="...";
+                    break;
+                }
+                res+=cost.charAt(i);
+            }
+            priceInNumbers.setText(res);
+        }else {
+            priceInNumbers.setText(cost);
+        }
         anEssay.setText(good.getPurchaseOfPurpose());
         v.setTag(good.getUserKey());
         v.setTag(R.string.good_int_for_tag, good);

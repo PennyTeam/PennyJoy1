@@ -78,69 +78,229 @@ public class LegendAdapter extends ArrayAdapter<LegendEntry> {
             TextView lblNameOfCategory = v.findViewById(R.id.lblNameOfCategory);
 
             String name = "";
+            String cost=decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position)));
+
             switch ((int) dataOfCategory.get(position)) {
                 case 0:
                     name = "Продукты";
-                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+
+                    if(cost.length() > 5){
+                        String res="";
+                        for(int i=0;i<=5;i++){
+                            if( i == 5 ){
+                                res+="...";
+                                break;
+                            }
+                            res+=cost.charAt(i);
+                        }
+                        lblCostOfCategory.setText(res);
+                    }else {
+                        lblCostOfCategory.setText(cost);
+                    }
+
                     lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
                     break;
                 case 1:
-                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    if(cost.length() > 5){
+                        String res="";
+                        for(int i=0;i<=5;i++){
+                            if( i == 5 ){
+                                res+="...";
+                                break;
+                            }
+                            res+=cost.charAt(i);
+                        }
+                        lblCostOfCategory.setText(res);
+                    }else {
+                        lblCostOfCategory.setText(cost);
+                    }
                     lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
                     name = "Путешествия";
                     break;
                 case 2:
-                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
-                    lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get(position)));
+                    if(cost.length() > 5){
+                        String res="";
+                        for(int i=0;i<=5;i++){
+                            if( i == 5 ){
+                                res+="...";
+                                break;
+                            }
+                            res+=cost.charAt(i);
+                        }
+                        lblCostOfCategory.setText(res);
+                    }else {
+                        lblCostOfCategory.setText(cost);
+                    }
+                    lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
                     name = "Транспорт";
                     break;
                 case 3:
-                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    if(cost.length() > 5){
+                        String res="";
+                        for(int i=0;i<=5;i++){
+                            if( i == 5 ){
+                                res+="...";
+                                break;
+                            }
+                            res+=cost.charAt(i);
+                        }
+                        lblCostOfCategory.setText(res);
+                    }else {
+                        lblCostOfCategory.setText(cost);
+                    }
                     lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
                     name = "Автомобиль";
                     break;
                 case 4:
-                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    if(cost.length() > 5){
+                        String res="";
+                        for(int i=0;i<=5;i++){
+                            if( i == 5 ){
+                                res+="...";
+                                break;
+                            }
+                            res+=cost.charAt(i);
+                        }
+                        lblCostOfCategory.setText(res);
+                    }else {
+                        lblCostOfCategory.setText(cost);
+                    }
                     lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
                     name = "Одежда";
                     break;
                 case 5:
-                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    if(cost.length() > 5){
+                        String res="";
+                        for(int i=0;i<=5;i++){
+                            if( i == 5 ){
+                                res+="...";
+                                break;
+                            }
+                            res+=cost.charAt(i);
+                        }
+                        lblCostOfCategory.setText(res);
+                    }else {
+                        lblCostOfCategory.setText(cost);
+                    }
                     lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
                     name = "Долги";
                     break;
                 case 6:
-                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    if(cost.length() > 5){
+                        String res="";
+                        for(int i=0;i<=5;i++){
+                            if( i == 5 ){
+                                res+="...";
+                                break;
+                            }
+                            res+=cost.charAt(i);
+                        }
+                        lblCostOfCategory.setText(res);
+                    }else {
+                        lblCostOfCategory.setText(cost);
+                    }
                     lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
                     name = "Инвестиции";
                     break;
                 case 7:
-                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    if(cost.length() > 5){
+                        String res="";
+                        for(int i=0;i<=5;i++){
+                            if( i == 5 ){
+                                res+="...";
+                                break;
+                            }
+                            res+=cost.charAt(i);
+                        }
+                        lblCostOfCategory.setText(res);
+                    }else {
+                        lblCostOfCategory.setText(cost);
+                    }
                     lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
                     name = "Цели";
                     break;
                 case 8:
-                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    if(cost.length() > 5){
+                        String res="";
+                        for(int i=0;i<=5;i++){
+                            if( i == 5 ){
+                                res+="...";
+                                break;
+                            }
+                            res+=cost.charAt(i);
+                        }
+                        lblCostOfCategory.setText(res);
+                    }else {
+                        lblCostOfCategory.setText(cost);
+                    }
                     lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
                     name = "Жилье";
                     break;
                 case 9:
-                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    if(cost.length() > 5){
+                        String res="";
+                        for(int i=0;i<=5;i++){
+                            if( i == 5 ){
+                                res+="...";
+                                break;
+                            }
+                            res+=cost.charAt(i);
+                        }
+                        lblCostOfCategory.setText(res);
+                    }else {
+                        lblCostOfCategory.setText(cost);
+                    }
                     lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
                     name = "Развлечения и досуг";
                     break;
                 case 10:
-                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    if(cost.length() > 5){
+                        String res="";
+                        for(int i=0;i<=5;i++){
+                            if( i == 5 ){
+                                res+="...";
+                                break;
+                            }
+                            res+=cost.charAt(i);
+                        }
+                        lblCostOfCategory.setText(res);
+                    }else {
+                        lblCostOfCategory.setText(cost);
+                    }
                     lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
                     name = "Красота и здоровье";
                     break;
                 case 11:
-                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    if(cost.length() > 5){
+                        String res="";
+                        for(int i=0;i<=5;i++){
+                            if( i == 5 ){
+                                res+="...";
+                                break;
+                            }
+                            res+=cost.charAt(i);
+                        }
+                        lblCostOfCategory.setText(res);
+                    }else {
+                        lblCostOfCategory.setText(cost);
+                    }
                     lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
                     name = "Покупки";
                     break;
                 case 12:
-                    lblCostOfCategory.setText(decimalFormat.format(costOfCategoryList.get((int) dataOfCategory.get(position))));
+                    if(cost.length() > 5){
+                        String res="";
+                        for(int i=0;i<=5;i++){
+                            if( i == 5 ){
+                                res+="...";
+                                break;
+                            }
+                            res+=cost.charAt(i);
+                        }
+                        lblCostOfCategory.setText(res);
+                    }else {
+                        lblCostOfCategory.setText(cost);
+                    }
                     lblPercentageOfCategory.setText(decimalFormat.format(percentageList.get((int) dataOfCategory.get(position))));
                     name = "Прочее";
                     break;

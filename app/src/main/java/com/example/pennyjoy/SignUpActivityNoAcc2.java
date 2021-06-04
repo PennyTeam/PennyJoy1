@@ -33,11 +33,10 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
     //здесь он клик для вызова след активити регистрации
     public void nextLog2(View v){
         //проверка на корректность ввода
-
         if( !txtLogin.getText().toString().isEmpty() && !txtPasswd.getText().toString().isEmpty()
         && !txtRepeatedPasswd.getText().toString().isEmpty()
         && checkingPasswd(txtPasswd.getText().toString(), txtRepeatedPasswd.getText().toString())==true
-        && txtLogin.getText().toString().length()>5 ) {
+        && txtLogin.getText().toString().length()>=5 ) {
             Intent intent = new Intent(this, SignUpActivityNoAcc3.class);
             Intent intent2=getIntent();
             //получаю данные с первого активити
@@ -69,7 +68,7 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
 
 
         }else{
-            Snackbar.make(v,"Заполните все поля верно", BaseTransientBottomBar.LENGTH_SHORT).show();
+            Snackbar.make(v,"Заполните все поля верно(Макс. длина логина 5 символов, пароля 7)", BaseTransientBottomBar.LENGTH_SHORT).show();
         }
     }
 

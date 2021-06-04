@@ -51,6 +51,7 @@ public class SetUserActivity extends AppCompatActivity {
     private CurrenciesList currenciesList;
     private double valueOfCurrency=0;
 
+
     private String newName ;
     private String newSurname;
     private String newLogin;
@@ -118,19 +119,10 @@ public class SetUserActivity extends AppCompatActivity {
         public void onRetrieved(double currency) {
             valueOfCurrency = currency;
             //если кол-во символов зарплаты после конвертации будет слишком большой мы не конвертируем ее и делаем снэкбар
-            newSalary =Double.parseDouble(editTextSalary.getText().toString()) * valueOfCurrency + "";
-            if(decimalFormat.format(Double.parseDouble(newSalary)).length() >9){
-                //сделали так потому что без этого thread все крашится так как тольоко главный thread модет менять UI
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressBar.setVisibility(View.GONE);
-                        Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content),
-                                "Зарплата слишком большая для конвертации", Snackbar.LENGTH_SHORT).show();
-                    }
-                });
+           newSalary =Double.parseDouble(editTextSalary.getText().toString()) * valueOfCurrency + "";
 
-            }else {
+
+
 
 
                 Currency currencyFromDropDown = (Currency) dropDownCurrency.getSelectedItem();
@@ -206,13 +198,13 @@ public class SetUserActivity extends AppCompatActivity {
                     public void run() {
                         progressBar.setVisibility(View.GONE);
                         currencySymbol.setText(auth.getCurrentCurrency().getLabel());
+
                         editTextSalary.setText(decimalFormat.format(auth.getCurrentUser().getSalary()));
+
                         Toast.makeText(getApplicationContext(), "Изменения сохранены", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
-
-        }
 
     };
 
@@ -300,12 +292,25 @@ public class SetUserActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     progressBar.setVisibility(View.VISIBLE);
+
+
+
                     User user = auth.getCurrentUser();
                     user.setAccIsActive(false);
                     UserProvider up = new UserProvider();
                     up.updateUser(user);
-                    CategoryList categoryList=CategoryList.getInstance();
-                    categoryList.getCategoryList().clear();
+
+                    SharedPreferences sharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
+                    sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
+
+                    auth.setCurrentCurrency(null);
+                    auth.setCurrentGoal(null);
+                    auth.setCurrentUser(null);
+
+                    goodsList.clear();
+                    GoalsList goalsList = GoalsList.getInstance();
+                    goalsList.clear();
+
                     progressBar.setVisibility(View.INVISIBLE);
                     Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
 
