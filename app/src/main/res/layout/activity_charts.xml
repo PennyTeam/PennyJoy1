@@ -9,7 +9,7 @@
     tools:context=".ChartsActivity">
 
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scroll"
@@ -176,18 +176,21 @@
 
                 </RelativeLayout>
 
+                <LinearLayout
+                    android:dividerHeight="10dp"
+                    android:id="@+id/listViewOfLegend"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/containerForTable"
+                    android:orientation="vertical"
+                    />
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
-    <ListView
-        android:dividerHeight="10dp"
-        android:id="@+id/listViewOfLegend"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/scroll"
-        />
+
 
     <ProgressBar
         android:id="@+id/progressBarInCharts"

@@ -13,7 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.DatePicker;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -87,7 +87,7 @@ public class ChartsActivity extends AppCompatActivity {
 
     private DecimalFormat decimalFormat = new DecimalFormat( "#.###" );
 
-    private ListView listView;
+    private LinearLayout linearOfCategories;
     private LegendAdapter legendAdapter;
 
     private GoodsList goodsList;
@@ -431,7 +431,7 @@ public class ChartsActivity extends AppCompatActivity {
 
 
 
-        listView = findViewById(R.id.listViewOfLegend);
+        linearOfCategories = findViewById(R.id.listViewOfLegend);
 
 
 
@@ -500,7 +500,12 @@ public class ChartsActivity extends AppCompatActivity {
 
         legendAdapter = new LegendAdapter(getApplicationContext(),R.layout.legend_template,  legendEntries,costList,percentageList,
                 dataOfCategories);
-        listView.setAdapter(legendAdapter);
+
+
+        linearOfCategories.removeAllViews();
+        for(int i = 0 ; i < legendAdapter.getCount(); i++) {
+            linearOfCategories.addView(legendAdapter.getView(i, null, linearOfCategories));
+        }
 
 
 
