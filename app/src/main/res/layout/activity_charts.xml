@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,7 +9,10 @@
     tools:context=".ChartsActivity">
 
 
-
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -165,18 +169,19 @@
                         </RelativeLayout>
 
                     </LinearLayout>
-                    <ListView
-                        android:dividerHeight="10dp"
-                        android:id="@+id/listViewOfLegend"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@id/containerForLblTable"
 
-                        />
                 </RelativeLayout>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+    </ScrollView>
+    <ListView
+    android:dividerHeight="10dp"
+    android:id="@+id/listViewOfLegend"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/scroll"
 
+    />
     <ProgressBar
         android:id="@+id/progressBarInCharts"
         android:layout_width="wrap_content"
