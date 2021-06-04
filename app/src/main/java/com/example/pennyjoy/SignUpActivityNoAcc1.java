@@ -36,13 +36,13 @@ public class SignUpActivityNoAcc1 extends AppCompatActivity {
                 nameIsUpper=true;
 
             }else{
-                Snackbar.make(v,"Заполните все поля", BaseTransientBottomBar.LENGTH_SHORT).show();
+                Snackbar.make(v,"Заполните все поля корректно(имя и фамилия начинаются с большой буквы)", BaseTransientBottomBar.LENGTH_SHORT).show();
             }
             if(Character.isUpperCase(txtSurname.getText().toString().charAt(0))) {
                 surnameIsUpper=true;
 
             }else{
-                Snackbar.make(v,"Заполните все поля", BaseTransientBottomBar.LENGTH_SHORT).show();
+                Snackbar.make(v,"Заполните все поля корректно(имя и фамилия начинаются с большой буквы)", BaseTransientBottomBar.LENGTH_SHORT).show();
             }
 
             //здесь проверяем те бул переменные; отвечающие за наличие больших первых букв

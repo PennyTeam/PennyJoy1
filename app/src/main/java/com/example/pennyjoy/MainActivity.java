@@ -42,6 +42,8 @@ import Models.Auth;
 import Models.GoalsList;
 import Models.Good;
 import Models.GoodsList;
+import Models.User;
+import Providers.UserProvider;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -57,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton settings;
     private FloatingActionButton settingsOfUser;
     private FloatingActionButton fabLogOut;
+    private AlertDialog.Builder ad;
+
     private ListView listView;
     private ArrayList<LegendEntry> legendEntries;
     private ArrayList<Object> dataOfCategories;
@@ -383,21 +387,39 @@ public class MainActivity extends AppCompatActivity {
     //метод для logout
     public void LogOutBtnClicked(View v) {
 
-        Intent intent = new Intent(this, SignInActivity.class);
-        SharedPreferences sharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
-        sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
+        ad = new AlertDialog.Builder(v.getContext());
+        ad.setTitle("Выход из аккаунта");
+        ad.setMessage("Вы уверены, что хотите выйти из аккаунта?");
+        ad.setIcon(R.drawable.ic_baseline_warning_24);
+        ad.setCancelable(false);
+        ad.setNegativeButton("Нет, отменить", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Snackbar.make(v,"Операция отменена", BaseTransientBottomBar.LENGTH_SHORT).show();
+            }
+        });
+        ad.setPositiveButton("Да", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+                SharedPreferences sharedPreferences = getSharedPreferences(String.valueOf(R.string.APP_PREFERENCES), Context.MODE_PRIVATE);
+                sharedPreferences.edit().remove("loginOfTheAuthorizedUser").commit();
 
-        auth.setCurrentCurrency(null);
-        auth.setCurrentGoal(null);
-        auth.setCurrentUser(null);
+                auth.setCurrentCurrency(null);
+                auth.setCurrentGoal(null);
+                auth.setCurrentUser(null);
 
-        goodsList.clear();
-        GoalsList goalsList = GoalsList.getInstance();
-        goalsList.clear();
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                goodsList.clear();
+                GoalsList goalsList = GoalsList.getInstance();
+                goalsList.clear();
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-        startActivity(intent);
-        Snackbar.make(v,"Вы вышли", BaseTransientBottomBar.LENGTH_SHORT).show();
+                startActivity(intent);
+                Snackbar.make(v,"Вы вышли", BaseTransientBottomBar.LENGTH_SHORT).show();
+            }
+        });
+        ad.show();
+
     }
 
 

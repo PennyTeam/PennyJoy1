@@ -68,7 +68,7 @@ public class SignUpActivityNoAcc2 extends AppCompatActivity {
 
 
         }else{
-            Snackbar.make(v,"Заполните все поля верно(Макс. длина логина 5 символов, пароля 7)", BaseTransientBottomBar.LENGTH_SHORT).show();
+            Snackbar.make(v,"Заполните все поля верно(мин. длина логина 5 символов, пароля 7)", BaseTransientBottomBar.LENGTH_SHORT).show();
         }
     }
 
