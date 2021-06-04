@@ -501,7 +501,7 @@ public class ChartsActivity extends AppCompatActivity {
         legendAdapter = new LegendAdapter(getApplicationContext(),R.layout.legend_template,  legendEntries,costList,percentageList,
                 dataOfCategories);
         listView.setAdapter(legendAdapter);
-        listView.setScrollContainer(false);
+
 
 
     }
