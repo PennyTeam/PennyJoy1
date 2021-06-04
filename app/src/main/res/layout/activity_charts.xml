@@ -9,13 +9,11 @@
     tools:context=".ChartsActivity">
 
 
-    <ScrollView
-        android:id="@+id/scroll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linear"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -126,6 +124,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/containerForTable"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="20dp">
@@ -165,7 +164,6 @@
                                 android:text="Трата(%)"
                                 android:textStyle="bold"/>
 
-
                         </RelativeLayout>
 
                     </LinearLayout>
@@ -173,14 +171,14 @@
                 </RelativeLayout>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </ScrollView>
+
+
     <ListView
     android:dividerHeight="10dp"
     android:id="@+id/listViewOfLegend"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_below="@id/scroll"
-
+    android:layout_below="@id/linear"
     />
     <ProgressBar
         android:id="@+id/progressBarInCharts"
