@@ -29,6 +29,7 @@ public class User {
         this.totalSpends=0;
     }
 
+
     public User(){};
 
     //здесь геттеры и сеттеры

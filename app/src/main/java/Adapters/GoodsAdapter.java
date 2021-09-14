@@ -49,6 +49,7 @@ private int resource;
         TextView lblTime=v.findViewById(R.id.lblTime);
 
 
+
         //делаю header со временем
         lblTime.setText(good.getCreateDate());
         if (position > 0) {

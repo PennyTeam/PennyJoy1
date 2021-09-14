@@ -133,7 +133,7 @@
          android:textColor="@color/black"
          android:text="p"
          android:textSize="19dp"
-         android:layout_marginRight="70dp"/>
+         />
 
 
     </RelativeLayout>
